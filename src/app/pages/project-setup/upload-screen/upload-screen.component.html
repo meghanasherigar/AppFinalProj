@@ -1,0 +1,40 @@
+<!-- <div class="row">
+  <div class="col-sm-12">
+  <ngx-upload-toolbar (loadChildComp)="loadMyChildComponent($event)" (uploadHistory) = "getUploadHistory($event)"></ngx-upload-toolbar>
+</div>
+</div> -->
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+
+<nb-card>    
+  <nb-card-body>     
+    <alert></alert>
+        <div class="col-sm-12" >       
+      <form [formGroup]="profileForm"  ngxUiLoaderBlurred (click) = "onSubmit()">         
+        <div class="row">
+         
+          <div class="col-sm-1">
+            <div class="form-group custom-file-upload-btn-wrapper">
+              <button type="submit" class="btn btn-success btn-semi-round btn-demo custom-file-upload-btn"  *ngIf="enableUpload" [disabled]="disableUpload">
+                <i class="fa fa-upload"
+                  aria-hidden="true"></i>
+                  <span class="uploadButton">&nbsp;&nbsp;{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}}</span></button>
+              <button class="btn btn-success btn-semi-round btn-demo custom-file-upload-btn" *ngIf="enableUpload" (click)="cancelupload()">{{'screens.project-setup.transaction.transaction-create.Cancel' | translate}}</button>
+            </div>
+          </div>
+          <div  class="col-sm-7">
+            <div class="form-group custom-file-input-wrapper">
+              <input type="file" name="profile" id="profile" class="custom-file-input" formControlName="profile"
+                [ngClass]="{ 'is-invalid': submitted && form.profile.errors }" pattern="^.*\.(xls|xlsx)$" Â 
+                (change)="onSelectedFile($event)" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+              <span id="fileName" class="selectedFileName"></span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <ng2-smart-table id="fileUploadSmartTable" [settings]="settings" [source]="source">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

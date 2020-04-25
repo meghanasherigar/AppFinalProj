@@ -1,0 +1,80 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<form  [formGroup]="createTemplateForm" (ngSubmit)="createTemplate()" ngxUiLoaderBlurred>
+  <nb-card class="createBlockpopupHW attribute-create-popup">
+    <nb-card-header class="createTopHeader">{{'screens.project-designer.iconview.CreateTtemplates.CreateTemplate' | translate}}
+        <button aria-label="Close" class="close" type="button"  (click)="dismiss()"><span aria-hidden="true" id="Close">×</span></button>
+    </nb-card-header>
+    <nb-card-body>
+     <div class="row">
+       <div class="col-sm-12">
+          <div class="form-group">
+            <label class="custom-form-label">{{'screens.project-designer.iconview.CreateTtemplates.TemplateName' | translate}} <span
+              class="create-block-attribute-mandatory-icon">*</span></label>
+            <input type="text" formControlName="TemplateName" [placeholder]="'screens.project-designer.iconview.CreateTtemplates.TemplateName' | translate"
+              class="form-control custom-form-input"  [ngClass]="{ 'is-invalid': submitted && form.TemplateName.errors }">
+              <div *ngIf="submitted && form.TemplateName.errors" class="invalid-feedback">
+                <div *ngIf="form.TemplateName.errors.required">
+                  {{'screens.project-designer.iconview.CreateTtemplates.TemplateNameRequiredMsg' | translate}}
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="custom-form-label">{{'screens.project-designer.iconview.CreateTtemplates.TemplateDescription' | translate}}</label>
+            <input type="text" formControlName="TemplateDescription"
+              class="form-control custom-form-input" [placeholder]="'screens.project-designer.iconview.CreateTtemplates.Descriptionfortemplate' | translate">
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label class="custom-form-label">{{'screens.project-designer.iconview.CreateTtemplates.Associatewith' | translate}}<span
+              class="create-block-attribute-mandatory-icon">*</span></label>
+              <input type="hidden" formControlName="hdnSelectedDeliverables" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.hdnSelectedDeliverables.errors }"
+                       id="hdnSelectedDeliverables">
+              <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-designer.iconview.CreateTtemplates.Deliverables' | translate" [data]="ddListDeliverableData"
+              formControlName="SelectedDeliverables" [settings]="ddDeliverableSettings"
+              (onDeSelect)="onDeliverableFilterSelect($event)" (onSelect)="onDeliverableFilterSelect($event)"
+              (onSelectAll)="onSelectAllDeliverable($event)" (onDeSelectAll)="onSelectAllDeliverable($event)">
+            </ng-multiselect-dropdown>
+            <div *ngIf="submitted && form.hdnSelectedDeliverables.errors" class="invalid-feedback">
+              <div *ngIf="form.hdnSelectedDeliverables.errors.required">
+                {{'screens.project-designer.iconview.CreateTtemplates.AssociatewithAlertMsg' | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="form-group">
+            <div class="radioButtonStyle"> 
+              <label class="custom-form-label"></label>
+              <input type="radio" formControlName="TemplateManual" checked="true" name="radioBtn" (click)="toggleAutomaticManualBehavior(false)"><span class="automaticStyle">{{'screens.project-designer.iconview.CreateTtemplates.Manual' | translate}}</span>
+                <label class="custom-form-label"></label>
+                <input type="radio" formControlName="TemplateAutomatic" name="radioBtn" (click)="toggleAutomaticManualBehavior(true)"><span class="automaticStyle">{{'screens.project-designer.iconview.CreateTtemplates.Automatic' | translate}}</span>
+                <img src="assets/images/icons8-info.svg" triggers="click" placement="right" ngbTooltip="{{'screens.project-designer.iconview.linking-information' | translate}}"  class="informationIcon ">
+              </div>
+                
+          </div>
+        </div>
+        </div>
+                  
+    </nb-card-body>
+    <nb-card-footer class="footerCard">
+      <nb-card-footer class="footerRightButton">
+        <button nbButton type="button" class="menu-btn-cancel createCancel" (click)="dismiss()"><label
+            class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+        
+        <button type="submit" class="menu-btn-save createBlockSave" [disabled]="!createTemplateForm.dirty ||createTemplateForm.invalid" [ngClass]="{'disableSaveButton':!createTemplateForm.dirty ||createTemplateForm.invalid}" 
+          id="btnCreateOrganization">{{'screens.home.labels.Save' | translate}}</button>
+
+
+      </nb-card-footer>
+      <!-- <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button> -->
+    </nb-card-footer>
+  </nb-card>
+</form>

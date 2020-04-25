@@ -1,0 +1,142 @@
+<div class="row ">
+    <div id="DeliverableFilters" [ngClass]="{'collapsed ':!show}" class="col-sm-12 toolbar-component-container">
+
+        <div class="create-section createDeliverableSection">
+            <div class="action-icon-wrapper">
+                <img src="assets/images/Download-active.svg" (click)="downloadDeliverables();" class="btnToolbar">
+                <span class="icon-name">{{ 'screens.Project-Management.Deliverable.Header.Download' | translate }}</span>
+            </div>
+            <div class="action-icon-wrapper" id="createManageAdminIcon" *ngIf="userHasAccess">
+                <img src="assets/images/Create-active.svg" (click)='createDeliverable();' class="btnToolbar">
+                <span class="icon-name">{{ 'screens.Project-Management.Deliverable.Header.AddNew' | translate }} <br>
+                    {{ 'screens.Project-Management.Header.Deliverable' | translate }}</span>
+            </div>
+            <div class="action-icon-wrapper" id="editDeliverable" *ngIf="userHasAccess">
+                <img src="assets/images/Edit-active.svg" (click)="editDeliverables()" class="btnToolbar">
+                <span class="icon-name">{{ 'screens.Project-Management.Deliverable.Header.Edit' | translate }}</span>
+            </div>
+
+            <div class="action-icon-wrapper" id="clearFilter" [ngClass]="{'disabledbutton ':!show}">
+                <img src="assets/images/Clear Filter-active.svg" (click)="clearFilters();" class="btnToolbar">
+                <span
+                    class="icon-name">{{ 'screens.Project-Management.Deliverable.Header.ClearFilter' | translate }}</span>
+            </div>
+            <!-- <span class="section-name">{{ 'screens.Project-Management.Deliverable.Header.Actions' | translate }}</span> -->
+        </div>
+
+        <div class="filters-section DeliverableLevel2">
+            <div class="filter-icon-wrapper">
+                <div class="action-icon-wrapper">
+                    <img src="assets/images/Filter-active.svg" class="btnToolbar" (click)="toggleCollapse()">
+                    <span
+                        class="icon-name">{{ 'screens.Project-Management.Deliverable.Header.Filter' | translate }}</span>
+                </div>
+            </div>
+            <div class="action-icon-wrapper editableContent " *ngIf="userHasAccess && showEditableFields">
+                <ngx-edit-deliverable id="showEditableFields" [editDeliverables]="selectedDeliverableIds"
+                    (editDeliverableAction)="editCompleteOrCancel($event)" [ngClass]="{'editLeft':!show}">
+                </ngx-edit-deliverable>
+            </div>
+            <div class="filter-inputs-wrapper" id="DeliverableFilters" [hidden]="!show">
+                <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Deliverable.Filter.DeliverableName' | translate"
+                    [data]="ddlDeliverableNames" [(ngModel)]="DeliverableName" [settings]="ddlDeliverableNamesSettings"
+                    (onSelect)="onDeliverableSelect($event)" (onDeSelect)="onDeliverableDeSelect($event)"
+                    (onSelectAll)="onDeliverableSelect($event)" (onDeSelectAll)="onDeliverableDeSelect($event)">
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Deliverable.Filter.Country' | translate" [data]="ddlCountries"
+                    [(ngModel)]="CountryName" [settings]="ddlCountriesSettings" (onSelect)="onCountrySelect($event)"
+                    (onDeSelect)="onCountryDeSelect($event)" (onSelectAll)="onCountrySelect($event)"
+                    (onDeSelectAll)="onCountryDeSelect($event)">
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Deliverable.Filter.ReportTier' | translate" [data]="ddlReportTiers"
+                    [(ngModel)]="ReportType" [settings]="ddlReportTierSettings" (onSelect)="onReportTierSelect($event)"
+                    (onDeSelect)="onReportTierDeSelect($event)" (onSelectAll)="onReportTierSelect($event)"
+                    (onDeSelectAll)="onReportTierDeSelect($event)">
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Deliverable.Filter.MilestoneReached' | translate" [data]="ddlMilestones"
+                    [(ngModel)]="Milestone" [settings]="ddlMilestonesSettings" (onSelect)="onMilestoneSelect($event)"
+                    (onDeSelect)="onMilestoneDeSelect($event)" (onSelectAll)="onMilestoneSelect($event)"
+                    (onDeSelectAll)="onMilestoneDeSelect($event)">
+                </ng-multiselect-dropdown>
+                <div class="small-column"></div>
+                <div class="small-column"></div>
+                <!-- 
+                    
+                    <div class="width5"></div> -->
+                <div class="input-wrapper filter-input">
+                        <!-- [minDate]="TargetMinDate" [maxDate]="TargetMaxDate" -->
+                    <input type="text" class="form-control" [(ngModel)]="TargetDeliverableDates"
+                        [placeholder]="'screens.Project-Management.Deliverable.Filter.TargetDeliverableIssueDate' | translate" id="targetdeliverableDate" bsDaterangepicker
+                        #dpTargetDate="bsDaterangepicker"
+                        (bsValueChange)="onTargetDeliverableDate($event)"
+                        [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+                    <label>
+                        <i>
+                            <img src="assets/images/calender.png" (click)="dpTargetDate.show()"
+                                [attr.aria-expanded]="dpTargetDate.isOpen" class="calender-icon"></i></label>
+                </div>
+                <nb-rangepicker #rangepicker  format="DD MMM YYYY"
+                    (rangeChange)="onTargetDeliverableDate($event)"
+                    [min]="TargetMinDate" [max]="TargetMaxDate">
+                </nb-rangepicker>
+                <div class="input-wrapper filter-input">
+                    <input type="text" class="form-control" [(ngModel)]="SatutoryDate" [placeholder]="'screens.Project-Management.Deliverable.Filter.StatutoryDueDate' | translate"
+                        id="statutoryDate" bsDaterangepicker (bsValueChange)="onStatutoryDate($event)"
+                        #dpStatutoryDate="bsDaterangepicker"
+                        [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+                    <label>
+                        <i>
+                            <img src="assets/images/calender.png" (click)="dpStatutoryDate.show()"
+                                [attr.aria-expanded]="dpStatutoryDate.isOpen" class="calender-icon"></i></label>
+                </div>
+                <nb-rangepicker #rangepicker  format="DD MMM YYYY"
+                    (rangeChange)="onStatutoryDate($event)" [min]="StatutoryMinDate"
+                    [max]="StatutoryMaxDate">
+                </nb-rangepicker>
+                <div class="input-wrapper filter-input">
+                    <input type="text" class="form-control" [placeholder]="'screens.Project-Management.Deliverable.Filter.TaxableYearEnd' | translate" id="taxableDate"
+                        bsDaterangepicker #dpTaxableDate="bsDaterangepicker" [(ngModel)]="TaxableYear"
+                        (bsValueChange)="onTaxableDate($event)" [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }"
+                        readonly>
+                    <label>
+                        <i>
+                            <img src="assets/images/calender.png" (click)="dpTaxableDate.show()"
+                                [attr.aria-expanded]="dpTaxableDate.isOpen" class="calender-icon"></i></label>
+                </div>
+                <nb-rangepicker #rangepicker  format="DD MMM YYYY" (rangeChange)="onTaxableDate($event)"
+                    [min]="TaxableMinDate" [max]="TaxableMaxDate">
+                </nb-rangepicker>
+
+                <div class="input-wrapper filter-input">
+                    <input type="text" class="form-control" [placeholder]="'screens.Project-Management.Deliverable.Filter.CBCNotificationDueEnd' | translate" id="taxableDate" bsDaterangepicker
+                        #dpCbcDate="bsDaterangepicker" [(ngModel)]="CBCDates"
+                        (bsValueChange)="onCBCDate($event)"
+                        [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+                    <label>
+                        <i>
+                            <img src="assets/images/calender.png" (click)="dpCbcDate.show()"
+                                [attr.aria-expanded]="dpCbcDate.isOpen" class="calender-icon"></i></label>
+                </div>
+                <nb-rangepicker #rangepicker  format="DD MMM YYYY" (rangeChange)="onCBCDate($event)"
+                    [min]="cbcMinDate" [max]="cbcMaxDate">
+                </nb-rangepicker>
+                <span
+                    class="section-name">{{ 'screens.Project-Management.Deliverable.Header.Filters' | translate }}</span>
+            </div>
+
+        </div>
+        <div class="manage-section">
+            <div class="action-icon-wrapper" id="editDeliverable">
+             
+                <button id='customizeColumn' class='table-col-list'
+                (click)='showColumnCustomizeDialog();'>{{ 'screens.Project-Management.Deliverable.Header.ColumnList' | translate }}</button>
+            </div>
+        </div>
+       
+        <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+            {{imageName}}
+            <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+            <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+        </div>
+
+    </div>

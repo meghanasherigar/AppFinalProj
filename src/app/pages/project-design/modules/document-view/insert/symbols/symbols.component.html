@@ -1,0 +1,29 @@
+<form [formGroup]="WaterMark" (ngSubmit)="save()">
+  <nb-card class="createBlockpopupHW blockGeneratePopUp">
+    <nb-card-header class="createTopHeader padding0">
+      <div class="blockGenerateHeader">
+        <div class="generateIcon">
+          <img src="assets/images/Generate-white.svg">
+        </div>
+        <div class="generateText">
+          <span>{{'screens.project-designer.document-view.WaterMarkLabel.Symbols' | translate}}</span>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="symbolIconBox">
+        <button *ngFor="let symbol of symbols" class="symbolButtons" [ngStyle]="{ background: symbol }"
+          (click)="insertSymbol(symbol)">
+          <div [innerHTML]="symbol"></div>
+        </button>
+          <span></span>
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="footerCard">
+      <nb-card-footer class="footerRightButton">
+        <button nbButton type="submit" class="menu-btn-save createBlockSave footerRightButton" style="color:black;"
+          (click)="dismiss()"><label class="">{{ 'screens.project-designer.document-view.defineColors.ok-button-label' | translate }}</label></button>
+      </nb-card-footer>
+    </nb-card-footer>
+  </nb-card>
+</form>

@@ -1,0 +1,16 @@
+.CustomMarginPopup{
+    width: 500px;
+    nb-card-header{
+        background: #181818;
+        color: #fff;
+        
+        .form-group{
+            label{
+                font-size: 12px;
+            }
+        }
+    }
+    .menu-btn-save{
+        margin-left: 10px;
+    }
+}

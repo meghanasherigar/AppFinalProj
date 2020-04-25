@@ -1,0 +1,33 @@
+<div class="container-fluid padding0">
+  <div class="row home-menu-container templateLevel2MenuWrapper">
+    <div id="homeFilters-section" class="col-xs-12 toolbar-component-container">
+      <div class="manage-section">
+        <div class="action-icon-wrapper" [ngClass]="{'filter-disable' : isUploadDisabled}">
+          <img src="assets/images/Upload_active.svg" class="btnToolbar" (click) = "uploadAppendicePopup();" >
+          <span class="icon-name">{{'screens.project-designer.appendix.label.Upload' | translate}}</span>
+        </div>
+        <div class="action-icon-wrapper" [ngClass]="{'filter-disable' : isDownloadDisabled}">
+          <img src="assets/images/Download-active.svg" class="btnToolbar" (click)="downloadAppendices();">
+          <span class="icon-name">{{'screens.project-designer.appendix.label.Download' | translate}}</span>
+        </div>
+        <div class="action-icon-wrapper">
+          <img src="assets/images/Delete-active.svg" [ngClass]="{'filter-disable' : isDeleteDisabled}" (click)="openDeleteConfirmDialog();" class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.appendix.label.Delete' | translate}}</span>
+        </div>
+        <div class="action-icon-wrapper">
+          <img src="assets/images/Associate_active.svg" [ngClass]="{'filter-disable' : isAssociateDisabled}" (click)="associateAppendicePopup();" class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.appendix.label.Associate' | translate}}</span>
+        </div>
+        <div class="action-icon-wrapper">
+          <img src="assets/images/Disassociate_active.svg" [ngClass]="{'filter-disable' : isDisassociateDisabled}" (click)="diaasociateAppendicePopup();" class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.appendix.label.Diassociate' | translate}}</span>
+        </div>
+      </div>
+      <div class="sectionNameWrapper">
+        <span class="sectionName">{{'screens.project-designer.appendix.label.Actions' | translate}}</span>
+      
+     </div>
+    </div>
+  </div>
+</div>
+  

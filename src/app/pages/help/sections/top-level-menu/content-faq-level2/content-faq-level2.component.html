@@ -1,0 +1,18 @@
+<div class=" contentfaq-menu col-sm-12 ">
+  <div class="col-sm-2">
+      <!-- <div class="select-language">
+          <select>
+            <option>English</option>
+            <option>French</option>
+            <option>German</option>
+          </select>
+        </div> -->
+        <div class="search-wrapper">
+          <input type="text" [(ngModel)]="searchText" (ngModelChange)="onSearch($event)" placeholder="{{'screens.Shared.Search.placeholders.Search' | translate}}"/>
+        </div>
+         <div>
+           <p>{{ 'screens.admin.labels.action' | translate }}</p> 
+         </div>
+  </div>
+
+</div>

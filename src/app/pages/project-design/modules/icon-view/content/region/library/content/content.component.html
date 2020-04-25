@@ -1,0 +1,96 @@
+<!-- <div class="example-container col-sm-6">
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of todo" cdkDrag>
+      <input type="checkbox">
+        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+      {{item}}</div>
+  </div>
+</div> -->
+
+<!-- <button value="Demote" (click)="demoteBlocks($event)">Demote</button>
+<button value="Promote" (click)="promoteBlocks($event)">Promote</button> -->
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div id="parentDiv" class="libraryContentSection libraryStyle"  ngxUiLoaderBlurred>
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding  [ngClass]="{'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,
+        'nestedBlock':node.isStack==false,
+        'librarystack':node.isStack==true,
+        'templateBlockColor':node.colorCode=='White',
+        'deliverableBlockColor':node.colorCode=='Teal',
+        'libraryBlockColor':node.colorCode=='Grey',
+        'categoryCollection':node.isCategory==true,
+        'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+        'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node}">
+          <button mat-icon-button disabled></button>
+          <mat-checkbox class="checklist-leaf-node" 
+          [checked]="checklistSelection.isSelected(node)" (change)="checklistSelection.toggle(node);todoItemSelectionToggle(node);" draggable="true"
+          (dragstart)="handleDragStart($event, node);" (dragover)="handleDragOver($event, node);"
+          (drop)="handleDrop($event, node);"  (dblclick)="doubleClick(node)" (dragend)="handleDragEnd($event);"><span  id="item_{{node.nodeIndex}}" *ngIf="!node.isStack">{{node.item}}</span><span class="stackDisplay" *ngIf="node.isStack">{{node.description}}</span>
+          <div *ngIf="blockViewType && blockViewType!=1">
+              <div class="borderSection"></div>
+                <div class="descriptio">
+                  <div class="col-md-7" *ngIf="blockViewType==2 || blockViewType==3">
+                    <p>{{'screens.home.labels.blockAttributeDetail.BlockType' | translate}} : <span> {{node.blockType ? node.blockType.blockType : ''}}</span></p>
+                  </div> 
+                  <div class="col-md-5" *ngIf="blockViewType==2 || blockViewType==3">
+                      <p>{{'screens.home.labels.blockAttributeDetail.Status' | translate}} : <span>{{node.blockStatus ? node.blockStatus.blockStatus : ''}}</span></p>
+                  </div>
+                <div class="col-md-12" *ngIf="blockViewType==3">
+                    <p>{{'screens.home.labels.blockAttributeDetail.Description' | translate}}   :<span> {{node.description}} </span></p>
+                </div>
+            </div>
+          </div>
+
+          
+        </mat-checkbox>
+         
+        </mat-tree-node>
+      
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding [ngClass]="{'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,
+        'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+        'categoryCollection':node.isCategory==true,
+        'librarystack':node.isStack==true,
+        'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node}">
+          <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename" (click)="expandBlock(node)">
+            <mat-icon class="mat-icon-rtl-mirror"   *ngIf="node.isStack || node.isCategory">
+            
+              {{treeControl.isExpanded(node) ? 'remove_circle_outline' : 'add_circle_outline'}}
+            </mat-icon>
+            <mat-icon class="mat-icon-rtl-mirror"   *ngIf="!node.isStack && !node.isCategory">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          <mat-checkbox  
+            draggable="true" (dragstart)="handleDragStart($event, node);" (dragover)="handleDragOver($event, node);"
+            (drop)="handleDrop($event, node);"  (dblclick)="doubleClick(node)" (dragend)="handleDragEnd($event);" 
+           [checked]="checklistSelection.isSelected(node)" (change)="checklistSelection.toggle(node);todoItemSelectionToggle(node)"><span  *ngIf="!node.isStack">{{node.item}}</span><span class="stackDisplay" *ngIf="node.isStack">{{node.description}}</span>
+                   </mat-checkbox>
+                   <div *ngIf="blockViewType && blockViewType!=1 && !node.isCategory">
+                      <div class="borderSection"></div>
+                        <div class="descriptio">
+                          <div class="col-md-7" *ngIf="blockViewType==2 || blockViewType==3">
+                            <p>{{'screens.home.labels.blockAttributeDetail.BlockType' | translate}}  : <span> {{node.blockType ? node.blockType.blockType : ''}}</span></p>
+                          </div> 
+                          <div class="col-md-5" *ngIf="blockViewType==2 || blockViewType==3">
+                              <p>{{'screens.home.labels.blockAttributeDetail.Status' | translate}} : <span>{{node.blockStatus ? node.blockStatus.blockStatus : ''}}</span></p>
+                          </div>
+                        <div class="col-md-12" *ngIf="blockViewType==3">
+                            <p>{{'screens.home.labels.blockAttributeDetail.Description' | translate}}   :<span> {{node.description}} </span></p>
+                        </div>
+                    </div>
+                  </div>
+  
+        </mat-tree-node>
+      </mat-tree>
+      
+      <span #emptyItem></span>
+
+</div>

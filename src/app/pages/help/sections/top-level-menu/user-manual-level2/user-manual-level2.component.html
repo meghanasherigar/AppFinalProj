@@ -1,0 +1,39 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="col-sm-12 usermanualmenu_wrapper" ngxUiLoaderBlurred>
+<div class="col-sm-3 usermanual-menu padding0">
+    <div class="col-sm-4 toolbar-component-container collapsed borderRight">
+        <div class="manage-section">
+            <div class="action-icon-wrapper" id="downloadIcon">
+                <img src="assets/images/Download-active.svg" class="btnToolbar" (click)="downloadUsageReport();">
+                <span class="icon-name">{{ 'screens.admin.labels.download' | translate }}</span>
+                
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8 toolbar-component-container collapsed">
+        <div class="manage-section">
+            <form [formGroup]="userManualForm" (ngSubmit)="onSubmit()">
+              
+                <select class="form-control" id="ddlCountry" [(ngModel)]="languageSelected"   (change)="languageChanged($event)">
+                    <!-- <option value="">--Select language--</option> -->
+                    <option *ngFor="let lag of languageList" >
+                        {{lag.language}} 
+                    </option>
+                    <!-- <option value="0">--All--</option> -->
+                    <!-- <option *ngFor="let country of countries" value={{country}}>
+                      {{country.name}}
+                  </option> -->
+                </select>
+                <!-- <div class="search-wrapper">
+                        <input type="text" placeholder="Search"/>
+                </div> -->
+           </form>
+        </div>
+    </div>
+</div>
+<p class="col-sm-12 margin0 padding0">
+    <span class="action-text">{{ 'screens.admin.labels.action' | translate }}</span>
+</p>
+</div>

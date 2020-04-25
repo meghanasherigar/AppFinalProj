@@ -1,0 +1,151 @@
+<div class="container-fluid">
+   <div class="row home-menu-container templateLevel2MenuWrapper">
+      <div id="homeFilters-section" class="col-xs-12 toolbar-component-container collapsed">
+         <div class="manage-section icons">
+            <div class="action-icon-wrapper"
+               [ngClass]="(currentIndex == 1 || currentIndex == 2 || currentIndex == 3) ?  'disable-section disabledbutton' : ''">
+               <img src="assets/images/information_Gathering/send_back_for_review.svg" class="btnToolbar"
+                  (click)="sendMailPopUp();">
+               <span
+                  class="icon-name">{{'screens.project-designer.document-view.info-gathering.create-info.send-button' | translate}}</span>
+            </div>
+
+            <div class="action-icon-wrapper" [ngClass]="(currentIndex == 1) ?  'disable-section disabledbutton' : ''">
+               <img src="assets/images/information_Gathering/Save_as_draft.svg" class="btnToolbar"
+                  (click)="SaveInfoGathering('saveInfoRequest');">
+               <span
+                  class="icon-name">{{'screens.project-designer.document-view.info-gathering.create-info.save-draft-button' | translate}}</span>
+            </div>
+            <div class="action-icon-wrapper" (click)="closeCreateRequest()">
+               <img src="assets/images/close-task.svg" class="btnToolbar">
+               <span
+                  class="icon-name">{{'screens.project-designer.document-view.info-gathering.create-info.close-button' | translate}}</span>
+            </div>
+         </div>
+         <div class="manage-section clearFilter" [hidden]="currentIndex != 1">
+            <div class="action-icon-wrapper"
+               [ngClass]="{'hideClearFilterIcon':(currentIndex != 1),'displayClearFilterIcon':(currentIndex == 1),'disable-section disabledbutton' : (filterDisable == true)}"
+               (click)="clearFilters()">
+               <img src="assets/images/information_Gathering/clear_filter.svg" class="btnToolbar">
+               <span class="icon-name">{{'screens.project-designer.document-view.info-gathering.create-info.ClearFilter' | translate}}</span>
+            </div>
+         </div>
+         <div class="manage-section DefaultTempDisplay" [hidden]="currentIndex != 1" [ngClass]="{'hideFilters':show==false}">
+         <div class="templateEntityPopOver">
+            <div class="row radioButtons">
+               <div class="radio-inline">
+                  <label class="container">
+                     {{'screens.project-designer.document-view.info-gathering.create-info.TEMPLATES' | translate}}
+                     <input name="options" [(ngModel)]="options" [value]="true" type="radio"
+                        [checked]="options" (change)="handleChange(options)" />
+                     <span class="checkmark"></span>
+                  </label>
+               </div>
+               <div class="radio-inline">
+                  <label class="container">
+                     {{'screens.project-designer.document-view.info-gathering.create-info.Entity' | translate}}
+                     <input name="options" [(ngModel)]="options" [value]="false" type="radio"
+                        [checked]="!options" (change)="handleChange(options)" />
+                     <span class="checkmark"></span>
+                  </label>
+
+               </div>
+            </div>
+            
+         </div>
+         <div [nbPopover]="templateDeliverablesRef" nbPopoverPlacement="bottom" class="selectTemplateEntity">
+            <!-- Deliverable/Entity -->
+            <div *ngIf="defaultLabel">
+               {{'screens.project-designer.document-view.info-gathering.create-info.DeliverableEntity' | translate}}
+            </div>
+            <span _ngcontent-c56="" class="dropdown-down dropdown-Arrow"></span>
+            <div *ngIf="options">
+               {{selectedTemplateItem}}
+            </div>
+            <div *ngIf="!options" class="InfoEntityDropdown">
+               <div *ngFor="let item of selectedEntityTemplate" class="selectedEntities" [title]="item.name">
+                  {{item.name}}
+               </div>
+               <span *ngIf="selectedEntityTemplate.length>1" class="itemCountFilter">+{{selectedEntityTemplate.length-1}}</span>
+            </div>
+         </div>
+         <ng-template #templateDeliverablesRef>
+            <div class="templateEntityPopOver">
+               <div *ngIf="options">
+                  <div>
+                     <ul>
+                        <li *ngFor="let template of ddlTemplates"><input type="radio" name="templateSelection"
+                              [checked]="template.checked" (change)="updateSelectedTemplate(template, $event)"
+                              class="templateCheckbox"><label>{{template.name}}</label>
+                     </ul>
+                  </div>
+               </div>
+               <div *ngIf="!options">
+                  <div>
+                     <ul>
+                        <li *ngFor="let entity of ddlDeliverables"><input type="checkbox"
+                              [checked]="entity.checked" (change)="updateCheckedOptions(entity, $event)"
+                              class="entityCheckbox">
+                           <label>{{entity.name}} {{entity.taxableYearEnd | date: 'dd MMM yyyy'}}</label>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </ng-template>
+      </div>
+         <div class="filters-section" id="filterSection" [hidden]="currentIndex != 1"
+            [ngClass]="{'hideFilters':show==false}">
+            <div class="filter-inputs-wrapper">
+               <ng-multiselect-dropdown class="filter-input " [data]="ddlQuestionTypes" [placeholder]="'screens.project-designer.document-view.info-gathering.create-info.question-type-label' | translate"
+                  [settings]="dropdownSettings" [(ngModel)]="selectedQuestionTypes" (onDeSelect)="onItemSelect($event)"
+                  (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event,1)"
+                  (onDeSelectAll)="onSelectAll($event,1)">
+               </ng-multiselect-dropdown>
+               <ng-multiselect-dropdown class="filter-input " [data]="ddlBlockTypes" [placeholder]="'screens.project-designer.document-view.info-gathering.create-info.BlockType' | translate"
+                  [settings]="dropdownSettings" [(ngModel)]="selectedBlockTypes" (onDeSelect)="onItemSelect($event)"
+                  (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event,2)"
+                  (onDeSelectAll)="onSelectAll($event,2)">
+               </ng-multiselect-dropdown>
+               <ng-multiselect-dropdown class="filter-input " [data]="ddlTags" [placeholder]="'screens.project-designer.document-view.info-gathering.create-info.HashTag' | translate"
+                  [settings]="dropdownSettings" [(ngModel)]="selectedTags" (onDeSelect)="onItemSelect($event)"
+                  (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event,3)"
+                  (onDeSelectAll)="onSelectAll($event,3)">
+               </ng-multiselect-dropdown>
+
+              
+            </div>
+
+            <div class="filter-inputs-wrapper">
+             
+               <ng-multiselect-dropdown class="filter-input " [data]="ddlCreatedBy" [placeholder]="'screens.project-designer.document-view.info-gathering.create-info.CreatedBy' | translate"
+                  [settings]="dropdownSettings" [(ngModel)]="selectedCreatedBy" (onDeSelect)="onItemSelect($event)"
+                  (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event,4)"
+                  (onDeSelectAll)="onSelectAll($event,4)">
+               </ng-multiselect-dropdown>
+               <div class="input-wrapper filter-input">
+                  <input type="text" class="form-control" id="createdDate" [placeholder]="'screens.project-designer.document-view.info-gathering.create-info.CreationDate' | translate"
+                     (bsValueChange)="onDateSelect($event, 'CreatedDate')" bsDaterangepicker
+                     #dpcreatedDate="bsDaterangepicker"
+                     [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+                  <label>
+                     <i>
+                        <img src="assets/images/calender.png" (click)="dpcreatedDate.show()"
+                           [attr.aria-expanded]="dpcreatedDate.isOpen" class="calender-icon"></i></label>
+               </div>
+            </div>
+            <div class="sectionNameWrapper">
+               <span class="sectionName">{{'screens.project-designer.document-view.info-gathering.create-info.Actions' | translate}}</span>
+               <span class="sectionName">{{'screens.project-designer.document-view.info-gathering.create-info.IRtype' | translate}} </span>
+               <div class="sectionName ">{{'screens.project-designer.document-view.info-gathering.create-info.Filters' | translate}}</div>
+               
+            </div>
+         </div>
+      </div>
+      <div class="collapse-btn-wrapper" (click)="toggleCollapse()" *ngIf="currentIndex == 1">
+         {{imageName}}
+         <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+         <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+      </div>
+   </div>
+</div>

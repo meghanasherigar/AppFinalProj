@@ -1,0 +1,78 @@
+.OtherHeader{
+    background: #000;
+}
+.otherTaskPopup{
+    width:797px;
+}
+.otherTaskPopup label{
+font-size: 14px;
+font-weight: 700;
+}
+#btnOtherTask{color: white;}
+.otherTaskFooter{
+    border-top: 1px solid #eee !important;
+    padding: 10px;;
+
+}
+.OtherTaskRedIcon{
+    color: red;
+    font-size: 9px;
+    padding: 0px;
+    margin-top: 20px;
+}
+.otherTaskHeaderContent{
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.footerButton{
+    text-align: right;
+    padding-right: 18px;
+    .menu-btn-cancel{
+        border-radius: 3px;
+    }
+ }
+ .input-wrapper.filter-input{
+    position: relative;
+    input{
+       border: 1px solid #D2D4CD;
+       padding: 4px !important;
+       height: 30px;
+       &::placeholder{
+          color: #BBBCBC;
+          font-size: 13px;
+       }
+    }
+    .calIcon{
+    position: absolute;
+    right: 5px;
+    top: 30px;
+    }
+
+   }
+   .OtherTaskprogess{
+    height: 5px;
+    width: 230px;
+    border: 0.5px solid #D8D8D8;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 7px 0 rgba(224,224,224,0.5);
+   }
+   .otherAttachment label:nth-child(2){
+     background: #fff; 
+    display: table;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 17px;
+    color: #86BC25;
+    text-align: center;
+    border: 1px solid #86BC25;
+    height: 25px;
+    width: 68px;
+    border-radius: 2px;
+    line-height: 25px;
+
+     }
+     input[type="file"] {
+        display: none;
+    }

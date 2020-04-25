@@ -1,0 +1,23 @@
+<div class="partialMergeMain" style="">
+  <nb-card-header class="PartialMergeHeader">Partial Merge
+     <button aria-label="Close" class="close" type="button" (click)="onCancel()">
+       <span aria-hidden="true">×</span></button>
+  </nb-card-header>
+  <div class="partialMergeBody">
+      <div class="form-group">
+          <label>Block Title</label>
+          <input class="form-control custom-form-input" id="idBlockTitle" value="{{blockTitle}}" placeholder="Enter Block Title" />
+      </div>
+      <div >
+        <!--  <label>Block Content</label> -->
+        <div class="readonly" [innerHTML]="this.blockContent"></div>
+    </div>
+  </div>
+  <div class="col-sm-12 footerAttribute">
+    <button nbButton type="button" class="menu-btn-cancel importCancel" style="color:black;"
+      (click)="onCancel()"><label class="menu-txt-cancel canclebuttonLebal">Cancel</label></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <span ><button type="submit" class="menu-btn-save importAddButtton" 
+        (click)="onAddBlock()">Add Block</button></span>
+  </div>
+ </div>

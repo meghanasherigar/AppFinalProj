@@ -1,0 +1,21 @@
+.termsofUse
+{
+    max-height: calc(100vh - 35px);
+     background: white;
+    max-width: calc(100vw - 35px);
+    margin-left: 4rem;
+    margin-right: 4rem;
+nb-card-header{
+    border-bottom: 1px solid #cccc;
+}
+nb-card-body{
+    max-height: calc(100vh - 135px);
+    overflow-y: auto;
+}
+}
+#close{-webkit-appearance: none;
+    background: none;
+    border: none;
+    float: right;
+    img{ width:20px;}
+}

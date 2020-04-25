@@ -1,0 +1,170 @@
+<form [formGroup]="blockImporterForm">
+
+  <nb-card class="create-block-popupWidth">
+    <nb-card-header class="importedTopHeader">
+      <div class="col-sm-9">
+        <h6 class="importerHeading">{{block.title}}</h6>
+      </div>
+      <div class="col-sm-3">
+        <h6 class="attributeHeadeing">Attributes</h6>
+      </div>
+
+    </nb-card-header>
+
+    <nb-card-body>
+
+      <div class="row HeaderScrolling">
+        <div class="col-sm-9 importerScroling">
+          <div #blockContent class="bi-block-content">
+          </div>
+        </div>
+        <div class="col-sm-3 importerForm">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="custom-form-label">Block Type </label>
+              <div class="selectBlockAttrDropDown">
+                <select class="form-control custom-form-input ddlHeight" id="ddlBlockType"
+                  formControlName="BlockType">
+                  <option *ngFor="let type of blockTypes" [ngValue]="type.blockTypeId">
+                    {{type.blockType}}
+                  </option>
+                </select>
+                <span class="dropdown-down dropdown-Arrow"> </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="custom-form-label">Block Title</label>
+              <input type="text" formControlName="BlockTitle" placeholder="eg:Busines Overview"
+                class="form-control custom-form-input">
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="custom-form-label">Block Descriptor
+                <!-- <span class="imported-block-mandatory-icon">*</span> -->
+              </label>
+              <input type="text"placeholder="Description" class="form-control  custom-form-input" id="disabledInput"
+                [ngClass]="{ 'is-invalid': submitted && form.BlockDescription.errors }"
+                formControlName="BlockDescription" type="text" maxlength="250">
+              <!-- <div *ngIf="submitted && form.BlockDescription.errors" class="invalid-feedback">
+                <div *ngIf="form.BlockDescription.errors.required">Block description is required</div>
+              </div> -->
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="custom-form-label">Project Year
+                <!-- <span class="imported-block-mandatory-icon">*</span> -->
+              </label>
+              <input type="text" readonly [ngClass]="{ 'is-invalid': submitted && form.ProjectYear.errors }"
+                formControlName="ProjectYear" class="form-control custom-form-input disabledTextInput">
+              <!-- <div *ngIf="submitted && form.ProjectYear.errors" class="invalid-feedback">
+                <div *ngIf="form.ProjectYear.errors.required">Project year is required</div>
+              </div> -->
+            </div>
+          </div>
+
+          <!-- <div class="col-sm-12">
+            <div class="form-group">
+              <label class="custom-form-label">TemplatesUtilized<span
+                  class="imported-block-mandatory-icon">*</span></label>
+              <input type="text"placeholder="System Genrated"
+                [ngClass]="{ 'is-invalid': submitted && form.TemplatesUtilized.errors }"
+                formControlName="TemplatesUtilized" class="form-control custom-form-input disabledTextInput" disabled>
+              <div *ngIf="submitted && form.TemplatesUtilized.errors" class="invalid-feedback">
+                <div *ngIf="form.TemplatesUtilized.errors.required">Template utilized is required</div>
+              </div>
+            </div>
+          </div> -->
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="custom-form-label">Status
+                <!-- <span class="imported-block-mandatory-icon">*</span> -->
+              </label>
+              <div class="selectBlockAttrDropDown">
+                <select class="form-control custom-form-input ddlHeight" id="ddlBlockStatus"
+                  formControlName="BlockStatus">
+                  <option *ngFor="let status of blockStatus" [ngValue]="status.blockStatusId">
+                    {{status.blockStatus}}
+                  </option>
+                </select>
+                <span class="dropdown-down dropdown-Arrow"> </span>
+              </div>
+              <!-- <div *ngIf="submitted && form.BlockStatus.errors" class="invalid-feedback">
+                <div *ngIf="form.BlockStatus.errors.required">Block status is required</div>
+              </div> -->
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="custom-form-label">State</label>
+              <input type="text" formControlName="BlockState" class="form-control custom-form-input disabledTextInput">
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="custom-form-label">Industry</label>
+              <input type="hidden" formControlName="BlockIndustries" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && form.BlockIndustries.errors }"   id="hdnBlockIndustry">
+              <ngx-dropdown-treeview class="home-industry org-industry" [config]="config"
+                (selectedChange)="onIndustrySelected($event)" [items]="blockIndustries">
+              </ngx-dropdown-treeview>
+            </div>
+          </div>
+          <div class="col-sm-12" *ngIf="showOtherIndustry">
+            <div class="form-group others-section">
+              <div>
+                <label></label>
+                <input type="text" id="blockIndustryOthers" class="form-control custom-form-input"
+                  placeholder="if others" formControlName="BlockIndustryOthers">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label class="custom-form-label">Transaction Type</label>
+              <div class="selectBlockAttrDropDown">
+              <ng-select class="form-control custom-form-input ddlHeight" bindValue="transactionType"
+                [items]="transactionList" bindLabel="transactionType" id="ddlTransactionType"
+                formControlName="TransactionType">
+              </ng-select>
+              <span class="dropdown-down dropdown-Arrow"> </span>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </nb-card-body>
+    <nb-card-footer>
+      <div class="row importFooter">
+        <div class="col-sm-offset-6 col-sm-3 btntop">
+          <div class="btn-group">
+            <button nbButton type="button" [disabled]="isPrevButtonDisabled"
+              [ngClass]="{ 'disabledIcon':  isPrevButtonDisabled}" class="btnPrev" (click)="onPrevClick()"><img
+                src="assets/images/block_importer/Previous.svg"> &nbsp;<span>Prev</span></button>
+            <button nbButton type="button" [disabled]="isNextButtonDisabled"
+              [ngClass]="{ 'disabledIcon':  isNextButtonDisabled}" class="btnNext"
+              (click)="onNextClick(0)"><span>Next</span>&nbsp; <img src="assets/images/block_importer/Next.svg"></button>
+          </div>
+        </div>
+        <div class="col-sm-3 btntop">
+          <button nbButton type="button" class="menu-btn-cancel importCancel" style="color:black;"
+            (click)="dismiss()"><label class="menu-txt-cancel canclebuttonLebal">Cancel</label></button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <span *ngIf="isAddFlow"><button type="submit" class="menu-btn-save importAddButtton" id="btnAddBlock"
+              (click)="onAddRemoveBlock()">Add Block</button></span>
+          <span *ngIf="!isAddFlow"><button type="submit" class="menu-btn-save importAddButtton" id="btnAddBlock"
+              (click)="onAddRemoveBlock()">Remove Block</button></span>
+        </div>
+
+      </div>
+    </nb-card-footer>
+
+  </nb-card>
+</form>

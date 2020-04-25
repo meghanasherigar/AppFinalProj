@@ -1,0 +1,9 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition"
+ [bgsColor]="loaderColor"></ngx-ui-loader>
+<nb-card>
+  <nb-card-body>
+      <ng2-smart-table id="appendicesSmartTable" [settings]="settings" [source]="source" (userRowSelect)="onAppendixRowSelect($event);" (editConfirm)="onEditSave($event)" (custom)="customAction($event)">
+      </ng2-smart-table>
+      <p *ngIf="appendixNoDataFound" class="NoDataFound">{{'screens.project-designer.appendix.messages.NoAppendixFoundMesage' | translate}}</p>
+  </nb-card-body>
+</nb-card>

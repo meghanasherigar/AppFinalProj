@@ -1,0 +1,20 @@
+<div class="footerWrapper">
+    <nb-accordion>
+       <nb-accordion-item>
+          <nb-accordion-item-header>
+             <p>
+                <span class="PrivacyTextColor">{{'screens.footer.PrivacyAndLegal' | translate}} </span>
+             </p>
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+             <div class="privacy-2019-section">
+                <span > <a  (click)="generatePrivacyPolicy()" href ="#">{{'screens.footer.Privacy' | translate}}</a></span>|
+                <span> {{'screens.footer.2019' | translate}} <a  (click)="generateTermsofUse()" href ="#">{{'screens.footer.termsOfUse' | translate}}</a> {{'screens.footer.moreInfo' | translate}}</span>
+                <p>
+                  {{'screens.footer.footer1' | translate}}<a href="#">{{'screens.footer.footer2' | translate}}</a> {{'screens.footer.footer3' | translate}}
+                </p>
+             </div>
+          </nb-accordion-item-body>
+       </nb-accordion-item>
+    </nb-accordion>
+ </div>

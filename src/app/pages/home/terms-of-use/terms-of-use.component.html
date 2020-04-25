@@ -1,0 +1,35 @@
+<div class="termsofUse">
+    <nb-card>
+      <nb-card-header class="createTopHeader">
+        <div class="row">
+          <div class="col-sm-2">
+            <span class="pull-left">{{'screens.home.terms-of-use.termsOfUse' | translate}}</span>
+          </div>
+          <div class="col-sm-offset-8 col-sm-2">
+            <span class="LastDate">{{'screens.home.terms-of-use.lastRevised' | translate}}</span>
+            <span [innerHtml]="lastRevised" class="LastDate"></span>  
+          </div>              
+      </div>       
+      </nb-card-header>
+      
+      <nb-card-body class="createTopHeader">
+
+        
+        <div class="row">
+       <div class="lastContent" [innerHtml]="termsofUseContent | safeHtml"></div>
+      </div>
+   
+      </nb-card-body>
+      <nb-card-footer>
+          <!-- <button type="submit" (click)="onAccept()">{{'screens.home.terms-of-use.accept' | translate}}</button>
+          <button type="submit"(click)="onReject()">{{'screens.home.terms-of-use.reject' | translate}} </button> -->
+
+          <button nbButton type="submit" class="menu-btn-cancel importCancel" style="color:black;"
+          (click)="onReject()"><label class="menu-txt-cancel canclebuttonLebal">{{'screens.home.terms-of-use.reject' | translate}}</label></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit"   (click)="onAccept()" class="menu-btn-save importAddButtton">{{'screens.home.terms-of-use.accept' | translate}}</button>
+      
+        </nb-card-footer>
+    </nb-card>
+ 
+</div>

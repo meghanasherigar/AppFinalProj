@@ -1,0 +1,103 @@
+.logicTypeWrapper{
+   .headerContent {
+        background: black;
+        color: white;
+        padding: 15px;
+        font-size: 16px;
+            p{
+                margin:0;
+            }
+    }
+    .content{
+        padding:15px;
+        .optionLogicText{
+            color: #7B7B7B;
+            font-size: 11px;
+        }
+    }
+    .logicQuestionTable{
+        border: 1px solid #E1E1E1;
+        .typeSomethingBlock{
+            border-bottom: 1px solid  #E1E1E1;
+            display: flex;
+            flex-wrap: wrap;
+            .conditionStaus{
+                width:50%;
+                padding: 10px;
+                border-right:1px solid  #E1E1E1;
+                input{
+                    border:none;
+                    width:100%;
+                }
+               
+            }
+            .conditionStaus:hover,.conditionStaus:hover input {
+                background:rgba(239,239,239,0.48);
+            }
+            .conditionQuestion{
+                width:50%;
+                padding: 10px;
+               
+            }
+         
+       }
+        .AddAnotherSection{
+            padding: 10px;
+            .addAnother{
+                -webkit-appearance: none;
+                background: transparent;
+                border: none;
+                color:#B8B8B8;
+                font-size: 11px;
+            }
+        }
+        .tableRow{
+            width:100%;
+            //display:flex;
+        }
+    }
+    .footerCard{
+        text-align:right;
+    }
+    .questionWrapper {
+        width: 100%;
+        padding: 15px;
+        border-top: 1px solid #E1E1E1;
+        background: rgba(242,242,242,0.5);
+        .questionTextArea{
+            display: inline-block;
+            width: 82%;
+            margin-left: 12px;
+            height: 50px;
+            .questionArea{
+                    width: 100%;
+                    font-size: 12px;
+                }
+        }
+        .selectLibrarySection{
+            display: inline-block;
+            width: 82%;
+            border: 1px solid #E1E1E1;
+            margin-left: 12px;
+            .selectLibrary {
+                width: 100%;
+            }
+        }
+        .custom-form-label{
+            width: 18%;
+            font-size: 11px;
+            color: #7B7B7B;
+        }
+        .form-group:nth-child(2n){
+            margin-bottom: 0;
+        }
+        .form-group{
+            display:flex;
+            align-items: center;
+        }
+    }
+}
+.invalid-feedback{display: block !important ;}
+.mandatory-icon{
+    color: red;
+} 

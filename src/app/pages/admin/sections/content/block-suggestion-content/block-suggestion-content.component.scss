@@ -1,0 +1,34 @@
+
+.documentView
+{
+   height: auto;
+}
+.documentTemplateWrapper .document-full-viewBody{ overflow-x: hidden;}
+
+.editor-heading{ 
+    font-size: 14px;
+    color: #000;
+    // height: calc(100vh - 283px) !important;
+   
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    overflow: auto;
+}
+
+
+ .margin-top{
+    margin-top: 5% !important;
+}
+
+
+.content-container
+{
+    max-height: 300px; overflow:auto;
+}
+.centered
+{
+    position: absolute;
+    z-index: 9999;
+    left: 35%;
+    top: 35%;   
+}

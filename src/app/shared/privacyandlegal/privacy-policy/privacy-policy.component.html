@@ -1,0 +1,21 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="privacypolicy">
+    <nb-card>
+
+      <nb-card-header class="createTopHeader" ngxUiLoaderBlurred>
+        <h2 class="pull-left">{{privacyPolicy}}</h2>
+          <button id='close' (click)="onClose();">
+            <img class="closeBtn documentView-close" src="assets/images/Remove_on_hover.svg">
+          </button>
+      </nb-card-header>
+      <nb-card-body >
+        <div [innerHtml]="privacyPolicyContent"></div>
+      </nb-card-body>
+      <!-- <nb-card-footer class="footerCard">
+          
+      </nb-card-footer> -->
+    </nb-card>
+   
+</div>

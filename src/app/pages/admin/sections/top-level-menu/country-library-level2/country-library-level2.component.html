@@ -1,0 +1,60 @@
+<!-- Top level Menu -->
+<div class="row">
+  <div id="projectDesignFilters" class="col-sm-12 toolbar-component-container collapsed">
+    <div class="manage-section" id="manageSection">
+        <div class="action-icon-wrapper" id="editIcon">
+            <img src="assets/images/Save.svg" class="btnToolbar" (click)="saveCountryLibrary();">
+            <span class="icon-name">{{'screens.user.AdminView.Library.Menus.Save' | translate}}</span>
+          </div>
+      <div class="action-icon-wrapper" id="editIcon">
+        <img src="assets/images/Publish.svg" (click)="publishBlock()" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Publish' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" id="editIcon">
+        <input hidden type="file" #uploader (change)="uploadFile($event.target.files)" />
+        <img src="assets/images/manageLibrary/Block Importer.svg" (click)="uploader.click()" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.BlockImporter' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" id="editIcon">
+        <img src="assets/images/manageLibrary/CreateBlock-active.svg" (click)="createBlock()" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.CreateBlock' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" id="editIcon">
+        <img src="assets/images/manageLibrary/CreateStack-active.svg" [class.disabled]="EnableStack === true ? null : true" (click)="EnableStack === true ? createStack() : null" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.CreateStack' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" id="editIcon">
+        <img src="assets/images/Copy-active.svg" [class.disabled]="EnableCopy  === true ? null : true" (click)="EnableCopy  === true ? copyBlocks() : null" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Copy' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" id="ungroup">
+          <img src="assets/images/manageLibrary/Unstack.svg" [class.disabled]="EnableUngroup === true ? null : true" (click)="EnableUngroup === true ? UngroupStack() : null" class="btnToolbar">
+          <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Ungroup' | translate }}</span>
+        </div>
+      <div class="action-icon-wrapper" id="editIcon">
+        <img src="assets/images/Delete-active.svg" [class.disabled]="EnableRemove === true ? null : true" (click)="EnableRemove === true ? DeleteBLocks() : null" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Remove' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" id="AttributesIcon">
+        <img src=" assets/images/DocumentView/Attributes-active.svg" [class.disabled]="EnableAttribute === true ? null : true"
+        (click)="EnableAttribute === true ? toggleBlockAttributeComponent() : null"
+          class="btnToolbar">
+        <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Attributes' | translate }}</span>
+      </div>
+      <!-- <div class="action-icon-wrapper" id="deleteIcon">
+          <img src="assets/images/Delete-active.svg" (click)="loadMyChildComponent('Delete')" class="btnToolbar">
+          <span class="icon-name">Block Mapping</span>
+        </div> -->
+      <span class="section-name">Import</span>
+      <div id="toolbar-menu" class="filters-section smalliconpadding" [ngStyle]="{'display':show==true? 'block':'none'}">
+
+      </div>
+    </div>
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+      {{imageName}}
+      <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+      <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+   </div>
+  </div>
+</div>
+<!-- createBlock -->

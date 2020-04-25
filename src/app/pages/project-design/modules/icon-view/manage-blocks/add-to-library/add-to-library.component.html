@@ -1,0 +1,40 @@
+<nb-card>
+  <nb-card-header class="search-header">
+      <div class="row">
+          <div class="col-xs-12">
+              <span class="header-text">{{'screens.project-designer.document-view.AddLibrary' | translate}}</span>
+          </div>
+        </div>
+  </nb-card-header>
+<nb-card-body>
+<form [formGroup]="addToLibraryForm">
+    <div class="row" id="roleDiv">
+        <div class="col-sm-12 verticalMove">
+          <div class="form-group checkbox-inline">
+            <input type="checkbox" id="userLibCheckBox" formControlName="UserLibrary" class="check"
+            (change)="toggleCheckbox($event)"  [checked]="addToLibrary.checkbox1" name="checkbox1">
+            <label class="labelCentralUserTxt">{{'screens.project-designer.document-view.UserLibrary' | translate}}</label>
+          </div>
+        </div>
+        <div class="col-sm-12 verticalMove" *ngIf="projectDetails.ProjectAccessRight.isCentralUser">
+          <div class="form-group checkbox-inline">
+            <input type="checkbox" id="orgLibCheckBox" formControlName="OrgLibrary" class="check"
+            (change)="toggleCheckbox($event)" [checked]="addToLibrary.checkbox2" name="checkbox2">
+            <label class="labelLocalUserTxt">{{'screens.project-designer.document-view.OrganizationLibrary' | translate}}</label>
+          </div>
+        </div>
+      </div>
+</form>
+</nb-card-body>
+<nb-card-footer class="footerCard alignRight">
+   <div class="col-md-12">
+    <button nbButton type="button" class="menu-btn-cancel" style="color:black;" 
+    (click)="dismiss()"><label
+    class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+   
+    <button type="submit" class="menu-btn-save linkToButton" (click) = "AddToLibrary()"
+    id="btnSuggestBlocksStacks">{{'screens.project-designer.document-view.Add' | translate}}</button>
+  </div>  
+   
+</nb-card-footer>        
+</nb-card>

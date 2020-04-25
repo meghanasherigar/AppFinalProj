@@ -1,0 +1,159 @@
+.header{
+   background-color: #a4abb3; 
+}
+nb-card{
+  
+}
+.search-header{
+   background-color:black;
+   padding: 6px 0;
+   .row{
+      align-items: center;
+   }
+  
+}
+
+.column-border{
+   border: 0.5px solid #d8d8d8; 
+}
+.search-box{
+   border: 0.6px solid #aeaeae;
+    border-radius: 12.5px;
+    background-color: #fafafa;
+    width: 209px;
+    font-size: 10px;
+    padding: 8px;
+}
+
+.header-text{ 
+   
+      height: 19px;
+      // width: 183px;
+      color:white;
+      font-family: "Open Sans";
+      font-size: 14px;
+      line-height: 19px;
+      display: inline-block;
+      vertical-align: middle;
+      float: none;
+   }
+nb-card-footer{
+   float: right !important;
+}
+
+.selected-deliverable{
+background-color: #f3f3f3;
+height: 40px;
+padding-block-start: 10px;
+padding-inline-start: 10px;
+margin-bottom: 10px;
+padding-left: 10px;
+}
+.remove-deliverable{
+   float: right;
+   padding-right: 20px;
+   box-sizing: border-box;
+   height: 9px;
+   width: 9px;
+}
+input[type=checkbox] {
+   margin: 15px 0 0;
+   margin-top: 1px\9;
+   // height: 20px;
+   // width: 15px;
+   border: 1.3px solid #000000;
+}
+.user-name{
+   padding-left: 5px;
+   font-size: 16px;
+   line-height: 38px;
+}
+
+.deliverables{
+   float: left;
+   width: 260px;
+}
+
+.errorMessage{
+   color: red;
+   font-size: 12px;
+   font-weight: lighter;
+}
+.menu-btn-save.linkToButton{
+   color:white !important;
+   &:active,&:focus{
+      outline: none;
+      box-shadow: none;
+   }
+}
+.menu-btn-cancel:active,.menu-btn-cancel:hover{
+   outline: none;
+   box-shadow: none;
+}
+.search-box::placeholder{
+   font-size: 10px;
+   color: #D3D3D3;
+   font-style: italic;
+}
+.alignRight{
+   text-align: right;
+   display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+.padding0{
+   padding: 0;
+}
+
+.footerCard {
+   border-top: 1px solid #eee !important;
+   padding: 0.18px;
+}
+.linkToSection{
+  vertical-align: top;
+  border: 0.1px solid #D2D4CD;
+  height: calc(100vh - 288px) !important;
+  text-align: center;
+  padding: 10px;
+  overflow: auto;
+  h6{
+     font-weight: 700;
+  }
+}
+.linkToheader{
+  
+}
+.linkTo-btn-save{
+  height: 35px;
+   width: 100%;
+   border: 1px solid #000;
+   border-radius: 3px;
+   background-color: #000;
+   color: #fff;
+   margin-bottom: 13px;
+   font-size: 13px;
+}
+
+.linkTo-btn-save:hover{
+  height: 35px;
+  width: 186px;
+  color: #fff;
+  border: 1px solid #86BC25;
+  border-radius: 3px;
+  background-color: #86BC25;
+}
+
+.deliverablesButton{
+   color: white;
+    background-color: darkgray;
+    height: 40px;
+    -webkit-padding-before: 10px;
+    padding-block-start: 10px;
+    -webkit-padding-start: 10px;
+    padding-inline-start: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    display: inline-block;
+    width: 100%;
+}
+

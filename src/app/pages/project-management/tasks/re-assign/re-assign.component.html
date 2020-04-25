@@ -1,0 +1,78 @@
+<div [formGroup]="reAssignTask_Form">
+	<nb-card class="reassignPopup">
+		<nb-card-header class="reassignHeader">
+			<div class="col-md-11" style="padding: 0px;">
+				<h6 class="reassignHeaderContent">
+					{{ 'screens.Project-Management.Tasks.Messages.Labels.ReAsssign' | translate }}</h6>
+			</div>
+			<div class="col-md-1" (click)="cancel()">
+				<h6 class="reassignHeaderContent">X</h6>
+			</div>
+		</nb-card-header>
+		<nb-card-body>
+			<div class="col-md-12 reassignInfo">
+				<p><span>{{ 'screens.Project-Management.Tasks.Messages.Labels.TaskName' | translate }} :</span>
+					{{taskName}}</p>
+				<p><span>{{ 'screens.Project-Management.Tasks.Messages.Labels.TaskType' | translate }} :</span>
+					{{taskType}}</p>
+			</div>
+			<div class="form-group">
+				<mat-form-field class="example-full-width formGroupBorder" floatLabel="never">
+					<mat-chip-list #chipList aria-label="IndiviualEntityDetails selection" [multiple]="multipleUsers">
+						<!-- <div class="reAssignMatChip"> -->
+							<mat-chip *ngFor="let user of selectedUsers" [selectable]="selectable"
+								[removable]="removable" (removed)="remove(user)">
+								{{user.email}}
+								<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+							</mat-chip>
+						<!-- </div> -->
+					</mat-chip-list>
+				</mat-form-field>
+				<label>{{ 'screens.Project-Management.Tasks.Messages.Labels.ReAssignTo' | translate }} :</label>
+
+				<mat-form-field class="example-full-width form-control custom-form-input" floatLabel="never">
+					<input type="text" class="reassignEmail" aria-label="Number" id="txtSearchUser" matInput formControlName="reAssignTo"
+						[matAutocomplete]="auto" >
+					<mat-placeholder class="placeholder">{{ 'screens.Project-Management.Tasks.Re-Asssign.Placeholders.Assign-To' | translate }}</mat-placeholder>
+					<mat-autocomplete #auto="matAutocomplete">
+						<mat-option class="dropdown-style mat-option ng-star-inserted"
+							*ngFor="let item of searchUserResult" (onSelectionChange)="selectUser(item)"
+							[value]="item.email">
+							{{ item.firstName + ' ' + item.lastName }}
+						</mat-option>
+					</mat-autocomplete>
+				</mat-form-field>
+				
+				<span class="ReAssignTaskError" *ngIf="(!selectedUsers || !selectedUsers.length) && submitted">
+						{{ 'screens.Project-Management.Tasks.Messages.Error.Re-Assign-To' | translate }}
+				</span>
+			</div>
+			<div class="form-group input-wrapper filter-input">
+				<input type="text" class="form-control custom-form-input" formControlName="dueDate"
+					bsDatepicker #dpTdueDate="bsDatepicker"
+					[bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly>
+				<label>
+					<i>
+						<img src="assets/images/calender.png" (click)="dpTdueDate.show()"
+							[attr.aria-expanded]="dpTdueDate.isOpen" class="calender-icon"></i>
+				</label>
+				<span class="ReAssignTaskError"
+					*ngIf="submitted && reAssignTask_Form.controls['dueDate'].hasError('required') && (reAssignTask_Form.controls['dueDate'].dirty || reAssignTask_Form.controls['dueDate'].touched)">
+					{{ 'screens.Project-Management.Tasks.Messages.Error.DueDate' | translate }}
+				</span>
+			</div>
+			<div class="form-group">
+				<textarea class="custom-form-input tarea" formControlName="note" name="note" placeholder="Note" rows="6"></textarea>
+			</div>
+		</nb-card-body>
+		<nb-card-footer class="reassinFooter">
+			<div class="col-md-offset-1 col-md-11 footerButton">
+				<button nbButton type="button" class="menu-btn-cancel" style="color:black;"  (click)="cancel()"><label
+						class="menu-txt-cancel">{{ 'screens.Project-Management.Tasks.Messages.Labels.Cancel' | translate }}</label></button>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="submit" class="menu-btn-save" (click)="reAssign()"
+					id="btnAssign">{{ 'screens.Project-Management.Tasks.Messages.Labels.Assign' | translate }}</button>
+			</div>
+		</nb-card-footer>
+	</nb-card>
+</div>

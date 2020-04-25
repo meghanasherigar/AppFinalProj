@@ -1,0 +1,19 @@
+  <nb-card >
+    <nb-card-header>
+        <span class="icon-name smalliconspan row">{{'screens.project-designer.document-view.BlockStaffing' | translate}}</span>
+        <br/>
+        <span class="icon-sub-name smalliconspan row disable-section">{{'screens.project-designer.document-view.LocalUserMessage' | translate}}</span>
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table id="blockStaffingGrid" [settings]="settings" [source]="adminUserGridSource" >
+      </ng2-smart-table>
+    </nb-card-body>
+    <nb-card-footer class="footerCard text-center">        
+      <button nbButton type="button" class="menu-btn-cancel"
+      (click)="dismiss()"><label class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="submit" class="menu-btn-save linkToButton" (click) = "SaveBlockStaffing()"
+      id="btnSuggestBlocksStacks">{{'screens.home.labels.Save' | translate}}</button>
+     
+  </nb-card-footer>      
+  </nb-card>

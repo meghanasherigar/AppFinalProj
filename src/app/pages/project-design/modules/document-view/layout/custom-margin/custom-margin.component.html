@@ -1,0 +1,37 @@
+<nb-card class="CustomMarginPopup">
+  <nb-card-header>
+    <span>{{'screens.project-designer.document-view.PageMargin' | translate}}</span>
+  </nb-card-header>
+  <nb-card-body>
+    <div [formGroup]="Margin" class="row">
+      <div class="form-group col-md-6">
+        <label class="custom-form-label">{{'screens.project-designer.document-view.LeftMargin' | translate}}</label>
+        <input type="number" formControlName="Left" required name="Left" min="0" max="10" step="0.1"
+          class="form-control custom-form-input" (keydown)="valueCheck($event)">
+      </div>
+      <div class="form-group col-md-6">
+        <label class="custom-form-label">{{'screens.project-designer.document-view.RightMargin' | translate}}</label>
+        <input type="number" formControlName="Right" required name="right" min="0" max="10" step="0.1"
+          class="form-control custom-form-input" (keydown)="valueCheck($event)">
+      </div>
+      <div class="form-group col-md-6">
+        <label class="custom-form-label">{{'screens.project-designer.document-view.BottomMargin' | translate}}</label>
+        <input type="number" formControlName="Bottom" required name="bottom" min="0" max="10" step="0.1"
+          class="form-control custom-form-input" (keydown)="valueCheck($event)">
+      </div>
+      <div class="form-group col-md-6">
+        <label class="custom-form-label">{{'screens.project-designer.document-view.TopMargin' | translate}}</label>
+        <input type="number" formControlName="Top" required name="top" min="0" max="10" step="0.1"
+          class="form-control custom-form-input" (keydown)="valueCheck($event)">
+      </div>
+
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="footerCard">
+    <button type="submit" class="menu-btn-save createBlockSave footerRightButton" (click)="save()">
+      {{ 'screens.Project-Management.Deliverable.Deliverable-Edit.Save' | translate }}</button>
+    <button nbButton type="button" class="menu-btn-cancel footerRightButton" style="color:black;"
+      (click)="dismiss()"><label
+        class="menu-txt-cancel canclebuttonLebal">{{ 'screens.Project-Management.Deliverable.Deliverable-Edit.Cancel' | translate }}</label></button>
+  </nb-card-footer>
+</nb-card>

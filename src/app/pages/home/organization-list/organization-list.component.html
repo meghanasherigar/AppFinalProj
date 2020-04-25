@@ -1,0 +1,27 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition"
+ [bgsColor]="loaderColor"></ngx-ui-loader>
+ <div ngxUiLoaderBlurred>
+<div class = "container" *ngIf = "orgNoDataFound || !isGridLoaded">
+            <table class="table table-bordered" style="height:calc(100vh - 190px);">
+                    <thead>
+                      <tr style="background-color:#86BC25 !important">
+                        <th class ="projectListHeader">{{'screens.home.organization-project-form.Organization' | translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td style="text-align: center; padding-top:200px;">
+                        <img src="assets/images/Create-active.svg" class="btnToolbar">
+                        <br/><br/>
+                        <p *ngIf="orgNoDataFound">{{'screens.home.organization-project-form.No' | translate}} <b>{{'screens.home.organization-project-form.Organization' | translate}}</b> found.</p>
+                        <p *ngIf="!orgNoDataFound">{{'screens.home.organization-project-form.Loading' | translate}} <b>{{'screens.home.organization-project-form.Organization' | translate}}</b></p>
+                      </tr>
+                    </tbody>
+                  </table>
+    </div>
+    <div *ngIf = "!orgNoDataFound && isGridLoaded">
+      <ng2-smart-table id="orgSmartTable" class="home-table" [settings]="settings" (custom)="onCustomAction($event)"  [source]="source" (userRowSelect)="onOrganizationSelect($event)">
+       </ng2-smart-table>
+   </div>
+  </div>
+    

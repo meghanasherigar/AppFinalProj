@@ -1,0 +1,105 @@
+<form [formGroup]="WaterMark" (ngSubmit)="save()">
+  <nb-card class="createBlockpopupHW blockGeneratePopUp">
+    <nb-card-header class="createTopHeader padding0">
+      <div class="blockGenerateHeader">
+        <div class="generateIcon">
+          <img src="assets/images/Generate-white.svg">
+        </div>
+        <div class="generateText">
+          <span>{{'screens.project-designer.document-view.WaterMarkLabel.WaterMark' | translate}}</span>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="blockGenerateContent">
+        <div class="col-sm-8 reportContent">
+          <div class="row">
+            <div class="col-sm-12">
+              <div>
+                <input type="radio" formControlName="WaterMarkType" value="nowatermark"
+                  (change)="onWaterMarkTypechange($event.target.value)">
+                <label class="form-control-label"> {{'screens.project-designer.document-view.WaterMarkLabel.NoWatermark' | translate}}</label>
+              </div>
+            </div>
+            <br>
+            <br>
+            <div class="col-sm-12">
+              <div>
+                <input type="radio" formControlName="WaterMarkType" value="text"
+                  (change)="onWaterMarkTypechange($event.target.value)">
+                <label class="form-control-label"> {{'screens.project-designer.document-view.WaterMarkLabel.Text' | translate}}</label>
+                <span class="mandatoryField">*</span>
+              </div>
+            
+              <div formGroupName="WaterMarkProperties" style="margin-left: 20px" [ngClass]="{ 'disable-section disabledbutton': !DisableEnableSection }">
+                <div class="row marginBottom">
+                  <div class="col-sm-12">
+                    <input type="text" maxlength="15" class="form-control custom-form-input" formControlName="Text" value="text"
+                    [ngClass]="{ 'is-invalid': !formSubmitted }">
+                    <div *ngIf="!formSubmitted" class="invalid-feedback">
+                        {{'screens.project-designer.document-view.WaterMarkLabel.RequiredValidationText' | translate}}</div>
+                    </div>
+                </div>
+              
+                <div class="row">
+                  <div class="col-sm-8">
+                    <label class="form-control-label orrientationText"> {{'screens.project-designer.document-view.WaterMarkLabel.Font' | translate}}
+                      <span class="mandatoryField">*</span>
+                    </label>
+                  </div>
+                </div>
+              
+                <div class="row marginBottom ">
+                  <div class="col-sm-8">
+                    <select class="form-control custom-form-input ddlHeight" formControlName="FontName">
+                      <option *ngFor="let font of fonts" [value]="font.value">
+                        {{font.name}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-sm-4" style="display:none">
+                    <input class="form-control"  type="text" formControlName="FontSize"  
+                    [placeholder]="'screens.project-designer.document-view.WaterMarkLabel.Size' | translate">
+                  </div>
+                </div>
+               
+                <div class="row">
+                  <div class="col-sm-8">
+                    <label class="form-control-label orrientationText"> {{'screens.project-designer.document-view.WaterMarkLabel.Orientation' | translate}}
+                      <span class="mandatoryField">*</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-8">
+                    <select class="form-control custom-form-input ddlHeight" formControlName="Orientation"
+                      (change)="AddPreview($event.target.value)">
+                      <option *ngFor="let orientation of orientations" [value]="orientation.value">
+                        {{orientation.name}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 waterMarkContent">
+          <div class="watermark preview">
+            <h1 class={{selectedClass}} [ngStyle]="setMyStyles()">
+              {{this.WaterMark.get(['WaterMarkProperties', 'Text']).value}}
+            </h1>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="footerCard">
+      <nb-card-footer class="footerRightButton">
+        <button nbButton type="button" class="menu-btn-cancel createCancel footerRightButton " style="color:black;"
+          (click)="dismiss()"><label class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.document-view.WaterMarkLabel.Cancel' | translate}}</label></button>
+        <button type="submit" class="menu-btn-save createBlockSave footerRightButton" id="btnCreateOrganization"
+          (click)="save()"> {{'screens.project-designer.document-view.WaterMarkLabel.Save' | translate}}</button>
+      </nb-card-footer>
+    </nb-card-footer>
+  </nb-card>
+</form>

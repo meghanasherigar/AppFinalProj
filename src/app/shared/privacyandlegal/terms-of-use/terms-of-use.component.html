@@ -1,0 +1,20 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="termsofUse" ngxUiLoaderBlurred>
+    <nb-card>
+      <nb-card-header class="createTopHeader">
+          <h2 class="pull-left">{{termsOfUse}}</h2>
+          <button id='close' (click)="onClose();">
+            <img class="closeBtn documentView-close" src="assets/images/Remove_on_hover.svg">
+          </button>
+      </nb-card-header>
+      <nb-card-body >
+        <div [innerHtml]="termsofUseContent"></div>
+      </nb-card-body>
+      <!-- <nb-card-footer class="footerCard">
+          <button id='close' (click)="onClose();">Close</button>
+      </nb-card-footer> -->
+    </nb-card>
+   
+</div>

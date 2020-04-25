@@ -1,0 +1,112 @@
+<div class="row" *ngIf="isAttributeLoaded">
+  <div class="col-sm-12">
+    <nb-card class="popupcardwidth">
+      <nb-card-header class="viewborderBottom"><label class="blockAttributeLabel">{{'screens.home.labels.blockAttributeDetail.BlockAttributes' | translate}}</label>
+        <label class="editborder" *ngIf ="canEdit" (click)="editBlock()" id="editButton">{{'screens.home.labels.blockAttributeDetail.Edit' | translate}}</label>
+        
+      </nb-card-header>
+      <nb-card-body class="cardColor">
+
+        <div class="row">
+          <div class="col-sm-12">
+              <table style="width:100%">
+                  <!-- <tr>
+                    <th>Unique Id:</th>
+                    <td>1234</td>
+                  </tr> -->
+                  <tr>
+                    <th> {{'screens.home.labels.blockAttributeDetail.BlockType' | translate}}</th>
+                    <td>{{blockAttributeDetail.blockType.blockType}}</td>
+                  </tr>
+                  <tr>
+                      <th> {{'screens.home.labels.blockAttributeDetail.BlockTitle' | translate}}</th>
+                      <td>{{blockAttributeDetail.title}}</td>
+                    </tr>
+                   
+                    <tr>
+                      
+                        <th>{{'screens.home.labels.blockAttributeDetail.Description' | translate}}</th>
+                        <td>{{blockAttributeDetail.description}}</td>
+                      </tr>
+                      
+                      <tr>
+                          <th>{{'screens.home.labels.blockAttributeDetail.ProjectYear' | translate}}</th>
+                          <td>{{blockAttributeDetail.projectYear}}</td>
+                        </tr>
+                        <tr *ngIf="templateName != ''">
+                            <th> {{'screens.home.labels.blockAttributeDetail.Templates' | translate}}</th>
+                            <td>{{templateName}} </td>
+                          </tr>
+                      <tr>
+                          <th> {{'screens.home.labels.blockAttributeDetail.Status' | translate}}</th>
+                          <td>{{blockAttributeDetail.blockStatus.blockStatus}}</td>
+                        </tr>
+                        <tr>
+                          <th> {{'screens.home.labels.blockAttributeDetail.State' | translate}}</th>
+                          <td>{{blockAttributeDetail.blockState.blockState}}</td>
+                        </tr>
+                        <tr>
+                            <th> {{'screens.home.labels.blockAttributeDetail.Industry' | translate}}</th>
+                            <td>{{industry}}</td>
+                          </tr>
+
+                          <tr>
+                              <th> {{'screens.home.labels.blockAttributeDetail.TransactionType' | translate}}</th>
+                              <td>{{transactionType}}</td>
+                            </tr>
+                          <tr>
+                              <th> {{'screens.home.labels.blockAttributeDetail.Origin' | translate}}</th>
+                              <td>{{blockAttributeDetail.blockOrigin}} </td>
+                            </tr>
+                            <tr>
+                                <th> {{'screens.home.labels.blockAttributeDetail.Creator' | translate}}</th>
+                                <td> {{blockAttributeDetail.auditTrail.createdBy.email}}</td>
+                              </tr>
+                 
+                </table>
+        </div>
+      </div>
+       <!-- <div>
+          <label>Unique ID:</label>
+          <label>XYZ Company</label>
+        </div>
+        <div>
+          <label>Block Type:</label>
+          <label>XYZ Company</label>
+        </div>
+        <div>
+          <label>Block Title:</label>
+          <label>XYZ Company</label>
+        </div>
+        <div>
+          <label>Description:</label>
+          <label>XYZ Company</label>
+        </div>
+        <div>
+          <label>Project Year:</label>
+          <label>XYZ Company</label>
+        </div>
+        <div>
+          <label>Templates:</label>
+          <label>XYZ Company</label>
+        </div>
+        <div>
+          <label>Status:</label>
+          <label>XYZ Company</label>
+        </div>
+        <div>
+          <label>Industry:</label>
+          <label>XYZ Company</label>
+        </div>
+        <div>
+          <label>Origin:</label>
+          <label>XYZ Company</label>
+        </div>
+        <div>
+          <label>Creator:</label>
+          <label>XYZ Company</label>
+        </div>-->
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

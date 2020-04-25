@@ -1,0 +1,35 @@
+<ngx-ui-loader [loaderId]='loaderId' *ngIf="_allCurrentTab === taskMenuItems.AllTasks" [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="row">
+    <div class="btn-group">
+        <button class="button Tabs" *ngIf="userHasAccess" 
+        [ngClass]="selectedTaskMenu === taskMenuItems.AllTasks ? 'activated-tab':' '"
+            (click)="toggleTaskMenu(taskMenuItems.AllTasks)">{{ 'screens.Project-Management.Tasks.Messages.Labels.AllTask' | translate }}</button>
+        <button class="button Tabs" [ngClass]="selectedTaskMenu === taskMenuItems.MyTasks ? 'activated-tab':' '"
+            (click)="toggleTaskMenu(taskMenuItems.MyTasks)">{{ 'screens.Project-Management.Tasks.Messages.Labels.MyTask' | translate }}</button>
+
+    </div>
+</div>
+<div *ngIf="selectedTaskMenu===taskMenuItems.AllTasks">
+    <div class="row">
+            <div class="col-md-6">
+                    <ngx-header-summary id="taskSummary" class="task-summary-part"
+                     [options]='taskSummaryOptions'
+                     (filterTrigger)="onTaskSummarySelection($event)">
+                    </ngx-header-summary>
+                </div>
+        <div class="col-md-6 rightTaskSummaryStyle">
+            <ngx-header-summary id="taskAssignmentSummary" class="task-summary-part"
+                [options]='taskAssignmentSummaryOptions' (filterTrigger)="onTaskAssignmentSelection($event)" >
+            </ngx-header-summary>
+        </div>
+    </div>
+
+    <div class="taskListComponent">
+        <ng2-smart-table id="taskList" class="home-table" [settings]="gridSettings" (custom)="onCustomAction($event)"
+            (userRowSelect)="onTaskRowSelect($event)" [source]="gridDataSource">
+        </ng2-smart-table>
+    </div>
+</div>
+
+
+<ngx-my-tasks *ngIf="selectedTaskMenu===taskMenuItems.MyTasks"></ngx-my-tasks>

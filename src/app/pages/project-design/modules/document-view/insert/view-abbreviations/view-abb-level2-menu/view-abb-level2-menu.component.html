@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="row home-menu-container templateLevel2MenuWrapper">
+    <div id="homeFilters-section" class="col-xs-12 toolbar-component-container collapsed">
+      <div class="manage-section">
+        <div class="manage-section">
+          <div class="action-icon-wrapper">
+            <img src="assets/images/Create-active.svg" class="btnToolbar" (click)="abbreviationPopup()"
+              ngbTooltip="Create Abbreviation">
+            <span class="icon-name">{{'screens.project-designer.document-view.CreateAbbreviation'|translate}}</span>
+          </div>
+        </div>
+        <div class="manage-section">
+          <div class="action-icon-wrapper" id="deleteIcon"
+            [ngClass]="(disable) ? 'disable-section disabledbutton' : '' ">
+            <img src="assets/images/Delete-active.svg" (click)="deleteAbbreviations();" class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.document-view.Delete'|translate}}</span>
+          </div>
+        </div>
+        <span class="section-name">{{'screens.project-designer.document-view.Actions' | translate}}</span>
+      </div>
+      <div class="manage-section  searchItems">
+          <div class="input-wrapper filter-input">
+              <input type="text" id="searchbox" class="form-control searchItem" [placeholder]="'screens.project-designer.document-view.Search abbrevation' | translate"
+              [(ngModel)]="searchText" (keyup)="searchTextChanged.next($event)" (click)="searchAbbreviations()"/>
+           </div>
+           <span class="section-name">{{'screens.project-designer.document-view.Search'|translate}}</span>     
+      </div>
+      <div></div>
+      <div class="manage-section closeBtn">
+        <div class="action-icon-wrapper">
+          <img class="btnToolbar close" src="assets/images/Remove_on_hover.svg" (click)="closeAbbreviationTab()"  >
+          <span class="icon-name">{{'screens.project-designer.document-view.CloseTab'|translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

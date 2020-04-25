@@ -1,0 +1,61 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+
+<nb-card class="cardHeader">
+
+  <nb-card-header class="TopHeader">Table column customization
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row" *ngIf="selectedColumnList && availableColumnList">
+
+      <div class="col-md-5">
+        <h5>Column Headings</h5>
+        <div class="column-containerleft">
+          <div (cdkDropListDropped)="drop($event)" id="availableColumns" cdkDropList #availableColumns="cdkDropList"
+            [cdkDropListData]="availableColumnList"> 
+            <!-- [cdkDropListConnectedTo]="[selectedColumns]"> -->
+
+            <div class="column-box" *ngFor="let column of availableColumnList"
+              [ngClass]="this.selectedAvailableColumn.indexOf(column)>-1?'selected-column':''"
+              (click)="onAvailableColumnSelect(column)" cdkDrag>
+              {{column.title}}
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="btnGroupContainer text-center">
+          <button class="menu-btn-save" (click)="addToSelection();">Add &gt;</button>
+          <button class="menu-btn-save" (click)="removeFromSelection();"> &lt; Remove</button>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <h5>Table Headings</h5>
+        <div class="column-container">
+          <div (cdkDropListDropped)="drop($event)" id="selectedColumns" cdkDropList #selectedColumns="cdkDropList"
+            [cdkDropListData]="selectedColumnList">
+             <!-- [cdkDropListConnectedTo]="[availableColumns]"> -->
+
+            <div class="column-box" *ngFor="let column of selectedColumnList"
+              [ngClass]="this.selectedUserColumn.indexOf(column)>-1?'selected-column':''"
+              (click)="onUserColumnSelection(column)" cdkDrag>
+              {{column.title}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </nb-card-body>
+  <nb-card-footer>
+    <div class="text-right">
+      <button class="menu-btn-cancel" (click)="onCancel();">
+        <label class="menu-txt-cancel">Cancel</label></button>
+      <button class="menu-btn-save" (click)="onSave();">Ok</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

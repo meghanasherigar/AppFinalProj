@@ -1,0 +1,32 @@
+<form [formGroup]="createBlockForm" (ngSubmit)="createBlock()">
+
+<nb-card class="create-block-popupWidth">
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body>
+
+      <div class="row HeaderScrolling">
+      <div class="col-xs-12">
+
+    <!-- <ckeditor formControlName="BlockContent"  [config]="config"></ckeditor>
+      </div>
+      <div class="col-xs-4"> -->
+        <ngx-create-block-attributes [parentFormGroup]="createBlockForm" [submitted] = "submitted" ></ngx-create-block-attributes>
+      
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+      <nb-card-footer class="footerRightButton">
+         <button nbButton type="button" class="menu-btn-cancel" style="color:black;" 
+            (click)="dismiss()"><label
+              class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="submit" class="menu-btn-save"  [disabled]="!createBlockForm.dirty || createBlockForm.invalid" [ngClass]="{'disableSaveButton':!createBlockForm.dirty || createBlockForm.invalid}"
+            id="btnCreateOrganization">{{'screens.home.labels.Save' | translate}}</button>
+         
+          
+        </nb-card-footer>
+    <!-- <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button> -->
+  </nb-card-footer>
+</nb-card>
+</form>

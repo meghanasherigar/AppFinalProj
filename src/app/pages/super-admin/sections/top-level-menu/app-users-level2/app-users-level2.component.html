@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-sm-12 toolbar-component-container" [ngClass]="{'collapsed': !show}">
+        <div class="create-section createManageSection">
+                <div class="action-icon-wrapper" id="addAppUserSection">
+                    <img src="assets/images/Create.png" (click)="addAppUser();" class="btnToolbar">
+                    <span class="icon-name">{{'screens.superAdmin.appUsers.create' | translate}}</span>
+                </div>
+                <div class="action-icon-wrapper" id="downloadTemplateSection">
+                    <img src="assets/images/Download.png" (click)="getAppUserTemplate();" class="btnToolbar">
+                    <span class="icon-name">{{'screens.superAdmin.appUsers.downloadTemplate' | translate}}</span>
+                </div>
+                <div class="action-icon-wrapper" id="uploadAppUserSection">
+                    <img src="assets/images/UploadExcel.png" (click)="uploadAppUser();" class="btnToolbar appxls">
+                    <span class="icon-name">{{'screens.superAdmin.appUsers.upload' | translate}}</span>
+                </div>
+            </div>
+           
+            <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+                {{levelTwoMenuShowHideLabel}}
+                <img class="collpase-img" src="assets/images/Expand.png" *ngIf="!show">
+                <img class="collpase-img" src="assets/images/Collapse.png" *ngIf="show">
+            </div>           
+        
+    </div>
+</div>

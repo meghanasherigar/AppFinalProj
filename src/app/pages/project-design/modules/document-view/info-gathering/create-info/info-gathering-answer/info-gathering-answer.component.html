@@ -1,0 +1,31 @@
+<nb-card *ngIf="answerAvailable">
+  <nb-card-header class="ediTopHeader padding0">
+    <div class="generateText">
+      <span>{{selectedRowData.tagName}} Answers Deliverable Specific</span>
+    </div>
+    <button aria-label="Close" class="close" style="
+        opacity: 1;
+    " type="button"><img class="closeBtn documentView-close" src="assets/images/Remove_without hover-White.svg"
+        (click)="closeAnswerAvailablePopup()"></button>
+
+
+  </nb-card-header>
+  <nb-card-body>
+    <p>
+      <b> Q : </b>{{selectedRowData.title}}
+    </p>
+    <div class="custom-tab-width">
+      <ul>
+        <li *ngFor="let deliverable of deliverablesList;let i = index" [ngClass]="currentIndex == i+1?'active':''"
+          (click)="selectedDeliverableTab(deliverable);OntabSelected(i)" class="tab">
+          <a href="" [routerLink]="">
+            <h5>{{deliverable.name}}</h5>
+            <p>{{deliverable.taxableYearEnd}}</p>
+          </a>
+        </li>
+      </ul>
+      <div id="answerhtml" class="AnswerPopup">
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,176 @@
+<div class="container-fluid">
+  <div class="row home-menu-container templateLevel2MenuWrapper">
+    <div id="homeFilters-section" class="col-xs-12 toolbar-component-container collapsed">
+      <div class="manage-section" *ngIf="isTemplate">
+        <div class="action-icon-wrapper" [ngClass]="{'filter-disable' : isCreateDisabled}">
+          <img src="assets/images/Create-active.svg" class="btnToolbar" (click)="createTemplatePopup();">
+          <span class="icon-name">{{'screens.home.labels.Create' | translate}}</span>
+
+        </div>
+        <div class="action-icon-wrapper" [ngClass]="{'filter-disable' : isGenerateDisabled}">
+          <img src="assets/images/DocumentView/Generate-active.svg" class="btnToolbar" (click)="generateReportPopup();" >
+          <span class="icon-name">{{'screens.home.labels.Generate' | translate}}</span>
+        </div>
+        <div class="action-icon-wrapper" [title]="deleteToolTip">
+          <img src="assets/images/Delete-active.svg" [ngClass]="{'filter-disable' : isDeleteDisabled}"
+            (click)="openDeleteConfirmDialog();" class="btnToolbar">
+          <span class="icon-name">{{'screens.home.labels.Delete' | translate}}</span>
+        </div>
+
+      </div>
+      <div class="manage-section borderRight manageSpacing" *ngIf="isDeliverable">
+        <div class="action-icon-wrapper" [ngClass]="toolbarIcons.enableGenerate ? '' : 'filter-disable'">
+          <img src="assets/images/DocumentView/Generate-active.svg" class="btnToolbar" (click)="generateReportPopup();" >
+          <span class="icon-name">{{'screens.home.labels.Generate' | translate}}</span>
+        </div>
+        <div [hidden]="true">
+          <div class="action-icon-wrapper" [ngClass]="'disable-section disabledbutton' ">
+            <img src="assets/images/Copy-active.svg" class="btnToolbar">
+            <span class="icon-name">{{'screens.home.labels.Split' | translate}}</span>
+          </div>
+          <div class="action-icon-wrapper" [ngClass]="'disable-section disabledbutton' ">
+            <img src="assets/images/Delete-active.svg" (click)="openDeleteConfirmDialog();" class="btnToolbar">
+            <span class="icon-name">{{'screens.home.labels.Merge' | translate}}</span>
+          </div>
+        </div>
+
+        <!-- <span class="section-name">Actions</span> -->
+      </div>
+      <!-- Generation History -->
+      <div class="row manageEntitiesTollbarWrapper" *ngIf="isGenerationHistory">
+        <div id="entityFilters-section" class="col-sm-12 toolbar-component-container collapsed">
+          <div class="manage-section" id="manageSection">
+            <div class="action-icon-wrapper disable-section disabledbutton" id="downloadIcon">
+              <img src="assets/images/Download-active.svg" class="btnToolbar" (click)="downloadReport();">
+              <span class="icon-name">{{'screens.home.labels.Download' | translate}}</span>
+            </div>
+            <div class="action-icon-wrapper disable-section disabledbutton" id="deleteIcon">
+              <img src="assets/images/Delete-active.svg" (click)="deleteHistory()" class="btnToolbar">
+              <span class="icon-name">{{'screens.home.labels.Delete' | translate}}</span>
+            </div>
+            <div class="action-icon-wrapper disable-section disabledbutton" id="clearFilterIcon">
+              <img src="assets/images/Clear Filter-active.svg" class="btnToolbar" (click)="clearFilters()">
+              <span class="icon-name">{{'screens.home.labels.ClearFilter' | translate}}</span>
+            </div>
+            <!-- <span class="section-name">Actions</span> -->
+          </div>
+          <div class="filters-section" id="filterSection">
+            <div class="filter-icon-wrapper">
+              <div class="action-icon-wrapper">
+                <img src="assets/images/Filter-active.svg" class="btnToolbar" (click)="toggleCollapse()">
+                <span class="icon-name">{{'screens.home.labels.Filter' | translate}}</span>
+              </div>
+            </div>
+            <div class="filter-inputs-wrapper" [hidden]="!show">
+              <ng-multiselect-dropdown [ngClass]="'custom-mg-multiselect'" class="filter-input templateDeliverableText"
+                [placeholder]="'screens.home.labels.Filters.TemplateDeliverableName' | translate" [data]="ddlistTemplateDeliverableNames"
+                [(ngModel)]="selectedTemplateDeliverableNames" [settings]="dropdownSettings"
+                (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event, 1)" (onDeSelectAll)="onSelectAll($event,1)">
+              </ng-multiselect-dropdown>
+              <div class="input-wrapper filter-input">
+                <input type="text" class="form-control" [placeholder]="'screens.home.labels.Filters.TaxableYearEnd' | translate" id="taxableYearDate"
+                  (bsValueChange)="onDateSelect($event, 'TaxableYearDate')" bsDaterangepicker
+                  #dptaxableYearDate="bsDaterangepicker"
+                  [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+                <label>
+                  <i>
+                    <img src="assets/images/calender.png" (click)="dptaxableYearDate.show()"
+                      [attr.aria-expanded]="dptaxableYearDate.isOpen" class="calender-icon"></i>
+                </label>
+              </div>
+              <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.home.labels.Filters.ReportType' | translate" [data]="ddlistReportType"
+                [(ngModel)]="selectedreportTypes" [settings]="dropdownSettings" (onDeSelectAll)="onSelectAll($event,2)"
+                (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event,2)">
+              </ng-multiselect-dropdown>
+
+              <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.home.labels.Filters.Status' | translate" [data]="ddlistStatus"
+                [(ngModel)]="selectedStatus" [settings]="dropdownSettings" (onDeSelect)="onItemSelect($event)"
+                (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event,3)"
+                (onDeSelectAll)="onSelectAll($event,3)">
+              </ng-multiselect-dropdown>
+
+              <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.home.labels.Filters.GeneratedBy' | translate" [data]="ddlistGeneratedBy"
+                [(ngModel)]="selectedGeneratedBy" [settings]="dropdownGeneratedBySettings"
+                (onSelect)="onItemSelect($event)" (onDeSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event,4)" (onDeSelectAll)="onSelectAll($event,4)">
+              </ng-multiselect-dropdown>
+              <div class="input-wrapper filter-input">
+                <input type="text" class="form-control" id="createdDate" [placeholder]="'screens.home.labels.Filters.CreationDate' | translate"
+                  (bsValueChange)="onDateSelect($event, 'CreatedDate')" bsDaterangepicker
+                  #dpcreatedDate="bsDaterangepicker" [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }"
+                  readonly>
+                <label>
+                  <i>
+                    <img src="assets/images/calender.png" (click)="dpcreatedDate.show()"
+                      [attr.aria-expanded]="dpcreatedDate.isOpen" class="calender-icon"></i></label>
+              </div>
+            </div>
+            <span class="section-name filterText">{{'screens.home.labels.Filters.Filters' | translate}}</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Deliverable group -->
+      <div class="row manageEntitiesTollbarWrapper" *ngIf="isDeliverableGroupTab">
+        <div class="col-sm-12 toolbar-component-container collapsed">
+          <div class="manage-section">
+            <div class="action-icon-wrapper" id="createGroupIcon">
+              <img src="assets/images/Create-active.svg" (click)="createGroup()" class="btnToolbar">
+              <span class="icon-name">{{'screens.home.labels.Create' | translate}}</span>
+            </div>
+
+            <div class="action-icon-wrapper disable-section disabledbutton" id="deleteGroupIcon">
+              <img src="assets/images/Delete-active.svg" (click)="deleteGroup()" class="btnToolbar">
+              <span class="icon-name">{{'screens.home.labels.Delete' | translate}}</span>
+            </div>
+
+            <div class="action-icon-wrapper disable-section disabledbutton" id="editGroupIcon">
+              <img src="assets/images/Edit-active.svg" (click)="editGroup()" class="btnToolbar">
+              <span class="icon-name">{{'screens.home.labels.Edit' | translate}}</span>
+            </div>
+
+            <div class="action-icon-wrapper" [ngClass]="{'disable-section disabledbutton':!groupFilterSelected}"
+            id="clearFilterIcon">
+              <img src="assets/images/Clear Filter-active.svg" class="btnToolbar" (click)="clearGroupFilters()">
+              <span class="icon-name">{{'screens.home.labels.clearFilters' | translate}}</span>
+            </div>
+          </div>
+          <div class="filters-section" id="filterSection" [hidden]="show">
+            <div class="filter-icon-wrapper">
+              <div class="action-icon-wrapper">
+                <img src="assets/images/Filter-active.svg" class="btnToolbar" (click)="toggleCollapse()">
+                <span class="icon-name">{{'screens.home.labels.Filter' | translate}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="filters-section" id="filterSection" [ngClass]="{'hideFilters':show==false}">
+            <div class="filter-inputs-wrapper" [hidden]="!show">
+              <ng-multiselect-dropdown class="filter-input " [data]="groupListData" [placeholder]="'screens.home.labels.Filters.Groups' | translate"
+                [settings]="groupDDSettings" [(ngModel)]="selectedGroups" (onDeSelect)="onGroupItemDeSelect($event)"
+                (onSelect)="onGroupItemSelect($event)" (onSelectAll)="onGroupItemSelect($event)"
+                (onDeSelectAll)="onGroupItemDeSelect($event)">
+              </ng-multiselect-dropdown>
+              <ng-multiselect-dropdown class="filter-input " [data]="groupDeliverableListData"
+                [placeholder]="'screens.home.labels.Filters.Deliverables' | translate" [settings]="groupDDSettings" [(ngModel)]="selectedGroupDeliverables"
+                (onDeSelect)="onGroupDeliverableItemDeSelect($event)" (onSelect)="onGroupDeliverableItemSelect($event)"
+                (onSelectAll)="onGroupDeliverableItemSelect($event)"
+                (onDeSelectAll)="onGroupDeliverableItemDeSelect($event)">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <div class="sectionNameWrapper">
+            <span class="sectionName" [ngClass]="{'actionText':isDeliverable}">{{'screens.home.labels.Actions' | translate}}</span>
+          </div>
+        </div>
+      </div>
+<!-- 
+      <div class="collapse-btn-wrapper" (click)="toggleCollapse()" *ngIf="isGenerationHistory || isDeliverableGroupTab">
+        {{imageName}}
+        <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+        <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+
+      </div> -->

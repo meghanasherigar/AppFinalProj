@@ -1,0 +1,222 @@
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 20px;
+  }
+  .switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+  }
+  .slider {
+  position: absolute;
+  // cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: 1px solid #414141;
+  }
+  .slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  top:2px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #86BC25;
+  -webkit-transition: .4s;
+  transition: .4s;
+  }
+  input:checked + .slider {
+  background-color:white;
+  }
+  input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+  }
+  input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+  left:0px;
+  }
+  /* Rounded sliders */
+  .slider.round {
+  border-radius: 34px;
+  }
+  .slider.round:before {
+  border-radius: 50%;
+  }
+  .infoRequestSettingsWrapper{
+    margin: 10px 20px;
+    .infoRequestType{
+    border: 1px solid;
+    margin-bottom: 10px;
+    .requestBody{
+       padding: 15px 0px 15px 20px;
+        .templateLevelText{
+        padding-right: 10px;
+        color: black;
+        }
+        .checkboxText{
+        padding-left: 10px;
+        }
+       }
+    }
+  .infoRequestDetails{
+    margin-bottom: 10px;
+    border: 1px solid;
+    .infoDetails{
+        border-bottom: 1px solid #D8D8D8;
+        padding:15px;
+        width:88%;
+      .requestItem{
+        width:20%;
+        display:inline-block;
+        
+        .requestLabel{
+          color: black;
+         }
+        input[type="text"]{
+        width: 96%;
+        padding: 5px !important;
+        height: 30px !important;
+        border-radius: 4px !important;
+        border: 1px solid #E1E1E1 !important;
+        &::placeholder{
+          font-size: 13px;
+          font-style: italic;
+          	color: #C5C5C5;
+        }
+        }
+       }
+    }
+    .blockDetails{
+      padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+      .blockHeading{
+        margin: 4px 0 20px 0;
+    font-weight: bold;
+    width: 100%;
+        span{
+          font-weight:italic;
+        }
+      }
+      .blocksWrapper{
+        display: flex;
+    width: 85%;
+    flex-wrap: wrap;
+      }
+      .requestBlocks{
+        width: 25%;
+       
+        margin-bottom: 15px;
+        input{
+          margin-right: 10px;
+        }
+       
+        .blocks{
+          width: 84%;
+          height: 40px;
+          display: inline-block;
+          border-radius: 4px;
+          background-color: white;
+          border: 0.6px solid #D0D0CE;
+          vertical-align: middle;
+          line-height: 39px;
+          padding: 0 5px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          
+        }
+      }
+    }
+    
+   }
+  }
+  
+    
+    .requestHeader {
+      background:black;
+      color:white;
+      padding:15px !important;
+      margin:0!important;
+      font-size: 14px;
+    }
+    .datePicker{
+       position: relative;
+        input{
+          width:80% !important;
+        }
+      label{
+        position: absolute;
+        bottom: 4%;
+        right: 23%;
+      }
+    }
+    .viewText{
+      font-size: 13px;
+      color: black;
+      padding-left: 25px;
+      margin-top: -19px;
+      display: block
+    }
+    .requestQuestions-table{
+      width: 98%;
+      margin: 10px auto;
+    }
+    .entityWrapper{
+        width: 12%;
+        border-right: 1px solid #D8D8D8;
+        border-bottom: 1px solid #D8D8D8;
+        .requestBlocks{
+          padding:10px;
+        }
+        span{
+        font-size: 13px;
+        color:#333333;
+        margin-left:10px;
+        }
+    
+      
+    }
+    .requestWrapper{
+      display:flex;
+	width:100%;
+    }
+    .noEntities{
+      width:100%!important;
+    }
+ .switchClass{
+   .round::before{
+    transform: translateX(26px);
+    left: 0px;
+   }
+ }
+ .editableInput{
+   border: none;
+   background: transparent;
+   &:focus{
+     border-bottom: 1.5px solid #000;
+     padding-bottom: 5px;
+   }
+ }
+ .requestBody .activeText{
+   color:black!important
+ }
+ .requestBody .inActiveText{
+  color:grey!important
+}
+.templateBlock  .blocks{
+  background: white;
+}
+.deliverableBlock .blocks{
+  background-color: #BDE4DD !important;
+}

@@ -1,0 +1,9 @@
+.deliverableListTable{
+    margin: 0 20px;
+    border: 1px solid #d0d0ce;
+    overflow: auto;
+    height: calc(100vh - 391px);
+        table{
+        min-height: 225px;
+    }
+}

@@ -1,0 +1,170 @@
+<div class="header-container" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
+  <div class="logo-containter backGround">
+    <!-- <a (click)="toggleSidebar()" href="#" class="navigation"><i class="nb-menu"></i></a>
+    <div class="logo" (click)="goToHome()">{{'main.DigiDox30' | translate}}</div> -->
+    <div class="logo">
+      <img class="ddox-logo del-logo" src="assets/images/L1_nav_tab/Deloitte.svg">
+      <!-- <img class="line-8" src="assets/images/v-line.png">&nbsp; -->
+      <span class="logo-seperator"></span>
+      <img class="ddox-logo tp-logo" src="assets/images/L1_nav_tab/TPDigitalDoX.svg">
+    </div>
+  </div>
+  <nav class="navbar navbar-light bg-transparent navbar-expand-md px-0">
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse"
+      data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div *ngIf="disAbleIcon" class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+      <ul class="navbar-nav pl-0">
+        <li class="nav-item rectangle-copy" *ngFor="let topMenu of topMenus" ngbTooltip="{{topMenu.text | translate}}"  [hidden]="topMenu.hidden === true ? true : false"
+         [ngClass]="selectedMenu === topMenu.id ? 'rectangle-active':' '" [class.helmenu]="topMenu.disable === false ? true : null" (click)="navigatetoLink(topMenu.link, topMenu.id)">
+          <a class="nav-link" class="textcolor noUnderline" [class.disabled]="topMenu.disable === true ? true : null" 
+          (click)="navigatetoLink(topMenu.link)">
+            <img [class.disabled]="topMenu.disable === true ? true : null" [src]="selectedMenu === topMenu.id ? topMenu.pictureSelected:topMenu.picture"></a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+<div *ngIf="disAbleIcon" class="projectBreadcumb">
+  <p class="projectInContext" *ngIf="projectName" title="{{organizationName}} / {{projectName}}"><span>{{organizationName}}</span><b>&#47;</b> <span>{{projectName}}</span></p>
+</div>
+<div *ngIf="disAbleIcon" class="header-container header-custom-style">
+  <nb-actions size="medium" [class.right]="position === 'normal'" [class.left]="position === 'inverse'">
+    <nb-action class="height0Per">
+      <!--Navbar -->
+      <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1 padding0PerHeight0Per">
+        <div class="collapse navbar-collapse profile-dropdown padding0Per" id="navbarSupportedContent-555">
+          <ul class="navbar-nav ml-auto nav-flex-icons padding0Per">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="dropdown10"
+                data-toggle="dropdown">
+                <nb-user name="{{ currentUser?.profile?.given_name }} {{ currentUser?.profile?.family_name}}" onlyPicture> </nb-user>
+              </a>
+
+              <div class="dropdown-menu dropdown-toggle-menu" (click)="$event.stopPropagation()"
+                aria-labelledby="dropdown10">
+                <span class="dropdown-item backgroundNone">
+                  <p>{{ currentUser?.profile?.given_name }} {{ currentUser?.profile.family_name}}</p>
+                      <p class="profile-dropdown-email">{{ currentUser?.profile?.email}}</p>
+                  <hr>
+                </span>
+                <span class="dropdown-item backgroundNone">{{ 'UserAccess.WelcomeSwitch' | translate}}
+                  <ngx-switcher  [firstValue]="false" class="customSwitch pull-right"
+                    (valueChange)="updateUserWelcomeViewSettings($event)" [secondValue]="true" [value]="isWhatsNew"
+                    [vertical]="false"></ngx-switcher>
+                </span>
+                <span class="dropdown-item backgroundNone marginL0"
+                  *ngIf="(isGlobalAdmin || isCountryAdmin)">{{ 'UserAccess.AdminSwitch' | translate}}
+                  <ngx-switcher [firstValue]="false"  class="customSwitch pull-right" (valueChange)="adminViewState($event)"
+                    [secondValue]="true" [value]="adminView" [vertical]="false"></ngx-switcher>
+                </span>
+                <a class="dropdown-item" *ngIf="isSuperAdmin">
+                  <span  class="systemAdmin" (click)="goToAdminVIew()">{{ 'UserAccess.SuperAdminView' | translate}}
+                </span>
+              </a>
+                <a (click)="logOutUser()" class="dropdown-item" id="signOut"><span>{{ 'UserAccess.SignOut' | translate}}</span></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </nb-action>
+    <!--notifications-->
+    <nb-action class="height0Per">      
+      <!--Navbar -->
+      <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1 padding0PerHeight0Per">
+      <div class="collapse navbar-collapse padding0Per" id="navbarSupportedContent-555">
+        <ul class="navbar-nav ml-auto nav-flex-icons padding0Per" >
+          <li class="nav-item dropdown">
+            <a class="nav-link" id="dropdown10"
+              data-toggle="dropdown" (click)="getNotifications()" [ngClass]="isNotificationActivated ? 'notificationSelected':' '">
+                  <i ngbTooltip="{{'menuItems.Notifications' | translate}}" class="control-icon nb-notifications"><div *ngIf = "messageCount > 0" class="badge badgeNotification">{{messageCount}}</div></i>
+            </a>
+
+            <div class="dropdown-menu dropdown-toggle-menu notificationPopup" (click)="$event.stopPropagation()"
+              aria-labelledby="dropdown10">
+              <div class="header-container">
+                <h4 class="pull-left"><b>{{'screens.home.notification-popover.Notifications' | translate}}</b></h4>
+                <a href="javascript:void(0)" class="mark-all-read pull-right" (click)="updateAllAsRead()">{{'screens.home.notification-popover.MarkAllAsRead' | translate}}</a>
+              </div>
+              <ul class="themes-switcher-list">
+                  <li class="themes-switcher-item" *ngFor="let notification of notificationMenu">
+                    <span  class="userImg"><img src="assets/images/userProfilePic.png">
+                    </span>
+                    <span *ngIf="notification.clickable" [innerHTML]="notification.displayMessage"
+                    (click)="navigate(notification)"
+                     class="NOtificationDesc clickableContent">
+                  </span>
+
+                    <span *ngIf="!notification.clickable"
+                    [innerHTML]="notification.displayMessage" class="NOtificationDesc">
+                    </span> 
+                  
+                      <div class="row-fluid text-right" 
+                      *ngIf="enableApprovalButtons(notification)">
+                      <div class="greenIcon"> 
+                        <span>
+                          <a (click) = "acceptNotification(notification)"><img class="viewMorelessIcon" 
+                            src="assets/images/green-tick.png" width="8%">
+                          </a>
+                          </span>
+                        <span>
+                          <a (click) = "rejectNotification(notification)">
+                          <img class="viewMorelessIcon" src="assets/images/close-task - red.svg" width="8%">
+                          </a>
+                        </span>
+                      </div>
+                    </div>
+                      <span class="pull-right notificationDate"> {{notification.CreatedOn | dateFormat}} </span>
+                    </li>
+              
+                    <li *ngIf="(notificationMenu == undefined || notificationMenu.length == 0)">
+                    <span>{{'screens.home.notification-popover.NoNotification' | translate}}</span>
+                    </li>
+                </ul>
+              <div class="footer-container">
+                <a  (click)="navigatetoLink(['pages/notificationMain/notificationPage'], myMenus.Notification)">{{'screens.home.notification-popover.ViewAllNotification' | translate}}</a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    </nb-action>
+      <nb-action class="control-item" >
+        <a ngbTooltip="{{'menuItems.Help' | translate}}"
+        (click)="navigatetoLink(['pages/help/helpMain', { outlets: { primary: 'UserManual', level2Menu: 'userManualLevel2Menu',  leftNav:'leftNav'} }], myMenus.Help)" class="helmenu"  [ngClass]="isHelpActivated ? 'helpSelected':' '">
+            <!-- <img _ngcontent-rdy-c4="" src="assets/images/L1_nav_tab/Help.png"> -->
+        </a>        
+      </nb-action>
+    <!-- <nb-action>
+      <nb-user [nbContextMenu]="languages" [nbContextMenuTag]="selectedLanguageTag" [name]="selectedLanguage?.title"
+        [picture]="selectedLanguage?.picture"></nb-user>
+    </nb-action> -->
+    <nb-action class="height0Per">
+      <nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1 padding0PerHeight0Per">
+        <div class="collapse navbar-collapse padding0Per" id="navbarSupportedContent-555">
+          <ul class="navbar-nav ml-auto nav-flex-icons padding0Per">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="languageDropdown"
+                data-toggle="dropdown">
+                <nb-user [name]="selectedLanguage?.title" [picture]="selectedLanguage?.picture" onlyPicture></nb-user>
+              </a>
+              <div class="dropdown-menu dropdown-toggle-menu" (click)="$event.stopPropagation()"
+                aria-labelledby="languageDropdown">
+                <div *ngFor="let language of languages">
+                    <a *ngIf="selectedLanguage?.code != language.code"  (click)="selectLanguage(language)" class="dropdown-item" [id]="language.code">
+                      <img class="user-picture" [src]="language?.picture">&nbsp;<span>{{language.data | translate}}</span>
+                  </a>
+                    </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </nb-action>
+  </nb-actions> 
+</div>

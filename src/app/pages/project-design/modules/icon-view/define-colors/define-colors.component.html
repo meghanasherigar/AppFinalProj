@@ -1,0 +1,27 @@
+<nb-card>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-12 definedColorBlock" id="middle">
+        <div class="header-text">{{ 'screens.project-designer.document-view.defineColors.title' | translate }}</div>
+        <input type="color" (change)="AddSelectedColor($event)">
+      </div>
+      <div class="col-sm-12 selectedColorSec" id="right">
+        <div class="header-text">{{ 'screens.project-designer.document-view.defineColors.selected-label' | translate }}
+        </div>
+        <div class="row">
+          <div *ngFor="let select of selectedDeliverable" class="col-md-2 selected-colors">
+            <div class="selected-colorsBlock" style.background-color="{{select.color}}"></div>{{select.color}}
+            <i class="fas fa-times remove-deliverable" (click)="remove(select)"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="footerCard">
+    <button nbButton type="button" class="menu-btn-cancel" style="color:black;"  (click)="submit()"><label
+        class="menu-txt-cancel">{{ 'screens.project-designer.document-view.defineColors.ok-button-label' | translate }}</label></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+    <button nbButton type="button" class="menu-btn-cancel" style="color:black;"  (click)="dismiss()"><label
+        class="menu-txt-cancel">{{'screens.project-designer.document-view.cancel' | translate}}</label></button>
+  </nb-card-footer>
+</nb-card>

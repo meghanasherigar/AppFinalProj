@@ -1,0 +1,51 @@
+<div class="header-container level2header" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
+  <nav class="navbar navbar-light bg-transparent navbar-expand-md px-0">
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse"
+      data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end manageLibrarytoolbar" id="navbarCollapse">
+      <ul class="navbar-nav pl-0">
+
+        <div class="document-view-menue">
+          <ul class="navbar-nav pl-0">
+            <li class="nav-item rectangle-copy"
+              [ngClass]="((selectedSubMenu === mySubMenus.Editor) || defaultMenu) ? 'rectangle-active':''"
+              (click)="activateSubMenu(mySubMenus.Editor)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline">
+                <!-- href='/#/pages/project-design/projectdesignMain/iconViewMain/(editorregion//level2Menu:editorlevel2menu//topmenu:iconviewtopmenu)'> -->
+                {{ 'screens.user.AdminView.Library.Menus.Editor' | translate }}</a>
+            </li>
+            <li class="nav-item rectangle-copy"
+              [ngClass]="selectedSubMenu === mySubMenus.Insert ? 'rectangle-active':' '"
+              (click)="activateSubMenu(mySubMenus.Insert)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline">
+                <!-- href='/#/pages/project-design/projectdesignMain/iconViewMain/(editorregion//level2Menu:insertlevel2menu//topmenu:iconviewtopmenu)'> -->
+                {{ 'screens.user.AdminView.Library.Menus.Insert' | translate }} </a>
+            </li>
+            <li class="nav-item rectangle-copy"
+              [ngClass]="selectedSubMenu === mySubMenus.Layout ? 'rectangle-active':' '"
+              (click)="activateSubMenu(mySubMenus.Layout)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline">
+                <!-- href='/#/pages/project-design/projectdesignMain/iconViewMain/(editorregion//level2Menu:layoutlevel2menu//topmenu:iconviewtopmenu)'> -->
+                {{ 'screens.user.AdminView.Library.Menus.Layout' | translate }}</a>
+            </li>
+            <li class="nav-item rectangle-copy"
+              [ngClass]="selectedSubMenu === mySubMenus.Review ? 'rectangle-active':' '"
+              (click)="activateSubMenu(mySubMenus.Review)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline">
+                <!-- href='/#/pages/project-design/projectdesignMain/iconViewMain/(editorregion//level2Menu:editorlevel2menu//topmenu:iconviewtopmenu)'> -->
+                {{ 'screens.user.AdminView.Library.Menus.Review' | translate }}</a>
+            </li>
+            <li class="nav-item rectangle-copy"
+              [ngClass]="selectedSubMenu === mySubMenus.Tasks ? 'rectangle-active':' '"
+              (click)="activateSubMenu(mySubMenus.Tasks)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline">
+                {{ 'screens.user.AdminView.Library.Menus.Tasks' | translate }}</a>
+            </li>
+          </ul>
+        </div>
+      </ul>
+    </div>
+  </nav>
+</div>

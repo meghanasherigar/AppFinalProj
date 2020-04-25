@@ -1,0 +1,22 @@
+<nb-card>
+  <nb-card-body>
+
+    <nb-tabset fullWidth class="custom-tab-width" (changeTab)="selectedTab($event)">
+      <nb-tab [tabTitle]="'screens.project-designer.iconview.TemplatesDeliverables.Deliverables' | translate"  active="{{canViewDeliverableGenerate}}" id="deliverablesTab">
+        <ngx-deliverable-list  [sourceType]="'deliverable-list'"></ngx-deliverable-list>
+      </nb-tab>
+      <nb-tab [tabTitle]="'screens.project-designer.iconview.TemplatesDeliverables.Templates' | translate" active="{{canViewTemplates}}" id="templatesTab">
+        <ngx-template-list [sourceType]="'template-list'"></ngx-template-list>
+      </nb-tab>
+    
+      <nb-tab [tabTitle]="'screens.project-designer.iconview.TemplatesDeliverables.GenarateHistory' | translate"  active="{{canViewDeliverableGenerate}}" id="historyTab">
+        <ngx-generation-history></ngx-generation-history>
+      </nb-tab>
+
+      <nb-tab [tabTitle]="'screens.project-designer.iconview.TemplatesDeliverables.DeliverableGrouping' | translate">
+        <ngx-deliverable-grouping></ngx-deliverable-grouping>
+      </nb-tab>
+    </nb-tabset>
+
+  </nb-card-body>
+</nb-card>

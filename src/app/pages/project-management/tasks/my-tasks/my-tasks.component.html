@@ -1,0 +1,16 @@
+<ngx-ui-loader [loaderId]='loaderId' *ngIf="_currentTab === taskMenuItems.MyTasks" [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+
+<div class="row">
+  <div class="col-md-6">
+      <ngx-header-summary id="taskSummary" class="task-summary-part"
+      (filterTrigger)="onTaskAssignmentSelection($event)" [options]='taskSummaryOptions'>
+      </ngx-header-summary>
+  </div>
+</div>
+
+<div class="taskListComponent">
+  <ng2-smart-table id="myTaskList" class="home-table" [settings]="gridSettings" 
+  (custom)="onCustomAction($event)"
+  (userRowSelect)="onTaskRowSelect($event)" [source]="gridDataSource">
+  </ng2-smart-table>
+</div>

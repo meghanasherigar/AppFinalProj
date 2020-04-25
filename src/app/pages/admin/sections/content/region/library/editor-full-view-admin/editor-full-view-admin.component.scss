@@ -1,0 +1,149 @@
+
+.documentView
+{
+   height: auto;
+}
+.documentTemplateWrapper .document-full-viewBody{ overflow-x: hidden;}
+
+.editor-heading{ 
+    font-size: 14px;
+    color: #000;
+    // height: calc(100vh - 283px) !important;
+   
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    overflow: auto;
+}
+
+
+ .margin-top{
+    margin-top: 5% !important;
+}
+
+
+.content-container
+{
+    max-height: 300px; 
+    //overflow:auto;
+}
+.centered
+{
+    position: absolute;
+    z-index: 9999;
+    left: 35%;
+    top: 35%;   
+}
+.Clockwise {
+    transform: rotate(-45deg);
+    transform-origin: right, top;
+    -ms-transform: rotate(-45deg);
+    -ms-transform-origin:right, top;
+    -webkit-transform: rotate(-45deg);
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 17px;
+    left: 30%;
+    top: 25%;
+    position: absolute;
+}
+.AntiClockwise {
+    transform: rotate(45deg);
+    transform-origin: right, top;
+    -ms-transform: rotate(45deg);
+    -ms-transform-origin:right, top;
+    -webkit-transform: rotate(45deg);
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 17px;
+    right: 30%;
+    top: 25%;
+    padding: 22px 36px 0 22px;
+    position: absolute;
+}
+
+.TopRight {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 17px;
+    margin: 0;
+  }
+  
+  .TopLeft {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 17px;
+    margin: 0;
+  }
+  
+  .BottomRight {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 17px;
+    margin: 0;
+  }
+  
+  .BottomLeft {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    color: rgba(224, 224, 224, 0.5);
+    margin: 0;
+}
+
+  .watermark{
+    height: 70px;	    width: 89px;display:inline-block;	border: 0.7px solid #E4E4E4;	border-radius: 2px;	background-color: #FEFEFE;    position: relative;
+    margin: 10px ;
+    h1{
+        font-weight: 600;
+        color: rgba(224, 224, 224, 0.8);
+        font-size: 14px;
+    
+    }
+    &:hover{
+        border: 1px solid #000;
+    }
+  }
+
+  .preview{
+    height: calc(100vh - 315px);
+    width:100%;
+    margin: auto;
+    .clockwise{
+      top: 40%;
+      left: 40%;
+    }
+   h1{
+       font-size: 48px;
+       font-weight: bolder;
+   }
+   .anticlockwise
+   {
+      top: 26%;
+      left: 5%;
+   } 
+}
+.footNoteCont{
+  position: relative;
+  .footnoteCount{
+    color: #000; position: absolute; top: 10px; left: 5px;font-weight: 600;
+  }
+  .footnoteText{
+    border-bottom:1px dashed #000; background: transparent;
+  }
+}
+
+.disable-edit{
+  
+  &.ck-focused{
+    pointer-events: none;
+  }
+  &.ck-blurred{
+    pointer-events: none;
+  }
+  
+}
+

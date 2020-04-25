@@ -1,0 +1,68 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition"
+ [bgsColor]="loaderColor"></ngx-ui-loader>
+<form  [formGroup]="uploadAppendixForm" (ngSubmit)="uploadAppendix()">
+  <nb-card class="createBlockpopupHW attribute-create-popup">
+    <nb-card-header class="createTopHeader">{{'screens.project-designer.appendix.label.Upload' | translate}}
+        <button aria-label="Close" class="close" type="button"  (click)="dismiss()"><span aria-hidden="true">×</span></button>
+    </nb-card-header>
+    <nb-card-body>
+     <div class="row">
+       <div class="col-sm-12">
+          <div class="form-group">
+            <label class="custom-form-label">{{'screens.project-designer.appendix.uploadScreen.AppendixName' | translate}}<span
+              class="create-block-attribute-mandatory-icon">*</span></label>
+            <input type="text" formControlName="AppendixName" [placeholder]="'screens.project-designer.appendix.uploadScreen.AppendixName' | translate" 
+            class="form-control custom-form-input"  [ngClass]="{ 'is-invalid': submitted && form.AppendixName.errors }">
+            <div *ngIf="submitted && form.AppendixName.errors" class="invalid-feedback">
+              <div *ngIf="form.AppendixName.errors.required">
+                {{'screens.project-designer.appendix.uploadScreen.AppendixNameValidation' | translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="custom-form-label">{{'screens.project-designer.appendix.uploadScreen.Comment' | translate}}</label>
+            <input type="text" formControlName="Comment"
+              class="form-control custom-form-input" [placeholder]="'screens.project-designer.appendix.uploadScreen.Comment' | translate" >
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="custom-form-label">{{'screens.project-designer.appendix.uploadScreen.AssociateWith' | translate}}</label>
+              <input type="hidden" formControlName="hdnSelectedDeliverables" class="form-control"
+                       id="hdnSelectedDeliverables">
+              <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-designer.appendix.uploadScreen.Deliverables' | translate" [data]="ddListDeliverableData"
+              formControlName="SelectedDeliverables" [settings]="ddDeliverableSettings"
+              (onDeSelect)="onDeliverableFilterSelect($event)" (onSelect)="onDeliverableFilterSelect($event)"
+              (onSelectAll)="onSelectAllDeliverable($event)" (onDeSelectAll)="onSelectAllDeliverable($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+        </div>
+                  
+    </nb-card-body>
+    <nb-card-footer class="footerCard">
+      <nb-card-footer class="footerRightButton">
+        <button nbButton type="button" class="menu-btn-cancel createCancel" style="color:black;" (click)="dismiss()"><label
+            class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.appendix.uploadScreen.Cancel' | translate}}</label></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" *ngIf="fileUploaded" [disabled]="disableSaveButton" class="menu-btn-save createBlockSave"
+        id="btnCreateOrganization">{{'screens.project-designer.appendix.uploadScreen.Save' | translate}}</button>
+
+        <form [formGroup]="profileForm">    
+        <div class="form-group custom-file-input-wrapper" >
+          <div *ngIf="!fileUploaded">
+            <input type="file" name="profile" id="profile" class="custom-file-input"  formControlName="profile"
+              pattern="^.*\.(xls|xlsx)$" 
+              (change)="onSelectedFile($event)" accept=".pdf, .doc, .docx, .jpeg, .jpg, .png" data-max-size="20480" />
+            <label class="custom-file-input-label" for="profile">{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}}</label>
+          </div>
+        </div>  
+        </form>
+      </nb-card-footer>
+    </nb-card-footer>
+  </nb-card>
+</form>

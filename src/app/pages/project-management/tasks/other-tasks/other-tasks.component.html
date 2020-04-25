@@ -1,0 +1,77 @@
+<nb-card class="otherTaskPopup" [formGroup]="otherTask_form">
+  <nb-card-header class="OtherHeader">
+    <div class="col-md-11" style="padding: 0px;">
+      <h6 class="otherTaskHeaderContent"> {{ 'screens.Project-Management.Tasks.Messages.Labels.OtherTask' | translate }}</h6>
+    </div>
+    <div class="col-md-1" (click)="cancel()">
+      <h6 class="otherTaskHeaderContent">X</h6>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>{{ 'screens.Project-Management.Tasks.Messages.Labels.TaskName' | translate }} <span class="OtherTaskRedIcon">*</span></label>
+          <input type="text" class="form-control custom-form-input" formControlName="taskName" [placeholder]="'screens.Project-Management.Tasks.Messages.Labels.TaskName' | translate">
+          <span class="OtherTaskRedIcon"
+          *ngIf="(otherTask_form.controls['taskName'].hasError('required') || otherTask_form.controls['taskName'].hasError('pattern')) && (otherTask_form.controls['taskName'].dirty || otherTask_form.controls['taskName'].touched)">
+          {{ 'screens.Project-Management.Tasks.Messages.Error.TaskName' | translate }}</span>
+        </div>
+      </div>
+     
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <label>{{ 'screens.Project-Management.Tasks.Messages.Labels.TaskType' | translate }}  <span class="OtherTaskRedIcon">*</span></label>
+        <div class="form-group">
+          <input type="text" class="form-control custom-form-input" formControlName="taskType" [placeholder]="'screens.Project-Management.Tasks.Messages.Labels.TaskType' | translate" disabled style="background:#eee!important;">
+        </div>
+        <span class="OtherTaskRedIcon"
+          *ngIf="otherTask_form.controls['taskType'].hasError('required') && (otherTask_form.controls['taskType'].dirty || otherTask_form.controls['taskType'].touched)">
+           {{ 'screens.Project-Management.Tasks.Messages.Error.TaskType' | translate }}</span>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group input-wrapper filter-input">
+          <label>{{ 'screens.Project-Management.Tasks.Messages.Labels.DueDate' | translate }}<span class="OtherTaskRedIcon">*</span></label>
+          <input type="text" class="form-control custom-form-input" formControlName="dueDate" [placeholder]="'screens.Project-Management.Tasks.Messages.Labels.DueDate' | translate" [ngClass]="{ 'is-invalid': submitted && otherTask_form.controls['dueDate'].hasError('required') }" 
+          bsDatepicker #dpTaxableYearEnd="bsDatepicker" [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly>
+          <label class="calIcon">
+            <i>
+              <img src="assets/images/calender.png" class="calender-icon">
+            </i>
+          </label>
+        </div>
+        <span class="OtherTaskRedIcon"
+          *ngIf="otherTask_form.controls['dueDate'].hasError('required') && (otherTask_form.controls['dueDate'].dirty || otherTask_form.controls['dueDate'].touched)">
+          {{ 'screens.Project-Management.Tasks.Messages.Error.DueDate' | translate }}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group otherAttachment">
+          <label>{{ 'screens.Project-Management.Tasks.Messages.Labels.Attachment' | translate }}</label>
+          <label> {{ 'screens.Project-Management.Tasks.Messages.Labels.Browse' | translate }}
+            <input type="file" size="60" (change)="onFileChange($event)">
+          </label>
+            {{ fileName }}
+          <!-- <div class="OtherTaskprogess">
+
+          </div> -->
+        </div>
+        <span class="OtherTaskRedIcon"
+          *ngIf="fileSize">
+          {{ 'screens.Project-Management.Tasks.Messages.Error.FileSize' | translate }}</span>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="otherTaskFooter">
+    <div class="col-md-offset-1 col-md-11 footerButton">
+      <button nbButton type="button" class="menu-btn-cancel" style="color:black;"  (click)="cancel()"><label
+          class="menu-txt-cancel">{{ 'screens.Project-Management.Tasks.Messages.Labels.Cancel' | translate }}</label></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="submit" class="menu-btn-save" (click)="assignTask()" id="btnOtherTask" [disabled]="submitted">
+          {{ 'screens.Project-Management.Tasks.Messages.Labels.Save' | translate }}
+      </button>
+    </div>
+  </nb-card-footer>
+</nb-card>

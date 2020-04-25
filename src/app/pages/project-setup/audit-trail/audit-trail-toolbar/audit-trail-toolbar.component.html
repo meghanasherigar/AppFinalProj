@@ -1,0 +1,52 @@
+<div class="row uploadToolbarWrapper">
+  <div id="auditTrailFilters-section" class="col-sm-12 toolbar-component-container collapsed">
+    <div class="createManageSection">
+      <div class="manage-section">
+        <div class="action-icon-wrapper" id="deleteIcon"
+          [ngClass]="enableDelete ? '' : 'disable-section disabledbutton' ">
+          <img src="assets/images/Delete-active.svg" class="btnToolbar" (click)="openDeleteConfirmDialog();">
+          <span class="icon-name">{{'screens.project-designer.appendix.label.Delete' | translate}}</span>
+        </div>
+        <div class="action-icon-wrapper" [ngClass]="enableDownload ? '' : 'disable-section disabledbutton' ">
+          <img src="assets/images/Download-active.svg" class="btnToolbar"  (click)="downloadAuditFile();">
+          <span class="icon-name">{{'screens.project-designer.appendix.label.Download' | translate}}</span>
+        </div>
+        <div class="action-icon-wrapper" [ngClass]="enableClearFilter ? '' : 'disable-section disabledbutton' ">
+          <img src="assets/images/Clear Filter-active.svg" class="btnToolbar" (click)="clearFilters()">
+          <span class="icon-name">{{'screens.home.labels.clearFilters' | translate}}</span>
+        </div>
+        <span class="section-name">{{'screens.home.labels.manage' | translate}}</span>
+      </div>
+    </div>
+    <div class="entity-filters-section">
+      <div class="filter-icon-wrapper">
+        <div class="action-icon-wrapper">
+          <img src="assets/images/Filter-active.svg" class="btnToolbar" (click)="toggleCollapse()">
+          <span class="icon-name">{{ 'screens.Project-Management.Blocks.Header.Filter' | translate }}</span>
+        </div>
+      </div>
+      <div class="filter-inputs-wrapper">
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.home.labels.ActionBy' | translate" [data]="ddlistActionBy"
+          [(ngModel)]="selectedActionBy" [settings]="dropdownSettings" (onDeSelect)="onItemSelect($event)"
+          (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAllActionBy($event)"
+          (onDeSelectAll)="onSelectAllActionBy($event)">
+        </ng-multiselect-dropdown>
+        <div class="input-wrapper filter-input">
+          <input type="text" class="form-control" [placeholder]="'screens.home.labels.ActionDate' | translate" id="actionDate"
+            (bsValueChange)="onDateSelect($event, 'ActionDate')" bsDaterangepicker #dpactionDate="bsDaterangepicker"
+            [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+          <label>
+            <i>
+              <img src="assets/images/calender.png" (click)="dpactionDate.show()"
+                [attr.aria-expanded]="dpactionDate.isOpen" class="calender-icon"></i></label>
+        </div>
+      </div>
+      <span class="section-name">{{'screens.home.labels.Filter' | translate}}</span>
+    </div>
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+      {{imageName}}
+      <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+      <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+    </div>
+  </div>
+</div>

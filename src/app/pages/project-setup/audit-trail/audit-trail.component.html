@@ -1,0 +1,56 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="container AuditTrail">
+  <div class="row topHeaderScrolling">
+    <div class="col-sm-12 importBorderRIght">
+      <div class="row">
+        <div class="scrollingHeader">
+          
+          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+            
+            <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+              <div class="AuditSelectAll">
+                <label class="selectCheckbox">
+                  <input type="checkbox" (change)="selectAllRecords($event.target.checked, node)" 
+                      tooltip="Select All" [checked]="selectedAuditLogs.length > 0">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.item"
+                (click)="expandMonth(node)" class="mat-button-wrapper mat-icon-button">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{treeControl.isExpanded(node) ? 'remove_circle_outline' : 'add_circle_outline'}}
+                </mat-icon>
+              </button>
+              <p class="auditdate"><span>{{node.item}}</span></p>
+            </mat-tree-node>
+
+            <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodeToggle matTreeNodePadding>
+              <button mat-icon-button class="mat-icon-button mat-button-wrapper" (click)="expandMonth(node)">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  {{treeControl.isExpanded(node) ? 'remove_circle_outline' : 'add_circle_outline'}}
+                </mat-icon>
+                </button>
+              <span>{{node.item}}</span>
+            </mat-tree-node>
+
+            <mat-tree-node *matTreeNodeDef="let node;" matTreeNodeToggle matTreeNodePadding>
+              
+              <mat-checkbox class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
+                (change)="checklistSelection.toggle(node);todoItemSelectionToggle(node);">
+                <mat-icon class="mat-icon-rtl-mirror">
+                  <img src="assets/images/audt_Trail/Create.svg" *ngIf="node.action == actionType.create">
+                  <img src="assets/images/audt_Trail/Edit.svg" *ngIf="node.action == actionType.edit">
+                  <img src="assets/images/audt_Trail/Delete.svg" *ngIf="node.action == actionType.delete">
+                  <img src="assets/images/audt_Trail/Information request.svg"
+                  *ngIf="node.action == actionType.sendIR || node.action == actionType.sendBackToAssignee || node.action == actionType.sendBackToReview || node.action == actionType.sendBackToQuestionReview ||
+                  node.action == actionType.pullBack || node.action == actionType.finalize || node.action == actionType.reSendIR || node.action == actionType.forward">
+                </mat-icon>
+                <div [innerHTML]="node.item"></div>
+              </mat-checkbox>
+            </mat-tree-node>
+          </mat-tree>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

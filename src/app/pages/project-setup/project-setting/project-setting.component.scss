@@ -1,0 +1,149 @@
+.nb-accordion-item-body{
+    border: 1px solid #c2bebe!important;
+    height: 35px;
+    padding:0px;
+}
+ .myclass{
+    height: 35px;
+    width:40px;  
+ }
+ .ProjectSettings-container{
+     margin:22px;
+     .projectmngtList{
+        border-bottom: 1px solid #E8E8E8;
+        padding: 12px 0;
+        &:last-child{
+          border-bottom: none;
+        }
+        form{
+            span{
+                margin-right: 15px;
+                input{
+                    margin-right: 3px;
+                }
+            }
+        }
+     }
+     nb-accordion-item-header{ 
+         background: #F2F2F2;
+         height: 45px;;
+    }
+    nb-accordion-item{border: 1px solid #E8E8E8; margin-bottom: 20px;}
+    nb-accordion-item-header.accordion-item-header-expanded i::before{
+        content: url('/assets/images/Collapse-accordion-black.svg') !important;
+        position: absolute;
+        top: 10px;
+        left: 7px;
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    .btnGroup{
+        .customRadio{ 
+            margin-right: 20px;
+            display: inline-block;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+        label{
+            color: #110F0F;
+            font-size: 14px;
+        }
+    }
+    .btnGroup input[type="radio"]{
+        -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #86BC25 !important;
+    border-radius: 50%;
+    outline: none;
+    margin-right: 5px;
+    margin-top: 1px !important;
+    float: left;
+    &::before{
+        content: '';
+    display: block;
+    width: 55%;
+    height: 55%;
+    margin: 23% auto;
+    border-radius: 50%;
+    }
+    
+}
+.btnGroup input[type="radio"]:checked::before {
+    background: #86BC25;
+    height: 6px;
+    width: 6px;
+    margin: -3px;
+}
+.btnGroup input[type="radio"]:checked {
+    background: transparent !important;
+}
+.form-control.custom-form-input{
+    border: 1px solid #D2D4CD !important;
+    width: 94px;display: inline-block;
+    margin-right: 10px;
+}
+.form-control.custom-form-input-text{
+    border: 1px solid #D2D4CD !important;
+    display: inline-block;
+    margin-right: 10px;
+}
+h5{
+    color: #333333;
+    font-size: 14px;
+    font-weight: 700;
+}
+.projectMngtAccordian{
+    .projectMngtAccordianList{
+        border-bottom: 1px solid #E8E8E8;
+    }
+}
+ }
+ .addBtn {
+    background-color: transparent;
+    cursor: pointer;
+    // color: #C9D4D8;  
+    border: 1px dashed #D7DADB;
+    padding: 3px 10px 3px 10px;
+    margin-top: 25px;
+    // margin-left: 15px;
+  }
+  .iconsDiv{
+    text-align: right;
+    padding-right:27px;
+  }
+  .deleteIconPosition{
+      position: relative;
+  }
+  .disable {
+    pointer-events: none;
+    opacity: 0.4;
+}
+.proSetting{
+    position: absolute;
+    right: 38px;
+    /* padding: 2px; */
+    top: -1px;
+}
+.ProjectInputIconList{
+    cursor: pointer;
+    padding: 11px;
+}
+
+.Proform{
+    border: 1px solid #c5c3c3 !important;
+    box-shadow: none !important;
+
+}
+.DeleteIconList{
+    cursor: pointer;
+    /* padding: 5px; */
+    margin-top: 5px;
+    /* position: absolute; */
+    float: right
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}

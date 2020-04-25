@@ -1,0 +1,16 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<nb-card ngxUiLoaderBlurred>
+    <nb-card-body>
+
+        <ngx-create-edit-admin *ngIf="loadAddEditComponent" [editAdminUserFlag]="editAdminUserFlag"
+            [selectedAdminUserRows]="selectedAdminUserRows">
+        </ngx-create-edit-admin>
+
+        <ng2-smart-table id="adminSmartTable" [settings]="settings" [source]="adminUserGridSource"
+            (userRowSelect)="onAdminUserRowSelect($event);">
+        </ng2-smart-table>
+
+    </nb-card-body>
+</nb-card>

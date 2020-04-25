@@ -1,0 +1,79 @@
+
+.errorMessage{
+    color: red;
+    font-size: 12px;
+    font-weight: lighter;
+    padding-left: 17px;
+    padding-bottom: 10px;
+ }
+ .padding0{ padding: 0 !important;}
+ #btnAssign{color: white;}
+ textarea{ width: 100%; height: 97px; padding: 5px; overflow-y: auto;border: 1px solid #D2D4CD;
+   &::placeholder{
+      color: #BBBCBC;
+      font-size: 13px;
+   }
+
+
+}
+ #right .selected-deliverable{ border: 1px solid #86BC25;
+     // margin-left: 15px;
+     padding: 6px 8px;
+     margin-top: 10px;}
+     #right .selected-deliverable i{ float: right}
+
+     .assignToWrapper{
+         width:500px;
+        
+     }
+     .assignToContent{
+      padding: 0 10px;
+     }
+     .search-header{
+       
+        border-bottom: 0.5px solid #D8D8D8;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+     }
+     .assignFooter{
+        border-top: 0.5px solid #D8D8D8 !important;
+        padding: 10px;
+     }
+     .footerButton{
+        text-align: right;
+        padding-right: 18px;
+        .menu-btn-cancel{
+            border-radius: 3px;
+        }
+     }
+     .assignIcon{
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      text-align: center;
+      border: 2px solid black;
+      padding: 3px;
+         img{
+            width: 62%;
+            height: 99%;
+         }
+     }
+     .input-wrapper.filter-input{
+      position: relative;
+      input{
+         border: 1px solid #D2D4CD;
+         padding: 4px !important;
+         height: 30px;
+         &::placeholder{
+            color: #BBBCBC;
+            font-size: 13px;
+         }
+      }
+      label{
+         position: absolute;
+    right: 10px;
+    top: 5px;
+      }
+
+     }

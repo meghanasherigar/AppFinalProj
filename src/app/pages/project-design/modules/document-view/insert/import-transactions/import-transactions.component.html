@@ -1,0 +1,40 @@
+<nb-card class="createAttributeForm">
+  <nb-card-header class="createTopHeader">{{'screens.project-designer.document-view.ImportTransactions' | translate}}
+    <button aria-label="Close" class="close" type="button" (click)="dismiss()"><span
+        aria-hidden="true">×</span></button>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row" id="roleDiv">
+      <div class="col-sm-12 verticalMove">
+        <div class="form-group checkbox-inline" id="inScopeCheckBox" (click)="toggleCheckbox($event)">
+          <input type="checkbox" class="check" [checked]="importTrans.checkbox1" name="checkbox1">
+          <label class="labelCentralUserTxt">{{'screens.home.labels.InScope' | translate}}</label>
+        </div>
+      </div>
+      <div class="col-sm-12 verticalMove">
+        <div class="form-group checkbox-inline" id="outScopeCheckBox" (click)="toggleCheckbox($event)">
+          <input type="checkbox" class="check" [checked]="importTrans.checkbox2" name="checkbox2">
+          <label class="labelLocalUserTxt">{{'screens.home.labels.OutOfScope' | translate}}</label>
+        </div>
+      </div>
+      <div class="col-sm-12 verticalMove">
+        <div class="form-group checkbox-inline" id="allScopeCheckBox" (click)="toggleCheckbox($event)">
+          <input type="checkbox" class="check" [checked]="importTrans.checkbox3" name="checkbox3">
+          <label class="labelLocalUserTxt">{{'screens.home.labels.Both' | translate}}</label>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="footerCard">
+    <nb-card-footer class="footerRightButton">
+      <button nbButton type="button" class="menu-btn-cancel createCancel" style="color:black;"
+        (click)="dismiss()"><label
+          class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="submit" class="menu-btn-save createBlockSave" (click)="importTransaction()"
+        [ngClass]="(importTrans.checkbox1 || importTrans.checkbox2 || importTrans.checkbox3) ? '' : 'disable-section disabledbutton' "
+        id="btnCreateOrganization">{{'screens.home.labels.Import' | translate}}</button>
+
+    </nb-card-footer>
+  </nb-card-footer>
+</nb-card>

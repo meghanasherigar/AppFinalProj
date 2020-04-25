@@ -1,0 +1,22 @@
+
+<!-- <router-outlet name="toolbar"></router-outlet>
+
+
+<router-outlet></router-outlet> -->
+<div class="container-fluid custom-position-sticky">
+  <div class="row">
+    <div class="col-md-12">
+      <router-outlet name="level2Menu"></router-outlet>
+    </div>
+  </div>
+</div>
+<nb-layout>
+  <nb-sidebar>
+    <router-outlet name="leftNav"></router-outlet>
+    <!-- <a [routerLink]="[{ outlets: { primary: 'transactionMain', level2Menu: 'transactionLevel2Menu',  leftNav:'leftNav'} }]">Transactions</a>
+                        <a [routerLink]="[{ outlets: { primary: 'entitiesMain', level2Menu: 'entitiesLevel2Menu',  leftNav:'leftNav'} }]">Entities</a> -->
+  </nb-sidebar>
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

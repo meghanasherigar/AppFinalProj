@@ -1,0 +1,62 @@
+#counterParty{
+    position: absolute;
+    min-width:200px;
+}
+
+
+
+.project-country
+{
+    fill: #86BC25;
+}
+
+.counter-party-country
+{
+    fill: #62B5E5;
+}
+.Anlytics_graph{
+    position: relative;
+    // margin: 15px 20% 25px;
+    margin-left: 250px;
+    // path:hover{
+    //     fill: #86BC25;
+    //     opacity: 0.3;
+    // }
+    span.image
+{position: relative;
+    &::after{
+        content: '';
+    width: 1px;
+    height: 81px;
+    background: #000;
+    text-align: center;
+    position: absolute;
+    top: 32px;
+    left: 23px;
+
+}
+span.circle{
+     
+width: 9px;
+height: 9px;
+background: #000;
+position: absolute;
+top: 110px;
+left: 18.5px;
+border-radius: 50%;
+}
+}
+
+.counterPartyCount{
+    background: #000;
+    color: #fff;
+    padding: 3px 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-left: 10px;
+   
+    
+}
+}
+
+

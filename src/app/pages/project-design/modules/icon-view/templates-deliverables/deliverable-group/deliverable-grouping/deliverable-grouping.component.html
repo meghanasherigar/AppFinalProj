@@ -1,0 +1,5 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+
+<ng2-smart-table id="deliverableGroupList" class="home-table" [settings]="gridsettings"
+    (custom)="onCustomAction($event)" (userRowSelect)="onDeliverableRowSelect($event)" [source]="dataSource">
+</ng2-smart-table>

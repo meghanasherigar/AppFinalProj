@@ -1,0 +1,49 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition"
+ [bgsColor]="loaderColor"></ngx-ui-loader>
+<div>
+  <nb-card class="createBlockpopupHW associated-popup">
+     <nb-card-header class="createTopHeader">
+        <div class="row">
+            <div class="col-xs-8" >
+                <span class="header-text">{{'screens.project-designer.appendix.associateScreen.LinkAppendixTo' | translate}}</span>
+                <input type="text" (input)="onSearchChange($event.target.value)" placeholder="Search Deliverables" class="pull-right search-box">
+            </div>   
+            <div class="col-xs-4 text-left">
+                <span class="header-text">{{'screens.project-designer.appendix.associateScreen.Selected' | translate}}</span>
+            </div>
+          </div>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="appendexBody">
+        <div class="col-sm-8 appendixItem" id="middle">
+          <div *ngFor="let deliverable of deliverableList" class="row deliverables">
+              <input type="checkbox" name=""    
+                [checked]="selectedDeliverable.indexOf(deliverable)>-1"
+              (click)="toggleSelection(deliverable)">
+              <div class="col-md-3 text-left">{{deliverable.deliverableName}}</div>
+              <div class="col-md-3 text-right">{{deliverable.taxableYearEnd}}</div>
+
+          </div> 
+        
+        </div>   
+        <div class="col-sm-4" id="right">
+          <div *ngFor="let select of selectedDeliverable" class=" selected-deliverable" >{{select.deliverableName}}
+          <i class="fas fa-times remove-deliverable"(click)="remove(select)"></i>
+          </div>  
+        </div>
+      </div>
+
+    </nb-card-body>
+    <nb-card-footer class="footerCard">
+      <nb-card-footer class="footerRightButton">
+        <button nbButton type="button" class="menu-btn-cancel createCancel" style="color:black;"
+          (click)="dismiss()"><label
+            class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="menu-btn-save createBlockSave" id="btnCreateOrganization" (click) = "associateDeliverable()">{{'screens.project-designer.appendix.associateScreen.Associate' | translate}}</button>
+
+
+      </nb-card-footer>
+    </nb-card-footer>
+  </nb-card>
+</div>

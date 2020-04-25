@@ -1,0 +1,330 @@
+<div class="createUserWrapper">
+    <div class="row">
+        <div class="col-sm-12">
+              <form [formGroup]="createUserAdminForm">
+                <div  id="projectRoleDiv">
+                  <div class="col-sm-2 verticalMove padding0">
+                    <div class="form-group checkbox-inline">
+                      <input type="checkbox" id="deloitteUserCheckBox" formControlName="DeloitteUser" class="check"
+                        disabled="disabled" (change)="toggleCheckbox($event, 0)" [checked]="inExternal.checkbox3"
+                        name="checkbox3">
+                      <label class="labelDeloitteUserTxt">
+                        {{'screens.project-user.DeloitteUser' | translate}}
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-3 verticalMove padding0">
+                    <div class="form-group checkbox-inline">
+                      <input type="checkbox" id="clientUserCheckBox" formControlName="ClientUser" class="check"
+                        disabled="disabled" (change)="toggleCheckbox($event, 0)" [checked]="inExternal.checkbox4"
+                        name="checkbox3">
+                      <label class="labelClientUserTxt">{{'screens.project-user.ClientUser' | translate}}</label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-sm-12" id="createUserAdminForm">
+             <nb-card>
+                <nb-card-body>
+                  <form [formGroup]="createUserAdminForm">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <input type="hidden" formControlName="Id">
+                          <label for="txtFirstName">
+                            {{'screens.project-user.FirstName' | translate}}
+                            <span class="mandatoryField">*</span>
+                          </label>
+                          <input type="text" formControlName="FirstName" readonly
+                            class="form-control manage-admin-pointer-none disabledbutton " id="txtFirstName"
+                            [ngClass]="{ 'is-invalid': formSubmitted && form.FirstName.errors }">
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label for="txtLastName"> {{'screens.project-user.LastName' | translate}}
+                            <span class="mandatoryField">*</span>
+                          </label>
+                          <input type="text" formControlName="LastName"
+                            class="form-control manage-admin-pointer-none disabledbutton" id="txtLastName" readonly
+                            [ngClass]="{ 'is-invalid': formSubmitted && form.LastName.errors }">
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="form-group">
+                          <label for="txtEmail"> {{'screens.project-user.Email' | translate}}
+                            <span class="mandatoryField">*</span>
+                          </label>
+                          <input type="text" formControlName="Email"
+                            class="form-control manage-admin-pointer-none disabledbutton" readonly id="txtEmail"
+                            [ngClass]="{ 'is-invalid': formSubmitted && form.Email.errors }">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" id="roleDiv">
+                      <div class="col-sm-2 verticalMove">
+                        <div class="form-group checkbox-inline">
+                          <input type="checkbox" id="centralUserCheckBox" formControlName="CentralUser" class="check"
+                            (change)="toggleCheckbox($event, 1)" [checked]="inScope.checkbox1" name="checkbox1">
+                          <label class="labelCentralUserTxt">{{'screens.project-user.CentralUser' | translate}}</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-2 verticalMove">
+                        <div class="form-group checkbox-inline" [hidden]="isProjectCreator">
+                          <input type="checkbox" id="localUserCheckBox" formControlName="LocalUser" class="check"
+                            (change)="toggleCheckbox($event, 1)" [checked]="inScope.checkbox2" name="checkbox2">
+                          <label class="labelLocalUserTxt">{{'screens.project-user.LocalUser' | translate}}</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf='IsCentralUserEnabled'>
+                      <div class="row dropdown-filter-section">
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <div class="form-group checkbox-inline">
+                              <input type="checkbox" id="cbProjectLead" class="check"
+                                formControlName ="IsLead"
+                                (change)="toggleLeadMode()"
+                                [checked]="projectLead">
+                              <label class="labelLocalUserTxt">
+                                {{'screens.project-user.ProjectLead' | translate}}
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div *ngIf='IsLocalUserEnable'>
+                      <div class="row dropdown-filter-section">
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label class="labelTemplateTxt">{{'screens.project-user.Labels.Template' | translate}}</label>
+                            <ng-multiselect-dropdown [placeholder]="'Project Template'" [data]="projectTemplate"
+                              name="ProjectTemplate" formControlName="ProjectTemplate" [(ngModel)]="selectedProjectTemplate"
+                              [settings]="templateDropdownSetting" (onDeSelect)="onTemplateSelect($event, 0)"
+                              (onSelect)="onTemplateSelect($event, 1)" (onSelectAll)="onAllTemplateSelect($event, 1, '')"
+                              (onDeSelectAll)="onAllTemplateSelect($event, 0, '')">
+                            </ng-multiselect-dropdown>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="dropDown row dropdown-filter-section ">
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label class="labelRegionTxt"> {{'screens.project-user.Region' | translate}}
+                             
+                            </label>
+                            <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-user.Region' | translate" [data]="regionList"
+                              name="Region" formControlName="Region" [(ngModel)]="selectedRegionItems"
+                              [settings]="regionDropdownSetting" (onDeSelect)="onRegionItemSelect($event, 0)"
+                              (onSelect)="onRegionItemSelect($event, 1)" (onSelectAll)="onAllRegionItemSelect($event, 1, '')"
+                              (onDeSelectAll)="onAllRegionItemSelect($event, 0, '')">
+                            </ng-multiselect-dropdown>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label class="labelCountryTxt"> {{'screens.project-user.Country' | translate}}
+                           
+                            </label>
+                            <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-user.Country' | translate" [data]="countryList"
+                              name="Country" formControlName="Country" [(ngModel)]="selectedCountryItems"
+                              [settings]="countryDropdownSetting" (onDeSelect)="onCountryItemSelect($event, 0)"
+                              (onSelect)="onCountryItemSelect($event, 1)"
+                              (onSelectAll)="onAllCountryItemSelect($event, 1, '')"
+                              (onDeSelectAll)="onAllCountryItemSelect($event, 0, '')">
+                            </ng-multiselect-dropdown>
+                          </div>
+                        </div>
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label class="labelEntitiesTxt"> {{'screens.project-user.Entities' | translate}}
+                              <span class="mandatoryField">*</span>
+                            </label>
+                            <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-user.Entities' | translate" [data]="entityList"
+                              name="Entities" formControlName="Entities" [(ngModel)]="selectedEntityItems"
+                              [settings]="entitiesDropdownSetting" (onDeSelect)="RemoveEntityTags($event)"
+                              (onSelect)="onEntityItemSelect($event, 1)" (onSelectAll)="onAllEntityItemsSelectAll($event, 1)"
+                              (onDeSelectAll)="onAllEntityItemsSelectAll($event, 0)">
+                            </ng-multiselect-dropdown>
+                          </div>
+                        </div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="col-sm-3 padding0">
+                            <form [formGroup]="searchEntityForm">
+                              <div class="form-group" id="searchEntityForm">
+                                <mat-form-field class="example-full-width form-control" floatLabel="never">
+                                  <input type="text" aria-label="Number" id="txtSearchEntity" matInput
+                                    formControlName="EntitySearch" [matAutocomplete]="auto">
+                                  <mat-placeholder class="placeholder">{{'screens.project-user.Placeholders.SelectedEntity' | translate}}</mat-placeholder>
+                                  <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option class="dropdown-style mat-option ng-star-inserted"
+                                      *ngFor="let item of searchEntityResult" [value]="item.legalEntityName">
+                                      {{ item.legalEntityName }}
+                                    </mat-option>
+                                  </mat-autocomplete>
+                                </mat-form-field>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="col-sm-9 selectionType">
+                            <div class="form-group">
+                              <label class="labelEntitiesTxt">{{'screens.project-user.SelectionType' | translate}}
+                              </label>&nbsp;&nbsp;
+                              <select class="filter-input" [(ngModel)]="selectedType" id="ddlSelectedType"
+                                (change)="OnSelectedType($event)">
+                                <option [value]="Single">{{'screens.project-user.SelectionTypeOptions.Single' | translate}}</option>
+                                <option [value]="Multiple">{{'screens.project-user.SelectionTypeOptions.Multiple' | translate}}</option>
+                              </select>
+                              &nbsp;&nbsp;
+                              <a (click)="SelectAllOrDeselectAll('DeSelect')" id="createLinkSection">
+                                {{'screens.project-user.unSelectAll' | translate}}
+                              </a>
+                              &nbsp;&nbsp;
+                              <a (click)="SelectAllOrDeselectAll('SelectAll')" id="createLinkSection">
+                                {{'screens.project-user.SelectAll' | translate}}
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-11" id="entityFilters-section">
+                          <mat-chip-list [formControl]="EntitySelection" #chipList
+                            aria-label="IndiviualEntityDetails selection" [multiple]="multiple">
+                            <!-- {{ indiviualEntityDetails | json }} -->
+                            <div class="entityMatChip">
+                            <mat-chip class="col-md-2" *ngFor="let item of indiviualEntityDetails let i=index"
+                              [formGroupName]="i" [selectable]="item.selected" (click)="selectedEntityTags(i)"
+                              [selected]="item.selected" [removable]="removable" (removed)="RemoveEntityTags(item)">
+                              {{ item.legalEntityName }}
+                              <mat-icon matChipRemove *ngIf="removable"><i class="fas fa-times remove-deliverable"></i></mat-icon>
+                            </mat-chip>
+                            </div>
+                            <input type="text" aria-label="Number" id="txtSearchEntitySelected"
+                              formControlName="SearchEntitySelected" [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                              #ccReset class="selectedEntity">
+                              
+                          </mat-chip-list>
+                          <div style="float: right;" *ngIf="EnableShowMore" class="collapse-btn-wrapper"
+                            (click)="toggleCollapse()">
+                            <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+                            <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+                            {{imageName}}
+                          </div>
+                        </div>
+                      </div>
+                      <div [ngClass]="(!entitySelection)?'entitySelection':''">
+                      <div class="row">
+                        <div class="col-sm-2">
+                          <label class="labelRightsTxt">{{'screens.project-user.Rights' | translate}}
+                          </label>
+                        </div>
+                      </div>
+                      <div id="entityRoles">
+                        <div class="row">
+                          <div class="col-sm-1">
+                            <div class="form-group checkbox-inline">
+      
+                              <input type="checkbox" id="readCheckBox" formControlName="Read" [checked]="isChecked.read || isChecked.copy || isChecked.remove || isChecked.formatting || isChecked.edit || isChecked.reArrange || isChecked.created || isChecked.reportGeneration"
+                                [(ngModel)]="isChecked.read" name="Read" class="check" (click) ="formClick()">
+      
+                              <label class="labelReadTxt">{{'screens.project-user.Read' | translate}}</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-2">
+                            <div class="form-group checkbox-inline">
+                              <input type="checkbox" id="copyCheckBox" formControlName="Copy" [checked]="isChecked.copy"
+                                [(ngModel)]="isChecked.copy" name="Copy" class="check" (change)="formChanged()">
+                              <label class="labelCopyTxt">{{'screens.project-user.Copy' | translate}}</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-2">
+                            <div class="form-group checkbox-inline">
+                              <input type="checkbox" id="removeCheckBox" formControlName="Remove" [checked]="isChecked.remove"
+                                [(ngModel)]="isChecked.remove" name="Remove" class="check" (change)="formChanged()">
+                              <label class="labelRemoveTxt">{{'screens.project-user.Remove' | translate}}</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-2">
+                            <div class="form-group checkbox-inline">
+                              <input type="checkbox" id="formattingCheckBox" formControlName="Formatting"
+                                [checked]="isChecked.formatting" [(ngModel)]="isChecked.formatting" name="Formatting"
+                                class="check" (change)="formChanged()">
+                              <label class="labelFormattingTxt">{{'screens.project-user.Formatting' | translate}}</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-2 text-right">
+                            <button class="button-section rectangle" (click)="AssignEntityRights();">
+                              {{'screens.project-user.AssignRights' | translate}}
+                            </button>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-1">
+                            <div class="form-group checkbox-inline">
+                              <input type="checkbox" id="editCheckBox" formControlName="Edit" [checked]="isChecked.edit"
+                                [(ngModel)]="isChecked.edit" name="Edit" class="check" (change)="formChanged()">
+                              <label class="labelEditTxt">{{'screens.project-user.Edit' | translate}}</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-2">
+                            <div class="form-group checkbox-inline">
+                              <input type="checkbox" id="createCheckBox" formControlName="Create"
+                                [checked]="isChecked.created" [(ngModel)]="isChecked.created" name="Created" class="check"
+                                (change)="formChanged()">
+                              <label class="labelCreateTxt">{{'screens.project-user.Create' | translate}}</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-2">
+                            <div class="form-group checkbox-inline">
+                              <input type="checkbox" id="rearrangeCheckBox" formControlName="ReArrange"
+                                [checked]="isChecked.reArrange" [(ngModel)]="isChecked.reArrange" name="ReArrange"
+                                class="check" (change)="formChanged()">
+                              <label class="labelRearrangeTxt">{{'screens.project-user.Re-arrange' | translate}}</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-2">
+                            <div class="form-group checkbox-inline">
+                              <input type="checkbox" id="reportGenerationBox" formControlName="ReportGeneration"
+                                [checked]="isChecked.reportGeneration" [(ngModel)]="isChecked.reportGeneration"
+                                name="ReportGeneration" class="check" (change)="formChanged()">
+                              <label
+                                class="labelReportGenerationTxt">{{'screens.project-user.ReportGeneration' | translate}}</label>
+                            </div>
+                          </div>
+                          
+                          <div class="col-sm-2 text-right">
+                            <button class="canelButton rect-cancel" (click)="ClearAssignEntityRights();">
+                              {{'screens.project-user.ClearRights' | translate}}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </form>
+                </nb-card-body>
+                <nb-card-footer>
+                  <button class="button-section rectangle disabledbutton disable-section" id="btnCreateEntity"
+                  [disabled]="createUserAdminForm.touched === true ? false : true"
+                  [ngClass]="!createUserAdminForm.touched? 'disableSaveButton':''"
+                  (click)="updateAdminUser()">{{'screens.project-user.UpdateBtn' | translate}}</button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <button class="canelButton rect-cancel"
+                    (click)="CancelConfirmationDialog('CancelEdit');">{{'screens.project-user.CancelBtn' | translate}}</button>
+                </nb-card-footer>
+              </nb-card>
+            
+         
+        </div>
+      </div>
+      
+
+</div>

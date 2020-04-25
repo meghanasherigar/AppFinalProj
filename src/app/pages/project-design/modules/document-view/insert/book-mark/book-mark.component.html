@@ -1,0 +1,22 @@
+<nb-card class="bookMarkPopUp">
+  <nb-card-header>
+    <div>{{'screens.project-designer.document-view.Bookmark' | translate}}</div>
+  </nb-card-header>
+    <nb-card-body>
+  <div class="row">
+      <div class="form-group">
+        <input type="hidden">
+        <label for="txtLeftIndentation" class="custom-form-label">{{'screens.project-designer.document-view.BookmarkName' | translate}}</label>
+        <input type="text" name="bookmark name" [(ngModel)] = "bookMarkId" (keyup)="validateBookmark($event)">
+        <div *ngIf="!IsValid" class="mandatoryField">{{'screens.project-designer.document-view.InValidBookmarkMessages' | translate}}
+          </div> 
+    </div>
+  </div>
+    </nb-card-body>
+      <nb-card-footer class="footerRightButton ">
+          <button [ngClass]="disableAdd ? '' : 'disable-section disabledbutton'" type="submit" class="menu-btn-save createBlockSave footerRightButton" id="btnCreateOrganization"
+          (click)="saveBookmark()">{{'screens.project-designer.document-view.BookmarkAdd' | translate}}</button>&nbsp;&nbsp;
+        <button nbButton type="button" class="menu-btn-cancel createCancel footerRightButton btnCancel"
+          (click)="dismiss()"><label class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+      </nb-card-footer>
+    </nb-card>

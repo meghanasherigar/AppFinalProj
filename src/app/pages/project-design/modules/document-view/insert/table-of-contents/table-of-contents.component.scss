@@ -1,0 +1,70 @@
+
+ 
+  .TOCPage{
+    border-color: #ccc;
+    border-width: 1px;
+    border-style: solid;
+    overflow: auto;
+    padding: 10px 14px;
+    margin:2px 2px 2px 2px;
+    height: 305px;
+    // &:last-child{ margin-bottom: 0;}
+  }
+  .button-section {
+    height: 17px;	width: 27px;	color: #FFFFFF;		font-size: 15px;	line-height: 17px;	text-align: center;
+   
+  }
+  .rectangle{
+    height: 35px;	width: 109px;	border: 1px solid #86BC25;	border-radius: 3px;	background-color: #86BC25;
+  }
+
+  .rect-cancel{
+    height: 35px !important;	width: 109px !important;	border: 1px solid #86BC25;	border-radius: 3px;	background-color: #FFFFFF;
+  }
+  .canelButton{
+        height: 17px;	width: 39px;	color: #86BC25;	font-size: 15px;	line-height: 17px;	text-align: center;
+  }
+  .canelButton {
+    height: 17px;
+    width: 39px;
+    color: #86BC25;
+    font-size: 12px;
+    line-height: 17px;
+    text-align: center;
+  }
+  .sendBtn{
+    text-transform: capitalize;
+    line-height: 8px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .sendCancelBtn{
+    border-radius:5px !important; 
+  }
+  .sendBtn:hover{
+    background: #86BC25;
+  }
+  .closeBtn{
+    margin-left: auto;
+    order: 2;
+  }
+  nb-card-header{
+    padding: 15px;
+    background: black;
+    color: white;
+    display: flex;
+    font-weight: normal;
+    label{
+      margin-bottom: 0;
+    }
+  }
+  nb-card-footer{
+		border-top: 1px solid #dadada !important;
+   		 text-align: right;
+	}
+	nb-card-body{
+		overflow-y: auto;
+		height: calc(100vh - 350px);
+		display: inline-flex !important;
+		flex: inherit !important;
+	}

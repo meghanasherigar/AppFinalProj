@@ -1,0 +1,56 @@
+<div class="questionWrapper" ngxUiLoaderBlurred>
+  <nb-card class="editBlockpopupHW editorBlockAttributes " [hidden]="showQuestion">
+    <nb-card-body>
+      <ng-container *ngFor="let question of questionsData; let i = index;">
+        <div class="questionsAnswerWrapper" [hidden]="!checkSelected(question)">
+          <div class="questionDetails">
+            <div class="questionItems">
+              <p><span class="questionTag">Q{{i + 1}}:</span>
+                <span class="questionText" title="{{question.title}}">{{question.title}}</span>
+              </p> 
+            </div>
+          </div>
+          <div class="questionIcons" *ngIf="!question.isInfoRequestMapped || islibrarySelected">
+
+            <!---TODo Future purpose-->
+            <!-- <img src="assets/images/Comment.svg" class="smallIcon icon icon-header"ngbTooltip="Comment" >
+
+              <img src="assets/images/Pull_back.svg" class="smallIcon icon icon-header" ngbTooltip="Pull Back">
+
+              <img src="assets/images/Send_Reminder.svg" class="smallIcon icon icon-header" ngbTooltip="Send Reminder" >
+              <img src="assets/images/Re-assign.svg" class="smallIcon icon icon-header" ngbTooltip="Re-assign"> -->
+
+            <!-- <img src="assets/images/forward-q.svg" class="smallIcon icon icon-header" ngbTooltip="Forward" > -->
+            <img src="assets/images/Edit-gray.svg" class="smallIcon icon icon-header"  ngbTooltip="{{ 'screens.home.labels.Edit' | translate }}"  placement="bottom"
+             
+            
+              (click)="editQuestion(question)">
+            <img src="assets/images/Delete-gray.svg" class="smallIcon icon icon-header"  ngbTooltip="{{ 'screens.home.labels.Delete' | translate }}"  placement ="bottom"
+              (click)="openDeleteConfirmDialog(question)">
+          </div>
+
+        </div>
+      </ng-container>
+      <!-- ---TODo Content to display when there are no questions -->
+      <!-- <ng-container *ngIf="questionsData.length == 0">
+        <div class="questionsAnswerWrapper">
+          <div class="questionDetails">
+            <div class="emptyQuestioList">
+              <p>
+                <span class="questionText">No Questions To Display</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </ng-container> -->
+    </nb-card-body>
+  </nb-card>
+  <nb-card  [hidden]="!showQuestion">
+    <nb-card-body>
+      <ng-container>
+        <ngx-create-question loaderId="CreateQuestionLoaderEdit"></ngx-create-question>
+      </ng-container>
+    </nb-card-body>
+  </nb-card>
+
+</div>

@@ -1,0 +1,67 @@
+<div class="libraryWrapper">
+  <div class="col-md-4">
+    <!-- header component  -->
+    <nb-card>
+      <nb-card-body class="templateHeaderWrapper">
+        <div class="row left-style top-header1">
+          <div class="col-md-6">
+            <div class="selectLibrary">
+              <select class="dd-style" id="ddlForLibrary" [(ngModel)]="selectedLibrary"
+                (change)="libraryChange($event)">
+                <option *ngFor="let library of libraryOptions" [ngValue]="library">
+                  {{library.name}}
+                </option>
+              </select>
+              <span class="dropdown-down dropdown-Arrow"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row top-header2">
+          <div class="col-sm-12 headerTop">
+            <div class="libraryItems">
+              <img src="assets/images/projectdesigner/header/Filter.svg" (click)="filterPopUp();"
+                class="smallIcon icon icon-header">
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="libraryContentSection createManageLibarary" ngxUiLoaderBlurred>
+                <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding placement="bottom" [ngbTooltip]="toolTipRef">
+                        <button mat-icon-button disabled></button>
+                        <ng-template #toolTipRef>
+                          <p>{{ 'screens.user.AdminView.Library.Labels.Tooltip.SuggestedBy' | translate }}</p> 
+                          <p>{{ node.userName }}</p>
+                        </ng-template>
+                        <mat-checkbox class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)" (change)="checklistSelection.toggle(node);todoItemSelectionToggle(node);" draggable="false">
+                            <span *ngIf="!node.isStack" [title]="node.item">{{node.item}}</span>
+                            <span class="stackDisplay" *ngIf="node.isStack" [title]="node.description">{{node.description}}</span>
+                            <div *ngIf="blockViewType && blockViewType!=1">
+                                <div class="borderSection"></div>
+                                  <div class="descriptio">
+                                    <div class="col-md-7" *ngIf="blockViewType==2 || blockViewType==3">
+                                      <p>Block type : <span> {{node.blockType ? node.blockType.blockType : ''}}</span></p>
+                                    </div> 
+                                    <div class="col-md-5" *ngIf="blockViewType==2 || blockViewType==3">
+                                        <p>Status : <span>{{node.blockStatus ? node.blockStatus.blockStatus : ''}}</span></p>
+                                    </div>
+                                  <div class="col-md-12" *ngIf="blockViewType==3">
+                                      <p>Description   :<span> {{node.description}} </span></p>
+                                  </div>
+                              </div>
+                            </div>
+                        </mat-checkbox>
+                    </mat-tree-node>
+                </mat-tree>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-md-8 padd-leftRight" [ngClass]="{'showAttribute':!hideBlockAttribute}">
+    <ngx-block-suggestion-content [itemId]="blockId" [blockName]="blckName" ></ngx-block-suggestion-content>
+  </div>
+  <div class="col-md-2 padd-leftRight atttributeDiv padding0" *ngIf="!hideBlockAttribute">
+    <ngx-block-attribute *ngIf="!hideBlockAttribute"></ngx-block-attribute>
+  </div>
+</div>

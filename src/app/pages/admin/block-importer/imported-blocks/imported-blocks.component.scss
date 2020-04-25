@@ -1,0 +1,241 @@
+.example-container {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.example-list {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
+.example-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.blockClass{
+border:0.1rem solid #f1efef;
+margin: 25px;
+padding:0;
+}
+.editBlock{
+width: 30%;
+float: left;
+margin-top: 51px;
+}
+
+
+.left_import{
+float: left;
+}
+.right_import{
+float: left;
+}
+.blockimpoter{
+  background: #fff;
+  border-radius: 2px;
+  display: inline-block;
+  height: auto;
+  margin: 1rem;
+  position: relative;
+  width: 98%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  }
+.importerHeader{
+border-bottom: 1px solid #eee;
+padding: 12px;
+}
+.importBorder{
+border-right: 2px solid #eee;
+font-size: 12px;
+}
+.secontleftimporter{
+padding: 10px;
+}
+.importBorder{
+border: 1px solid #eee;
+padding: 3px;
+padding: 8px;
+border-radius: 6px;
+}
+.importP p{
+  margin-top: -4px;
+    margin-bottom: -4px !important;
+    width: 565px;
+    margin-right: 7px;
+}
+.mat-tree-node{
+min-height: 38px !important;
+}
+
+.importCheckbox{
+margin-top: 10px;
+}
+.topimporterHeader{
+border-right: 1px solid #eee;
+padding: 9px 25px;
+
+
+}
+.topHeader{
+border-bottom: 1px solid #eee;
+height: 50px;
+}
+.topHeaderScrolling{
+border-bottom: 2px solid #eee;
+height: 410px;
+}
+.addBlock{
+padding: 10px;
+font-weight: bold;
+line-height: 31px;
+}
+.importImgRight{
+float: right;
+}
+.importAddButtton{
+color: #fff;
+font-weight: 600;
+
+}
+.importFooter{
+padding: 10px;
+}
+.importCancel{
+
+border-radius: 5px;
+}
+.importHeading{
+font-weight: bold;
+line-height: 31px;
+}
+.importSelect{
+  font-size: 12px;
+  color: #0a0909;
+  line-height: 31px;
+  position: relative;
+  top: 5px;
+}
+.scrollingHeader{
+// overflow-y: scroll;
+max-height: 615px;
+padding:9px;
+}
+.ipmHeader > .mat-tree{
+ overflow: auto;
+ }
+.importBorderRight{
+	border: 1px solid #eee;
+    padding: 13px;
+    font-size: 12px;
+    width: 565px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-bottom: 2px !important;
+    margin-top: 1px;
+    height: 42px;
+    line-height: 15px;
+    margin-right: 10px;
+}
+.importBorderRight1{
+	border: 0px solid #eee;
+    padding: 12px;
+    font-size: 12px;
+    width: 607px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-bottom: 2px !important;
+    margin-top: 5px;
+    height: 373px;
+}
+.impRemove{
+margin-left: right;
+}
+.importRemove{
+font-size: 10px;
+margin: 5px;
+}
+.icon-header:hover,
+.icon-header:focus {
+filter: invert(30%) grayscale(100%) brightness(70%) contrast(4);
+}
+.importBorderRIght{
+  border-right:1px solid #eee; 
+}
+
+.scrollingHeader .mat-tree{
+ 
+  max-height: 390px !important;
+}
+.topHeader.mat-checkbox-layout{
+margin-bottom: 2px !important;
+}
+.scrollingHeader.mat-checkbox-label{
+  border: 0px solid #D0D0CE; 
+}
+.centered{
+  position: absolute;
+    z-index: 9999;
+    left: 53%;
+    top: 35%;
+}
+
+.scrollingHeader .mat-tree-node .mat-checkbox-inner-container{
+  position: absolute;
+    left: 0;
+    top: 10px;
+    width: 14px !important;
+    height: 14px !important;
+}
+.topimporterHeader .rightImporterScrolling {
+    max-height: 374px !important;
+    padding-right: 0px;
+    width: 632px;
+    margin-right: -7px;
+  } 
+  .topimporterHeader .ipmHeader mat-tree{
+    max-height: 416px !important;
+  }
+  .topimporterHeader mat-tree{
+    max-height: 416px !important;
+  }

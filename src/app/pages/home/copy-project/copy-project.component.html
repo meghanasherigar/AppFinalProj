@@ -1,0 +1,114 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<form [formGroup]="copyProjectForm"  (ngSubmit)="copyProject()" ngxUiLoaderBlurred>
+<nb-card>
+  <nb-card-header class="search-header">
+      <div class="row">
+          <div class="col-xs-9" >
+              <div class="header-text col-xs-6">{{'screens.home.labels.CopyProject' | translate}}</div>
+          </div>
+      </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-10">
+          <div class="form-group">
+                <label class="custom-form-label">{{'screens.home.organization-project-form.ShortProjectDescription' | translate}}</label>
+                <input type="text" maxlength="50"  class="form-control custom-form-input" formControlName="ShortProjectDescription">
+           </div>  
+      </div>            
+  </div>
+
+  <div class="row">
+      <div class="col-sm-5">
+          <div class="form-group">
+                <label class="custom-form-label">{{'screens.home.organization-project-form.ProjectName' | translate}}<span class="mandatory">*</span></label>
+                <input type="text"  class="form-control custom-form-input" formControlName="ProjectName" [ngClass]="{ 'is-invalid': submitted && form.ProjectName.errors }">
+                <div *ngIf="submitted && form.ProjectName.errors" class="invalid-feedback">
+                      <div *ngIf="form.ProjectName.errors.required">{{'screens.home.organization-project-validations.ProjectNameValidationMsg' | translate}}</div>                                         
+                </div>
+           </div>  
+      </div> 
+      
+      <div class="col-sm-5">
+           <div class="form-group">
+              <label class="custom-form-label">{{'screens.home.organization-project-form.IndustryName' | translate}}<span class="mandatory">*</span></label>
+               <input type="hidden" formControlName="ProjectIndustries" class="form-control custom-form-input" [ngClass]="{ 'is-invalid': submitted && form.ProjectIndustries.errors }"  id="hdnProjIndustry">
+               <ngx-dropdown-treeview 
+               class="home-industry proj-industry"
+               [buttonClass]="buttonClass"
+               [config]="config"
+               (selectedChange)="onProjectIndustrySelected($event)"
+               [items]="projIndustries">
+              </ngx-dropdown-treeview>
+              <div *ngIf="submitted && form.ProjectIndustries.errors" class="invalid-feedback">
+                 <div *ngIf="form.ProjectIndustries.errors.required">Industry required</div>
+                 </div>
+          </div> 
+      </div>
+
+      <div class="col-sm-3" *ngIf="projIndustryOthersVisible">
+          <div class="form-group">
+               <label class="custom-form-label">.</label>
+               <input type="text" placeholder="if others" formControlName = "ProjIndustryOthers"  class="form-control custom-form-input">
+           </div>  
+      </div>
+  </div>  
+
+  <div class="row">
+
+      <div class="col-sm-2">
+          <div class="form-group">
+               <label class="custom-form-label">{{'screens.home.organization-project-form.FiscalYear' | translate}}<span class="mandatory">*</span></label>
+               <input type="text" class="form-control custom-form-input" (keypress)="numberOnly($event)"  maxlength="4"  formControlName="FiscalYear" placeholder="YYYY" [ngClass]="{ 'is-invalid': submitted && form.FiscalYear.errors }">
+               <div *ngIf="submitted && form.FiscalYear.errors" class="invalid-feedback">
+                      <div *ngIf="form.FiscalYear.errors.required">{{'screens.home.organization-project-validations.FiscalYearValidationMsg' | translate}}</div> 
+                      <div *ngIf="form.FiscalYear.errors.pattern">
+                        {{'screens.home.organization-project-validations.FiscalYearPatternValidationMsg' | translate}}
+                        </div>                                          
+                </div>
+           </div>  
+      </div>
+
+      <div class="col-sm-3">
+          <div class="form-group">
+                <label class="custom-form-label">{{'screens.home.organization-project-form.UseCase' | translate}}</label>
+                <select class="form-control ddlHeight custom-form-input" id="ddlUseCase" (change) ="onUseCaseChanged()"
+                        formControlName="UseCase">
+                        <option [selected]="true">{{'screens.create-block-component.labels.Select' | translate}}</option>
+                        <option *ngFor="let useCase of useCaseList" [ngValue]="useCase.Id">
+                            {{useCase.Name}}
+                            </option>
+                  </select>
+           </div>  
+      </div> 
+
+      <div class="col-sm-2"  *ngIf="useCaseOthersVisible">
+        <div class="form-group others-section">
+            <div>
+                    <label class="custom-form-label"></label>
+                    <input type="text" id="others" placeholder="if others" formControlName = "UseCaseOthers"  class="form-control custom-form-input">
+            </div>                                    
+         </div>  
+     </div>
+  </div>
+
+  </nb-card-body>
+
+  <nb-card-footer class="footerCard">
+      <nb-card-footer class="footerRightButton">        
+      <button nbButton type="button" class="menu-btn-cancel" style="color:black;" 
+      (click)="dismiss()"><label
+      class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="submit" class="menu-btn-save"
+      id="btnCreateOrganization">{{'screens.home.labels.Copy' | translate}}</button>
+      
+      </nb-card-footer>
+      <!-- <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button> -->
+      </nb-card-footer>    
+      
+
+</nb-card>
+</form>   

@@ -1,0 +1,246 @@
+
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="row create-entity-section">
+  <div class="col-sm-12" id="createEntityForm" ngxUiLoaderBlurred>
+    <div class="row">
+      <!-- <div class="col-10"> -->
+        <div>
+        <nb-card class="create-nb-card">
+          <nb-card-body>
+            <form [formGroup]="creatEnityForm" (ngSubmit)="createEntity()">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <input type="hidden" formControlName="Id">
+                    <label class="custom-form-label"
+                       for="txtLegalEntityName">{{'screens.project-setup.entity.entity-create.LegalEntityName' | translate}}<span
+                        class="mandatoryField">*</span></label>
+                    <input type="text" formControlName="LegalEntityName" class="form-control
+                      custom-form-input" [ngClass]="{ 'is-invalid'
+                      : submitted && form.LegalEntityName.errors }"   id="txtLegalEntityName">
+                    <div *ngIf="submitted && form.LegalEntityName.errors" class="invalid-feedback">
+                      <div *ngIf="form.LegalEntityName.errors.required">
+                        {{'screens.project-setup.entity.entity-create-validation.LegalEntityNameValidationMsg' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="custom-form-label"
+                      for="txtShortName">{{'screens.project-setup.entity.entity-create.ShortName' | translate}}</label>
+                    <input type="text" class="form-control custom-form-input" id="txtShortName"
+                      formControlName="EntityShortName">
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group  countrySpace">
+                    <label class="custom-form-label "
+                       for="txtCountry">{{'screens.project-setup.entity.entity-create.Country' | translate}}<span
+                        class="mandatoryField">*</span></label>
+
+                    <mat-form-field class="example-full-width">
+                      <input type="text" class="form-control custom-form-input" placeholder="" aria-label="Number" id="txtCountry" matInput
+                        formControlName="Country" [matAutocomplete]="auto" alphabetsonly>
+                      <mat-autocomplete #auto="matAutocomplete" class="entity-country">
+                        <mat-option *ngFor="let item of searchResult" [value]="item.country"class="dropdown-style mat-option ng-star-inserted" >
+                          {{ item.country}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                    <mat-error *ngIf="submitted && form.Country.errors"  class="invalid-feedback">
+                      <div *ngIf="form.Country.errors.required">
+                        {{'screens.project-setup.entity.entity-create-validation.CounrtyValidationMsg' | translate}}
+                      </div>
+                    </mat-error>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="custom-form-label"
+                      for="txtTaxableYearEnd">{{'screens.project-setup.entity.entity-create.TaxableYearEnd' | translate}}<span
+                        class="mandatoryField">*</span></label>
+                    <div class="inputWithIcon">                    
+                      <input type="text" class="form-control custom-form-input"  formControlName="TaxableYearEnd"
+                        id="txtTaxableYearEnd"  [ngClass]="{ 'is-invalid': submitted && form.TaxableYearEnd.errors }"
+                        placeholder="DD MMM YYYY" bsDatepicker #dpTaxableYearEnd="bsDatepicker"
+                        [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly>
+                        <label>
+                            <i>
+                            <img (click)="dpTaxableYearEnd.show()" [attr.aria-expanded]="dpTaxableYearEnd.isOpen" src="assets/images/calender.png" class="calender-icon"></i></label>                  
+                      <div
+                        *ngIf="submitted && form.TaxableYearEnd.errors" class="invalid-feedback">
+                        <div *ngIf="form.TaxableYearEnd.errors.required">
+                          {{'screens.project-setup.entity.entity-create-validation.TaxableYearValidationMsg' | translate}}
+                        </div>
+                        <div *ngIf="form.TaxableYearEnd.errors.pattern">
+                          {{'screens.project-setup.entity.entity-create-validation.TaxableYearValidationMsg' | translate}}
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      </div>
+      <div class="row">
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label"
+              for="txtReportTier">{{'screens.project-setup.entity.entity-create.ReportTier' | translate}}</label>
+              <div class="selectLibrary "> 
+              <select class="form-control custom-form-input reportTierHeight" id="ddlReportTier"
+              formControlName="ReportTierId" (change)="others()">
+              <!-- <option value="" selected="selected" default selected>Example Placeholder</option> -->
+              <!-- <option value="" selected="selected" default selected hidden>Yes</option> -->
+              <option class="hide"></option>
+              <option *ngFor="let tier of reportTiers" [ngValue]="tier.id">
+                {{tier.reportTier}}
+              </option>
+            </select>
+            <span class="dropdown-down dropdown-Arrow"></span>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-3" *ngIf="entityOthersVisible">
+          <div class="form-group others-section">
+            <label class="custom-form-label"></label>
+            <input type="text" placeholder="{{'screens.project-setup.entity.entity-create.IfOther' | translate}}" formControlName="OtherReportTier"
+               class="form-control custom-form-input" id="txtOtherReportTier">
+          </div> 
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label"
+              for="txtTaxId">{{'screens.project-setup.entity.entity-create.TaxId' | translate}}</label>
+            <input placeholder="{{'screens.project-setup.entity.entity-create.AE5TG47482' | translate}}" type="text" formControlName="TaxId"
+              class="form-control custom-form-input" id="txtTaxId">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label" for="txtInScope">{{'screens.project-setup.entity.entity-create.InScope' | translate}}<span class="mandatoryField">*</span></label>
+            <div class="selectLibrary "> 
+              <select class="form-control custom-form-input reportTierHeight" id="ddlInScope" formControlName="Scope"
+                [ngClass]="{ 'is-invalid': submitted && form.Scope.errors }">
+                <!-- <option value="" selected="selected" default selected hidden>Yes</option> -->
+                <option value="Yes">{{'screens.project-setup.entity.entity-create.Yes' | translate}}</option>
+                <option value="No">{{'screens.project-setup.entity.entity-create.No' | translate}}</option>  
+              </select>
+              <span class="dropdown-down dropdown-Arrow"></span>
+          </div>
+
+            <div *ngIf="submitted && form.Scope.errors" class="invalid-feedback">
+              <div *ngIf="form.Scope.errors.required">{{'screens.project-setup.entity.entity-create.ScopeRequired' | translate}}</div>
+            </div>
+          </div>
+          </div>
+
+        </div>
+    
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label"
+              for="txtLocalAddress">{{'screens.project-setup.entity.entity-create.LocalAddress' | translate}}</label>
+            <input placeholder="{{'screens.project-setup.entity.entity-create.EnterAddress' | translate}}"  formControlName="LocalAddress" type="text"
+              class="form-control custom-form-input" id="txtLocalAddress">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label"
+              for="txtTaxOffice">{{'screens.project-setup.entity.entity-create.TaxOffice' | translate}}</label>
+            <input placeholder="{{'screens.project-setup.entity.entity-create.TaxOffice' | translate}}" type="text" formControlName="TaxOffice"
+              class="form-control custom-form-input" id="txtTaxOffice">
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label"
+              for="txtTaxOfficeAddress">{{'screens.project-setup.entity.entity-create.TaxOfficeAddress' | translate}}</label>
+            <input placeholder="{{'screens.project-setup.entity.entity-create.EnterAddress' | translate}}"  type="text" formControlName="TaxOfficeAddress"
+              class="form-control custom-form-input" id="txtTaxOfficeAddress">
+          </div>
+        </div>
+
+      </div>
+      <div class="row" id="rowDiv">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label"
+              for="txtEmployeeName">{{'screens.project-setup.entity.entity-create.EmployeeName' | translate}}</label>
+            <input placeholder="{{'screens.project-setup.entity.entity-create.EnterEmployee' | translate}}"  type="text" (keypress)="removeHighlight($event)"
+              formControlName="EmployeeName" class="form-control custom-form-input" id="txtEmployeeName">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label"
+              for="txtEmployeeEmail">{{'screens.project-setup.entity.entity-create.EmployeeEmail' | translate}}</label>
+            <input placeholder="{{'screens.project-setup.entity.entity-create.mail@id.com' | translate}}" type="text" (keypress)="removeHighlight($event)"
+              formControlName="EmployeeEmail" class="form-control custom-form-input" id="txtEmployeeEmail">
+          </div>
+        </div>
+        <div class="col-sm-3 verticalMove">
+          <!-- <div class="form-group checkbox-inline custom-checkbox-1-wrapper">
+            <input type="checkbox" class="custom-checkbox-1" id="checkboxid" class="check" name="selection">
+            <label for="checkboxid" class="custom-checkbox-1-label"></label>
+            <label class="custom-form-label labelTxt">Primary Contact</label>
+          </div> -->
+          <div class="form-group checkbox-inline">
+            <input  class="check" id="checkboxid" name="selection" type="checkbox">
+            <label class="custom-form-label labelTxt">{{'screens.project-setup.entity.entity-create.PrimaryContact' | translate}}</label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" id="addEmpBtn">
+        <div class="col-sm-3">
+          <button  class="addBtn text-left"
+            (click)="addEmployees(); $event.preventDefault()">{{'screens.project-setup.entity.entity-create.AddMore' | translate}}</button>
+        </div>
+      </div>
+
+      <div class="row" id="dynamicDiv" style="display: none;">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <input placeholder="{{'screens.project-setup.entity.entity-create.EnterEmployee' | translate}}"  type="text" (keypress)="removeHighlight($event)"
+              formControlName="EmployeeName" class="form-control custom-form-input" id="txtEmployeeName">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div>
+            <input placeholder="{{'screens.project-setup.entity.entity-create.EnterEmail' | translate}}"  type="text" (keypress)="removeHighlight($event)"
+              formControlName="EmployeeEmail"  class="form-control custom-form-input" id="txtEmployeeEmail">
+          </div>
+        </div>
+        <div id="divCheckbox" class="col-sm-3 move">
+          <div class="form-group checkbox-inline">
+            <input type="checkbox" id="checkboxid" class="check" name="selection" (click)="checkOnlyOne(this)">
+            <label
+              class="custom-form-label labelTxt">{{'screens.project-setup.entity.entity-create.PrimaryContact' | translate}}</label>
+          </div>
+        </div>
+      </div>
+      </form>
+      </nb-card-body>
+      <nb-card-footer class="create-save-btns-wrapper">
+        <button class="button-section rectangle" id="btnCreateEntity" *ngIf="(!editChildFlag)"
+        [disabled]="!creatEnityForm.dirty || creatEnityForm.invalid" [ngClass]="{'disableSaveButton':!creatEnityForm.dirty || creatEnityForm.invalid}" 
+          (click)="createEntity()">{{'screens.project-setup.entity.entity-create.Save' | translate}}</button>
+        <button class="button-section rectangle" id="btnCreateEntity" *ngIf="(editChildFlag)"
+          (click)="editEntity()">{{'screens.manage-admin.labels.UpdateBtn' | translate}}</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="canelButton rect-cancel"
+          (click)="closeCreateEntityPopup()">{{'screens.project-setup.entity.entity-create.Cancel' | translate}}</button>
+      </nb-card-footer>
+      </nb-card>
+    </div>
+  </div>
+</div>
+</div>

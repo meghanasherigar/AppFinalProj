@@ -1,0 +1,115 @@
+nb-card{
+    height: 350px !important;
+    width: 754px !important;
+ }
+ .search-header{
+    background-color:black;
+    padding: 12px 0;
+    .row{
+       align-items: center;
+    }
+   
+ }
+
+ .header-text{
+    height: 19px;
+    // width: 183px;
+    color:white;
+    font-family: "Open Sans";
+    font-size: 14px;
+    line-height: 19px;
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+ }
+nb-card-footer{
+ float: right !important;
+}
+
+.mandatory{
+   color:red;
+}
+
+.dropdown{
+   height: 35px !important;
+}
+
+.addBtn{
+   background-color: transparent;
+   cursor: pointer;
+   padding : 3px 10px 3px 10px;
+   border:1px dashed #D7DADB;
+   margin-top: 23px;
+}
+
+.highlight{
+   border: 2px solid red;
+}
+.button-section {
+   background-color: #86BC25;
+   border: none;
+   color: white;
+   padding: 10px 32px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   border-radius: 10px;
+ }
+
+ .canelButton{
+   background-color: white;
+   border: 1px solid black;
+   color: white;
+   padding: 7px 29px ;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   border-radius: 10px;
+ }
+
+ .dropdown-style{
+   background: white;
+   color: black;
+   cursor: pointer;
+   /* padding: 5px 0; */
+   padding-top: 10px;
+   /* border: 1px solid #989CA1; */
+   background-color: white;
+   padding-bottom: 10px;
+
+ }
+ .dropdown-style:hover{
+   background-color: #dadfe6;
+ }
+ .others-section{
+   padding-top: 8px;
+ }
+ .lead-validation-error{
+   border: 1px solid red !important;
+ }
+ #editOrganizationProject .form-control{
+   height:31px!important;
+   padding: 3px 15px !important;
+ }
+ #editOrganizationProject #btnEditOrganization{
+   color:white;
+ } 
+ .customwidth{
+   flex: 0 0 22%;
+ }
+ .closeIcon{
+  cursor: pointer;
+   float: right;
+   margin-top: -13px;
+   position: relative;
+   left: 50px;
+   
+ }
+.footerCard{
+  padding: 10px!important
+}
+.footerRightButton{
+  padding: 0px !important;
+}

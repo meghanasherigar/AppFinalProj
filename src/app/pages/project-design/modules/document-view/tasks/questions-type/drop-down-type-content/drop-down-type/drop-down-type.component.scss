@@ -1,0 +1,79 @@
+.questionData{
+    .radio-inline{
+        .container{
+        width: 45%;
+        }
+    }
+    .container {
+    display: inline-block;
+    position: relative;
+    padding-left: 20px;
+    margin: 0;
+    width: 30%;
+    }
+    .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    left: 0;
+    top: -4px;
+    }
+    .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 13.25px;
+    width: 13.25px;
+    background-color: transparent;
+    border-radius: 50%;
+    border:1px solid black;
+    }
+    .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    }
+    .container input:checked ~ .checkmark:after {
+    display: block;
+    }
+    .container .checkmark:after {
+    top: 2px;
+    left: 2.3px;
+    width: 7.26px;
+    height:7.26px;
+    border-radius: 50%;
+    background: black;
+    }
+    .radio-inline{
+    padding: 20px 0 !important;
+    }
+    .typeSomethingBlock input{
+    width:100%;
+    padding: 12px;
+    border: 1px solid #BBBCBC;
+    border-bottom: none;
+    &::placeholder{
+    font-size: 10px;
+    font-style: italic;
+    color:#BBBCBC;
+    }
+    }
+    .addAnother{
+    width: 100%;
+    background: transparent;
+    padding: 15px 12px;
+    border:1px solid #BBBCBC;
+    text-align: left;
+    font-size: 10px;
+    color: #cbc9c9fa;
+    font-style: italic;
+    }
+    .dropDownOptionsText{
+    color: #7B7B7B;
+    margin-bottom: 8px;
+    }
+    }
+    .invalid-feedback{display: block !important ;}
+    .mandatory-icon{
+        color: red;
+    } 

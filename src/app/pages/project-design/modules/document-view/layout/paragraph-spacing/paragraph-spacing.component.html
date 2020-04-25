@@ -1,0 +1,133 @@
+<nb-card>
+  <nb-card-body>
+  <nb-tabset fullWidth class="custom-tab-width">
+    <nb-tab [tabTitle]="'screens.project-designer.document-view.IndentsSpacing' | translate">
+        <div class="row col-12">
+            <label class="indententText">{{'screens.project-designer.document-view.Indentation' | translate}}</label>
+            <div class="form-group">
+              <label for="txtLeftIndentation" class="custom-form-label">{{'screens.project-designer.document-view.Left' | translate}}</label>
+                  <select class="form-control custom-form-input reportTierHeight" id="ddlLeftIndentation" 
+                      (change)="onLeftIndentationChange($event)">
+                      <option value=''>0</option>
+                      <option *ngFor="let name of indentationList" value={{name}}>
+                          {{name}}
+                      </option>
+                    </select>
+            </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+       
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+              <label for="txtRightIndentation" class="custom-form-label"> {{'screens.project-designer.document-view.Right' | translate}}</label>
+                  <select class="form-control custom-form-input reportTierHeight" id="ddlRightIndentation" 
+                      (change)="onRightIndentationChange($event)">
+                      <option value=''>0</option>
+                      <option *ngFor="let name of indentationList" value={{name}}>
+                        {{name}}
+                      </option>
+                    </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="txtRSpecialIndentation" class="custom-form-label">{{'screens.project-designer.document-view.Special' | translate}}</label>
+                  <select class="form-control custom-form-input reportTierHeight" id="ddlSpecialIndentation" 
+                      (change)="onSpecialIndentationChange($event)">
+                      <option value=''></option>
+                      <option *ngFor="let name of specialList" value={{name}}>
+                        {{name}}
+                      </option>
+                    </select>
+            </div>
+          </div>
+      </div>
+      <div class="row col-12">
+          <label class="spacingText">{{'screens.project-designer.document-view.Spacing' | translate}}</label>
+    </div>
+    <div class="row ">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="txtBeforeSpacing" class="custom-form-label">{{'screens.project-designer.document-view.Before' | translate}}</label>
+              <select class="form-control custom-form-input reportTierHeight" id="ddlBeforeSpacing" 
+                  (change)="onBeforeSpacingChange($event)">
+                  <option value=''>0</option>
+                  <option *ngFor="let name of spacingList" value={{name}}>
+                      {{name}}
+                  </option>
+                </select>
+        </div>
+      </div>
+  </div>
+  <div class="row spacingBlock">
+      <div class="col-md-3">
+          <div class="form-group">
+            <label for="txtAfterSpacing" class="custom-form-label"> {{'screens.project-designer.document-view.After' | translate}}</label>
+                <select class="form-control custom-form-input reportTierHeight" id="ddlAfterSpacing" 
+                    (change)="onAfterSpacingChange($event)">
+                    <option value=''>0</option>
+                    <option *ngFor="let name of spacingList" value={{name}}>
+                      {{name}}
+                    </option>
+                  </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="txtRSpecialSpacing" class="custom-form-label"> {{'screens.project-designer.document-view.LineSpacing' | translate}}</label>
+                <select class="form-control custom-form-input reportTierHeight" id="ddlSpecialSpacing" 
+                    (change)="onSpecialSpacingChange($event)">
+                    <option value=''></option>
+                    <option *ngFor="let name of lineSpacingList" value={{name}}>
+                        {{name}}
+                    </option>
+                  </select>
+          </div>
+        </div>
+        <div class="col-md-3 " *ngIf='enableMultipleValues'>
+          <div class="multipleValueSection">
+          <div class="form-group">
+                <select class="form-control custom-form-input reportTierHeight" id="ddlLeftSpacingMultiple" 
+                    (change)="onLineSpacingMultipleListChange($event)">
+                    <option *ngFor="let name of lineSpacingMultipleList" value={{name}}>
+                        {{name}}
+                    </option>
+                  </select>
+          </div>
+        </div>
+        </div>
+    </div>
+  </nb-tab>
+  <!-- TODO -->
+  <!-- <nb-tab tabTitle="Line and Page Breaks">
+      <nb-card-body>
+          <div class="row col-12">
+                <label>Pagination</label>
+          </div>
+          <div class="row col-12">
+              <label>
+                  <input type="checkbox" id="keepWithNextCheckBox" class="check">
+                  Keep with next
+              </label>
+          </div>
+          <div class="row col-12">
+              <label>
+                  <input type="checkbox" id="pageBreakBeforeCheckBox" class="check">
+                  Page break before
+              </label>
+          </div>
+        </nb-card-body>
+      </nb-tab> -->
+  </nb-tabset>
+  </nb-card-body>
+    <nb-card-footer class="footerRightButton text-right">
+        <button type="submit" class="menu-btn-save createBlockSave footerRightButton" id="btnCreateOrganization"
+        (click)="saveParagraphSpacing()"> {{'screens.project-designer.document-view.ok' | translate}}</button>&nbsp;&nbsp;
+      <button nbButton type="button" class="menu-btn-cancel createCancel footerRightButton " style="color:black;"
+        (click)="dismiss()"><label class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.document-view.cancel' | translate}}</label></button>
+    </nb-card-footer>
+  </nb-card>

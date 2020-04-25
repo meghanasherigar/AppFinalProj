@@ -1,0 +1,19 @@
+<!-- <div class="row">
+   
+    <div class="col-12">
+        <ngx-manage-transactions-toolbar (loadChildComp) = "loadMyChildComponent($event)" (manageTransaction) = "getTransactionsList($event)"></ngx-manage-transactions-toolbar>
+    </div>
+    </div> -->
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+   <nb-card>
+        <nb-card-body ngxUiLoaderBlurred>
+          <alert></alert>
+            <ngx-create-transaction *ngIf="loadComponent" (manageTransaction) = "getTransactionList()" (CancelTransaction) = "CancelTransactionComponent($event)"></ngx-create-transaction>
+            <ngx-edit-transaction *ngIf="editComponent"  [editTransactionRow] =  "transactions" (manageTransaction) = "getTransactionList()" (CancelTransaction) = "CancelTransactionComponent($event)"></ngx-edit-transaction>
+          <ng2-smart-table id="transSmartTable" class="home-table" [settings]="settings"  [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (userRowSelect)="onUserRowSelect($event)"  (custom)="onCustomAction($event)">
+          </ng2-smart-table>
+        </nb-card-body>
+      </nb-card>
+      

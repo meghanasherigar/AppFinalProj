@@ -1,0 +1,24 @@
+.blockWrapper{
+    border:0.1rem solid #f1efef;
+    margin-top: 15px;
+}
+.col-md-8.showAttributes{
+    width:49% !important;
+    flex: 0 0 41.00%;
+}
+.col-md-9.showAttributes{
+    width:56% !important;
+    flex: 0 0 41.00%;
+    height: calc(100vh - 240px) !important;
+}
+.col-md-9{
+
+    height: calc(100vh - 240px) !important;
+    &.trackChangeContainer{
+        height: calc(100vh - 240px) !important;
+    }
+}
+.padd-leftRight{ padding-left: 0; padding-right: 0;}
+ngx-block-detail{
+    width: 100%;
+}

@@ -1,0 +1,148 @@
+<form [formGroup]="logicFormGroup" (ngSubmit)="submitLogicFlow()" class="logicTypeWrapper"
+  [ngClass]="{'logicTypeEdit':this.designerService.editquestionClicked && !this.designerService.allowTagNameChange}">
+  <nb-card class="editBlockpopupHW editorBlockAttributes ">
+    <nb-card-body>
+      <div class="headerContent">
+        <p>
+          {{questionTitle}}
+        </p>
+      </div>
+      <div class="content">
+        <p class="optionLogicText">
+          {{ 'screens.project-designer.document-view.tasks.logicType.optionLogicLabel' | translate }}
+        </p>
+        <div class="logicQuestionTable">
+
+          <div formArrayName="Options">
+
+            <div *ngFor="let option of Options.controls; index as i" class="typeSomethingBlock">
+              <div [formGroupName]="i" class="tableRow  ">
+                <div style="display: flex;">
+                  <div class="conditionStaus ">
+                    <input type="text" formControlName="inputOption"
+                      placeholder="{{ 'screens.project-designer.document-view.tasks.dropdownType.option-placeholder' | translate }}"
+                       [ngClass]="{ 'is-invalid': submitted && logicFormGroup.controls.Options.controls[i].controls['inputOption'].errors }">
+
+                    <div *ngIf="submitted && logicFormGroup.controls.Options.controls[i].controls['inputOption'].errors"
+                      class="invalid-feedback">
+                      <div *ngIf="form.Options.controls[i].controls['inputOption'].errors.required">
+                        {{ 'screens.project-designer.document-view.tasks.errorMessages.inputOption' | translate }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="conditionQuestion">
+                    <nb-checkbox formControlName="isConditionQuestion" (change)="checkConditionalQuestion($event,i)">
+                      {{'screens.project-designer.document-view.tasks.logicType.conditionalCheckbox-label' | translate}}
+                    </nb-checkbox>
+                  </div>
+                </div>
+                <div class="questionWrapper"
+                  *ngIf="getCondQuestionFormGroup(i).controls['isConditionQuestion'].value == true">
+                  <div class="form-group form-grp">
+                    <label
+                      class="custom-form-label  padding0">{{'screens.project-designer.document-view.tasks.question-type-label' | translate}}
+                      <span class="mandatory-icon">* </span>:
+                    </label>
+
+                    <input type="hidden" formControlName="QuestionType" class="form-control" id="hdnQuestionType"
+                       [ngClass]="{ 'is-invalid': submitted && logicFormGroup.controls.Options.controls[i].controls['QuestionType'].errors }"
+                      id="hdnQuestionType">
+                    <div class=" paddingRight0 selectLibrarySection">
+                      <div class=" selectLibrary">
+                        <select class="form-control dd-style" (change)="questionTypeChange($event,i);"
+                          formControlName="DDQuestionType"
+                          [attr.disabled]="this.designerService.allowTagNameChange ? '' : null">
+                          <option [selected]="true">Select</option>
+                          <option *ngFor="let item of questions" value={{item.id}}>{{item.typeName}}</option>
+                        </select>
+                        <span class="dropdown-down dropdown-Arrow"></span>
+                        <div
+                          *ngIf="submitted && logicFormGroup.controls.Options.controls[i].controls['QuestionType'].errors"
+                          class="invalid-feedback">
+                          <div
+                            *ngIf="logicFormGroup.controls.Options.controls[i].controls['QuestionType'].errors.required">
+                            <!-- check  {{form.Options.controls[i].controls['QuestionType'].errors.required}} -->
+                            {{ 'screens.project-designer.document-view.tasks.errorMessages.questionType' | translate }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="custom-form-label  padding0">
+                      {{'screens.project-designer.document-view.tasks.question' | translate}}
+                      <span class="mandatory-icon">* </span>:
+                    </label>
+
+                    <div class="questionTextArea">
+                      <textarea type="text" class="form-control questionArea" formControlName="QuestionText"
+                        [ngClass]="{ 'is-invalid': submitted && logicFormGroup.controls.Options.controls[i].controls['QuestionText'].errors }"></textarea>
+                      <div
+                        *ngIf="submitted && logicFormGroup.controls.Options.controls[i].controls['QuestionText'].errors"
+                        class="invalid-feedback">
+                        <div
+                          *ngIf="logicFormGroup.controls.Options.controls[i].controls['QuestionText'].errors.required">
+                          {{ 'screens.project-designer.document-view.tasks.errorMessages.questionText' | translate }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="QuestionTypeContent"
+                    [ngSwitch]="getCondQuestionFormGroup(i).controls['QuestionType'].value.typeName">
+                    <div *ngSwitchCase="'Drop Down Type'">
+                      <question-dropdown-type [ModeOfOptions]="ModeOfOptions[i]"
+                        [questionData]="getCondQuestionFormGroup(i)" [editedDetails]="dropdownDetails">
+                      </question-dropdown-type>
+                    </div>
+                    <div *ngSwitchCase="questionType.TableType">
+                      <button nbButton type="button" class="menu-btn-cancel addFlowBtn"
+                        (click)="popupTableType(i)"><label class="menu-txt-cancel canclebuttonLebal">Define
+                          Table</label></button>
+                    </div>
+                    <div *ngSwitchCase="questionType.ComparabilityAnalysisType">
+                      <button nbButton type="button" class="menu-btn-cancel addFlowBtn"
+                        (click)="popupTableType(i)"><label class="menu-txt-cancel canclebuttonLebal">Define
+                          Table</label></button>
+                    </div>
+                    <div *ngSwitchCase="questionType.BenchmarkRangeType">
+                      <button nbButton type="button" class="menu-btn-cancel addFlowBtn"
+                        (click)="popupTableType(i)"><label class="menu-txt-cancel canclebuttonLebal">Define
+                          Table</label></button>
+                    </div>
+                    <div *ngSwitchCase="questionType.PLQuestionType">
+                      <button nbButton type="button" class="menu-btn-cancel addFlowBtn"
+                        (click)="popupTableType(i)"><label class="menu-txt-cancel canclebuttonLebal">Define
+                          Table</label></button>
+                    </div>
+                    <div *ngSwitchCase="questionType.ListType">
+                      <button nbButton type="button" class="menu-btn-cancel addFlowBtn"
+                        (click)="popupTableType(i)"><label class="menu-txt-cancel canclebuttonLebal">Define
+                          Table</label></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="AddAnotherSection">
+            <!-- + Add another -->
+            <button (click)="AddAnotherOption()" class="addAnother">
+              {{ 'screens.project-designer.document-view.tasks.logicType.add-another-btn-text' | translate }}
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </nb-card-body>
+    <nb-card-footer class="footerCard">
+      <button nbButton type="button" class="menu-btn-cancel" (click)="closeLogicFlow()"><label
+          class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="submit" class="menu-btn-save"
+        id="btnAddLogic">{{'screens.project-designer.document-view.tasks.logicType.Ok-btn-label' | translate}}</button>
+    </nb-card-footer>
+  </nb-card>
+</form>

@@ -1,0 +1,49 @@
+<nb-card>
+  <nb-card-header class="search-header">
+      <div class="">
+          <div class="col-xs-10">
+              <span class="header-text">&nbsp;&nbsp;&nbsp;{{'screens.project-designer.document-view.InsertHyperlink' | translate}}</span>
+          </div>
+          <div class="col-xs-2">
+              <span class="header-text pull-right" (click)="dismiss();">X&nbsp;&nbsp;&nbsp;</span>
+              <!-- <img class="closeBtn" src="assets/images/Remove_on_hover.svg" (click)="dismiss();"> -->
+          </div>
+        </div>
+  </nb-card-header>
+<nb-card-body>
+<form [formGroup]="profileForm">
+    <div class="row" id="roleDiv">
+        <div class="col-sm-12 verticalMove">
+          <div class="form-group">
+              <label class="labelLinkTxt">{{'screens.project-designer.document-view.Link' | translate}}</label>
+            
+            <div class="row">
+              <div class="col-sm-8">
+                <div class="form-group">
+                  <input type="text" formControlName="URLName" class="form-control" id="txtURLName" placeholder="URL, File address, etc.">
+                </div>
+              </div>
+                <div class="col-sm-3">
+                    <div class="form-group custom-file-input-wrapper">
+                      <input type="file" name="profile" id="profile" class="custom-file-input" formControlName="profile"
+                        [ngClass]="{ 'is-invalid': form.profile.errors }" pattern="^.*\.(xls|xlsx)$" Â 
+                        (change)="onSelectedFile($event)" />
+                      <label style="color:#86BC25;" class="menu-btn-cancel" for="profile">{{'screens.project-designer.document-view.Browse' | translate}}</label>
+                      <span id="fileName" class="selectedFileName"></span>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
+</nb-card-body>
+    <nb-card-footer class="pull-right footerCard alignRight footerRightButton">        
+    <!-- <button nbButton type="button" class="menu-btn-cancel" style="color:black;" 
+    (click)="dismiss()"><label
+    class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+    &nbsp;&nbsp;&nbsp;&nbsp; -->
+    <button type="submit" class="menu-btn-save linkToButton" (click) = "SaveHyperlink()"
+    id="btnSuggestBlocksStacks">{{'screens.home.labels.Save' | translate}}</button>
+    </nb-card-footer>
+</nb-card>

@@ -1,0 +1,163 @@
+<nb-card>
+    <nb-card-body class="templateHeaderWrapper documentTemplateWrapper" [ngClass]="{'extendedViewWrapper':isExtendedView}">
+        <div class="" [ngClass]="{'templateCloseButton':!hideQuestion}">
+            <img class="closeBtn documentView-close" src="assets/images/Remove_on_hover.svg"
+                (click)="closeDocumentView()">
+        </div>
+        <table (click)="fullViewClicked()" class="editorTable">
+            <tr>
+                <td>
+                    <div class="DocViewBlockLeft" [ngClass]="{'templateCustomWidth':!hideQuestion,'hide':!checkedHideBlock}">
+                        <div class="">
+                            <div class="selectTemplate" *ngIf="templateSection||deliverableSection">
+                                <!-- *ngIf="templateSection" -->
+                                <div class="selectLibrary">
+                                    <select class="dd-style" id="ddlForTemplate" [(ngModel)]="selectedTemplate"
+                                        (change)="DropDownChangeDeliverable($event)">
+                                        <optgroup label="Templates">
+                                            <ng-container *ngFor="let template of templateList">
+                                                <option [ngValue]="template">
+                                                    {{template.templateName}}
+                                                </option>
+                                            </ng-container>
+                                        </optgroup>
+                                        <optgroup label="Deliverables">
+                                            <ng-container *ngFor="let deliverable of deliverableList">
+                                                <option [ngValue]="deliverable">
+                                                    {{deliverable.entityName}}
+                                                </option>
+                                            </ng-container>
+                                        </optgroup>
+                                    </select>
+                                    <span class="dropdown-down dropdown-Arrow"></span>
+                                </div>
+                            </div>
+                            <div class="selectTemplate" *ngIf="librarySection">
+                                <div class="selectLibrary">
+                                    <select class="dd-style" id="ddlForLibrary" [(ngModel)]="selectedLibrary"
+                                        (change)="libraryChange($event)">
+                                        <optgroup label="Library">
+                                            <option *ngFor="let library of libraryList" [ngValue]="library">
+                                                {{library.name}}
+                                            </option>
+                                        </optgroup>
+                                        <optgroup label="Block Collection">
+                                            <option *ngFor="let block of blockCollection" [ngValue]="block">
+                                                {{block.name}}
+                                            </option>
+                                        </optgroup>
+                                    </select>
+                                    <span class="dropdown-down dropdown-Arrow"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="">
+                            <div class="paddingRightZero">
+                                <div class="headerIcon">
+                                    <div class="iconItemWrapper">
+
+                                        <div class="iconItem" [class.disableIconSe]="'disableIconSe'">
+                                            <img src="assets/images/projectdesigner/header/Search.svg"
+                                                (click)="manageDeliverablePopup()"
+                                                class="smallIcon icon icon-header search-icons">
+                                        </div>
+                                        <div class="iconItem">
+                                            <img src="assets/images/projectdesigner/header/Assign_to.svg"
+                                                ngbTooltip="Assign All" (click)="assignToPopup()"
+                                                class=" icon icon-header">
+                                        </div>
+
+                                    </div>
+                                    <ngx-template-content [hidden] = "(templateSection == false)"></ngx-template-content>
+                                    <ngx-deliverables-content [hidden]="(deliverableSection == false)"></ngx-deliverables-content>
+                                    <ngx-content [hidden]="(librarySection == false)"></ngx-content>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <!-- <td class="width100">
+                    <div class="setMilestone" *ngIf="deliverableSection">
+                        <span>Set Milestone</span>
+                        <div class="selectLibrary selectMilestone">
+                            <select (change)="onEditSave($event.target.value)" class="dd-style">
+                                <option *ngFor="let item of mileStone" value={{item.id}}
+                                    [selected]="item.id==selectedMilestone">{{item.description}}</option>
+                            </select>
+                            <span class="dropdown-down dropdown-Arrow"></span>
+                        </div>
+                    </div>
+                    <div class="width100 padd-leftRight"
+                        [ngClass]="{'showEditBlockforStaffing':ShowBlockStaffing, 'trackChangeContainer': showtrackChanges}">
+
+                        <div class="trackContent">
+                            <div class="col-md-12 padd-leftRight">
+                                <div *ngIf="!viewAllMode">
+                                    <ngx-edit-block-content></ngx-edit-block-content>
+                                </div>
+                                <div *ngIf="viewAllMode">
+                                    <ngx-editor-full-view [blockContentPayload]="blockContentPayload">
+                                    </ngx-editor-full-view>
+                                </div>
+                                <ngx-template-content *ngIf="templateSection"></ngx-template-content>
+                                <ngx-deliverables-content *ngIf="deliverableSection"></ngx-deliverables-content>
+                                <ngx-content *ngIf="librarySection"></ngx-content>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </td> -->
+                <td class="width100" [ngClass]="{'onHideWidth':!checkedHideBlock}">
+                        <div class="setMilestone" *ngIf="deliverableSection">
+                                <span>Set Milestone</span>
+                                <div class="selectLibrary selectMilestone">
+                                    <select (change)="onEditSave($event.target.value)" class="dd-style">
+                                        <option *ngFor="let item of mileStone" value={{item.id}}
+                                            [selected]="item.id==selectedMilestone">{{item.description}}</option>
+                                    </select>
+                                    <span class="dropdown-down dropdown-Arrow"></span>
+                                </div>
+                            </div>
+                    <div class="width100 padd-leftRight" id="trackChangeContainer"
+                        [ngClass]="{'showEditBlockforStaffing':ShowBlockStaffing, 'trackChangeContainer': showtrackChanges}">
+                       
+                        <div class="trackContent" id="trackContent">
+                            <div class="padd-leftRight">
+                                <div *ngIf="!viewAllMode">
+                                    <ngx-edit-block-content></ngx-edit-block-content>
+                                </div>
+                                <div *ngIf="viewAllMode" (click)="fullViewClicked()">
+                                    <ngx-editor-full-view [blockContentPayload]="blockContentPayload">
+                                    </ngx-editor-full-view>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="padd-leftRight" id="sidebar1" *ngIf="showtrackChanges"></div>
+                    </div>
+                </td>
+                <td>
+                    <div class="DocViewBlockRight padd-leftRight" [hidden]="hideAttributeIcon">
+                        <ngx-editor-block-attributes></ngx-editor-block-attributes>
+                    </div>
+                    <div class="blockStaffingBlock padd-leftRight DocViewBlockStaffingW" *ngIf="ShowBlockStaffing">
+                        <ngx-block-staffing></ngx-block-staffing>
+                    </div>
+                    <div class="DocViewCreateQuestW padd-leftRight" [hidden]="hideQuestion">
+                        <ngx-create-question></ngx-create-question>
+                    </div>
+                    <div class="DocViewCreateQuestW padd-leftRight" [hidden]="checkQuestionList()">
+                        <ngx-questions-list></ngx-questions-list>
+                    </div>
+                    <div class="DocViewBlockRight padd-leftRight" *ngIf="showStylePanel">
+                        <ngx-layout-style-panel></ngx-layout-style-panel>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+
+    </nb-card-body>
+</nb-card>

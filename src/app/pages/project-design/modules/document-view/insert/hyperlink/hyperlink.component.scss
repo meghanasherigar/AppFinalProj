@@ -1,0 +1,50 @@
+.search-header{
+    background-color:black;
+    padding: 6px 0;
+    .row{
+       align-items: center;
+    }
+}
+
+.header-text{
+    height: 19px;
+    // width: 183px;
+    color:white;
+    font-family: "Open Sans";
+    font-size: 14px;
+    line-height: 19px;
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+ }
+
+ .custom-file-input-wrapper {
+    .custom-file-input {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+  
+    .custom-file-input-label {
+      // height: 35px;
+      width: 109px;
+      border-radius: 4px;
+      //background-color: #86BC25;
+      box-shadow: 0 0.5px 0 0 #D8D8D8;
+      color: white;
+      display: inline-block;
+      text-align: center;
+      padding: 9px 0;
+      font-weight: normal;
+      margin-bottom: .375rem;
+    }
+  
+    .selectedFileName {
+      display: block;
+      margin-top: .25rem;
+    }
+  }
+  

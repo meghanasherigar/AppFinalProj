@@ -1,0 +1,39 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+
+
+<nb-card>
+  <nb-card-body>
+    <div class="myclass ">
+      <ngx-block-types [blockTypeDetails]="blockTypeDetails" class="col-md-12"></ngx-block-types>
+      <div class=" col-md-12 editor" [hidden]="!isIntroduction">
+        <ngx-info-request-cover-page></ngx-info-request-cover-page>
+      </div>
+      <div class="row editor" [hidden]="isIntroduction">
+        <div class="col-md-4 padd-leftRight"
+          [ngClass]="{ 'displayBlockOrQuestion col-md-12': (blockQuestionView == 1),  'displayBlockOrQuestion col-md-4' : (blockQuestionView == 3),'hideBlockOrQuestion': (blockQuestionView == 2)}">
+          <div class="headerIcon">
+            <div class="row padd-leftRight InfoQuestionDesc">
+              <!-- <img src="assets/images/L1_nav_tab/Deloitte.svg"> -->
+              <ngx-block-content></ngx-block-content>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 padd-leftRight"
+          [ngClass]="{ 'displayBlockOrQuestion col-md-12': (blockQuestionView == 2), 'displayBlockOrQuestion col-md-8': (blockQuestionView == 3),'hideBlockOrQuestion': (blockQuestionView == 1)}">
+          <div class="headerIcon" class="QuestionAnswer-section">
+            <ngx-question-answers class="col-md-12" [questionList]="questionAnswersDetails"> </ngx-question-answers>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<!-- 
+<div class="buttonWrapper">
+  <button (click)="goPrevious()" *ngIf="showPrevious" class="previous">Previous</button>
+  <button (click)="goNext()" *ngIf="showNext" class="next">Next</button>
+ 
+</div> -->

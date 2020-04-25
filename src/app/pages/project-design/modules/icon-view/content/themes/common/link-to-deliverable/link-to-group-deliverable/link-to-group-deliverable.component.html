@@ -1,0 +1,4 @@
+<div id="row.id">
+    <span class="orgViewMore" *ngIf="isViewMore"><img src="assets/images/View more.svg"  (click)="onViewMoreSelect(row);iconToggle()"></span>
+    <span class="orgViewMore" *ngIf="!isViewMore"><img src="assets/images/View less.svg"  (click)="onViewMoreSelect(row);iconToggle()"></span>
+</div>

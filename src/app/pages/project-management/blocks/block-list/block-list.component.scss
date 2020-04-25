@@ -1,0 +1,80 @@
+.blockReportView{
+margin: 10px 20px;
+    border: 1px solid #d0d0ce;
+    overflow: auto;
+    }
+.blockReportView .header 
+{
+    margin: 0;
+    background-color: #86BC25;
+    padding: 13px 13px 13px 0px;
+    color: #FFFFFF;
+    //margin-left: 25px;
+    padding-left:10px;
+}
+
+.warning {
+    margin: 0;
+    background-color: #86BC25;
+    padding: 13px 13px 13px 0px;
+    color: #FFFFFF;
+    // margin-left: 10px;
+    // margin-right:5px;
+    padding-left:5px;
+    // margin-top: 20px;
+    width: auto;
+}
+
+.blockAttributes
+{
+    height: 40px;
+    width: 260px;
+    line-height: 40px;
+    font-size: 12px;
+    overflow: hidden;
+    padding-left: 8px;
+    position: relative;
+    }
+
+    .attributeView .mat-input-element {
+        color: black;
+    }
+
+    
+    .attributeSubHeader:nth-child(2n),  .blockAttributes:nth-child(2n){
+        width: 16%;
+       
+    }
+    .attributeSubHeader:nth-child(3n),  .blockAttributes:nth-child(3n)
+    {
+        width: 13%;
+       
+    }
+    .attributeSubHeader:nth-child(4n),  .blockAttributes:nth-child(4n){
+        width: 14%;
+     
+    }
+    .attributeSubHeader:nth-child(5n),  .attributeSubHeader:nth-child(5n){
+        width: 17%;
+
+    }
+    .attributeSubHeader:nth-child(5n),  .attributeSubHeader:nth-child(6n){
+      
+        width: 15%;
+    }
+   
+    .blockAttributes:first-child{
+        width: 216px;
+        height: 40px;
+       
+    }
+    
+    .smallIcon {
+        height: 25px;
+        width: 25px;
+        margin-right: 7px;
+        margin-top: -3px;
+    }
+    .blockContent{
+        padding-top: 2px;
+    }

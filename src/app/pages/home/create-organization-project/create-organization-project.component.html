@@ -1,0 +1,274 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="row">
+  <div class="col-sm-12" id="createOrganizationProject" ngxUiLoaderBlurred>
+    <div class="row">
+      <div class="col-sm-11">
+        <form [formGroup]="createOrganizationForm" (ngSubmit)="createOrganization()">
+          <nb-card>
+            <nb-card-header>
+              <h5 class="headerTitle">{{'screens.home.labels.Organization' | translate}}</h5>
+              <hr>
+            </nb-card-header>
+            <nb-card-body>
+                <div class="col-sm-12">
+              <div class="row">
+                <div class="col-sm-3 customwidth" >
+                  <div class="form-group fromGroupBottom">
+                    <label class="custom-form-label"
+                       for="txtOrgName">{{'screens.home.organization-project-form.OrganizationName' | translate}}<span
+                        class="mandatory">*</span></label>
+                    <!-- <input type="text" formControlName="OrganizationName" class="form-control" [ngClass]="{ 'is-invalid': submitted && form.OrganizationName.errors }"  id="txtOrgName">
+                                                          <div *ngIf="submitted && form.OrganizationName.errors" class="invalid-feedback">
+                                                              <div *ngIf="form.OrganizationName.errors.required">{{'screens.home.organization-project-validations.OrganizationNameValidationMsg' | translate}}</div>
+                                                               
+                                                              </div> -->
+                    <mat-form-field class="example-full-width">
+                      <input type="text" placeholder="" aria-label="Number" id="txtOrgName" matInput
+                        formControlName="OrganizationName"
+                        class=" form-control custom-form-input">
+                      
+                    </mat-form-field>
+                    <mat-error *ngIf="submitted && form.OrganizationName.errors"  class="invalid-feedback">
+                      <div *ngIf="form.OrganizationName.errors.required">
+                        {{'screens.home.organization-project-validations.OrganizationNameValidationMsg' | translate}}
+                      </div>
+                    </mat-error>
+                  </div>
+                </div>
+                <div class="col-sm-3 customwidth"  >
+                  <div class="form-group">
+                    <label class="custom-form-label">{{'screens.home.organization-project-form.GlobalUltimateParentName' | translate}}</label>
+                    <!-- <select class="form-control custom-form-input ddlHeight" id="ddlGUP" formControlName="GUPId"
+                      (change)="onGUPSelected()">
+                      <option [selected]="true">--Select--</option>
+                      <option *ngFor="let gup of gupList" [ngValue]="gup.gupId">
+                        {{gup.gupName}}
+                      </option>
+                    </select> -->
+                    <ng-select class="form-control custom-form-input ddlHeight" bindValue="gupId" [items]="gupList" bindLabel="gupName" id="ddlGUP" formControlName="GUPId" (change)="onGUPSelected()">
+                    </ng-select>
+
+                  </div>
+                </div>
+                <div class="col-sm-3 customwidth" *ngIf="gupOthersVisible">
+                  <div class="form-group others-section">
+                    <div>
+                      <label></label>
+                      <input type="text" id="GUPOthers" placeholder="if others"   class="form-control custom-form-input"
+                        formControlName="GUPOthers">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 customwidth" >
+                  <div class="form-group">
+                    <label class="custom-form-label">{{'screens.home.organization-project-form.IndustryName' | translate}}</label>
+                    <input type="hidden" formControlName="OrganizationIndustries" class="form-control"
+                       id="hdnOrgIndustry">
+                    <ngx-dropdown-treeview class="home-industry org-industry" [config]="config"
+                      (selectedChange)="onIndustrySelected($event)" [items]="industries">
+                    </ngx-dropdown-treeview>
+                  </div>
+                </div>
+                <div class="col-sm-3 customwidth" *ngIf="orgIndustryOthersVisible">
+                  <div class="form-group others-section">
+                    <label></label>
+                    <input type="text" id="OrgIndustryOthers" placeholder="if others" (change)="onOrgOtherIndustryEnter($event)"
+                      formControlName="OrgIndustryOthers"   class="form-control custom-form-input">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-3 customwidth">
+                  <div class="form-group">
+                    <label class="custom-form-label" for="txtCountry">{{'screens.project-setup.entity.entity-create.Country' | translate}}<span
+                        class="mandatory">*</span></label>
+
+                    <mat-form-field class="example-full-width">
+                      <input type="text" placeholder="" aria-label="Number" id="txtCountry" matInput
+                        formControlName="Country" [matAutocomplete]="auto" class="form-control custom-form-input" alphabetsonly>
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option class="dropdown-style mat-option ng-star-inserted" *ngFor="let item of countryList"
+                          [value]="item.country">
+                          {{ item.country}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                    <mat-error *ngIf="submitted && form.Country.errors"  class="invalid-feedback">
+                      <div *ngIf="form.Country.errors.required">
+                        {{'screens.project-setup.entity.entity-create-validation.CounrtyValidationMsg' | translate}}
+                      </div>
+                    </mat-error>
+                    <div *ngIf="countryNotFound && createOrganizationForm.controls['Country'].value">
+                      {{'screens.project-setup.entity.entity-create-validation.Countrynotfound' | translate}}
+                   </div>
+                  </div>
+                </div>
+              </div>
+
+             
+
+              </div>
+
+              <h5 class="headerTitle projectTitle">{{'screens.home.labels.Project' | translate}}</h5>
+              <hr>
+              <div class="col-sm-11">
+              <div class="row">
+                <div class="col-sm-10">
+                  <div class="form-group">
+                    <label class="custom-form-label">{{'screens.home.organization-project-form.ShortProjectDescription' | translate}}</label>
+                    <input type="text" maxlength="50"  class="form-control custom-form-input projectDesc"
+                      formControlName="ShortProjectDescription" >
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-3 customwidth">
+                  <div class="form-group">
+                    <label class="custom-form-label">{{'screens.home.organization-project-form.ProjectName' | translate}}<span
+                        class="mandatory">*</span></label>
+                    <input type="text"  class="form-control custom-form-input" formControlName="ProjectName"
+                      [ngClass]="{ 'is-invalid': submitted && form.ProjectName.errors }" >
+                    <div *ngIf="submitted && form.ProjectName.errors" class="invalid-feedback">
+                      <div *ngIf="form.ProjectName.errors.required">
+                        {{'screens.home.organization-project-validations.ProjectNameValidationMsg' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-3 customwidth">
+                  <div class="form-group">
+                    <label class="custom-form-label">{{'screens.home.organization-project-form.IndustryName' | translate}}<span
+                        class="mandatory">*</span></label>
+                    <input type="hidden" formControlName="ProjectIndustries" class="form-control"
+                       [ngClass]="{ 'is-invalid': submitted && form.ProjectIndustries.errors }"   id="hdnProjIndustry">
+                    <ngx-dropdown-treeview class="home-industry proj-industry" [config]="config"
+                      (selectedChange)="onProjectIndustrySelected($event)" [items]="projIndustries">
+                    </ngx-dropdown-treeview>
+                    <div *ngIf="submitted && form.ProjectIndustries.errors" class="invalid-feedback">
+                      <div *ngIf="form.ProjectIndustries.errors.required">Industry required</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-3 customwidth" *ngIf="projIndustryOthersVisible">
+                  <div class="form-group others-section">
+                    <label></label>
+                    <input type="text" placeholder="if others" formControlName="ProjIndustryOthers" (change)="onProjOtherIndustryEnter($event)"
+                        class="form-control custom-form-input">
+                  </div>
+                </div>
+
+                <div class="col-sm-2 yearWidth">
+                  <div class="form-group">
+                    <label class="custom-form-label">{{'screens.home.organization-project-form.FiscalYear' | translate}}<span
+                        class="mandatory">*</span></label>
+                    <input type="text" class="form-control custom-form-input" (keypress)="numberOnly($event)"
+                      maxlength="4" formControlName="FiscalYear"  placeholder="YYYY"
+                      [ngClass]="{ 'is-invalid': submitted && form.FiscalYear.errors }">
+                    <div *ngIf="submitted && form.FiscalYear.errors" class="invalid-feedback">
+                      <div *ngIf="form.FiscalYear.errors.required">
+                        {{'screens.home.organization-project-validations.FiscalYearValidationMsg' | translate}}
+                      </div>
+                      <div *ngIf="form.FiscalYear.errors.pattern">
+                        {{'screens.home.organization-project-validations.FiscalYearPatternValidationMsg' | translate}}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3 customwidth">
+                  <div class="form-group">
+                    <label class="custom-form-label">{{'screens.home.organization-project-form.UseCase' | translate}}</label>
+                    <div class="selectLibrary">
+                    <select class="form-control custom-form-input ddlHeight" id="ddlUseCase"
+                      (change)="onUseCaseChanged()" formControlName="UseCase">
+                      <option [selected]="true">{{'screens.create-block-component.labels.Select' | translate}}</option>
+                      <option *ngFor="let useCase of useCaseList" [ngValue]="useCase.Id">
+                        {{useCase.Name}}
+                      </option>
+
+                    </select>
+                    <span class="dropdown-down dropdown-Arrow"></span>
+                  </div>
+                  </div>
+                </div>
+                
+                <div class="col-sm-3 customwidth" *ngIf="useCaseOthersVisible">
+                  <div class="form-group others-section">
+                    <div>
+                      <label></label>
+                      <input type="text" id="others" placeholder="if others" formControlName="UseCaseOthers"
+                          class="form-control custom-form-input">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="row" formArrayName="LeadNames"
+                *ngFor="let lead of createOrganizationForm.get('LeadNames')['controls']; let i = index;">
+                <div class="col-sm-3 form-group" [formGroupName]="i">
+                  <label *ngIf="i==0" class="custom-form-label">{{'screens.home.organization-project-form.LeadName' | translate}}<span
+                      class="mandatory">*</span></label>
+                  <mat-form-field class="example-full-width" floatLabel="never">
+                    <input type="text" [id]="'txtLeadName_'+ i" class="form-control custom-form-input" matInput formControlName="name" (focusout)="validateLeadOnFocusOut()"
+                      [matAutocomplete]="auto"
+                      [ngClass]="{ 'is-invalid': submitted && createOrganizationForm.controls.LeadNames.controls[i].controls['name'].errors }">
+                      <mat-placeholder class="placeholder">{{'screens.home.organization-project-form.LeadSearchPlaceholder' | translate}}</mat-placeholder>
+                      <div *ngIf= "i!=0" class="addLead-crossIcon">
+                        <a class="fa fa-times" (click)= "removeLeadByID(i)"></a>
+                      </div>
+                    <mat-autocomplete #auto="matAutocomplete">
+                      <mat-option class="dropdown-style mat-option ng-star-inserted"
+                        (onSelectionChange)="populateUserDetails(item, i)" *ngFor="let item of searchUserResult"
+                        [value]="item.email">
+                        {{ item.firstName + ' ' + item.lastName + ' ('+ item.email +')'}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+
+                  <mat-error
+                    *ngIf="submitted && createOrganizationForm.controls.LeadNames.controls[i].controls['name'].errors"
+                     class="invalid-feedback">
+                    <div
+                      *ngIf="i==0 && submitted && createOrganizationForm.controls.LeadNames.controls[i].controls['name'].errors">
+                      <div
+                        *ngIf="createOrganizationForm.controls.LeadNames.controls[i].controls['name'].errors.required">
+                        {{'screens.home.organization-project-validations.LeadNameValidationMsg' | translate}}
+                      </div>
+                    </div>
+                    <div *ngIf="createOrganizationForm.controls.LeadNames.controls[i].controls['name'].errors.pattern">
+                      {{'screens.home.organization-project-validations.LeadNamePatternValidationMsg' | translate}}
+                    </div>
+                  </mat-error>
+                </div>
+                <div *ngIf="i==0">
+                  <button id="addLeadBtn" class="addBtn disabled" [ngClass]='{disabled: addBtnDisabled}'
+                    [disabled]="addBtnDisabled" (click)="addLead();  $event.preventDefault();">+ Add
+                    More</button>
+                </div>
+              </div> -->
+
+              </div>
+
+              
+             
+
+            </nb-card-body>
+            <nb-card-footer>
+              <button type="submit" class="menu-btn-save" [disabled]="!createOrganizationForm.dirty || createOrganizationForm.invalid" [ngClass]="{'disableSaveButton':!createOrganizationForm.dirty || createOrganizationForm.invalid}"
+                id="btnCreateOrganization">{{'screens.home.labels.Save' | translate}}</button>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <button nbButton type="button" class="menu-btn-cancel" style="color:black;"
+                (click)="closeCreateOrganizationPopup()"><label
+                  class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+            </nb-card-footer>
+          </nb-card>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

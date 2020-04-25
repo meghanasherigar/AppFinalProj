@@ -1,0 +1,26 @@
+.displayBlockOrQuestion
+{
+    display: true;
+}
+.hideBlockOrQuestion
+{
+    display: none;
+}
+.editor{
+    background: white;
+    border: 1px solid #F1F1F1;
+    box-shadow: 0 0.5px 0 0 #D8D8D8;
+    height: 100%;
+    height: calc(100vh - 300px);
+    .editor-heading {
+        font-size:18px;
+        font-weight: 600;
+    }
+}
+.padd-leftRight{
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.imgResponsive{
+    
+}

@@ -1,0 +1,82 @@
+<ngx-message></ngx-message>
+<div class="row">
+  <div class="col-sm-12">
+    <nb-card>
+        
+      <nb-card-header>{{'screens.user.user-create.pageTitle' | translate}}</nb-card-header>
+      <nb-card-body>
+          <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()">
+          <div class="input-group input-group-rounded  has-person-icon">
+              <input type="text" placeholder="{{'screens.user.user-create.SearchForNames' | translate}}" class="form-control"/>
+            </div>
+            <!-- <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-append">
+                  <button class="btn btn-danger input-group-text">
+                    Search
+                  </button>
+                </span>
+              </div> -->
+            <div class="row">
+                <br/>
+              </div>
+              <div class="row">
+                  <div class="col-sm-4 form-group">
+                      <label class="label" for="txtFirstName">{{'screens.user.user-create.FirstName' | translate}}</label>
+                      <input type="text" id="txtFirstName" formControlName="firstName" maxlength="20" class="form-control"/>
+                  </div>
+                  <div class="col-sm-4 form-group">
+                      <label class="label" for="txtLastName">{{'screens.user.user-create.LastName' | translate}}</label>
+                    <input type="text" id="txtLastName" maxlength="20" formControlName="lastName"  class="form-control"/>
+                  </div>
+                  <div class="col-sm-4 form-group">
+                      <label class="label" for="txtEmail">{{'screens.user.user-create.Email' | translate}}</label>
+                    <input type="text" id="txtEmail" formControlName="email"  maxlength="50" class="form-control"/>
+                  </div>
+                </div>
+        <div class="form-group row">
+            <nb-checkbox class="col-sm-4" formControlName="isCentralUser">{{'screens.user.user-create.CentralUser' | translate}}</nb-checkbox>
+            <nb-checkbox class="col-sm-4" formControlName="isLocalUser" [value]="true">{{'screens.user.user-create.LocalUser' | translate}}</nb-checkbox>
+          </div>
+          <div class="row">
+              <br/>
+            </div>
+          <div class="row">
+              <div class="col-sm-4 form-group">
+                  <label class="label" for="ddlRegion">{{'screens.user.user-create.Region' | translate}}</label>
+                      <select class="form-control"
+                      formControlName="regionControl" id="ddlRegion" (change)="regionChanged($event.target.value)">
+                          <!-- <option value="0">--All--</option> -->
+                          <option *ngFor="let region of regions" value={{region}}>
+                              {{region.name}}
+                          </option>
+                      </select>
+              </div>
+              <div class="col-sm-4 form-group">
+                  <label class="label" for="ddlCountry">{{'screens.user.user-create.Country' | translate}}</label>
+                  <select class="form-control" id="ddlCountry"
+                  formControlName="Country" (change)="countryChanged($event.target.value)">
+                        <!-- <option value="0">--All--</option> -->
+                        <option *ngFor="let country of countries" value={{country}}>
+                            {{country.name}}
+                        </option>
+                    </select>
+              </div>
+              <div class="col-sm-4 form-group">
+                  <label class="label" for="ddlEntities">{{'screens.user.user-create.Entity' | translate}}</label>
+                  <select class="form-control" formControlName="entityControl" id="ddlEntity" (change)="entityChanged($event.target.value)">
+                      <!-- <option value="0">--All--</option> -->
+                      <option *ngFor="let entity of entities" value={{entity}}>
+                          {{entity.name}}
+                      </option>
+                  </select>
+              </div>
+            </div>
+            <button class="btn btn-success" id="btnAddUser">{{'screens.user.user-create.AddUser' | translate}}</button>
+          </form>
+      </nb-card-body>
+
+    </nb-card>
+  </div>
+</div>
+<button class="btn btn-success" id="btnAddMessage" (click)="addMessage()">Add Message</button>

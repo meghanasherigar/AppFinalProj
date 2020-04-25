@@ -1,0 +1,118 @@
+  
+nb-card {
+  height: 550px !important;
+  width: 854px !important;
+}
+
+.search-header {
+  background-color:#fafafa;
+}
+
+.button-section {
+    height: 17px;	width: 27px;	color: #FFFFFF;		font-size: 15px;	line-height: 17px;	text-align: center;
+   
+  }
+  .rectangle{
+    height: 35px;	width: 109px;	border: 1px solid #86BC25;	border-radius: 3px;	background-color: #86BC25;
+  }
+
+  .rect-cancel{
+    height: 35px !important;	width: 109px !important;	border: 1px solid #86BC25;	border-radius: 3px;	background-color: #FFFFFF;
+  }
+  .canelButton{
+        height: 17px;	width: 39px;	color: #86BC25;	font-size: 15px;	line-height: 17px;	text-align: center;
+  }
+
+  .canelButton {
+  height: 17px;
+  width: 39px;
+  color: #86BC25;
+  font-size: 12px;
+  line-height: 17px;
+  text-align: center;
+}
+
+.btnControl {
+    padding: none !important;
+    color: teal;
+    background-color: transparent;
+    border: none !important;
+    font-family: Roboto;
+    border-radius: 0 !important;
+  }
+
+  .disable-section{
+    opacity: 0.4;
+  }
+  .disabledbutton {
+    pointer-events: none;
+   }
+
+   .emailheader {
+    height: 35px;	width: 100%; border-radius: 3px;	
+    background-color:black;
+  }
+
+#sendEmailProjectUserDiv {
+  mat-form-field{
+    border:none !important;
+        box-shadow: none;
+        display:inline-block;
+        width:91%;
+  }
+    input {
+        border:none !important;
+        box-shadow: none;
+        display:inline-block;
+        width:85%;
+    }
+    .form-group{
+        border-bottom:1px solid #dadada;
+    }
+    .emailLabel {
+        display:inline-block;
+        width:9%;
+    }
+    textarea {
+        min-height: 250px;
+        padding: 5px 0 !important;
+        border: none;
+        box-shadow: none;
+        resize:none;
+    }
+    .top-level{
+        display:inline-block;
+        min-height: 0px;
+        width:85%;
+        padding: 5px 0 !important;
+        border: none;
+        box-shadow: none;
+        resize:none;
+    }
+
+}
+.sendBtn{
+  text-transform: capitalize;
+  line-height: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.sendCancelBtn{
+  border-radius:5px !important; 
+}
+.sendBtn:hover{
+  background: #86BC25;
+}
+.bccBtn{
+  text-transform: capitalize !important ;
+}
+.coverPage{
+  border-color: #ccc;
+  border-width: 1px;
+  border-style: solid;
+  overflow: auto;
+  padding: 10px 14px;
+  margin:2px 2px 2px 2px;
+  height: 305px;
+  // &:last-child{ margin-bottom: 0;}
+}

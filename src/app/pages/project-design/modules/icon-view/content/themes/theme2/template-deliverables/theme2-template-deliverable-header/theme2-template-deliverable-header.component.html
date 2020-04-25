@@ -1,0 +1,7 @@
+<div *ngIf="selectedThemeOption != undefined">
+  <div *ngIf="section == 'Theme2.3'">
+    <ngx-dropdown-treeview [id] = "section" [config]="config" [items]="section3TreeList" class="home-industry filter-input"
+      (selectedChange)="onItemSelected3($event)">
+    </ngx-dropdown-treeview>
+  </div>
+</div>

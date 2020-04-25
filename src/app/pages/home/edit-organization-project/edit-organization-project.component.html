@@ -1,0 +1,186 @@
+<div class="row">
+        <div class="col-sm-10" id="editOrganizationProject">
+          <form [formGroup]="editOrganizationForm" (ngSubmit)="editOrganization()">  
+          <nb-card>  
+            
+               <nb-card-body>
+              <div id="divOrgDetails" *ngIf="IsOrganizationVisible">
+
+                    <nb-card-header>{{'screens.home.labels.Organization' | translate}}
+                            <hr>
+                            </nb-card-header>
+                          <div class="row">
+                                  <div class="col-sm-3"  [ngClass]="{'customwidth':orgIndustryOthersVisible}">
+                                       <div class="form-group">
+                                                <label for="txtOrgName" class="custom-form-label">{{'screens.home.organization-project-form.OrganizationName' | translate}}<span class="mandatory">*</span></label>
+                                                <input type="text" formControlName="OrganizationName" class="form-control custom-form-input" [ngClass]="{ 'is-invalid': submitted && form.OrganizationName.errors }"  id="txtOrgName">
+                                                <div *ngIf="submitted && form.OrganizationName.errors" class="invalid-feedback">
+                                                    <div *ngIf="form.OrganizationName.errors.required">{{'screens.home.organization-project-validations.OrganizationNameValidationMsg' | translate}}</div>
+                                                     
+                                                    </div>
+                                                    </div> 
+                                  </div>
+                                  <div class="col-sm-3"  [ngClass]="{'customwidth':orgIndustryOthersVisible}">
+                                      <div class="form-group">
+                                            <label class="custom-form-label">{{'screens.home.organization-project-form.GlobalUltimateParentName' | translate}}</label>
+                                            <!-- <select class="form-control ddlHeight" id="ddlGUP"
+                                            formControlName="GUPId" (change)="onGUPSelected()">
+                                            <option [selected]="true">--Select--</option>
+                                            <option *ngFor="let gup of gupList" [ngValue]="gup.gupId">
+                                                {{gup.gupName}}
+                                                </option>
+                                              </select> -->
+                                              <ng-select class="form-control custom-form-input ddlHeight" [items]="gupList" bindValue="gupId"  bindLabel="gupName" id="ddlGUP" formControlName="GUPId" (change)="onGUPSelected()">
+                                                </ng-select>
+                                       </div> 
+                                  </div>
+                                  <div class="col-sm-2"  *ngIf="gupOthersVisible">
+                                      <div class="form-group others-section">
+                                          <div>
+                                                  <label class="custom-form-label"></label>
+                                                  <input type="text" placeholder="if others"  class="form-control custom-form-input" formControlName="GUPOthers">
+                                          </div>                                    
+                                       </div>  
+                                  </div>
+                                  <div class="col-sm-3" [ngClass]="{'customwidth':orgIndustryOthersVisible}">
+                                      <div class="form-group"  >
+                                           <label class="custom-form-label">{{'screens.home.organization-project-form.IndustryName' | translate}}</label>
+                                            <input type="hidden" formControlName="OrganizationIndustries" class="form-control custom-form-input" id="hdnOrgIndustry">
+                                            <ngx-dropdown-treeview 
+                                            class="home-industry org-industry"
+                                            [buttonClass]="buttonClass"
+                                            [config]="config"
+                                            (selectedChange)="onIndustrySelected($event)"
+                                            [items]="industries">
+                                           </ngx-dropdown-treeview>
+                                       </div> 
+                                  </div>
+                                  <div class="col-sm-2" *ngIf="orgIndustryOthersVisible">
+                                          <div class="form-group others-section">
+                                              <label class="custom-form-label"></label>
+                                               <input type="text" placeholder="if others" formControlName = "OrgIndustryOthers"  class="form-control custom-form-input">
+                                           </div>  
+                                      </div>
+                              </div>
+                  
+                              <div class="row">
+                                  <div class="col-sm-3">
+                                      <div class="form-group">
+                                            <label for="txtCountry" class="custom-form-label">{{'screens.project-setup.entity.entity-create.Country' | translate}}<span class="mandatory">*</span></label>
+                          
+                                      <mat-form-field class="example-full-width form-control custom-form-input">
+                                          <input type="text" placeholder="" aria-label="Number" id="txtCountry" matInput formControlName="Country" [matAutocomplete]="auto" alphabetsonly>
+                                          <mat-autocomplete #auto="matAutocomplete">
+                                              <mat-option class="dropdown-style mat-option ng-star-inserted"  *ngFor="let item of countryList" [value]="item.country">
+                                              {{ item.country}}
+                                              </mat-option>
+                                          </mat-autocomplete>
+                                          </mat-form-field>
+                                          <mat-error *ngIf="submitted && form.Country.errors" class="invalid-feedback">
+                                              <div *ngIf="form.Country.errors.required"> 
+                                              {{'screens.project-setup.entity.entity-create-validation.CounrtyValidationMsg' | translate}}</div>
+                                              </mat-error>
+                                       </div>  
+                                  </div>
+                              </div>      
+                            </div>            
+                          
+              <div id="divProjDetails" *ngIf="IsProjectVisible">
+                                    
+                   <nb-card-header>{{'screens.home.labels.Project' | translate}}</nb-card-header>
+                              <hr>
+                      <div class="row">
+                          <div class="col-sm-8">
+                              <div class="form-group">
+                                    <label class="custom-form-label">{{'screens.home.organization-project-form.ShortProjectDescription' | translate}}</label>
+                                    <input type="text" maxlength="50"  class="form-control custom-form-input" formControlName="ShortProjectDescription">
+                               </div>  
+                          </div>            
+                      </div>
+              
+                      <div class="row">
+                          <div class="col-sm-3">
+                              <div class="form-group">
+                                    <label class="custom-form-label">{{'screens.home.organization-project-form.ProjectName' | translate}}<span class="mandatory">*</span></label>
+                                    <input type="text"  class="form-control custom-form-input" formControlName="ProjectName" [ngClass]="{ 'is-invalid': submitted && form.ProjectName.errors }">
+                                    <div *ngIf="submitted && form.ProjectName.errors" class="invalid-feedback">
+                                          <div *ngIf="form.ProjectName.errors.required">{{'screens.home.organization-project-validations.ProjectNameValidationMsg' | translate}}</div>                                         
+                                    </div>
+                               </div>  
+                          </div> 
+                          
+                          <div class="col-sm-3">
+                               <div class="form-group">
+                                  <label class="custom-form-label">{{'screens.home.organization-project-form.IndustryName' | translate}}<span class="mandatory">*</span></label>
+                                   <input type="hidden" formControlName="ProjectIndustries" class="form-control custom-form-input" [ngClass]="{ 'is-invalid': submitted && form.ProjectIndustries.errors }"  id="hdnProjIndustry">
+                                   <ngx-dropdown-treeview 
+                                   class="home-industry proj-industry"
+                                   [buttonClass]="buttonClass"
+                                   [config]="config"
+                                   (selectedChange)="onProjectIndustrySelected($event)"
+                                   [items]="projIndustries">
+                                  </ngx-dropdown-treeview>
+                                  <div *ngIf="submitted && form.ProjectIndustries.errors" class="invalid-feedback">
+                                     <div *ngIf="form.ProjectIndustries.errors.required">Industry required</div>
+                                     </div>
+                              </div> 
+                          </div>
+              
+                          <div class="col-sm-3" *ngIf="projIndustryOthersVisible">
+                              <div class="form-group">
+                                   <label class="custom-form-label">.</label>
+                                   <input type="text" placeholder="if others" formControlName = "ProjIndustryOthers"  class="form-control custom-form-input">
+                               </div>  
+                          </div>
+                          
+                          <div class="col-sm-2">
+                              <div class="form-group">
+                                   <label class="custom-form-label">{{'screens.home.organization-project-form.FiscalYear' | translate}}<span class="mandatory">*</span></label>
+                                   <input type="text" class="form-control custom-form-input" (keypress)="numberOnly($event)"  maxlength="4"  formControlName="FiscalYear" placeholder="YYYY" [ngClass]="{ 'is-invalid': submitted && form.FiscalYear.errors }">
+                                   <div *ngIf="submitted && form.FiscalYear.errors" class="invalid-feedback">
+                                          <div *ngIf="form.FiscalYear.errors.required">{{'screens.home.organization-project-validations.FiscalYearValidationMsg' | translate}}</div> 
+                                          <div *ngIf="form.FiscalYear.errors.pattern">
+                                            {{'screens.home.organization-project-validations.FiscalYearPatternValidationMsg' | translate}}
+                                            </div>                                          
+                                    </div>
+                               </div>  
+                          </div>
+                      </div>  
+              
+                      <div class="row">
+                          <div class="col-sm-3">
+                              <div class="form-group">
+                                    <label class="custom-form-label">{{'screens.home.organization-project-form.UseCase' | translate}}</label>
+                                    <select class="form-control ddlHeight custom-form-input" id="ddlUseCase" (change) ="onUseCaseChanged()"
+                                            formControlName="UseCase">
+                                            <option [selected]="true">{{'screens.home.organization-project-form.select' | translate}}</option>
+                                            <option *ngFor="let useCase of useCaseList" [ngValue]="useCase.Id">
+                                                {{useCase.Name}}
+                                                </option>
+                                      </select>
+                               </div>  
+                          </div> 
+
+                          <div class="col-sm-2"  *ngIf="useCaseOthersVisible">
+                            <div class="form-group others-section">
+                                <div>
+                                        <label class="custom-form-label"></label>
+                                        <input type="text" id="others" placeholder="if others" formControlName = "UseCaseOthers"  class="form-control custom-form-input">
+                                </div>                                    
+                             </div>  
+                         </div>
+                      </div>
+                    </div>  
+                  </nb-card-body>
+                  <nb-card-footer>
+                      <button type = "submit" class="menu-btn-save"[disabled]="!editOrganizationForm.dirty || editOrganizationForm.invalid" [ngClass]="{'disableSaveButton':!editOrganizationForm.dirty || editOrganizationForm.invalid}"
+                       id="btnEditOrganization">{{'screens.home.labels.Update' | translate}}</button>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <button nbButton type = "button"  class="menu-btn-cancel" style="color:black;" (click)="closeEditOrganizationPopup()"><label class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+                    </nb-card-footer>
+                 </nb-card>
+      
+              </form>   
+        </div>
+       </div> 
+       

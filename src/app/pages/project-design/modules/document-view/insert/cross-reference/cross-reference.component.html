@@ -1,0 +1,50 @@
+<nb-card>
+  <nb-card-header class="search-header">
+      <div class="row">
+          <div class="col-xs-10">
+              <span class="header-text">&nbsp;&nbsp;&nbsp;{{'screens.project-designer.document-view.CrossReference' | translate}}</span>
+          </div>
+          <div class="col-xs-2">
+              <span class="header-text pull-right" (click)="dismiss();">X&nbsp;&nbsp;&nbsp;</span>
+          </div>
+        </div>
+  </nb-card-header>
+<nb-card-body>
+          <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                      <label class="custom-form-label">{{'screens.project-designer.document-view.ReferenceTo' | translate}}</label>
+                      <select class="form-control custom-form-input reportTierHeight" id="ddlRefenceTo" >
+                          <!-- <option value=''></option> -->
+                          <option *ngFor="let name of ReferenceToList" value={{name}}>
+                              {{name}}
+                          </option>
+                        </select>
+                </div>
+            </div>
+          </div>
+            <div class="row">
+                <div class="col-sm-12">
+                        <div class="form-group">
+                          <label class="custom-form-label">{{'screens.project-designer.document-view.BookmarkFrom' | translate}}</label>
+                              <select class="form-control custom-form-input reportTierHeight" id="ddlBookmark" 
+                              (change)="onBookMarkListChange($event)">
+                                  <option value=''></option>
+                                  <option *ngFor="let name of bookmarkList" value={{name.value}}>
+                                      {{name.key}}
+                                  </option>
+                                </select>
+                        </div>
+            </div>
+          </div>
+            <br/>
+</nb-card-body>
+<nb-card-footer class="footerCard alignRight footerRightButton">        
+    <button nbButton type="button" class="menu-btn-cancel btnCancel"
+    (click)="dismiss()">
+    <label class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="submit" class="menu-btn-save linkToButton" (click) = "SaveCrossReference()"
+    id="btnSuggestBlocksStacks">{{'screens.home.labels.Save' | translate}}</button>
+</nb-card-footer>
+</nb-card>

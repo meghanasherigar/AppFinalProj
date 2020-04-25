@@ -1,0 +1,46 @@
+<div class="row">
+  <div id="projectUserFilters-section" class="col-sm-12 toolbar-component-container">
+    <div class="manage-section">
+        <div class="action-icon-wrapper" [ngClass]="{'filter-disable' : isMarkDisabled}" id="markReadIcon">
+            <img src="assets/images/MarkAsRead.png" class="btnToolbar" (click)="loadMyChildComponent('MarkRead');">
+            <span class="icon-name">{{'screens.home.notification-screen.MarkAll' | translate}}<br>{{'screens.home.notification-screen.AsRead' | translate}}</span>
+          </div>
+      <div class="action-icon-wrapper"  [ngClass]="{'filter-disable' : isDeleteDisabled}" id="deleteIcon">
+        <img src="assets/images/Delete.png" (click)="loadMyChildComponent('Delete')" class="btnToolbar">
+        <span class="icon-name">{{'screens.home.notification-screen.Delete' | translate}}</span>
+      </div>
+      <span class="section-name">{{'screens.home.notification-screen.Manage' | translate}}</span>
+
+    </div>
+   
+    <div class="entity-filters-section" id="filterImg">
+      <div class="filter-inputs-wrapper">
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'Action by'" [data]="createdByList"
+          [(ngModel)]="selectedCreatedByItems" [settings]="dropdownCreatedBySettings"
+          (onSelect)="onItemSelect($event)" (onDeSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAllCreatedBy($event)" (onDeSelectAll)="onSelectAllCreatedBy($event)">
+        </ng-multiselect-dropdown>
+        <div class="input-wrapper filter-input">
+          <input type="text" class="form-control" placeholder="Action Date" id="eCreationDate"
+          (bsValueChange)="onDateSelect($event)" bsDaterangepicker 
+                #dpuploadDate="bsDaterangepicker"
+            [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+        <label>
+      <i>
+        <img src="assets/images/calender.png" (click)="dpuploadDate.show()" [attr.aria-expanded]="dpuploadDate.isOpen" class="calender-icon"></i></label>
+      </div>
+      </div>
+      <span class="section-name">{{'screens.home.notification-screen.Filters' | translate}}</span>
+    </div>
+  </div>
+</div>
+<nb-card id="viewAllNotificationGrid">
+    <nb-card-body>
+        <h4><b>{{'screens.home.notification-screen.yourNotifications' | translate}}</b></h4>
+        <div class="allNotificationTable">
+            <ng2-smart-table id="viewAllNotificationsTable" [settings]="settings" [source]="NotificationGridSource" (userRowSelect)="onAdminUserRowSelect($event);">
+              </ng2-smart-table>
+        </div>
+        
+    </nb-card-body>
+</nb-card>

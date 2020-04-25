@@ -1,0 +1,13 @@
+<ngx-ui-loader [loaderId]='loaderId'[bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+<nb-card class="" ngxUiLoaderBlurred>
+  <nb-card-body class="document-full-viewBody padd-leftRight border-full margin-top" >
+    <div id="parentDiv" class="content-container" infiniteScroll>
+       <!-- {{ 'editorvalue' + editorvalue }} -->
+     <div class="editor-deloitte-logo"> <img src="assets/images/logo-deloitte-black.png" class="img-responsive" ></div>
+     <div>
+        <div heading class="editor-heading" [innerHTML]="name"></div>
+        <div class="" id="suggestionBlockContentEditor" [innerHTML]="content"></div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

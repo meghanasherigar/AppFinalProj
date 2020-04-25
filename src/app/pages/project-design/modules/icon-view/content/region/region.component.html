@@ -1,0 +1,22 @@
+<div cdkDropListGroup class="row regionWrapper" *ngIf="!DisplayBlock">
+  <ngx-template-attribute-view *ngIf="templateAttributeViewFlag"></ngx-template-attribute-view>
+  <ngx-deliverable-attribute-view *ngIf="deliverableAttributeViewFlag"> </ngx-deliverable-attribute-view>
+  <ngx-attribute-view *ngIf="libraryAttributeViewFlag"></ngx-attribute-view>
+  <ngx-library class="col blockClass" *ngIf="DisplayLibrary"></ngx-library>
+  <ngx-templates class="col blockClass editblcok" *ngIf="DisplayTemplates"></ngx-templates>
+  <ngx-deliverables class="col blockClass" *ngIf="DisplayDeliverables"></ngx-deliverables>
+ 
+  <ngx-theme2-main-page *ngIf="isTheme2"></ngx-theme2-main-page>
+  <ngx-theme3-main-page *ngIf="isTheme3"></ngx-theme3-main-page>
+  <ngx-theme1-main-page *ngIf="isTheme4"></ngx-theme1-main-page>
+
+  <ngx-edit-block *ngIf="DisplayBlock"></ngx-edit-block>
+</div>
+
+<div cdkDropListGroup *ngIf="DisplayBlock">
+  <ngx-templates class="col blockClass editBlock" *ngIf="DisplayTemplates"></ngx-templates>
+  <ngx-edit-block *ngIf="DisplayBlock"></ngx-edit-block>
+</div>
+<div cdkDropListGroup *ngIf="DisplayLibraryBlockSuggestion">
+  <ngx-library-suggested-blocks></ngx-library-suggested-blocks>
+</div>

@@ -1,0 +1,66 @@
+
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="row uploadToolbarWrapper" NgxUiLoaderService>
+  <div id="uploadFilters-section" class="col-sm-12 toolbar-component-container collapsed">
+    <div class="createManageSection">
+        <div class="manage-section">
+            <div class="action-icon-wrapper"  [ngClass]="{'disableUploadButton':disablebutton}">
+              <img src="assets/images/Upload-active.svg" class="btnToolbar" (click)="loadMyChildComponent($event);">
+              <span class="icon-name">{{'screens.project-setup.file-upload.upload-toolbar.Upload' | translate}}</span>
+            </div>
+            <div class="action-icon-wrapper">
+                <img src="assets/images/Download-active.svg" class="btnToolbar" (click)="downloadFileUpload();">
+                <span class="icon-name">{{'screens.project-setup.file-upload.upload-toolbar.Download' | translate}}</span>
+              </div>
+              <div class="action-icon-wrapper disabledbutton disable-section" id="clearFilterIcon">
+                <img src="assets/images/Clear Filter-active.svg" class="btnToolbar" (click)="clearFilters()">
+                <span class="icon-name">{{'screens.project-setup.file-upload.upload-toolbar.ClearFilter' | translate}}</span>
+              </div>
+            <span class="section-name">{{'screens.project-setup.transaction.transaction-toolbar.Manage' | translate}}</span>
+    
+          
+          </div>
+          <!-- <div class="sectionNames">
+              <span>{{'screens.home.labels.manage' | translate}}</span>
+          </div> -->
+    </div>  
+
+  
+    <div class="entity-filters-section">
+      <div class="filter-icon-wrapper">
+        <div class="action-icon-wrapper">
+          <img src="assets/images/Filter-active.svg" class="btnToolbar" (click)="toggleCollapse()">
+          <span class="icon-name">{{'screens.project-setup.transaction.transaction-create.Filters' | translate}}</span>
+        </div>
+      </div>
+      <div class="filter-inputs-wrapper" >
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-setup.transaction.transaction-toolbar.UploadedBy' | translate" [data]="ddlistUploadedBy" [(ngModel)] = "selectedUploadedBy"
+        [settings]="dropdownSettings" (onDeSelect)="onItemSelect($event)"  (onSelect)="onItemSelect($event)"
+        (onSelectAll)="onSelectAllUploadedBy($event)"  (onDeSelectAll)="onSelectAllUploadedBy($event)">
+      </ng-multiselect-dropdown>
+      <div class="input-wrapper filter-input">
+          <input type="text" class="form-control" [placeholder]="'screens.project-setup.transaction.transaction-toolbar.UploadDate' | translate" id="uploadDate"
+          (bsValueChange)="onDateSelect($event, 'UploadDate')" bsDaterangepicker 
+                #dpuploadDate="bsDaterangepicker"
+            [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+        <label>
+      <i>
+        <img src="assets/images/calender.png" (click)="dpuploadDate.show()" [attr.aria-expanded]="dpuploadDate.isOpen" class="calender-icon"></i></label>
+      </div>
+      </div>
+      <span class="section-name">{{'screens.project-setup.transaction.transaction-create.Filters' | translate}}</span>
+    </div>
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+        {{imageName}}
+        <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+        <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+    </div>
+  </div>
+  <!-- <div class="sectionNameWrapper">
+    
+    <div class="sectionName ">{{'screens.home.labels.manage' | translate}}</div>
+      </div> -->
+</div>
+

@@ -1,0 +1,140 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+<nb-card class="stylepopupHW">
+  <nb-card-header class="createTopHeader">{{'screens.project-designer.document-view.modifyStyle' | translate}}
+    <button aria-label="Close" class="close" type="button" (click)="dismiss()"><span
+        aria-hidden="true">×</span></button>
+  </nb-card-header>
+  <nb-card-body>
+    <h5>{{'screens.project-designer.document-view.properties' | translate}}</h5>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.project-designer.document-view.name' | translate}}</label>
+          <input type="text" class="form-control custom-form-input" [(ngModel)]="style.name">
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.project-designer.document-view.styleType' | translate}}</label>
+          <input type="text" readonly class="form-control custom-form-input" value="{{style.styleOn}}">
+        </div>
+      </div>
+
+    </div>
+    <hr />
+    <div [ngClass]="selectedFormatType == translate.instant('screens.project-designer.document-view.formatting') ? '' : 'display-none'">
+      <div class="row">
+        <div class="editorBlock">
+          <div id="documentStyleEditor" class="borderBlock" [innerHtml] = "previewText | safeHtml"></div>
+           <div class="editorToolbar"> 
+            <div id="style-toolbar-menu" class="filters-section smalliconpadding ">            </div>
+            <button (click)="toggleDefineColors()" class="defineColor"></button>
+          </div>
+       </div>
+    </div>
+    </div>
+    <div [ngClass]="selectedFormatType != translate.instant('screens.project-designer.document-view.formatting') ? '' : 'display-none'">
+      <h5>{{'screens.project-designer.document-view.paragraph' | translate}}</h5>
+      <div class="row">
+        <div class="col-sm-2"> <h6>{{'screens.project-designer.document-view.indentation' | translate}}</h6></div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label">{{'screens.project-designer.document-view.left' | translate}}</label>
+            <select class="form-control custom-form-input ddlHeight"  [(ngModel)]="leftIndentation">
+            <option *ngFor="let indentation of indentationList" [ngValue]="indentation">
+              {{indentation}}
+            </option>
+          </select>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label">{{'screens.project-designer.document-view.right' | translate}}</label>
+            <select class="form-control custom-form-input ddlHeight" [(ngModel)]="rightIndentation">
+            <option *ngFor="let indentation of indentationList"  [(ngValue)]="indentation">
+              {{indentation}}
+            </option>
+          </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-2"><h6>{{'screens.project-designer.document-view.spacing' | translate}}</h6></div>
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label">{{'screens.project-designer.document-view.before' | translate}}</label>
+            <select class="form-control custom-form-input ddlHeight" [(ngModel)]="lineSpaceBefore">
+            <option *ngFor="let spacing of spacingList" [(ngValue)]="spacing">
+              {{spacing}}
+            </option>
+          </select>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label">{{'screens.project-designer.document-view.after' | translate}}</label>
+            <select class="form-control custom-form-input ddlHeight" [(ngModel)]="lineSpaceAfter">
+              <option *ngFor="let spacing of spacingList" [(ngValue)]="spacing">
+                {{spacing}}
+              </option>
+          </select>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label class="custom-form-label">{{'screens.project-designer.document-view.lineSpacing' | translate}}</label>
+            <select class="form-control custom-form-input ddlHeight" [(ngModel)]="lineSpaceRule">
+            <option *ngFor="let lnSpacing of lineSpacingList" [(ngValue)]="lnSpacing">
+              {{lnSpacing}}
+            </option>
+          </select>
+          </div>
+        </div>
+
+        <div class="col-sm-3" *ngIf="lineSpaceRule == 'Multiple'">
+          <div class="form-group">
+            <label class="custom-form-label"></label>
+            <select class="form-control custom-form-input ddlHeight" [(ngModel)]="lineSpaceHeight">
+            <option *ngFor="let lnSpacing of lineSpacingMultipleList" [(ngValue)]="lnSpacing">
+              {{lnSpacing}}
+            </option>
+          </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+    </div>
+
+
+    <hr />
+
+  <h5>Formatting</h5>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <select class="form-control custom-form-input ddlHeight" id="ddlBlockType" [(ngModel)]="selectedFormatType">
+            <option *ngFor="let format of formatTypes" [ngValue]="format.type">
+              {{format.type}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="footerCard">
+    <nb-card-footer class="footerRightButton">
+      <button nbButton type="button" class="menu-btn-cancel createCancel" style="color:black;"
+        (click)="dismiss()"><label
+          class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.document-view.cancel' | translate}}</label></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="submit" class="menu-btn-save" id="btnCreateStyle"
+        (click)="modifyStyle()">{{'screens.project-designer.document-view.ok' | translate}}</button>
+    </nb-card-footer>
+  </nb-card-footer>
+</nb-card>

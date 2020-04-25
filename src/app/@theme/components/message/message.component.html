@@ -1,0 +1,7 @@
+<div *ngIf="messages.length">
+    <h2>{{'labels.validationSummary' | translate}}</h2>
+  <!-- <button class="btn btn-danger" (click)="clear()">clear</button> -->
+  <nb-alert *ngFor='let message of messages' status="{{getStatus(message.type)}}" closable (close)="onClose(message)"> 
+    {{message.message}}
+  </nb-alert>
+</div>

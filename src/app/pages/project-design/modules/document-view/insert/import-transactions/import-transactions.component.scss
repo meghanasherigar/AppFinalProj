@@ -1,0 +1,47 @@
+
+.createBlockpopupHW{
+    width: 1027px;
+    margin-top: 60px;
+}
+.createTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+    font-weight: normal;
+
+}
+.close{
+    color: #fff;
+    border: none;
+    border: 0;
+    border: 0 none !important;
+    color: #fff;
+    display: inline-block;
+    font-size: 22px;
+    line-height: 1;
+    opacity: 1;
+    text-shadow: none;
+   -webkit-transition: background 0.2s ease-in-out;
+   transition: background 0.2s ease-in-out;
+   vertical-align: top;
+   width: 46px;
+   outline: none;
+}
+.close:hover{
+    border: none;
+    border: 0;
+}
+.createBlockSave{
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    }
+
+    .disable-section {
+        opacity: 0.4;
+      }
+      
+      .disabledbutton {
+        pointer-events: none;
+      }
+    

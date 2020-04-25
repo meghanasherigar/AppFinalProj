@@ -1,0 +1,120 @@
+
+<div class="attributeView libraryAttributeView" >
+  <ngx-Icon-header></ngx-Icon-header>
+  <div class="row header">
+      <span class="attributeSubHeader"></span>
+      <!-- <div class=" attributeSubHeader"> ID </div> -->
+      <div class=" attributeSubHeader"> {{'screens.Attribute-view.Level' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.Attribute-view.Type' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.Attribute-view.Transactions' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.Attribute-view.Description' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.Attribute-view.ProjectYear' | translate}} </div>
+      <div class=" attributeSubHeader">  {{'screens.Attribute-view.Template Utilized in' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.Attribute-view.State' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.Attribute-view.Status' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.Attribute-view.Industry' | translate}} </div>
+    </div> 
+
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding >
+    <div class=" blockAttributes">
+        <!-- <button mat-icon-button disabled></button> -->
+        <span class="emptyBlock" *ngIf="!node.isStack"> <mat-form-field> <input matInput #itemValue value="{{node.title}}"disabled="disabled"> </mat-form-field> </span>
+    </div>
+    
+    
+    <!-- <div class=" blockAttributes" *ngIf="(node.blockId != null && node.blockId != undefined)" title="{{node.blockId}}"><mat-form-field> <input matInput [disabled]="true" #itemValue value="{{node.blockId}}"> </mat-form-field> </div>
+     <div class=" blockAttributes" *ngIf="(node.blockId == null && node.blockId == undefined)"><mat-form-field><input matInput #itemValue value="--" > </mat-form-field> </div> -->
+
+     <div class=" blockAttributes " *ngIf="(node.stackLevel != null && node.stackLevel != undefined)" >
+        <select class="form-control custom-form-input ddlHeight" id="ddlStackLevel"  [(ngModel)]="node.stackLevel.stackLevel" (change)="updateAttributeValue($event,node)">
+          <option [selected]="true" value="">{{node.stackLevel}}</option>
+          <option *ngFor="let stackLevel of stackLevels">
+            {{stackLevel.stackLevel}}
+          </option>
+        </select>
+       </div>
+       <div class=" blockAttributes " *ngIf="(node.stackLevel == null && node.stackLevel == undefined)" ><mat-form-field><input matInput [disabled]="true" class="stackLevel" #itemValue value="--" > </mat-form-field> </div>
+  
+     <div class=" blockAttributes" *ngIf="(node.blockType != null && node.blockType != undefined)" title="{{node.blockType.blockType}}" >
+      <select [disabled]=disabled  class="form-control custom-form-input ddlHeight" id="ddlBlockType" [(ngModel)]="node.blockType.blockType" (change)="updateAttributeValue($event,node)">
+      <option [selected]="true">{{node.blockType.blockType}}</option>
+      <option *ngFor="let blockType of blockTypes">
+          {{blockType.blockType}}
+        </option>
+    </select>
+     </div>
+     <div class=" blockAttributes" *ngIf="(node.blockType == null && node.blockType == undefined)"> <mat-form-field><input matInput #itemValue value="--"[disabled]=disabled> </mat-form-field> </div>
+
+     <div class=" blockAttributes"*ngIf="(node.transactionType != null && node.transactionType != undefined)">
+      <select class="form-control custom-form-input ddlHeight" id="ddlBlockStatus" [(ngModel)]="node.transactionType.transactionType" (change)="updateAttributeValue($event,node)">
+        <option [selected]="true">{{node.transactionType.transactionType}}</option>
+        <option *ngFor="let transaction of transactionList">
+          {{transaction.transactionType}}
+        </option>
+      </select>
+     </div>
+     <div class=" blockAttributes" *ngIf="(node.transactionType == null && node.transactionType == undefined)"><mat-form-field><input matInput [disabled]="true" #itemValue value="--" ></mat-form-field></div>
+
+     <div class=" blockAttributes" *ngIf="(node.description != null && node.description != undefined)" title="{{node.description}}"><mat-form-field> <input matInput #itemValue value="{{node.description}}"  
+      [(ngModel)]="node.description" (focusout)="updateAttributeValue($event,node)"[disabled]=disabled> </mat-form-field></div>
+     <div class=" blockAttributes" *ngIf="(node.description == null && node.description == undefined)"><mat-form-field><input matInput #itemValue value="--" [disabled]=disabled ></mat-form-field></div>
+
+     <div class=" blockAttributes "  *ngIf="(node.projectYear != null && node.projectYear != undefined)"><mat-form-field> <input matInput #itemValue value="{{node.projectYear}}"disabled="disabled"> </mat-form-field></div>
+     <div class=" blockAttributes " *ngIf="(node.projectYear == null && node.projectYear == undefined)"><mat-form-field><input matInput #itemValue value="--"disabled="disabled" ></mat-form-field></div>
+
+     <div class=" blockAttributes" *ngIf="(node.templatesUtilizedIn != null && node.templatesUtilizedIn != undefined)"><mat-form-field> <input matInput #itemValue value="{{node.templatesUtilizedIn}}"[disabled]=disabled> </mat-form-field></div>
+     <div class=" blockAttributes" *ngIf="(node.templatesUtilizedIn == null && node.templatesUtilizedIn == undefined)"><mat-form-field><input matInput #itemValue value="--" [disabled]=disabled></mat-form-field></div>
+     <div class=" blockAttributes" *ngIf="(node.blockState != null && node.blockState != undefined)">
+     <select class="form-control custom-form-input ddlHeight" id="ddlBlockState" [(ngModel)]="node.blockState.blockState" (change)="updateAttributeValue($event,node)">
+      <option [selected]="true">{{node.blockState.blockState}}</option>
+      <option *ngFor="let blockState of blockStates">
+        {{blockState.blockState}}
+      </option>
+    </select>
+  </div>
+     <div class=" blockAttributes" *ngIf="(node.blockState == null && node.blockState == undefined)"><mat-form-field><input matInput [disabled]="true" #itemValue value="--" ></mat-form-field></div>
+
+     <div class=" blockAttributes" *ngIf="(node.blockStatus != null && node.blockStatus != undefined)">
+        <select readonly class="form-control custom-form-input ddlHeight" id="ddlBlockStatus" [(ngModel)]="node.blockStatus.blockStatus" (change)="updateAttributeValue($event,node)"[disabled]=disabled>
+        <option readonly [selected]="true">{{node.blockStatus.blockStatus}}</option>
+        <option *ngFor="let status of blockStatus">
+            {{status.blockStatus}}
+          </option>
+      </select>
+       </div>
+       <div class=" blockAttributes" *ngIf="(node.blockStatus == null && node.blockStatus == undefined)"><mat-form-field><input matInput #itemValue value="--" [disabled]=disabled ></mat-form-field></div>
+    
+       <div class=" blockAttributes" *ngIf="(node.industry[0] != null && node.industry[0] != undefined)" >
+          <ngx-dropdown-treeview  class="home-industry org-industry"[buttonClasses]="buttonClasses"
+         [config]="config"
+          [items]="node.industry" (selectedChange)="updateAttributeValue($event,node)">
+        </ngx-dropdown-treeview>
+        </div>
+
+       <div class=" blockAttributes" *ngIf="(node.industry[0] == null && node.industry[0] == undefined)"><mat-form-field><input matInput #itemValue value="--"[disabled]=disabled></mat-form-field></div>
+
+    <span class="stackDisplay" *ngIf="node.isStack">{{node.description}}</span>
+  </mat-tree-node>
+
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild"  [ngClass]="{'nestedBlock':!node.isStack}" >
+    <div class=" blockAttributes libraryAttribute">
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename" (click)="expandBlock(node)">
+            <mat-icon class="mat-icon-rtl-mirror"   *ngIf="node.isStack">
+            
+              {{treeControl.isExpanded(node) ? 'remove_circle_outline' : 'add_circle_outline'}}
+            </mat-icon>
+            <mat-icon class="mat-icon-rtl-mirror"   *ngIf="!node.isStack">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+       
+  
+      <span  *ngIf="!node.isStack">{{node.title}}</span><span class="stackDisplay" *ngIf="node.isStack">{{node.description}}</span>
+    
+    </div>
+    
+  </mat-tree-node>
+</mat-tree>
+<span #emptyItem></span>
+</div>

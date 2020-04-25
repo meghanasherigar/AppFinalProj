@@ -1,0 +1,106 @@
+<div class="row ">
+  <div id="TaskFilters" [ngClass]="{'collapsed ':!show}" class="col-sm-12 toolbar-component-container">
+    <div class="create-section createDeliverableSection">
+      <div class="action-icon-wrapper" *ngIf="selectedTab === taskMenuItems.AllTasks">
+        <img src="assets/images/ProjectManagement/download-active.svg" class="btnToolbar"
+        (click)="downloadTasks()"
+        >
+        <span class="icon-name">{{ 'screens.Project-Management.Tasks.Header.Download' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" *ngIf="selectedTab === taskMenuItems.AllTasks">
+        <img src="assets/images/ProjectManagement/re-assign-active.svg" class="btnToolbar"
+        [ngClass]="{'disabledbutton ':!enableReAssignButton}"
+        (click)="ReassignTask()">
+        <span class="icon-name">{{ 'screens.Project-Management.Tasks.Header.ReAssign' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" *ngIf="selectedTab === taskMenuItems.AllTasks">
+        <img src="assets/images/ProjectManagement/other-tasks-active.svg" class="btnToolbar" (click)="otherTasks()">
+        <span class="icon-name">{{ 'screens.Project-Management.Tasks.Header.OtherTask' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" *ngIf="!showEditableFields && selectedTab === taskMenuItems.AllTasks">
+        <img src="assets/images/ProjectManagement/edit-active.svg" class="btnToolbar"
+        [ngClass]="{'disabledbutton ':!enableEditButton}" (click)="toggleEditableFields()">
+        <span class="icon-name">{{ 'screens.Project-Management.Tasks.Header.Edit' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" id="clearFilter" [ngClass]="{'disabledbutton ':!show}">
+        <img src="assets/images/ProjectManagement/clear-filter-active.svg" (click)="clearFilters();" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.Project-Management.Tasks.Header.ClearFilter' | translate }}</span>
+      </div>
+
+    </div>
+    <div class="filters-section">
+      <div class="filter-icon-wrapper">
+        <div class="action-icon-wrapper" *ngIf="!showEditableFields">
+          <img src="assets/images/Filter-active.svg" class="btnToolbar" (click)="toggleCollapse()">
+          <span class="icon-name">{{ 'screens.Project-Management.Blocks.Header.Filter' | translate }}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="action-icon-wrapper editableContent " id="showEditableFields" *ngIf="showEditableFields && selectedTab === taskMenuItems.AllTasks">
+          <div class="col-md-5">
+            <div class="">
+              <input type="text" class="form-control custom-form-input" bsDatepicker [(ngModel)]="taskDueDate"
+                #dpCommon="bsDatepicker" [placeholder]="'screens.Project-Management.Tasks.GridColumn.DueDate' | translate"
+                [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }"
+                (bsValueChange)="setTaskDueDate($event)" readonly>
+              <label class="taskCalIcon">
+                <i>
+                  <img (click)="dpCommon.show()" [attr.aria-expanded]="dpCommon.isOpen" src="assets/images/calender.png"
+                    class="calender-icon"></i>
+              </label>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <button type="button" (click)="cancelTaskDueDate()"
+              class="menu-btn-cancel taskCancel">{{ 'screens.Project-Management.Tasks.Messages.Labels.Cancel' | translate }}</button>&nbsp;
+            <button (click)="saveTaskDueDate()"
+              class="menu-btn-save taskbtnSave">{{ 'screens.Project-Management.Tasks.Messages.Labels.Save' | translate }}</button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="filter-inputs-wrapper" id="DeliverableFilters" [hidden]="!show">
+          <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Tasks.GridColumn.TaskType' | translate" [data]="taskTypes"
+            [(ngModel)]="taskType" [settings]="taskTypeSetting" (onSelect)="onTaskTypeSelect($event)"
+            (onDeSelect)="onTaskTypeDeSelect($event)" (onSelectAll)="onTaskTypeSelect($event)"
+            (onDeSelectAll)="onTaskTypeDeSelect($event)">
+          </ng-multiselect-dropdown>
+          <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Tasks.GridColumn.Status' | translate" [data]="tasksStatus"
+            [(ngModel)]="taskStatus" [settings]="taskStatusSetting" (onSelect)="onTaskStatusSelect($event)"
+            (onDeSelect)="onTaskStatusDeSelect($event)" (onSelectAll)="onTaskStatusSelect($event)"
+            (onDeSelectAll)="onTaskStatusDeSelect($event)">
+          </ng-multiselect-dropdown>
+          <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Tasks.GridColumn.AssignBy' | translate" [data]="assignedByList"
+            [(ngModel)]="assignBy" [settings]="assignedBySetting" (onSelect)="onAssignedBySelect($event)"
+            (onDeSelect)="onAssignedByDeSelect($event)" (onSelectAll)="onAssignedBySelect($event)"
+            (onDeSelectAll)="onAssignedByDeSelect($event)">
+          </ng-multiselect-dropdown>
+          <div class="small-column"></div>
+          <div class="small-column"></div>
+          <div class="input-wrapper filter-input">
+            <input type="text" class="form-control" [placeholder]="'screens.Project-Management.Tasks.GridColumn.DueDate' | translate" bsDaterangepicker
+              #dpcreationDate="bsDaterangepicker" [(ngModel)]="DueDate" (bsValueChange)="onDueDate($event)"
+              [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+            <label>
+              <i>
+                <img src="assets/images/calender.png" (click)="dpcreationDate.show()"
+                  [attr.aria-expanded]="dpcreationDate.isOpen" class="calender-icon">
+              </i>
+            </label>
+          </div>
+          <nb-rangepicker #rangepicker  format="DD MMM YYYY" (rangeChange)="onDueDate($event)">
+          </nb-rangepicker>
+          <div class="input-wrapper filter-input">
+            <ngx-search (search)="onSearch($event)"> </ngx-search>
+          </div>
+          <span class="section-name">{{ 'screens.Project-Management.Deliverable.Header.Filters' | translate }}</span>
+        </div>
+    </div>
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+      {{imageName}}
+      <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+      <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+    </div>
+  </div>
+</div>

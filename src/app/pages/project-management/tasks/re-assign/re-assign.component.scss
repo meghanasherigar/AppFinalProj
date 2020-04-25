@@ -1,0 +1,107 @@
+.reassignHeader{
+background: #000;
+}
+.reassignPopup{
+    width: 429px;
+}
+.reassignHeaderContent{
+    font-size: 12px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+.assignFooter{
+    border-top: 0.5px solid #D8D8D8 !important;
+    padding: 10px;
+ }
+ P{
+     margin: 0px !important;
+     font-size: 12px;
+     color: #000;
+ }
+ p span{
+     font-weight: 700;
+     font-size: 12px;
+     color: #000;
+ }
+ .footerButton{
+    text-align: right;
+    padding-right: 18px;
+    .menu-btn-cancel{
+        border-radius: 3px;
+    }
+ }
+ .assignIcon{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  text-align: center;
+  border: 2px solid black;
+  padding: 3px;
+     img{
+        width: 62%;
+        height: 99%;
+     }
+ }
+
+ .reAssignMatChip{
+    padding-left: 0;
+    .mat-chip.mat-standard-chip.mat-primary{
+       text-overflow: ellipsis;
+       white-space: nowrap;
+        display: inherit;
+      -webkit-line-clamp: 1;
+       overflow: hidden;
+       width:183px;
+       position: relative;
+    }
+    .mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+      color: black;
+     }
+     .mat-standard-chip .mat-chip-remove.mat-icon{
+      position: absolute;
+      /* left: inherit; */
+      right: 3px;
+      font-size: 14px;
+     }
+  }
+ .reassignInfo{
+     margin-bottom: 20px;
+     padding: 0px;
+ }
+ .ReAssignTaskError{
+    color: red;
+    font-size: 9px;
+    padding: 0px;
+    margin-top: 20px;
+}
+ #btnAssign{color: white;}
+ .reassinFooter{
+    border-top: 1px solid #eee !important;
+    padding: 9px;
+ }
+ .input-wrapper.filter-input{
+    position: relative;
+    input{
+       border: 1px solid #D2D4CD;
+       padding: 4px !important;
+       height: 30px;
+       &::placeholder{
+          color: #BBBCBC;
+          font-size: 10px;
+       }
+    }
+    label{
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+}
+.tarea{
+    height: 100px !important;
+    width: 100%;
+    border: 1px solid #e2e1e1;
+}
+.reassignEmail{
+    margin-left: -13px;
+}

@@ -1,0 +1,7 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="infoList-table" ngxUiLoaderBlurred>
+  <ng2-smart-table   id="infoListTable" [settings]="settings" [source]="source" (userRowSelect)="oninfoRowSelect($event)" (custom)="customAction($event)">
+      </ng2-smart-table>
+</div>

@@ -1,0 +1,41 @@
+<nb-card>
+  <nb-card-header class="search-header">
+      <div class="row">
+          <div class="col-xs-12">
+              <span class="header-text">{{'screens.project-designer.document-view.info-request.sendbackforassignee' | translate}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+              <span>{{'screens.project-designer.document-view.info-request.questionssentbackassignee' | translate}}</span>
+          </div>
+        </div>
+  </nb-card-header>
+<nb-card-body>
+<form [formGroup]="sendBackToAssigneeFrom">
+  <div class="row col-12">
+    <div class="col-12">
+      <label>
+      <input type="radio" name="list_name" value="false" formControlName="IsOnlyRejected" [(ngModel)]="IsCheckedRejected" class="check"/>
+      {{'screens.project-designer.document-view.info-request.OnlyRejected' | translate}}
+      </label>
+    </div>
+    <div class="col-12">
+      <label>
+      <input type="radio" name="list_name" value="true" formControlName="IsCompleteInfoReq" [(ngModel)]="IsCheckedRejected" class="check"/>
+      {{'screens.project-designer.document-view.info-request.CompleteInfoReq' | translate}}
+      </label>
+    </div>
+  </div>
+</form>
+</nb-card-body>
+<nb-card-footer class="footerCard alignRight">
+    <nb-card-footer class="footerRightButton">        
+    <button nbButton type="button" class="menu-btn-cancel" style="color:black;" 
+    (click)="dismiss()"><label class="menu-txt-cancel">{{'screens.project-designer.document-view.info-request.No' | translate}}</label></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="submit" class="menu-btn-save linkToButton" (click) = "SendBackToAssignee()"
+    id="btnSendBackToAssignee">{{'screens.project-designer.document-view.info-request.Yes' | translate}}</button>
+    </nb-card-footer>
+</nb-card-footer>        
+</nb-card>

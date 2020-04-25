@@ -1,0 +1,87 @@
+.editblockHeading{
+    font-weight:bold;
+}
+
+.edidAttributeformGroupLabal
+{
+    color: #d4d3d3;
+    font-size: 11px;
+}
+.edit-block-attribute-mandatory-icon{
+    color:#f50505;
+}
+.saveCancelBtn{
+    float: right;
+}
+.saveCancelBtnTopBorder{
+    border-top: 1px solid #eee!important;
+    padding: 10px;
+}
+.editAttributesavButton {
+    height: 35px;
+    width: 109px;
+    border: 1px solid #636561;
+    border-radius: 3px;
+    background-color: #666765;
+    color: #fff;
+}
+.canclebuttonLebal{
+    color:#aba9a9 !important;
+}
+.editBlockpopupHW{
+    width: 100%;
+    margin-top: 10px;
+    .form-group{
+        width:100%;
+    }
+}
+.ediTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+    padding:10px;
+
+}
+.close{
+    color: #fff;
+    border: none;
+    border: 0;
+}
+.close:hover{
+    border: none;
+    border: 0;
+}
+.attributeIcon{
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1.1px solid white;
+    img{
+        height: 11px;
+        width: 11px;
+        vertical-align: middle;
+    }
+}
+.attributeText{
+    display: inline-block;
+    width: 81%;
+    padding-left: 10px;
+    span{
+        font-size: 14px;
+        font-weight: normal;
+    }
+}
+.disableBlockTitle{
+    pointer-events:none;
+}
+
+.disable-section {
+    opacity: 0.4;
+  }
+  
+  .disabledbutton {
+    pointer-events: none;
+  }

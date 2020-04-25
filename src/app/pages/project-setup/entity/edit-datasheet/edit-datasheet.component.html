@@ -1,0 +1,127 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader> 
+<form [formGroup]="entityForm" ngxUiLoaderBlurred>
+<div formArrayName="entities" class="attributeView deliverableAttributeView" >
+    <div class="divParent">
+      <div class="headerTitle">
+        <p class="titleText">{{'screens.project-setup.transaction.transaction-create.DataSheet' | translate}}</p>
+        <p class="closeBtn" (click)="onCloseDatasheet()"> X</p>
+
+      </div>
+  <div class="row header">
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.LegalEntityName' | translate}}<span class="mandatoryField">*</span></div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.ShortName' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.Country' | translate}} <span class="mandatoryField">*</span></div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.TaxableYearEnd' | translate}} <span class="mandatoryField">*</span></div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.ReportTier' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.Tier' | translate}} (If <i style="font-style: italic">Other</i>)</div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.TaxId' | translate}} </div>
+      <div class=" attributeSubHeader">{{'screens.project-setup.entity.entity-create.InScope' | translate}} <span class="mandatoryField">*</span></div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.LocalAddress' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.TaxOffice' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.TaxOfficeAddress' | translate}} </div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.EmployeeName' | translate}} 1 </div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.EmployeeEmail' | translate}} 1</div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.EmployeeName' | translate}} 2 </div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.EmployeeEmail' | translate}} 2</div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.EmployeeName' | translate}} 3 </div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.EmployeeEmail' | translate}} 3</div>
+      <div class=" attributeSubHeader"> {{'screens.project-setup.entity.entity-create.PrimaryContact' | translate}}</div>
+    </div> 
+    <div class="entityWrapper">
+    <div *ngFor="let entity of entities.controls;let i=index" [formGroupName]="i"  class="itemWrapper" [ngClass]="{'lowhighlight':!entity.valid}">
+      <div class=" blockAttributes"><input type="text" formControlName="LegalEntityName" [ngClass]="{'highlight':!entities.controls[i].get('LegalEntityName').valid}" class="form-control custom-form-input"  
+        (focusout)="updateEntity($event,entity,i);">
+      </div>
+      <div class=" blockAttributes"><input type="text" class="form-control custom-form-input"
+        formControlName="EntityShortName" (focusout)="updateEntity($event,entity,i);"></div>
+
+        <div class="blockAttributes CountryDetails" [ngClass]="{'countryValidation':selectedItems[i].length===0}">
+        <ng-multiselect-dropdown  [ngClass]="'custom-mg-multiselect'" [placeholder]="''"
+        [data]="countries" formControlName="Country" [(ngModel)]="selectedItems[i]" [settings]="dropdownCountrySettings"
+        (onDeSelect)="updateEntity($event,entity,i);" (onSelect)="updateEntity($event,entity,i);"
+        >
+      </ng-multiselect-dropdown>
+        </div>
+
+        <div class=" blockAttributes"><input type="text" class="form-control custom-form-input" [ngClass]="{'highlight':!entities.controls[i].get('TaxableYearEnd').valid}"
+          id="txtTaxableYearEnd"  formControlName="TaxableYearEnd" (ngModelChange)="updateEntity($event,entity,i);"
+          placeholder="DD MMM YYYY" bsDatepicker #dpTaxableYearEnd="bsDatepicker"
+          [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly></div>
+     
+      <div class=" blockAttributes ">
+        <select class="form-control custom-form-input ddlHeight" formControlName="ReportTierId" (change)="others(event,entity,i);">
+          <option class="hide"></option>
+          <option *ngFor="let tier of reportTiers" [ngValue]="tier.id"
+          >
+            {{tier.reportTier}}
+          </option>
+        </select>
+      
+        </div>
+        <div class=" blockAttributes ">
+        <input type="text" placeholder="If Other" *ngIf="entityOthersVisible[i].isPrimary" (focusout)="updateEntity($event,entity,i,'reportTiersOther');"
+         class="form-control custom-form-input" formControlName="OtherReportTier">
+        </div>
+        <div class="blockAttributes"><input type="text" class="form-control custom-form-input"
+          formControlName="TaxId" (focusout)="updateEntity($event,entity,i);"></div>
+        
+          <div class=" blockAttributes ">
+            <select class="form-control custom-form-input ddlHeight" formControlName="Scope" [ngClass]="{'highlight':!entities.controls[i].get('Scope').valid}" (change)="updateEntity($event,entity,i);">
+              <option value="Yes">{{'screens.project-designer.document-view.info-request.Yes' | translate}}</option>
+              <option value="No">{{'screens.project-designer.document-view.info-request.No' | translate}}</option>  
+            </select>
+            </div>
+  
+        <div class=" blockAttributes"><input type="text" class="form-control custom-form-input" 
+          formControlName="LocalAddress" (focusout)="updateEntity($event,entity,i);" ></div>
+
+          <div class=" blockAttributes"><input type="text" class="form-control custom-form-input"
+            formControlName="TaxOffice" (focusout)="updateEntity($event,entity,i);"></div>
+    
+            <div class=" blockAttributes"><input type="text" class="form-control custom-form-input"
+              formControlName="TaxOfficeAddress" (focusout)="updateEntity($event,entity,i);"></div>
+          
+          <div class=" blockAttributes"><input type="text" class="form-control custom-form-input"   
+            formControlName="EmployeeName" [(ngModel)]="(employeeName[i])[0].contact" (focusout)="updateEntity($event,entity,i);" [ngClass]="{'highlight':!entities.controls[i].get('EmployeeName').valid}"></div>
+    
+    
+          <div class=" blockAttributes"><input type="text" class="form-control custom-form-input" formControlName="EmployeeEmail"  [(ngModel)]="(employeeEmail[i])[0].contact"  [ngClass]="{'highlight':!entities.controls[i].get('EmployeeEmail').valid}"
+            (focusout)="updateEntity($event,entity,i);"> </div>
+            
+            <div class=" blockAttributes"><input type="text" class="form-control custom-form-input" formControlName="EmployeeName2" [(ngModel)]="(employeeName[i])[1].contact" [ngClass]="{'highlight':!entities.controls[i].get('EmployeeName2').valid}"
+              (focusout)="updateEntity($event,entity,i);"></div>
+      
+      
+            <div class=" blockAttributes"><input type="text" class="form-control custom-form-input" formControlName="EmployeeEmail2" [(ngModel)]="(employeeEmail[i])[1].contact" [ngClass]="{'highlight':!entities.controls[i].get('EmployeeEmail2').valid}"
+              (focusout)="updateEntity($event,entity,i);"></div>
+
+               <div class=" blockAttributes"><input type="text" class="form-control custom-form-input" formControlName="EmployeeName3"  [(ngModel)]="(employeeName[i])[2].contact" [ngClass]="{'highlight':!entities.controls[i].get('EmployeeName3').valid}"
+                (focusout)="updateEntity($event,entity,i);"></div>
+        
+        
+              <div class=" blockAttributes"><input type="text" class="form-control custom-form-input" formControlName="EmployeeEmail3" [(ngModel)]="(employeeEmail[i])[2].contact"    [ngClass]="{'highlight':!entities.controls[i].get('EmployeeEmail3').valid}"
+                (focusout)="updateEntity($event,entity,i);"></div>
+                 <div class=" blockAttributes "   >
+                  <select class="form-control custom-form-input ddlHeight" [ngClass]="{'highlight':!entities.controls[i].get('PrimaryContact').valid}"
+                  formControlName="PrimaryContact" (change)="updateEntity($event,entity,i,'primaryContact');">
+                    <option class="hide"></option>
+                    <option *ngFor="let email of employeeEmail[i]" [hidden]="email.contact ? false : true"
+                    value={{email.contact}}
+                    >
+                      {{email.contact}}
+                    </option>
+                  </select>
+                  </div>
+    </div>
+
+
+  </div>
+  <div class="saveButton">
+    <button  class="menu-btn-save" (click)="onSaveDatasheet()" type="submit">{{'screens.project-setup.transaction.transaction-create.Save&Close' | translate}}</button>
+  </div>
+
+    </div>
+  </div>
+</form>

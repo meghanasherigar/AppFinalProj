@@ -1,0 +1,82 @@
+.frequently-asked-que {
+    height: 27px;
+    width: 259px;
+    color: #000000;
+    font-family: "Open Sans";
+    font-size: 20px;
+    letter-spacing: -0.05px;
+    line-height: 27px;
+    margin-left: 25px;
+  }
+  
+  .last-updated-by-roh {
+    height: 18px;
+    width: 299px;
+    color: #999F9F;
+    font-family: "Open Sans";
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .textAreaBodyWrapper textarea{
+    height: 72px;
+    background: transparent;
+    border: none;
+    resize: none;
+  }
+  
+  .fill-24 {
+    height: 45px;
+   // width: 1198px;
+  }
+  
+  .fill-33-copy {
+    box-sizing: border-box;
+    height: 40px;
+    width: 100%;
+    border: 1px dashed #979797;
+    background: transparent;
+  }
+  
+  .getting-started {
+    height: 22px;
+    width: 118px;
+    color: #110F0F;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: NaNpx;
+  }
+  
+  .rectangle {
+    height: auto;
+    width: auto;
+    background-color: transparent;
+  }
+  
+  .textAreawidth {
+    width: 100%;
+  }
+  
+  .title:empty:not(:focus):before {
+    content: attr(data-placeholder)
+  }
+    .iconHeight{
+        height: 12px;
+    }
+    .hideIcons
+    {
+        display:none !important;
+    }
+    .showIcons
+    {
+        display: block !important;
+    }
+    .textAreaBodyWrapper  .item-body{
+      background: #fafafa;
+      
+    }
+    .textAreaBodyWrapper .helpWhatsnewContent{
+      background: transparent;
+      border: none;
+      min-height: 90px;
+    }

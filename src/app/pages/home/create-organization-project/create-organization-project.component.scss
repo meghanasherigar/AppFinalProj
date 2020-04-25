@@ -1,0 +1,187 @@
+.mandatory {
+  color: red;
+}
+
+.dropdown {
+  height: 35px !important;
+}
+
+.addBtn {
+  background-color: transparent;
+  cursor: pointer;
+  // color: #C9D4D8;  
+  border: 1px dashed #D7DADB;
+  padding: 3px 10px 3px 10px;
+  margin-top: 25px;
+  margin-left: 15px;
+}
+
+.highlight {
+  border: 2px solid red;
+}
+
+.ddlHeight {
+  height: 39px !important;
+}
+
+.btn.btn-outline-primary {
+  border: 2px solid #dadfe6 !important;
+}
+
+.button-section {
+  background-color: #86BC25;
+  border: none;
+  color: white;
+  padding: 10px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.canelButton {
+  background-color: white;
+  border: 1px solid black;
+  color: white;
+  padding: 7px 29px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+.dropdown-style {
+  background: white;
+  color: black;
+  cursor: pointer;
+  // border: 1px solid #989CA1;
+  background-color: white;
+
+}
+
+
+
+.others-section {
+  padding-top: 8px;
+}
+
+.mat-form-field {
+  width: 100% !important;
+}
+
+.lead-validation-error{
+  border: 1px solid red !important;
+}
+
+#createOrganizationProject{
+  background-color: white;
+  // margin-bottom: 1.5rem;
+  border-bottom: 1px solid #D6D6D6;
+
+  form{
+    nb-card{
+      margin-bottom: 0;
+      display:block;
+      nb-card-header{
+        display: inline-block;
+        width: 100%;
+        padding-bottom: 0!important;
+
+        hr{
+          margin-top: 5px;
+          color: #D6D6D6;
+          margin-bottom: 0;
+          width: 74%;
+          margin-left:0;
+
+        }
+      }
+
+      nb-card-body{
+        display: contents;
+         width: 100%;
+         .col-sm-12{
+          padding-left: 35px;
+          padding-top: 10px;
+
+         }
+         .col-sm-11{
+          padding-left: 35px;
+          padding-top: 10px;
+         }
+        .inner-header{
+          padding-left: 0;
+        }
+
+        hr{
+          margin-top: 5px;
+          color: #D6D6D6;
+          margin-bottom: 17.5px;
+          width: 74%;
+          margin-left: 0;
+        }
+      }
+
+      nb-card-footer{
+        display: inline-block;
+      
+        padding: 10px 10px 25px 35px;
+        .menu-btn-save{
+          border-radius: 3px;
+          color: white;
+        }
+
+        .menu-btn-cancel{
+          border-radius: 3px;
+          .menu-text-cancel{
+            color: #86BC25;
+          }
+        }
+      }
+    }
+  }
+}
+ngx-dropdown-treeview{
+  button{
+    height: 31px !important;
+    border: 1px solid #D2D4CD !important;
+    background-color: #FFFFFF !important;
+    border-radius: 0 !important;
+    margin: -10px 0 0 0;
+    padding: 4px 37px 4px 12px!important;
+    width: 137px;
+  }
+}
+.fromGroupBottom{
+  margin-bottom: -8px;
+}
+.customwidth{
+  flex: 0 0 17.5%;
+}
+.yearWidth{
+  flex: 0 0 10.666667%;
+}
+.selectLibrary{
+  width: 100%;
+}
+.projectDesc{
+  width: 75.5%;
+}
+h5.headerTitle{
+  color: #999F9F;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  margin-left: 5px;
+  padding-bottom: 0;
+}
+h5.headerTitle.projectTitle{
+  padding-left: 1.25em;
+  &+hr{
+    margin-left: 1.25em !important;
+    margin-bottom: 0!important;
+    width: 72% !important;
+  }
+}

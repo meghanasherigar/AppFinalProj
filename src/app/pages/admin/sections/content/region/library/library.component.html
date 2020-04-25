@@ -1,0 +1,41 @@
+<div class="libraryWrapper">
+<table>
+        <tr>
+            <td>
+                <div class="DocViewBlockLeft">
+                    <ngx-Icon-header></ngx-Icon-header>
+                </div>
+            </td>
+            <td class="width100">
+                <div class="padd-leftRight manageAdminEditorSec"
+                    [ngClass]="{'showAttributes':!hideBlockAttribute || !hideStackAttribute  || !hideQuestion ,'trackChangeContainer': showTrackChanges}">
+                    <ngx-block-detail></ngx-block-detail>
+                    <div class="col-md-3 padd-leftRight" id="sidebar1" *ngIf="showTrackChanges"></div>
+                </div>
+            </td>
+            <td>
+                <div class="padd-leftRight atttributeDiv adminAttributeView DocViewBlockRight"
+                    *ngIf="!hideBlockAttribute || !hideStackAttribute">
+                    <ngx-block-attribute *ngIf="!hideBlockAttribute"></ngx-block-attribute>
+                    <ngx-stack-attributes *ngIf="!hideStackAttribute"></ngx-stack-attributes>
+                    <!-- <ngx-create-question *ngIf = "!hideQuestion"></ngx-create-question> -->
+                    
+                </div>
+                <div class="padd-leftRight atttributeDiv admintaskView"
+                    *ngIf=" !hideQuestion || !checkQuestionList()">
+                    <div class="DocViewCreateQuestW padd-leftRight">
+                        <div [hidden]="hideQuestion">
+                            <ngx-create-question></ngx-create-question>
+                        </div>
+                        <div [hidden]="checkQuestionList()">
+                            <ngx-questions-list></ngx-questions-list>
+                        </div>
+                    </div>                   
+                </div>
+                <div class="DocViewBlockRight padd-leftRight" *ngIf="showStylePanel">
+                    <ngx-layout-style-panel></ngx-layout-style-panel>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

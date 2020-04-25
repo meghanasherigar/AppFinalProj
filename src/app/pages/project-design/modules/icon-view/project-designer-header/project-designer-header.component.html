@@ -1,0 +1,83 @@
+<div class="header-container level2header" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
+  <nav class="navbar navbar-light bg-transparent navbar-expand-md px-0">
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse"
+      data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+      <ul class="navbar-nav pl-0">
+        <li class="nav-item rectangle-copy"  
+        [ngClass] = "isDocumnetViewDoubleClick || isUrlRedirectActive ?  'li-disabled' :
+        isDocFullViewEnabled?' ': 
+        selectedMenu === myMenus.Block ? 'rectangle-active':' '"
+        (click)="activateMenu(myMenus.Block)">
+          <a  class="nav-link" class="textcolorlevel1 noUnderline">
+            {{'screens.project-designer.iconview.headerBlock.Block' | translate}}</a>
+        </li>
+        <div class="document-view-menue" *ngIf="isDocumnetViewDoubleClick||isDocFullViewEnabled">
+            <ul class="navbar-nav pl-0">
+              <li class="nav-item rectangle-copy" 
+              [ngClass]="selectedSubMenu === mySubMenus.Editor ? 'rectangle-active':' '"  
+              (click)="activateSubMenu(mySubMenus.Editor)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline">
+                {{'screens.project-designer.iconview.headerBlock.Editor' | translate}}</a>
+              </li>
+              <li class="nav-item rectangle-copy" 
+              [ngClass]="selectedSubMenu === mySubMenus.Insert ? 'rectangle-active':' '"  
+              (click)="activateSubMenu(mySubMenus.Insert)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline">
+                {{'screens.project-designer.iconview.headerBlock.Insert' | translate}}</a>
+              </li>
+              <li class="nav-item rectangle-copy" 
+              [ngClass]="selectedSubMenu === mySubMenus.Layout ? 'rectangle-active':' '"  
+              (click)="activateSubMenu(mySubMenus.Layout)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline">
+                {{'screens.project-designer.iconview.headerBlock.Layout' | translate}}</a>
+              </li>
+              <li class="nav-item rectangle-copy"
+              [ngClass]="selectedSubMenu === mySubMenus.Review ? 'rectangle-active':' '"  
+              (click)="activateSubMenu(mySubMenus.Review)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline">
+                {{'screens.project-designer.iconview.headerBlock.Review' | translate}}</a>
+              </li>
+              <li class="nav-item rectangle-copy" 
+              [ngClass]="selectedSubMenu === mySubMenus.Tasks ? 'rectangle-active':' '"  
+              (click)="activateSubMenu(mySubMenus.Tasks)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline">
+                {{'screens.project-designer.iconview.headerBlock.Tasks' | translate}}</a>
+              </li>
+              
+              
+            </ul>
+        </div>
+        <li class="nav-item rectangle-copy" 
+          [ngClass] = "(isDocumnetViewDoubleClick || disableTab || isUrlRedirectActive) ?  'li-disabled' : selectedMenu === myMenus.Templates_Deliverables ? 'rectangle-active':' '"
+          (click)="activateMenu(myMenus.Templates_Deliverables)">
+          <a class="nav-link hover" class="textcolorlevel1 noUnderline">
+            {{'screens.project-designer.iconview.headerBlock.TemplatesDeliverables' | translate}}</a>  
+          </li>
+        <li class="nav-item rectangle-copy"
+          [ngClass] = "(isDocumnetViewDoubleClick || isAppendixTabDisable || isUrlRedirectActive) ?  'li-disabled' : selectedMenu === myMenus.Appendices ? 'rectangle-active':' '"
+          (click)="activateMenu(myMenus.Appendices)">
+          <a class="nav-link" class="textcolorlevel1 noUnderline">
+            {{'screens.project-designer.iconview.headerBlock.Appendices' | translate}}</a>
+        </li>
+        <li class="nav-item rectangle-copy"
+              [ngClass]="isUrlRedirectActive ? 'li-disabled' : selectedSubMenu === mySubMenus.InformationRequest ? 'rectangle-active':' '"  
+              (click)="activateSubMenu(mySubMenus.InformationRequest)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline" >
+                {{'screens.project-designer.iconview.headerBlock.InformationGathering' | translate}}</a>
+              </li>
+        <li class="nav-item rectangle-copy"
+              [ngClass]="isUrlRedirectActive ? 'li-disabled' : selectedSubMenu === mySubMenus.AnswerTag ? 'rectangle-active':' '"  
+              (click)="activateSubMenu(mySubMenus.AnswerTag)">
+              <a class="nav-link" class="textcolorlevel1 noUnderline" href="#/pages/project-design/projectdesignMain/documentViewMain/(level2Menu:answer-level2-menu//topmenu:iconviewtopmenu)">
+                {{'screens.project-designer.iconview.headerBlock.AnswerTag' | translate}}</a>
+              </li>
+        <li class="nav-item rectangle-copy" [hidden]="hideOrShowMenus"
+        [ngClass] = "isDocumnetViewDoubleClick || disableInfoReq || isUrlRedirectActive ?  'li-disabled' : isDocFullViewEnabled ?' ': selectedMenu === myMenus.InformationRequest? 'rectangle-active':' '"
+        (click)="activateMenu(myMenus.InformationRequest)">
+        <a class="nav-link" class="textcolorlevel1 noUnderline">
+          {{'screens.project-designer.iconview.headerBlock.informationRequest' | translate}}</a>
+       </li>
+            </ul> </div> </nav> </div>

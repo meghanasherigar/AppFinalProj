@@ -1,0 +1,80 @@
+<p>
+  send-back-forward-question works!
+</p>
+
+<div class="questionWrapper" ngxUiLoaderBlurred>
+  <form [formGroup]="SendBackForReviewForm" (ngSubmit)="sendBackForwardQuestion()">
+    <nb-card class="editBlockpopupHW editorBlockAttributes ">
+      <nb-card-header>
+        <div>
+          <label>
+            &nbsp;&nbsp;{{'screens.project-designer.document-view.info-request.sendBackForReview-ForwardQuestion' | translate}}
+          </label>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="form-group form-grp">
+          <div class="col-sm-12">
+          <label
+            class="custom-form-label col-sm-3 padding0">{{'screens.project-designer.document-view.info-request.questions' | translate}}
+            <span class="mandatory-icon">* </span>
+          </label>
+          <div *ngFor="let question of questionsUser" formControlName="Question" value="question.id" class="col-sm-9 paddingRight0"> {{question.Title}}{{question.id}}
+  
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <label
+            class="custom-form-label col-sm-3 padding0">{{'screens.project-designer.document-view.info-request.users' | translate}}
+            <span class="mandatory-icon">* </span>
+          </label>
+          <div class="col-sm-9 paddingRight0">
+            <input type="hidden" formControlName="Users" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && form.Users.errors }" id="hdnUsers">
+            <div class="col-sm-9 paddingRight0">
+              <div  *ngFor="let question of questionsUser">
+                  <!-- <mat-form-field class="example-full-width form-control" floatLabel="never">
+                      <mat-chip-list #chipList>
+                          <mat-chip *ngFor="let item of question.Users"  [selectable]="selectable"  [removable]="removable"  (removed)="removeEmailIds(item.email)">
+                              {{ item.email }}
+                          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input  type="text" aria-label="Number" id="txtCCEmailAddress" formControlName="DDUser" 
+                          [matAutocomplete]="auto" [matChipInputFor]="chipList" #ccReset >
+                      </mat-chip-list>
+                      <mat-autocomplete #auto="matAutocomplete"  (optionSelected)='getSelectedCCEmailIds($event.option.value, ccReset)'>
+                          <mat-option class="dropdown-style mat-option ng-star-inserted"
+                              *ngFor="let item of question.Users" [value]="item.email" >
+                              {{ item.firstName + ' ' + item.lastName + ' ('+ item.email +')'}}
+                          </mat-option>
+                      </mat-autocomplete>
+                  </mat-form-field> -->
+                <select class="form-control dd-style" (change)="userSelect($event);" formControlName="DDUser">
+                  <option [selected]="true">Select</option>
+                  <option *ngFor="let item of question.Users" [ngValue]="item">                     
+                      {{ item.firstName + ' ' + item.lastName + ' ('+ item.email +')'}}
+                    </option>
+                </select>
+                <span class="dropdown-down dropdown-Arrow"></span>
+                <div *ngIf="submitted && form.Users.errors" class="invalid-feedback">
+                  <div *ngIf="form.Users.errors.required">
+                    {{ 'screens.project-designer.document-view.tasks.errorMessages.questionType' | translate }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </nb-card-body>
+      <nb-card-footer class="footerCard">
+        <button nbButton type="button" class="menu-btn-cancel" (click)="dismiss()"><label
+            class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="menu-btn-save"
+          id="btnCreateOrganization">{{'screens.project-user.SendBtn' | translate}}</button>
+
+      </nb-card-footer>
+    </nb-card>
+  </form>
+</div>

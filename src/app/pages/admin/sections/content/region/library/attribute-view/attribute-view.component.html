@@ -1,0 +1,48 @@
+<ngx-Icon-header></ngx-Icon-header>
+<div class="row">
+    <span class="emptyBlock"></span>
+    <div class="col"> Level </div>
+    <div class="col"> Type </div>
+    <div class="col"> Transactions </div>
+    <div class="col"> Title </div>
+    <div class="col"> ProjectYear </div>
+    <div class="col"> TransactionType </div>
+    <div class="col"> Status </div>
+    <div class="col"> Industry </div>
+    <div class="col"> Origin </div>
+    <div class="col"> Creator </div>
+    <div class="col"> Description </div>
+  </div>
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" >
+  <mat-tree-node class="parentNode" *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+    <button mat-icon-button disabled></button>
+
+      <div class="row">
+        <div class= "col"> <mat-form-field> <input matInput #itemValue value="{{node.item}}"> </mat-form-field> </div>
+        <div class= "col"> <mat-form-field> <input matInput #itemValue value=" {{node.level}}"> </mat-form-field> </div>
+        <div class= "col"> <mat-form-field> <input matInput #itemValue value=" {{node.id}}"> </mat-form-field> </div>
+      </div>
+
+  </mat-tree-node>
+
+  <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+    <button mat-icon-button disabled></button>
+   
+    <button mat-button (click)="saveNode(node, itemValue.value)">Save</button>
+  </mat-tree-node>
+
+  <mat-tree-node class="parentNode" *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+    <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+
+      <div class="row">
+        <div class= "col"> <mat-form-field> <input matInput #itemValue value="{{node.item}}"> </mat-form-field> </div>
+      </div>  
+  
+  </mat-tree-node>
+</mat-tree>
+
+<span #emptyItem></span>

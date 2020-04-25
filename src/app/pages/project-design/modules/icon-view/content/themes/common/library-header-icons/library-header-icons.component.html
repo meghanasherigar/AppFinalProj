@@ -1,0 +1,33 @@
+<div class="col-sm-12 iconsItemsWrapper">
+  <div class="col-sm-6 iconsItems">
+    <div>
+      <img src="assets/images/projectdesigner/header/Attribute view_not selected.svg" [nbPopover]="attributeRef"
+        nbPopoverPlacement="bottom" class="smallIcon icon icon-header" placement="right" ngbTooltip="{{'iconviewtooltip.ViewAtribute' | translate}}">
+    </div>
+    <div *ngIf=(headerIcons.disableIconR)>
+      <img src="assets/images/projectdesigner/header/Remove.svg" (click)="deleteBlock()"
+        class="smallIcon icon icon-header" ngbTooltip="{{'iconviewtooltip.Delete' | translate}}">
+    </div>
+  </div>
+  <div class="col-sm-6 iconsItems">
+
+    <div>
+      <input type="text" id="searchbox" [placeholder]="'screens.project-designer.iconview.Type to Search...' | translate" [(ngModel)]="searchText"
+        (keyup)="searchTextChanged.next($event)" *ngIf="isSearchBoxVisible" />
+      <img src="assets/images/projectdesigner/header/Search.svg" (click)="toggleSearchBox();" ngbTooltip="{{'iconviewtooltip.search' | translate}}"
+        class="smallIcon icon icon-header search-icons roundedCorner">
+    </div>
+
+    <div [ngClass]="headerIcons.disableIconF?'disableIconF':''">
+      <img  (click)="filterPopUp()" ngbTooltip="{{'iconviewtooltip.filter' | translate}}"
+        class="smallIcon icon icon-header filter-img">
+    </div>   
+
+  </div>
+
+</div>
+
+<ng-template #attributeRef>
+  <ngx-view-block-attributes-popover *ngIf="!isStack" [section]="section"></ngx-view-block-attributes-popover>
+  <ngx-view-stack-attributes-popover *ngIf="isStack" [section]="section"></ngx-view-stack-attributes-popover>
+</ng-template>

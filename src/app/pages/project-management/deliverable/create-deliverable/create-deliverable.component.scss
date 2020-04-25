@@ -1,0 +1,22 @@
+.createDeliverableTopHeader{
+    width: 1027px;
+    margin-top: 60px;
+}
+
+.createTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+
+}
+.createDeliverableTopHeader{
+    nb-card-footer{
+        button.menu-btn-save{
+            color: #fff;
+            margin-left: 20px;
+            .menu-txt-save{
+                height: 10px;
+            }
+        }
+    }
+}

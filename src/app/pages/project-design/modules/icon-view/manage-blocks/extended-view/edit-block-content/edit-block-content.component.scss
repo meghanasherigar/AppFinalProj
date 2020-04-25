@@ -1,0 +1,73 @@
+.borderBlock{
+   // border-color: #ccc;
+    // border-width: 1px;
+    // border-style: solid;
+    overflow: auto;
+    padding: 10px 14px;
+}
+.editBlockContentWrapper{
+    margin-left: 20px;
+    margin-top: 46px;
+    height: calc(100vh - 315px) !important;
+    border: 1px solid #ccc;
+    nb-card{
+        margin-top: 0 !important;
+    }
+}
+.borderblocktitle{
+    border-color: #ccc;
+    border-width: 1px;
+    border-style: solid;
+    height: 40px;
+    overflow: auto;
+    padding: 10px 14px;
+}
+.editor-heading
+{
+    height: auto !important;
+    height: auto !important;
+    padding: 10px 14px;
+    overflow: auto;
+    font-weight: 700;
+}
+.editBlockEditor{
+    border: 0.6px solid #D0D0CE !important;
+}
+.editBlockContentWrapper.when-milestone{
+    margin-top: 0px;
+    border: 0.6px solid #d8d4d4;
+    padding: 10px;
+    margin-right: 10px;
+
+}
+.footNoteCont{
+    position: relative;
+    .footnoteCount{
+      color: #000; position: absolute; top: 10px; left: 5px;font-weight: 600;
+    }
+    .footnoteText{
+      border-bottom:1px dashed #000; background: transparent;
+    }
+  }
+  .editor-loader{
+    position: relative;
+     left: 100px;
+     top: 251px;
+  }
+.editBlockContentCom{
+    .content-container{
+        height:calc(100vh - 351px)
+    }
+}
+
+.disable-edit{
+  
+    &.ck-focused{
+      pointer-events: none;
+    }
+    &.ck-blurred{
+      pointer-events: none;
+    }
+    
+  }
+  

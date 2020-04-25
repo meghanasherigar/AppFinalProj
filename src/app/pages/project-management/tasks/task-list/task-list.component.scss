@@ -1,0 +1,50 @@
+.task-summary
+{
+    width: 500px;
+}
+
+.task-summary-part
+{
+    width: 50%;
+}
+.btn-group{
+    margin: 10px 0px 10px 32px;
+}
+.btn-group .button {
+    border: 1px solid #000;
+    color: white;
+    width: 120px;
+    height: 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+    float: left;  
+    
+  }
+  
+  .btn-group .button:not(:last-child) {
+    border-right: none; 
+  }
+  
+  
+  .Tabs{
+      background: #fff !important;
+      color: #000 !important;
+  }
+
+  .activated-tab {
+    background-color: #000 !important;
+    color: white !important;
+  }
+  .taskListComponent{
+    margin: 0 20px;
+    overflow-x: auto;
+    border: 1px solid #d0d0ce;
+    overflow: auto;
+    height: calc(100vh - 462px);
+    table{
+        min-height: 225px;
+    }
+}

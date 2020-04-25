@@ -1,0 +1,20 @@
+<div class="header-container">
+  <h4 class="pull-left"><b>{{'screens.home.notification-popover.Notifications' | translate}}</b></h4>
+  <a href="javascript:void(0)" class="mark-all-read pull-right" (click)="updateAllAsRead()">{{'screens.home.notification-popover.MarkAllAsRead' | translate}}</a>
+</div>
+<ul class="themes-switcher-list">
+    <li class="themes-switcher-item"
+        *ngFor="let notification of notificationMenu">
+      <i class="nb-drop" [ngClass]="'drop-icon-' + notification.key"></i>
+      <span  class="userImg"><img src="assets/images/userProfilePic.png"></span>
+      <span [innerHTML]="notification.displayMessage" class="NOtificationDesc"> </span>
+      <span class="pull-right"> {{notification.CreatedOn | dateFormat}} </span>
+      </li>
+
+      <li *ngIf="(notificationMenu == undefined || notificationMenu.length == 0)">
+      <span>{{'screens.home.notification-popover.NoNotification' | translate}}</span>
+      </li>
+  </ul>
+<div class="footer-container">
+  <a href="#/pages/home/veiw-all-notification">{{'screens.home.notification-popover.ViewAllNotification' | translate}}</a>
+</div>

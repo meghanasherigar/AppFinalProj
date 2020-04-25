@@ -1,0 +1,30 @@
+<nb-card>
+   <nb-card-body class="templateHeaderWrapper documentTemplateWrapper">
+      <div class="row">
+         <div [ngClass]="{'showEditorBlock':!hideAttributeIcon}" class="editorBlock">
+            <!-- [ngClass]="{'showEditorBlock':!hideAttributeIcon}"> -->
+            <div class="col-md-offset-8">
+                  <!-- <p style="font-size:8px;font-style: italic;"><span class="globalP">Last Published</span> <span> by Rohan Joshi on 23 January
+                        2017</span><br>
+                     <span span class="globalP">Last Updated</span> by Rohan Joshi on 23 January 2017
+                  </p> -->
+            </div>
+            <div class="trackContent">
+               <div class="col-md-12 padding0">
+                  <div *ngIf="!viewAllMode">
+                     <ngx-edit-block-content> test edit</ngx-edit-block-content>
+                  </div>
+                  <div *ngIf="viewAllMode">
+                     <ngx-editor-full-view-admin [blockContentPayload]="blockContentPayload">
+                        test edit full
+                     </ngx-editor-full-view-admin>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-md-4 padd-leftRight" *ngIf="!hideAttributeIcon">
+            <ngx-editor-block-attributes></ngx-editor-block-attributes>
+         </div>
+      </div>
+   </nb-card-body>
+</nb-card>

@@ -1,0 +1,64 @@
+<!-- Top level Menu -->
+<div class="row">
+  <div id="projectDesignFilters" class="col-sm-12 toolbar-component-container collapsed">
+    <div class="manage-section" id="manageSection" >
+      <div *ngIf="(isCentralUser || isLocalUserHasTemplate) && !isExternalUser" class="action-icon-wrapper text-center" id="editIcon">
+        <input hidden type="file" #uploader (change)="uploadFile($event.target.files)" accept="application/pdf,application/msword,
+        application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+        <img src="assets/images/Block Importer.svg" (click)="uploader.click()" class="btnToolbar">
+        <span class="icon-name" >{{'screens.project-designer.iconview.suggestBlock.BlockImporter' | translate}}</span>
+      </div>
+      <div *ngIf = "(isCentralUser || isLocalUserHasTemplate) && !isExternalUser" class="action-icon-wrapper text-center" id="deleteIcon">
+        <img src="assets/images/Block mapping.svg" (click)="importLibraryTemplates()" class="btnToolbar">
+        <span class="icon-name" >{{'screens.project-designer.iconview.suggestBlock.ImportTemplate' | translate}}</span>
+      </div>
+      <div *ngIf = "(isCentralUser || isLocalUserHasTemplate) && !isExternalUser" class="action-icon-wrapper text-center" id="deleteIcon">
+        <img src="assets/images/Suggest-Block.svg" (click)="librarySuggestBlocks()" class="btnToolbar">
+        <span class="icon-name" >{{'screens.project-designer.iconview.suggestBlock.suggest' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper text-center" id="deleteIcon">
+        <img src="assets/images/Refresh_POS.svg"  (click)="refreshTheme()" class="btnToolbar">
+        <span class="icon-name" >{{'screens.project-designer.iconview.suggestBlock.refresh' | translate}}</span>
+      </div>
+      <span *ngIf = "(isCentralUser || isLocalUserHasTemplate) && !isExternalUser" class="section-name" [hidden]="!show">{{'screens.project-designer.iconview.suggestBlock.Import' | translate}}</span>
+    </div>
+    <div class="create-section" id="createSection"  >
+      <div class="action-icon-wrapper checkboxAlign" *ngFor="let theme1 of themesList">
+        <label>
+          <input type="radio" name="radio-name" value="{{theme1.value}}" [checked] = "theme1.checked"
+          (change)="onThemeChange(theme1)"/>
+        {{theme1.name| translate}}
+        </label>
+        <div class="rectangle" id="{{theme1.value}}" [hidden]="!show">
+          <div *ngFor="let theme1Option of theme1.theme_options">
+            <label>
+              <input type="checkbox" name="theme1_options" value="{{theme1Option.value}}" 
+                [(ngModel)]="theme1Option.checked" (change)="theme1CheckboxSelection(theme1)" 
+                [disabled] ="theme1Option.checked && checkedNumber === limitNumber"/>
+              {{theme1Option.name| translate}}
+            </label>
+          </div>
+        </div>
+      </div>
+        <span class="section-name" [hidden]="!show">{{'screens.project-designer.iconview.suggestBlock.Display Theme' | translate}}</span>
+    </div>
+      <div class="filters-section" id="filterSection"  [ngClass]="{'filterCollapse':!show}">
+        <div class="action-icon-wrapper checkboxAlign" [ngClass]="{'nameAttibutes':show==false}" >
+          <div *ngFor="let item of itemsList; let i = index">
+            <input type="radio" name="list_name" value="{{item.value}}"  [checked]="item.checked" 
+              (change)="onItemChange(item)" />
+            {{item.name| translate}}
+          </div>
+        </div>
+        <span class="section-name name-block-preview" [hidden]="!show">{{'screens.project-designer.iconview.suggestBlock.Block Preview' | translate}}</span>
+      </div>
+   
+      <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+        {{imageName}}
+        <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+        <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+      </div>
+      <!-- <label class="collapse-img" (click)="refreshTheme()"><img src="assets/images/Refresh_POS.svg" height="10px"></label> -->
+
+    </div>
+  </div>

@@ -1,0 +1,42 @@
+<div class="row ">
+    <div id="VisualizationFilters" [ngClass]="{'collapsed ':!show}" class="col-sm-12 toolbar-component-container">
+      <div class="create-section">
+        <div class="action-icon-wrapper" id="clearFilter" [ngClass]="{'disabledbutton ':!show || !enableFilter}">
+          <img src="assets/images/ProjectManagement/clear-filter-active.svg" (click)="clearFilters();" class="btnToolbar">
+          <span class="icon-name">{{ 'screens.Project-Management.Tasks.Header.ClearFilter' | translate }}</span>
+        </div>
+        </div>
+      <div class="filters-section">
+        <div class="filter-icon-wrapper">
+          <div class="action-icon-wrapper">
+            <img src="assets/images/Filter-active.svg" class="btnToolbar" (click)="toggleCollapse()">
+            <span class="icon-name">{{ 'screens.Project-Management.Blocks.Header.Filter' | translate }}</span>
+          </div>
+        </div>
+       <div class="filter-inputs-wrapper" id="VisualizationFilters" [hidden]="!show">
+          <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Deliverable.Filter.TransactionType' | translate" [data]="TransactionTypes"
+          [(ngModel)]="TransactionType" [settings]="TransactionTypeSettings" (onSelect)="onTransactionTypeSelect($event)"
+          (onDeSelect)="onTransactionTypeDeSelect($event)" (onSelectAll)="onTransactionTypeSelect($event)"
+          (onDeSelectAll)="onTransactionTypeDeSelect($event)">
+        </ng-multiselect-dropdown>
+  
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Deliverable.Filter.Country' | translate" [data]="CountryList"
+          [(ngModel)]="Country" [settings]="CountrySetting" (onSelect)="onCountrySelect($event)"
+          (onDeSelect)="onCountryDeSelect($event)" (onSelectAll)="onCountrySelect($event)"
+          (onDeSelectAll)="onCountryDeSelect($event)">
+        </ng-multiselect-dropdown>
+  
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Deliverable.Filter.Entity' | translate" [data]="EntityList"
+          [(ngModel)]="Entity" [settings]="EntitySetting" (onSelect)="onEntitySelect($event)"
+          (onDeSelect)="onEntityDeSelect($event)" (onSelectAll)="onEntitySelect($event)"
+          (onDeSelectAll)="onEntityDeSelect($event)">
+        </ng-multiselect-dropdown>
+            
+      </div>
+      <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+        {{imageName}}
+        <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+        <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+      </div>
+    </div>
+  </div>

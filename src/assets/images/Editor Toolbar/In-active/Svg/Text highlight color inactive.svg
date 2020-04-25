@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="21px" viewBox="0 0 13 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Text highlight color inactive</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Editor-Tab" transform="translate(-943.000000, -353.000000)" fill="#D0D0CE">
+            <g id="Text-highlight-color-inactive" transform="translate(943.363636, 353.460000)">
+                <path d="M10,4.98950228 L10,-1.77635684e-15 L11,-1.77635684e-15 L11,8.68871928 L9,10.6845202 L9,12.9727059 L8,12.9727059 L8,14.8292997 L4,16.16 L4,12.9727059 L3,12.9727059 L3,10.6845202 L1,8.68871928 L1,-1.77635684e-15 L2,-1.77635684e-15 L2,4.98950228 L10,4.98950228 Z M10,5.98740274 L2,5.98740274 L2,8.27558849 L4,10.2713894 L4,11.9748055 L8,11.9748055 L8,10.2713894 L10,8.27558849 L10,5.98740274 Z M7,12.9727059 L5,12.9727059 L5,14.7749142 L7,14.1098135 L7,12.9727059 Z" id="Combined-Shape-Copy"></path>
+                <rect id="Rectangle-Copy" x="0" y="18.18" width="12" height="2.02"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

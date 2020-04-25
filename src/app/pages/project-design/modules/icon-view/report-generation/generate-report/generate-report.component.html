@@ -1,0 +1,74 @@
+
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+
+<form  [formGroup]="generateReportForm" (ngSubmit)="generateReport()" ngxUiLoaderBlurred>
+  <nb-card class="createBlockpopupHW blockGeneratePopUp">
+    <nb-card-header class="createTopHeader padding0">
+      <div class="blockGenerateHeader">
+        <div class="generateIcon">
+          <img src="assets/images/Generate-white.svg">
+        </div>
+        <div class="generateText">
+          <span>
+            {{ isTemplate == true ? ('screens.project-designer.document-view.generateTemplate' | translate) : ('screens.project-designer.document-view.generateDeliverable' | translate) }}
+
+          </span>
+          </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="blockGenerateContent">
+        <div class="col-sm-12 reportContent">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="custom-form-label">{{'screens.project-designer.document-view.reportName' | translate}}</label>
+                <input type="text" class="form-control custom-form-input" formControlName = "ReportName">
+              </div>
+            </div>
+          </div>
+          <div class="row formatPdfOptions">
+            <div class="col-sm-12">
+              <div> <label>
+                {{'screens.project-designer.document-view.format' | translate}}</label>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div>
+                <label><input type="checkbox" formControlName="IsPdfSelected">
+                  {{'screens.project-designer.document-view.pdf' | translate}}</label>
+              </div>
+            </div>
+            <div class="col-sm-2 padding0">
+              <div>
+                <label><input type="checkbox" formControlName="IsWordSelected">
+                  {{'screens.project-designer.document-view.word' | translate}}</label>
+              </div>
+            </div>
+            <div class="col-sm-12 errorMessage" *ngIf = "(validationMessage != undefined || validationMessage != '')">
+              {{validationMessage}}
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-sm-4 waterMarkContent">
+            <div class="watermark preview">
+                <h1 class={{selectedClass}}>
+                {{waterMarkText}}
+                </h1>
+              </div>
+        </div> -->
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="footerCard">
+      <nb-card-footer class="footerRightButton">
+        <button nbButton type="button" class="menu-btn-cancel createCancel" style="color:black;"
+          (click)="dismiss()"><label
+            class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="menu-btn-save createBlockSave" id="btnCreateOrganization">{{'screens.home.labels.Generate' | translate}}</button>
+      </nb-card-footer>
+    </nb-card-footer>
+  </nb-card>
+</form>

@@ -1,0 +1,209 @@
+.nb-theme-corporate nb-accordion {
+  // margin-bottom: 1rem;
+
+  &:last-child {
+    // margin-bottom: 0;
+  }
+
+  box-shadow: none;
+
+
+  .nb-theme-corporate nb-accordion {
+    border: 1px solid #eee;
+  }
+}
+
+.nb-theme-corporate nb-accordion nb-accordion-item-header {
+  margin-bottom: 3px;
+  background: #E7E7E6;
+  border: 1px solid #E7E7E6;
+  padding: 3px 16px;
+
+  .custom-icon-1 {
+    height: 7px;
+    width: 15px;
+    border-top: 1.56px solid;
+    border-bottom: 1.56px solid;
+    border-color: #818181;
+    display: none;
+  }
+
+  &:hover {
+    background: #D8D8D6;
+  }
+
+  .header-text {
+    color: #110F0F;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 600;
+    height:23px;
+  }
+  .textBackGround
+  {
+    background-color: transparent !important;
+  }
+  &.accordion-item-header-expanded {
+    background: #86BC25;
+
+    .header-text {
+      color: white;
+      font-family: "Open Sans";
+    font-size: 16px;
+    font-weight: 600;
+    }
+    .textBackGround
+    {
+      background-color: #86BC25 !important;
+    }
+
+    .custom-icon-1 {
+      border-color: white;
+    }
+  }
+}
+
+.nb-theme-corporate nb-accordion nb-accordion-item-body {
+  &.no-padding {
+    .item-body {
+      padding: 0 !important;
+
+      background: #fafafa;
+      // margin-top: 1rem;
+
+      .inner-accordian {
+        nb-accordion-item-header {
+          padding-left: 2rem;
+
+          &.accordion-item-header-expanded {
+            background: #E7E7E6;
+
+            .header-text {
+              color: #110F0F;
+              font-family: "Open Sans";
+              font-size: 16px;
+              font-weight: 600;
+            }
+
+            .custom-icon-1 {
+              border-color: #818181;
+            }
+          }
+        }
+      }
+
+      .textAreaBodyWrapper {
+        background: #fafafa;
+
+        .item-body {
+          padding: 5px 0 !important;
+          width: 93%;
+          margin: auto;
+        }
+      }
+    }
+  }
+}
+//drag and drop project designer
+.example-container {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.example-list {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+
+.example-box {
+  padding: 20px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:left;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.example-custom-placeholder {
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 60px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.item-body textarea{
+  background-color: rgba(216,216,216,0.4);
+border: 0.5px solid #979797;
+border-radius: 2px;
+min-height: 59px;
+padding: 10px;
+width:92%;
+}
+nb-accordion-item-header {
+  input{
+    border:none;
+  }
+  input:focus{
+    outline:none;
+  }
+}
+.item-body textarea{
+  background-color: rgba(216,216,216,0.4);
+border: 0.5px solid #979797;
+border-radius: 2px;
+min-height: 59px;
+padding: 10px;
+width:92%;
+font-size: 13px;
+}
+#addTopic:focus{
+  outline:none;
+}
+.contentIcon{
+  width: 12px;
+  cursor:pointer;
+    height: 12px;
+  background-position: center !important;
+  display: inline-block;
+  background-repeat: no-repeat !important;
+  margin-right: 22px;
+  
+}
+
+
+
+

@@ -1,0 +1,103 @@
+<nb-card>
+  <nb-card-body class="templateHeaderWrapper">
+    <div class="row">
+      <div class="left-style top-header1">
+        <!-- <select class="dd-style" id="ddlForTemplate" [(ngModel)]="selectedTemplate" (change)="templateChange($event)">
+        <option *ngFor="let template of templateList" [ngValue]="template">
+          {{template.templateName}}
+        </option>
+      </select> -->
+
+        <div class="col-md-6">
+          <ngx-dropdown-treeview id="templatesTreeView" [autoClose]="true" [config]="config" [items]="delTempList"
+            class="home-industry filter-input" (selectedChange)="onItemSelected($event)">
+          </ngx-dropdown-treeview>
+        </div>
+        <div class="col-md-6">
+          <div class="rightHeader-icon-style">
+            <img src="assets/images/projectdesigner/header/Edit_without hover.svg" (click)="displayDocumentView()"
+              class="smallIcon ">
+            <div class="rectangle-copy ">
+              <img src="assets/images/listView_gray.svg" (click)="hideAttributeView()" class="smallIcon listIconView">
+            </div>
+            <div class="rectangle-copy iconGreenColor">
+              <img src="assets/images/Attribute_white.svg" (click)="showAttributeView()" class="smallIcon listIcon">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 iconsItemsWrapper" *ngIf="showIcons">
+      <div class="col-sm-6 iconsItems">
+        <div *ngIf=(headerIcons.disableSelectAll)>
+          <img src="assets/images/projectdesigner/header/Select.svg" (click)="selectAllBlocks()"
+            class="smallIcon icon icon-header" placement="top" ngbTooltip="{{'iconviewtooltip.Select' | translate}}">
+        </div>
+        <div *ngIf=(headerIcons.disableIconL)>
+          <img src="assets/images/projectdesigner/header/Link_to.svg" (click)="manageDeliverablePopup()"
+            class="smallIcon icon icon-header" placement="top" ngbTooltip="{{'iconviewtooltip.LinkTo' | translate}}">
+        </div>
+        <div *ngIf = (headerIcons.disableIconA)>
+          <img src="assets/images/projectdesigner/header/Assign_to.svg" (click)="assignToPopup()" id="assignTo"
+            class="smallIcon icon icon-header" placement="top" ngbTooltip="{{'iconviewtooltip.AssignTo' | translate}}">
+        </div>
+        <div *ngIf=(headerIcons.disableIconUS)>
+          <img src="assets/images/projectdesigner/header/Ungroup.svg" (click)="ungroupStack($event)"
+            class="smallIcon icon icon-header" ngbTooltip="{{'iconviewtooltip.Ungroup' | translate}}">
+        </div>
+        <div *ngIf = (headerIcons.disableIconCS)>
+          <img src="assets/images/projectdesigner/header/Ungroup.svg" (click)="createStackPopup()"
+            class="smallIcon icon icon-header" ngbTooltip="{{'iconviewtooltip.Group' | translate}}">
+        </div>
+
+        <div *ngIf=(headerIcons.disableIconCopy)>
+          <img src="assets/images/projectdesigner/header/Copy.svg" (click)="copyBlocks()"
+            class="smallIcon icon icon-header" placement="top" ngbTooltip="{{'iconviewtooltip.Copy' | translate}}">
+        </div>
+        <div *ngIf=(headerIcons.disableIconAtt)>
+          <img src="assets/images/projectdesigner/header/Attribute view_not selected.svg"
+            [nbPopover]="attributeComponent" nbPopoverPlacement="bottom" class="smallIcon icon icon-header"
+            placement="top" ngbTooltip="{{'iconviewtooltip.ViewAtribute' | translate}}">
+        </div>
+        <div *ngIf=(headerIcons.disableIconR)>
+          <img src="assets/images/projectdesigner/header/Remove.svg" (click)="deleteBlock()"
+            class="smallIcon icon icon-header" ngbTooltip="{{'iconviewtooltip.Remove' | translate}}">
+        </div>
+        <div *ngIf=(headerIcons.disableIconC)>
+          <img src="assets/images/projectdesigner/header/Copy_to_library.svg" (click)="copyToLibrary()"
+            class="smallIcon icon icon-header" placement="top" ngbTooltip="{{'iconviewtooltip.AddtoUserLibrary' | translate}}">
+        </div>
+        <div *ngIf=(headerIcons.disableIconP)>
+          <img src="assets/images/projectdesigner/header/Promote.svg" (click)="promoteBlock()"
+            class="smallIcon icon icon-header" placement="top" ngbTooltip="{{'iconviewtooltip.Promote' | translate}}">
+        </div>
+        <div *ngIf=(headerIcons.disableIconDe)>
+          <img src="assets/images/projectdesigner/header/Demote.svg" (click)="demoteBlock()"
+            class="smallIcon icon icon-header" placement="top" ngbTooltip="{{'iconviewtooltip.Demote' | translate}}">
+        </div>
+
+      </div>
+      <div class="col-sm-6 iconsItems">
+        <div *ngIf="(headerIcons.disableIconSe) || isSearchBoxVisible">
+          <input type="text" id="searchbox" [placeholder]="'screens.project-designer.iconview.Type to Search...' | translate" [(ngModel)]="searchText"
+            (keyup)="searchTextChanged.next($event)" *ngIf="isSearchBoxVisible" />
+          <img src="assets/images/projectdesigner/header/Search.svg" (click)="toggleSearchBox();"
+            class="smallIcon icon icon-header roundedCorner search-icons">
+        </div>
+        <div *ngIf=(headerIcons.disableIconAssignAll)>
+          <img src="assets/images/projectdesigner/header/Assign_to.svg" (click)="assignToPopup()"
+            ngbTooltip="{{'iconviewtooltip.AssignAll' | translate}}" class="smallIcon icon icon-header">
+        </div>
+        <div class="createBlock" *ngIf=(headerIcons.disableIconCreate)>
+          <img src="assets/images/projectdesigner/header/Create_block.svg" (click)="createBlockPopup()" placement="top"
+            ngbTooltip="{{'iconviewtooltip.CreateBlock' | translate}}" class="smallIcon icon icon-header">
+        </div>
+        <div class="filterImg" [ngClass]="this.headerIcons.disableIconF?'disableIconF':''">
+          <img id="test1" src="" (click)="filterPopUp()" class="smallIcon icon icon-header filter-img">
+        </div>
+      </div>
+    </div>
+
+  </nb-card-body>
+</nb-card>

@@ -1,0 +1,30 @@
+<div class="row">
+  <div id="projectDesignFilters" class="col-sm-12 toolbar-component-container collapsed">
+    <div class="manage-section" id="manageSection">
+      <div class="action-icon-wrapper" id="editIcon">
+        <img src="assets/images/Save.svg" class="btnToolbar" (click)="acceptBlock()">
+        <span class="icon-name">{{'screens.user.AdminView.Library.Menus.Accept'|translate}}</span>
+      </div>
+      <div class="action-icon-wrapper" id="editIcon">
+        <img src="assets/images/Publish.svg"  class="btnToolbar" (click)="rejectBlock()">
+        <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Reject' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" id="AttributesIcon">
+        <img src=" assets/images/DocumentView/Attributes-active.svg"
+          [class.disabled]="false"
+          (click)="toggleBlockAttributeComponent()" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Attributes' | translate }}</span>
+      </div>
+      <span class="section-name">{{ 'screens.user.AdminView.Library.Labels.BlockImporter.Import' | translate }}</span>
+      <div id="toolbar-menu" class="filters-section smalliconpadding"  [ngStyle]="{'display':show==true? 'block':'none'}">
+
+      </div>
+    </div>
+
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+      {{imageName}}
+      <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+      <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+    </div>
+  </div>
+</div>

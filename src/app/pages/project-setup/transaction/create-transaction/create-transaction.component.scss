@@ -1,0 +1,175 @@
+.addBtn {
+  background-color: transparent;
+  cursor: pointer;
+  border: 1px solid black;
+  padding: 3px 10px 3px 10px;
+}
+
+.inputWithIcon input[type=text] {
+  padding-left: 10px;
+}
+
+.inputWithIcon {
+  position: relative;
+  max-height: 31px;
+}
+
+.inputWithIcon i {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 5px 8px;
+}
+
+.gg {
+  font-size: 16px;
+  padding-left: 0px;
+
+}
+
+.highlight {
+  border: 2px solid red;
+}
+
+.reportTierHeight {
+  height: 39px !important;
+}
+
+.labelTxt {
+  padding-left: 11px;
+  margin-top: 5px;
+}
+
+.checkbox-inline {
+  padding-right: 40px;
+  padding-top: 5px;
+
+}
+
+.button-section {
+  height: 17px;
+  width: 27px;
+  color: #FFFFFF;
+  font-size: 15px;
+  line-height: 17px;
+  text-align: center;
+
+}
+
+.rectangle {
+  height: 35px;
+  width: 109px;
+  border: 1px solid #86BC25;
+  border-radius: 3px;
+  background-color: #86BC25;
+  font-size: 12px;
+}
+
+.rect-cancel {
+  height: 35px !important;
+  width: 109px !important;
+  border: 1px solid #86BC25;
+  border-radius: 3px;
+  background-color: #FFFFFF;
+}
+
+.canelButton {
+  height: 17px;
+  width: 39px;
+  color: #86BC25;
+  font-size: 12px;
+  line-height: 17px;
+  text-align: center;
+}
+
+.btn.btn-success {
+  background-color: green;
+}
+
+.btn.btn-success.rrr {
+  background-color: transparent;
+  border: 1px solid black;
+  text-decoration-color: red !important;
+}
+
+.rr {
+  text-decoration: red;
+}
+
+
+.reportTierHeight {
+  height: 39px !important;
+}
+
+.check {
+  height: 18px;
+  width: 18px;
+}
+
+.move {
+  padding-top: 5px;
+}
+
+.verticalMove {
+  padding-top: 20px;
+}
+.dropdown-style.mat-option {
+  height:auto !important;
+}
+// .dropdown-style {
+//   background: white;
+//   color: black;
+//   cursor: pointer;
+//   border: 1px solid black;
+//   background-color: white;
+// }
+
+.section-title {
+  color: #999F9F;
+//   font-family: "Open Sans";
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 18px;
+  margin-left: 5px;
+}
+
+.section-title-border-bottom{
+    margin-top: 5px;
+    margin-bottom: 12px;
+    color: #D6D6D6;
+}
+
+
+.create-transaction-section {
+    // padding-bottom: 24px;
+    border-bottom: 1px solid #D6D6D6;
+    margin-bottom: 18px;
+  }
+
+.create-transaction-form-wrapper{
+    padding: 0;
+    .selectLibrary{
+      width:100%;
+    }
+   
+}
+
+.create-transaction-body{
+  padding-top: 0;
+}
+
+.create-transaction-footer{
+    padding-top: 6px;
+}
+
+.create-transaction-card{
+    margin-bottom: 0.5px;
+}
+
+.disable-section{
+  opacity: 0.4;
+}
+.disabledbutton {
+  pointer-events: none;
+ }
+ .invalid-feedback{display: block !important ;}

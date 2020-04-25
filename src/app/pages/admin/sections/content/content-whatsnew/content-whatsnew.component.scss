@@ -1,0 +1,84 @@
+.frequently-asked-que {
+    height: 27px;
+    // width: 259px;
+    color: #000000;
+    font-family: "Open Sans";
+    font-size: 20px;
+    letter-spacing: -0.05px;
+    line-height: 27px;
+    // margin-left:25px;
+  }
+  
+  .last-updated-by-roh {
+    height: 18px;
+    // width: 299px;
+    color: #999F9F;
+    text-align:right;
+    font-family: "Open Sans";
+    font-size: 11px;
+    font-style: italic;
+    line-height: 18px;
+    // margin-left:25px;
+    p{
+      margin-bottom: 0;
+    }
+  }
+  
+  .fill-24 {
+    height: 45px;
+   // width: 1198px;
+  }
+  
+  .fill-33-copy {
+    box-sizing: border-box;
+    height: 40px;
+    width: 100%;
+    border: 1px dashed #979797;
+    background: transparent;
+  }
+  
+  .getting-started {
+    height: 22px;
+    width: 118px;
+    color: #110F0F;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: NaNpx;
+  }
+  
+  .rectangle {
+    height: auto;
+    width: auto;
+    background-color: transparent;
+  }
+  
+  .textAreawidth {
+    width: 100%;
+  }
+  
+  .title:empty:not(:focus):before {
+    content: attr(data-placeholder)
+  }
+    .iconHeight{
+        height: 12px;
+        margin-left:25px;
+    }
+    .hideIcons
+    {
+        display:none !important;
+    }
+    .showIcons
+    {
+        display: inline-block !important;
+    }
+    .textAreawidth.adminWhatsnewContent{
+      min-height: 90px;
+    }
+    .textAreaBodyWrapper{
+      background: #fafafa;
+    }
+    .iconsDiv{
+      text-align: right;
+    }
+  

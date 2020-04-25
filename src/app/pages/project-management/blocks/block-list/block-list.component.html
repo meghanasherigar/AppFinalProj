@@ -1,0 +1,97 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+<div id="block-report-list" class="blockReportView" *ngIf="warningMessage">
+    <div class="row  warning">
+        <img class="smallIcon" src="assets/images/error-img.png">
+        <span class="blockContent">{{ 'screens.Project-Management.Blocks.Messages.Warning' | translate }}</span>
+        
+    </div>
+</div>
+<div  *ngIf="!warningMessage">
+<ngx-header-summary [options]='summaryOptions' (filterTrigger)="onCompletionStatusSelection($event)" ngxUiLoaderBlurred>
+</ngx-header-summary>
+<div id="block-report-list" class="blockReportView">
+    <div class="row  header">
+        <span class=""></span>
+        <div class="attributeSubHeader"> {{ 'screens.Project-Management.Blocks.GridColumn.BlockName' | translate }}
+        </div>
+        <div class="attributeSubHeader"> {{ 'screens.Project-Management.Blocks.GridColumn.Type' | translate }} </div>
+        <div class="attributeSubHeader">
+            {{ 'screens.Project-Management.Blocks.GridColumn.CompletionStatus' | translate }} </div>
+        <div class="attributeSubHeader"> {{ 'screens.Project-Management.Blocks.GridColumn.AssignTo' | translate }}
+        </div>
+        <div class="attributeSubHeader"> {{ 'screens.Project-Management.Blocks.GridColumn.DueDate' | translate }} </div>
+        <div class="attributeSubHeader"> {{ 'screens.Project-Management.Blocks.GridColumn.Comments' | translate }}
+        </div>
+    </div>
+
+    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+
+        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding [ngClass]="{ 'templateBlockColor':node.colorCode=='White',
+        'deliverableBlockColor':node.colorCode=='Teal',
+        'libraryBlockColor':node.colorCode=='Grey'}">
+            <div class=" blockAttributes">
+                <span>{{getTitle(node)}}</span>
+            </div>
+            <div class=" blockAttributes">
+                <span>{{node.blockType?node.blockType.blockType:'--'}}</span>
+            </div>
+
+            <div class=" blockAttributes">
+                <span>{{node.blockStatus?node.blockStatus.blockStatus:'--'}}</span>
+            </div>
+
+            <div class=" blockAttributes">
+                <span>{{getAssignedTo(node)}}</span>
+            </div>
+            <div class=" blockAttributes">
+                    <span>{{getDueDate(node)}}</span>
+            </div>
+            <div class=" blockAttributes" title="{{node.comment}}">
+                <mat-form-field> <input matInput #itemValue value="{{node.comment}}" [(ngModel)]="node.comment"
+                        (focusout)="updateComment(node)"> </mat-form-field>
+
+            </div>
+
+        </mat-tree-node>
+
+        <mat-tree-node *matTreeNodeDef="let node; when: hasChild" [ngClass]="{'nestedBlock':!node.isStack,
+        'templateBlockColor':node.colorCode=='White',
+        'deliverableBlockColor':node.colorCode=='Teal',
+        'libraryBlockColor':node.colorCode=='Grey'}">
+            <div class=" blockAttributes">
+                <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename"
+                    (click)="expandBlock(node)">
+                    <mat-icon class="mat-icon-rtl-mirror" *ngIf="node.isStack">
+                        {{treeControl.isExpanded(node) ? 'remove_circle_outline' : 'add_circle_outline'}}
+                    </mat-icon>
+                    <mat-icon class="mat-icon-rtl-mirror" *ngIf="!node.isStack">
+                        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                    </mat-icon>
+                </button>
+                
+                    <span [ngClass]="node.isStack?'stackDisplay':''">
+                        <span>{{getTitle(node)}}</span>
+                    </span>
+            </div>
+
+            <div class=" blockAttributes">
+                <span>{{node.isStack?'--':node.blockType.blockType}}</span>
+            </div>
+            <div class=" blockAttributes">
+                <span>{{node.isStack?'--':node.blockStatus.blockStatus}}</span>
+            </div>
+            <div class=" blockAttributes">
+                    <span>{{getAssignedTo(node)}}</span>
+            </div>
+            <div class=" blockAttributes">
+                    <span>{{getDueDate(node)}}</span>
+            </div>
+            <div class=" blockAttributes" title="{{node.comment}}">
+                <mat-form-field> <input matInput #itemValue value="{{node.comment}}" [(ngModel)]="node.comment"
+                        (focusout)="updateComment(node)"> </mat-form-field>
+
+            </div>
+        </mat-tree-node>
+    </mat-tree>
+</div>
+</div>

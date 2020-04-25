@@ -1,0 +1,163 @@
+<!-- Top level Menu -->
+<div class="row">
+  <div id="projectDesignFilters" class="col-sm-12 toolbar-component-container collapsed">
+    <div class="infoBlock">
+      <div class="manage-section">
+        <div class="action-icon-wrapper" *ngIf="infoGatheringIcons.EnableSendBackForReview">
+          <img src="assets/images/information_Gathering/send_back_for_review.svg" class="btnToolbar"
+            (click)="SendBackPopUp()">
+          <span
+            class="icon-name">{{'screens.project-designer.document-view.info-request.send-back-button' | translate}}</span>
+        </div>
+          <div class="action-icon-wrapper" *ngIf="infoGatheringIcons.EnableFinalze"
+          [ngClass]="infoGatheringIcons.DisablePageForReviewWhenInProgress == false ? '' : 'disableFilterSelect'">
+            <div class="finalise-Icon">
+            <img src="assets/images/finalise-ico.svg" class="btnToolbar"
+              (click)="openFinalizeConfirmDialog()">
+            </div>
+            <span class="icon-name">{{'screens.project-designer.document-view.info-request.finalize' | translate}}</span>
+          </div>
+          <div class="action-icon-wrapper text-center" *ngIf="infoGatheringIcons.EnableSendBackForAssignee"
+          [ngClass]="infoGatheringIcons.DisablePageForReviewWhenInProgress == false ? '' : 'disableFilterSelect'">
+            <img src="assets/images/information_Gathering/send_back_for_review.svg" class="btnToolbar"
+              (click)="SendBackToAssigneePopUp()">
+            <span
+              class="icon-name sendBackForReview">{{'screens.project-designer.document-view.info-request.send-back-button-Assignee' | translate}}</span>
+          </div>
+        <div class="action-icon-wrapper" [ngClass]="infoGatheringIcons.DisablePageForReviewWhenInProgress == false ? '' : 'disableFilterSelect'">
+          <img src="assets/images/information_Gathering/Save_as_draft.svg" class="btnToolbar"
+            (click)="saveInfoRequest()">
+          <span
+            class="icon-name">{{'screens.project-designer.document-view.info-request.save-as-draft-button' | translate}}</span>
+        </div>
+        <div class="action-icon-wrapper" *ngIf="infoGatheringIcons.EnableForward">
+          <img src="assets/images/information_Gathering/Save_as_draft.svg" class="btnToolbar"
+            (click)="popupForwardMail()">
+          <span
+            class="icon-name">{{'screens.project-designer.document-view.info-request.forward-button' | translate}}</span>
+        </div>
+        <div class="action-icon-wrapper">
+          <img src="assets/images/close-task.svg" class="btnToolbar" (click)="dismiss()">
+          <span
+            class="icon-name">{{'screens.project-designer.document-view.info-gathering.create-info.close-button' | translate}}</span>
+        </div>
+        <span
+          class="section-name">{{'screens.project-designer.document-view.info-request.action-label' | translate}}</span>
+      </div>
+      <div *ngIf="this.infoGatheringIcons.EnableOptionsCheckboxList">
+        <div class="create-section" id="createSection" *ngIf="FilterSection">
+          <div class="action-icon-wrapper checkboxAlign">
+            <div *ngFor="let option of options">
+              <label>
+                <input type="checkbox" name="options" value="{{option.value}}" [(ngModel)]="option.checked"
+                  (change)="onCheckboxChange($event)" />
+                {{option.name}}
+              </label>
+            </div>
+          </div>
+          <span class="section-name">{{'screens.project-designer.document-view.info-request.action-label' | translate}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="reviewer-menu">
+         <div class="manage-section">
+            <div class="action-icon-wrapper">
+                  <img src="assets/images/information_Gathering/send_back_for_review.svg" class="btnToolbar">
+                  <span
+                     class="icon-name">{{'screens.project-designer.document-view.info-gathering.finalize-button' | translate}}</span>
+               <img src="assets/images/information_Gathering/send_back_for_review.svg" class="btnToolbar">
+               <span
+                  class="icon-name">{{'screens.project-designer.document-view.info-gathering.send-back-assignee-button' | translate}}</span>
+            </div>
+            <div class="action-icon-wrapper">
+               <img src="assets/images/information_Gathering/Save_as_draft.svg" class="btnToolbar"
+                  (click)="saveInfoRequest()">
+               <span
+                  class="icon-name">{{'screens.project-designer.document-view.info-request.save-as-draft-button' | translate}}</span>
+            </div>
+            <span
+               class="section-name">{{'screens.project-designer.document-view.info-request.action-label' | translate}}</span>
+         </div>
+         <div class="create-section" id="createSection">
+               <img src="assets/images/Edit-active.svg" class="btnToolbar">
+               <span class="icon-name">{{'screens.project-designer.document-view.info-gathering.edit-question-button' | translate}}</span>
+            <span
+            class="section-name">{{'screens.project-designer.document-view.info-request.action-label' | translate}}</span>
+         </div>
+      </div> -->
+    <div class="informationWrapper" *ngIf="FilterSection">
+      <div class="informationBlock">
+
+
+        <!-- <span>{{'screens.project-designer.document-view.info-request.ir-name-label' | translate}}:</span>{{informationRequest.name}}
+               <span *ngIf ="informationRequest.templateId == null">| {{'screens.project-designer.document-view.info-request.entity-label' | translate}}:</span>E1
+               <span>| {{'screens.project-designer.document-view.info-request.template-label' | translate}}:</span>Default Template
+               <span>| {{'screens.project-designer.document-view.info-request.assigned-label' | translate}}:</span>{{informationRequest.updatedBy}} on {{informationRequest.updatedOn}}
+               <span>{{'screens.project-designer.document-view.info-request.status-label' | translate}}:</span>{{informationRequest.status}}
+               <span>| {{'screens.project-designer.document-view.info-request.completiondate-label' | translate}}:</span> --
+               <span>| {{'screens.project-designer.document-view.info-request.due-date-label' | translate}}:</span>{{informationRequest.dueDate}}
+             -->
+        <div>
+          <span
+            class="infoTitle">{{'screens.project-designer.document-view.info-request.ir-name-label' | translate}}:</span>
+          <span class="infoValue">{{informationRequest.name}}</span>
+        </div>
+
+        <div *ngIf="informationRequest.templateId == null">
+          <span class="infoTitle">
+            {{'screens.project-designer.document-view.info-request.entity-label' | translate}}:</span>
+          <span class="infoValue">{{informationRequest.deliverableId}}</span>
+        </div>
+
+        <div *ngIf="informationRequest.deliverableId == null">
+          <span class="infoTitle">|
+            {{'screens.project-designer.document-view.info-request.template-label' | translate}}:</span>
+          <span class="infoValue">{{informationRequest.templateId}}</span>
+        </div>
+
+        <div>
+          <span class="infoTitle">|
+            {{'screens.project-designer.document-view.info-request.assigned-label' | translate}}:</span>
+          <span class="infoValue">{{informationRequest.updatedBy}} on
+            {{informationRequest.updatedOn | date: 'dd MMM yyyy'}}</span>
+        </div>
+        <br />
+        <div>
+          <span class="infoTitle">{{'screens.project-designer.document-view.info-request.status-label' | translate}}:
+          </span>
+          <span class="infoValue"
+            *ngIf="informationRequest.status == status.inProgress">{{'screens.project-designer.document-view.info-request.in-progress-status' | translate}}</span>
+          <span class="infoValue"
+            *ngIf="informationRequest.status == status.inReview">{{'screens.project-designer.document-view.info-request.in-review-status' | translate}}</span>
+          <span class="infoValue"
+            *ngIf="informationRequest.status == status.final">{{'screens.project-designer.document-view.info-request.completed' | translate}}</span>
+
+        </div>
+        <div>
+          <span class="infoTitle">|
+            {{'screens.project-designer.document-view.info-request.completiondate-label' | translate}}:</span>
+          <span class="infoValue"
+            *ngIf="informationRequest.status == status.final">{{informationRequest.updatedOn | date: 'dd MMM yyyy'}}</span>
+          <span class="infoValue" *ngIf="informationRequest.status != status.final">--</span>
+        </div>
+        <div>
+          <span class="infoTitle">|
+            {{'screens.project-designer.document-view.info-request.due-date-label' | translate}}: </span>
+          <span class="infoValue">{{informationRequest.dueDate | date: 'dd MMM yyyy'}}</span>
+        </div>
+
+
+
+
+
+
+      </div>
+    </div>
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+      {{imageName}}
+      <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+      <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+    </div>
+  </div>
+</div>

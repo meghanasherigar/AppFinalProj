@@ -1,0 +1,335 @@
+<div class="container-fluid">
+    <div class="row home-menu-container templateLevel2MenuWrapper">
+      <div id="insertToolbar-section" class="col-xs-12 toolbar-component-container collapsed">
+        <div class="page-section manage-section">
+          <div class="action-icon-wrapper" id="coverPageIcon" (click)= "openCoverPage()">
+            <img src="assets/images/Toolbar/active/Cover-page.svg" class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.document-view.CoverPage' | translate}}</span>
+          </div>
+          <div class="action-icon-wrapper" id="pageBreakkIcon"
+          [ngClass]="toolbarIcons.enablePageBreak ? '' : 'disable-section'" (click)="pageBreak()">
+          <img src="assets/images/Toolbar/active/page-break.svg" class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.document-view.PageBreak' | translate}}</span> 
+          </div>
+          <!-- <div class="action-icon-wrapper" id="sectionBreakIcon"
+            [ngClass]="toolbarIcons.enableSectionBreak ? '' : 'disable-section'">
+            <img src="assets/images/Toolbar/active/section-break.svg" class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.document-view.SectionBreak' | translate}}</span>
+          </div> -->
+          <div class="section-Name ">
+            <span>{{'screens.project-designer.document-view.sectionText.Pages' | translate}}</span>
+          </div>
+        </div>
+        <div class="manage-section">
+          <div class="section-Name ">
+            <span>{{'screens.project-designer.document-view.sectionText.Table' | translate}}</span>
+          </div>
+        </div>
+        <div class="manage-section " *ngIf="(selectedLibrary==LibraryOptions.OECDtemplates)||(selectedLibrary==LibraryOptions.Countrytemplates)">
+          <!-- commented as its available in Editor and approved by Rahul -->
+          <!-- <div class="action-icon-wrapper" id="HyperlinkIcon">
+                          <img src="assets/images/Toolbar/active/hyperlinks.svg" (click)="hyperlinkBlock()" class="btnToolbar">
+                          <span class="icon-name">{{'screens.project-designer.document-view.Hyperlink' | translate}}</span>
+                   </div> -->
+          <div class="action-icon-wrapper" id="CrossReferenceIcon">
+            <img src="assets/images/Toolbar/active/cross-reference.svg" (click)="crossReferenceBlock()"
+              class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.document-view.CrossReference' | translate}}</span>
+          </div>
+          <div class="action-icon-wrapper" id="BookmarkIcon">
+          <img src="assets/images/Toolbar/active/cross-reference.svg" (click)="generateBookMark()"
+            class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.document-view.Bookmark' | translate}}</span>
+        </div>
+          <div class="section-Name ">
+            <span>{{'screens.project-designer.document-view.sectionText.Links' | translate}}</span>
+          </div>
+        </div>
+  
+        <div class="manage-section">
+          <!-- Find and Replace -->
+          <!-- <div class="headerButton action-icon-wrapper" id="findAndReplaceIcon" [nbPopover]="findReplaceRef" nbPopoverPlacement="bottom">
+                 <div class="findAndReplaceIcon">
+                      <img class="btnToolbar" src=" assets/images/Toolbar/active/Find-Replace.svg">
+                 </div>
+                 
+                 <span
+                    class="icon-name">{{'screens.project-designer.document-view.FindReplace.IconName' | translate}}</span>
+              </div> -->
+          <!-- <ng-template #findReplaceRef>
+                 <div class="FindAndReplace">
+                    <div class="row form-group">
+                       <div class="col-md-4">
+                          <label>
+                             {{'screens.project-designer.document-view.FindReplace.label.FindWhat' | translate}}</label>
+                       </div>
+                       <div class="col-md-8">
+                          <input type="text" [(ngModel)] = "searchedText"  class="form-control custom-form-input">
+                       </div>
+                    </div>
+                    <div class="row form-group">
+                       <div class="col-md-4">
+                          <label>{{'screens.project-designer.document-view.FindReplace.label.ReplaceWith' | translate}}</label>
+                       </div>
+                       <div class="col-md-8">
+                          <input type="text" [(ngModel)] = "replaceWith" class="form-control custom-form-input">
+                       </div>
+                    </div>
+                    <div class="row">
+                       <div class="col-md-5 col-md-offset-1">
+                          <button type="submit" class="menu-btn-save createBlockSave" [ngClass]="{ 'disable-section': (searchedText == undefined || searchedText == '')}"
+                             id="btnFindAll" (click)="findText($event,'Find')">{{'screens.project-designer.document-view.FindReplace.label.FindButton' | translate}}</button>
+                       </div>
+                       <div class="col-md-5 col-md-offset-1">
+                          <button type="submit" class="menu-btn-save createBlockSave" [ngClass]="{ 'disable-section': (searchedText == undefined || searchedText == '')}"
+                             id="btnCreateOrganization" (click)="findText($event,'Replace')">{{'screens.project-designer.document-view.FindReplace.label.ReplaceButton' | translate}}</button>
+                       </div>
+                       <div class="col-md-5">
+                          <button nbButton type="button" class="menu-btn-cancel createCancel" (click)="dismiss()"><label
+                                class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label>
+                          </button>
+                       </div>
+                    </div>
+                 </div>
+              </ng-template> -->
+        </div>
+  
+  
+  
+        <div class="manage-section" *ngIf="(selectedLibrary==LibraryOptions.OECDtemplates)||(selectedLibrary==LibraryOptions.Countrytemplates)">
+          <!-- Added Header -->
+          <div class="headerButton action-icon-wrapper"  [ngClass]="toolbarIcons.enableHeadersAndFooters ? '' : 'disable-section'" id="headerIcon" [nbPopover]="templateRef"
+            nbPopoverPlacement="bottom">
+            <img class="btnToolbar" src=" assets/images/Toolbar/active/Header.svg">
+            <span class="icon-name">{{'screens.project-designer.document-view.Header' | translate}}</span>
+          </div>
+          <ngx-ui-loader [loaderId]='loaderId'
+          [bgsPosition]="loaderPosition"
+          [bgsColor]="loaderColor"></ngx-ui-loader>
+
+          <ng-template #templateRef>
+            <div class="headerContentWrapper" ngxUiLoaderBlurred>
+              <div class="styleWrapper">
+                <div class="styleBlock" (click)="loadHeader('HeaderType1')">
+                  <p>{{'screens.project-designer.document-view.Style' | translate}}</p>
+                  <div class="styleTypeBlock">
+                    <div class="styleType" placeholder="[Type something]">
+                      <div class="row">
+                        <span
+                          class="col-sm-6">{{'screens.project-designer.document-view.Typesomething' | translate}}</span>
+                        <span class="col-sm-6"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="styleBlock" (click)="loadHeader('HeaderType2')">
+                  <p>{{'screens.project-designer.document-view.Style' | translate}}</p>
+                  <div class="styleTypeBlock">
+                    <div class="styleType" placeholder="[Type something]">
+                      <div class="row">
+                        <span
+                          class="col-sm-6">{{'screens.project-designer.document-view.Typesomething' | translate}}</span>
+                        <span
+                          class="col-sm-6">{{'screens.project-designer.document-view.Typesomething' | translate}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="styleBlock" (click)="loadHeader('HeaderType3')">
+                  <p>{{'screens.project-designer.document-view.Style' | translate}}</p>
+                  <div class="styleTypeBlock">
+                    <div class="styleType" placeholder="[Type something]">
+                      <div class="row">
+                        <span class="col-sm-6"></span>
+                        <span
+                          class="col-sm-6">{{'screens.project-designer.document-view.Typesomething' | translate}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="headerWrapper">
+                <button
+                  (click)="RemoveHeader();">{{'screens.project-designer.document-view.RemoveHeader' | translate}}</button>
+              </div>
+            </div>
+          </ng-template>
+  
+          <!-- Added Footer -->
+          <div class="headerButton action-icon-wrapper" id="footerIcon" [nbPopover]="templateRefFooter"
+            nbPopoverPlacement="bottom"  [ngClass]="toolbarIcons.enableHeadersAndFooters ? '' : 'disable-section'">
+            <img class="btnToolbar" src=" assets/images/Toolbar/active/Footer.svg">
+            <span class="icon-name">{{'screens.project-designer.document-view.Footer' | translate}}</span>
+          </div>
+          <ng-template #templateRefFooter>
+            <div class="headerContentWrapper">
+              <div class="styleWrapper">
+                <div class="styleBlock" (click)="loadFooter('FooterType1')">
+                  <p>{{'screens.project-designer.document-view.Style' | translate}}</p>
+                  <div class="styleTypeBlock">
+                    <div class="styleType" placeholder="[Type something]">
+                      <div class="row">
+                        <span
+                          class="col-sm-6">{{'screens.project-designer.document-view.Typesomething' | translate}}</span>
+                        <span class="col-sm-6"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="styleBlock" (click)="loadFooter('FooterType2')">
+                  <p>{{'screens.project-designer.document-view.Style' | translate}}</p>
+                  <div class="styleTypeBlock">
+                    <div class="styleType" placeholder="[Type something]">
+                      <div class="row">
+                        <span
+                          class="col-sm-6">{{'screens.project-designer.document-view.Typesomething' | translate}}</span>
+                        <span
+                          class="col-sm-6">{{'screens.project-designer.document-view.Typesomething' | translate}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="styleBlock" (click)="loadFooter('FooterType3')">
+                  <p>{{'screens.project-designer.document-view.Style' | translate}}</p>
+                  <div class="styleTypeBlock">
+                    <div class="styleType" placeholder="[Type something]">
+                      <div class="row">
+                        <span class="col-sm-6"></span>
+                        <span
+                          class="col-sm-6">{{'screens.project-designer.document-view.Typesomething' | translate}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="headerWrapper">
+                <button
+                  (click)="RemoveFooter();">{{'screens.project-designer.document-view.RemoveFooter' | translate}}</button>
+              </div>
+            </div>
+          </ng-template>
+          <div class="section-Name ">
+            <span>{{'screens.project-designer.document-view.sectionText.HeaderFooter' | translate}}</span>
+          </div>
+        </div>
+        <div class="manage-section addins-section">
+          <div class="action-icon-wrapper" id="pageNumberIcon"
+            [ngClass]="toolbarIcons.enablePageNumber ? '' : 'disable-section'" *ngIf="(selectedLibrary==LibraryOptions.OECDtemplates)||(selectedLibrary==LibraryOptions.Countrytemplates)">
+            <img src="assets/images/Toolbar/active/Page-number.svg" class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.document-view.PageNumber' | translate}}</span>
+          </div>
+          <div class="action-icon-wrapper" id="footNoteIcon" (click)="addFootNote()"
+            >
+            <img src="assets/images/Toolbar/active/Footnote.svg" class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.document-view.FootNote' | translate}}</span>
+  
+          </div>
+          <div class="action-icon-wrapper" id="tableOfContentsIcon"
+            [ngClass]="toolbarIcons.enableTableofContent ? '' : 'disable-section'" [nbPopover]="templateTableCont" nbPopoverPlacement="bottom" *ngIf="(selectedLibrary==LibraryOptions.OECDtemplates)||(selectedLibrary==LibraryOptions.Countrytemplates)">
+            <img src="assets/images/Toolbar/active/table-of-contents.svg" class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.document-view.TableOfContents' | translate}}</span>
+          </div>
+          <ng-template #templateTableCont>
+            <div class="headerContentWrapper">
+              <div class="styleWrapper">
+                <div class="styleBlock" (click)="loadTableOfContents('Contents')">
+                  <p>Automatic Table 1</p>
+                  <div class="styleTypeBlock">
+                    <div class="styleType">
+                      <div class="row">
+                          <span class="col-sm-12">Contents</span>
+                          <span class="col-sm-12">Heading 1.............................................................................1</span>
+                          <span class="col-sm-12">&nbsp;Heading 2............................................................................1</span>
+                          <span class="col-sm-12">&nbsp;&nbsp;Heading 3...........................................................................1</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="styleBlock" (click)="loadTableOfContents('Table of Contents')">
+                    <p>Automatic Table 2</p>
+                  <div class="styleTypeBlock">
+                    <div class="styleType">
+                      <div class="row">
+                          <span class="col-sm-12">Table of Contents</span>
+                          <span class="col-sm-12">Heading 1.............................................................................1</span>
+                          <span class="col-sm-12">&nbsp;Heading 2............................................................................1</span>
+                          <span class="col-sm-12">&nbsp;&nbsp;Heading 3...........................................................................1</span>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="headerWrapper">
+                <button (click)="RemoveTableOfContent();">Remove {{'screens.project-designer.document-view.TableOfContents' | translate}}</button>
+              </div>
+            </div>
+            </ng-template>
+          <div class="action-icon-wrapper" id="timestampIcon"
+             [nbPopover]="timeStampBox" nbPopoverPlacement="bottom">
+            <img src="assets/images/Toolbar/active/time-stamp.svg" class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.document-view.TimeStamp' | translate}}</span>
+  
+          </div>
+          <ng-template #timeStampBox>
+            <h6><b>Available Formats:</b></h6>
+            <div *ngFor="let timestamp of timeStampLists" (click)="insertSymbol(timestamp)" class="attchmentData">
+              {{timestamp}}      
+            </div>
+          </ng-template>
+          <div class="action-icon-wrapper" id="symbolIcon" [nbPopover]="symbolRefBox" nbPopoverPlacement="bottom">
+            <img src="assets/images/Toolbar/active/symbol.svg" class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.document-view.Symbol' | translate}}</span>
+  
+          </div>
+          <ng-template #symbolRefBox>
+            <div class="symbolbox">
+              <div class="symbolHeading">
+                <h5>{{'screens.project-designer.document-view.Symbol' | translate}}</h5>
+              </div>
+              <div class="symbolIconBox">
+                <button *ngFor="let symbol of symbols" class="symbolButtons" [ngStyle]="{ background: symbol }"
+                  (click)="insertSymbol(symbol)">
+                  <div [innerHTML]="symbol"></div>
+                </button>
+                  <span></span>
+              </div>
+            </div>
+          </ng-template>
+          <div class="section-Name ">
+            <span>{{'screens.project-designer.document-view.sectionText.AddIns' | translate}}</span>
+          </div>
+        </div>
+        <div class="manage-section">
+          <div class="action-icon-wrapper" [ngClass]="toolbarIcons.enableAbbreviation ? '' : 'disable-section'">
+            <img src="assets/images/Toolbar/active/abbrevation.svg" class="btnToolbar" (click)="abbreviationPopup()"
+              ngbTooltip="Create Abbreviation">
+            <span class="icon-name">{{'screens.project-designer.document-view.CreateAbbreviation' | translate}}</span>
+          </div>
+          <div class="action-icon-wrapper" [ngClass]="toolbarIcons.enableAbbreviation ? '' : 'disable-section'">
+            <a class="nav-link hover" class="textcolorlevel1 noUnderline">
+              <img src="assets/images/Toolbar/active/Abbrevation-table.svg" class="btnToolbar"
+                (click)="viewAbbreviation()" ngbTooltip="Create Abbreviation">
+            </a>
+            <span class="icon-name">{{'screens.project-designer.document-view.ViewAbbTable' | translate}}
+            </span>
+          </div>
+          <div class="section-Name ">
+            <span>{{'screens.project-designer.document-view.sectionText.Abbreviation' | translate}}</span>
+          </div>
+        </div>
+        <div class="manage-section">
+          <div class="action-icon-wrapper" [ngClass]="toolbarIcons.enableImportTransactions ? '' : 'disable-section'">
+           <span class="importTransactionIco" (click)="importTransactionsPopup()">
+              <img src="assets/images/import-transaction.svg" class="btnToolbar" 
+              ngbTooltip="Import Transactions">
+           </span>
+            <span class="icon-name">{{'screens.project-designer.document-view.ImportTransactions' | translate}}</span>
+          </div>
+          <div class="section-Name ">
+            <span>{{'menuItems.Transaction' | translate}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

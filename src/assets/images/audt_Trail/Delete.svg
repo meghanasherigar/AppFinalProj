@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Delete</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Audit-Trail" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Delete" transform="translate(0.000000, 0.812500)">
+            <circle id="Oval-Copy-5" fill="#000000" cx="14.5302494" cy="14.5302494" r="14.5302494"></circle>
+            <g id="Group" transform="translate(8.844500, 8.212750)" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.26349995">
+                <polyline id="Path" points="0 2.52699989 1.26349995 2.52699989 11.3714995 2.52699989"></polyline>
+                <path d="M10.1079996,2.52699989 L10.1079996,11.3714995 C10.1079996,12.0693113 9.54231138,12.6349995 8.84449963,12.6349995 L2.52699989,12.6349995 C1.82918814,12.6349995 1.26349995,12.0693113 1.26349995,11.3714995 L1.26349995,2.52699989 M3.15874987,2.52699989 L3.15874987,1.26349995 C3.15874987,0.565688195 3.72443806,0 4.42224981,0 L6.94924971,0 C7.64706146,0 8.21274965,0.565688195 8.21274965,1.26349995 L8.21274965,2.52699989" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

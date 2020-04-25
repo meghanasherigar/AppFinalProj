@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>Edit</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Audit-Trail" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Edit" transform="translate(0.000000, 0.625000)">
+            <circle id="Oval-Copy-6" fill="#000000" cx="14.5302494" cy="14.5302494" r="14.5302494"></circle>
+            <g id="edit-copy" transform="translate(8.030249, 7.530249)" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.13714995">
+                <path d="M5.68574976,1.89524992 L1.26349995,1.89524992 C0.565688195,1.89524992 0,2.46093811 0,3.15874987 L0,12.0032495 C0,12.7010612 0.565688195,13.2667494 1.26349995,13.2667494 L10.1079996,13.2667494 C10.8058113,13.2667494 11.3714995,12.7010612 11.3714995,12.0032495 L11.3714995,7.58099968" id="Path"></path>
+                <path d="M10.4238746,0.94762496 C10.9472334,0.424266165 11.7957657,0.424266174 12.3191245,0.94762498 C12.8424833,1.47098379 12.8424833,2.31951606 12.3191245,2.84287488 L6.31749973,8.84449963 L3.79049984,9.4762496 L4.42224981,6.94924971 L10.4238746,0.94762496 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

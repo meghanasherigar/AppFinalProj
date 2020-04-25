@@ -1,0 +1,12 @@
+<nb-card>
+  <nb-card-body>
+    <nb-tabset fullWidth class="custom-tab-width" (changeTab)="selectedTab($event)">
+      <nb-tab [tabTitle]= "'screens.project-designer.document-view.Entity Variable' | translate" [active]="isEntityTabActive">
+        <ngx-manage-answer-entity></ngx-manage-answer-entity>
+      </nb-tab>
+      <nb-tab [tabTitle]="'screens.project-designer.document-view.Project Variable' | translate" [active]="isEntityTabActive==false" >
+        <ngx-manage-answer-project></ngx-manage-answer-project>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card-body>
+</nb-card>

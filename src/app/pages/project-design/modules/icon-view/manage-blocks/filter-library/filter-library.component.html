@@ -1,0 +1,194 @@
+<nb-card class="filter-custom-styles" id="filterSection">
+  <nb-card-body class="cardColor filter-inputs-wrapper">
+      <div class="filters-section filterSectionWrapper">
+        <div class="stackFiltersSection" [ngClass]="(disabledStack)?'disable':''">
+            <div class="filterLabelText" >{{'screens.project-designer.iconview.Filters.StackFilters' | translate}}</div>
+          
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <ng-multiselect-dropdown  [ngClass]="'custom-mg-multiselect'" class="filter-input"  [placeholder]="'screens.project-designer.iconview.Filters.Level' | translate" [(ngModel)]="selectedStackLevel" [data]="ddlistStackLevel"
+                    [settings]="dropdownStackLevelSettings" (onDeSelectAll)="onSelectAllStackLevel($event)"
+                    (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAllStackType($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+                <!-- <select class="form-control custom-form-input">
+                    <option value="">Type</option>
+                  </select> -->
+      
+              </div>
+            </div>
+          
+            <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <ng-multiselect-dropdown [ngClass]="'custom-mg-multiselect'" class="filter-input"  [placeholder]="'screens.project-designer.iconview.Filters.Type' | translate" [(ngModel)]="selectedStackType" 
+                    [data]="ddlistStackType"
+                      [settings]="dropdownStackTypeSettings" (onDeSelectAll)="onSelectAllStackType($event)"
+                      (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                      (onSelectAll)="onSelectAllStackType($event)">
+                    </ng-multiselect-dropdown>
+                  </div>
+                  <!-- <select class="form-control custom-form-input">
+                      <option value="">Type</option>
+                    </select> -->
+        
+                </div>
+              </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <ng-multiselect-dropdown  [ngClass]="'custom-mg-multiselect'" class="filter-input"  [placeholder]="'screens.project-designer.iconview.Filters.Transactions' | translate"[(ngModel)]="selectedStackTransaction" [data]="ddlistStackTransaction"
+                    [settings]="dropdownStackTransactionSettings" (onDeSelectAll)="onSelectAllStackTransaction($event)"
+                    (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAllStackTransaction($event)">
+                  </ng-multiselect-dropdown>
+                  <!-- <select class="form-control custom-form-input">
+                    <option value="">Transaction</option>
+                  </select> -->
+                  <!-- <span>
+                    <hr /></span> -->
+                </div>
+              </div>
+            </div>
+      
+        </div>
+      <div class="blockFiltersSection">
+          <div class="filterLabelText">{{'screens.project-designer.iconview.Filters.BlockFilters' | translate}}</div>
+      
+          <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <ng-multiselect-dropdown  [ngClass]="'custom-mg-multiselect'" class="filter-input"  [placeholder]="'screens.project-designer.iconview.Filters.Type' | translate"
+                  [(ngModel)]="selectedBlockType"     [data]="ddlistBlockType"
+                    [settings]="dropdownBlockTypeSettings" (onDeSelectAll)="onSelectAllBlockType($event)"
+                    (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAllBlockType($event)">
+                  </ng-multiselect-dropdown>
+                  <!-- <select class="form-control custom-form-input">
+                    <option value="">Project Year</option>
+      
+                  </select> -->
+      
+                </div>
+              </div>
+            </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <ng-multiselect-dropdown [ngClass]="'custom-mg-multiselect'" class="filter-input"  [placeholder]="'screens.project-designer.iconview.Filters.ProjectYear' | translate" 
+                [(ngModel)]="selectedBlockProjectYear" [data]="ddlistBlockProjectYear"
+                  [settings]="dropdownBlockProjectYearSettings" 
+                  (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAllBlockProjectYear($event)"(onDeSelectAll)="onSelectAllBlockProjectYear($event)">
+    
+                </ng-multiselect-dropdown>
+                <!-- <select class="form-control custom-form-input">
+                  <option value="">Project Year</option>
+    
+                </select> -->
+    
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <ng-multiselect-dropdown [ngClass]="'custom-mg-multiselect'" class="filter-input" [placeholder]="'screens.project-designer.iconview.Filters.Title' | translate" [data]="ddlistBlockTitle"
+                [(ngModel)]="selectedBlockProjectTitle"[settings]="dropdownBlockTitleSettings" (onDeSelectAll)="onSelectAllBlockTitle($event)"
+                  (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAllBlockTitle($event)">
+                </ng-multiselect-dropdown>
+                <!-- <select class="form-control custom-form-input">
+                  <option value="">Title</option>
+                </select> -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <ng-multiselect-dropdown  [ngClass]="'custom-mg-multiselect'" class="filter-input"  [placeholder]="'screens.project-designer.iconview.Filters.Industry' | translate" [data]="ddlistBlockIndustry"
+                [(ngModel)]="selectedBlockProjectIndustry "[settings]="dropdownBlockIndustrySettings" (onDeSelectAll)="onSelectAllBlockIndustry($event)"
+                  (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAllBlockIndustry($event)">
+                </ng-multiselect-dropdown>
+                <!-- <select class="form-control custom-form-input">
+                  <option value="">Industry</option>
+                </select> -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <ng-multiselect-dropdown  [ngClass]="'custom-mg-multiselect'" class="filter-input"  [placeholder]="'screens.project-designer.iconview.Filters.Status' | translate" [data]="ddlistBlockStatus"
+                [(ngModel)]="selectedBlockStatus" [settings]="dropdownBlockStatusSettings" (onDeSelectAll)="onSelectAllBlockStatus($event)"
+                  (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAllBlockStatus($event)">
+                </ng-multiselect-dropdown>
+                <!-- <select class="form-control custom-form-input">
+                  <option value="">Status</option>
+                </select> -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <ng-multiselect-dropdown  [ngClass]="'custom-mg-multiselect'" class="filter-input"  [placeholder]="'screens.project-designer.iconview.Filters.State' | translate" [data]="ddlistBlockState"
+                [(ngModel)]="selectedBlockState" [settings]="dropdownBlockStateSettings" (onDeSelectAll)="onSelectAllBlockState($event)"
+                  (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAllBlockState($event)">
+                </ng-multiselect-dropdown>
+                <!-- <select class="form-control custom-form-input">
+                  <option value="">Status</option>
+                </select> -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <ng-multiselect-dropdown  [ngClass]="'custom-mg-multiselect'" class="filter-input"  [placeholder]="'screens.project-designer.iconview.Filters.Creator' | translate" [data]="ddlistBlockCreator"
+                [(ngModel)]="selectedBlockCreator"[settings]="dropdownBlockCreatorSettings" (onDeSelectAll)="onSelectAllBlockCreator($event)"
+                  (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAllBlockCreator($event)">
+                </ng-multiselect-dropdown>
+                <!-- <select class="form-control custom-form-input">
+                  <option value="">Creator</option>
+                </select> -->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <ng-multiselect-dropdown  [ngClass]="'custom-mg-multiselect'" class="filter-input" [placeholder]="'screens.project-designer.iconview.Filters.Origin' | translate" [data]="ddlistBlockOrigin"
+                [(ngModel)]="selectedBlockOrigin" [settings]="dropdownBlockOriginSettings" (onDeSelectAll)="onSelectAllBlockOrigin($event)"
+                  (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAllBlockOrigin($event)">
+                </ng-multiselect-dropdown>
+                <!-- <select class="form-control custom-form-input">
+                  <option value="">Origin</option>
+                </select> -->
+              </div>
+            </div>
+          </div>
+
+      </div>
+     
+      
+      <!-- <button class="btn resetButton" (click)="emptyFilter()" >Reset All</button>
+      <button class="btn cancelButton" (click)="emptyFilter()" >cancel</button>
+      <button class="btn applyButton"(click)="apply()">apply</button> -->
+    </div>
+  </nb-card-body>
+  <div class="footerCard">
+  <button class="btn resetButton" (click)="emptyFilter()" >{{'screens.project-designer.iconview.Filters.Reset All' | translate}}</button>
+      <button class="btn cancelButton" (click)="cancel()" >{{'screens.project-designer.iconview.Filters.Cancel' | translate}}</button>
+      <button class="btn applyButton"(click)="apply()">{{'screens.project-designer.iconview.Filters.Apply' | translate}}</button>
+   </div>
+</nb-card>

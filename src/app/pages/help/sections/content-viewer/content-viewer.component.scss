@@ -1,0 +1,211 @@
+ .usermanual-header{
+    margin-left: 1%;
+    align-items: center;
+    background: black;
+    padding: 8px 0;
+    label{
+        margin: 0;
+    }
+ }
+ .searchPdfData{
+    padding: 5px;
+    margin-left: 5px;
+    color: black;
+ }
+ .padding0{
+     padding: 0;
+ }
+ .textRight{
+     text-align: right;
+ }
+ i {
+    border: solid #86BC25;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 4px;
+  }
+  .left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+  .previousPage{
+    text-align: center;
+    border: 1px solid #86BC25 ;
+    display:inline-block;
+    vertical-align: middle;
+    padding: 2px 6px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-right: none;
+  }
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  .nextPage{
+    text-align: center;
+    border: 1px solid #86BC25 ;
+    display:inline-block;
+    vertical-align: middle;
+    padding: 2px 6px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+
+  }
+  .pagesText{
+      color:#86BC25;
+      margin-left: 4px;
+  }
+  .currentPage{
+    display:inline-block;
+    vertical-align: middle;
+    border: 1px solid grey ;
+    padding: 2px 6px;
+    color:black;
+  }
+  .totalPage{
+    display:inline-block;
+    vertical-align: middle;
+    margin:0 6px;
+  }
+  .navigatePage{
+    padding-left: 15px;
+    position: absolute;
+    bottom: 10px;
+  }
+  .contentBlock{
+      border:1px solid grey;
+      padding: 15px;
+      position: relative;
+  }
+  #viewer{
+    height: calc(100vh - 230px);
+    overflow-y: auto;
+    border: 1px solid grey;
+    background-color: darkgrey;
+  }
+  .contentWrapper{
+    padding-left: 20px;
+  }
+  .arrowLeftImg{
+    width:24px;
+    transform:rotate(90deg)
+  }
+  .arrowRightImg{
+    transform: rotate(270deg);
+    width:24px;
+  }
+
+   //new style
+
+   mat-toolbar {
+    // position: fixed;
+    display: block;
+    background: black;
+    color: white;
+
+    padding: 10px;
+  }
+  
+  .select-file__container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .select-file__container p {
+    margin-bottom: 0;
+  }
+  
+  .page-number {
+    width: 133px !important;
+    padding-left: 46px;
+  }
+  .page-number.prevNext {
+    width: 53px !important;
+    padding-left: 10px !important;
+  }
+  .mb {
+    margin-bottom: 15px;
+  }
+  
+  pdf-viewer {
+    display: block;
+  }
+  
+  .error {
+    color: #ff4146;
+  }
+  
+  #progress {
+    margin-top: 50px;
+    width: 100px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  #progress .bar,
+  #progress .bg {
+    height: 20px;
+  }
+  
+  #progress .bg {
+    background-color: #e3e3e3;
+  }
+  
+  #progress .bar {
+    width: 0;
+    max-width: 100%;
+    background-color: #3f51b5;
+    transition: .5s width;
+  }
+  
+  .outline-list li a {
+    cursor: pointer;
+  }
+  
+  .outline-list li a:hover {
+    color: #ea1f62;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  mat-drawer {
+    width: 23%;
+    padding:22px 12px 12px 12px;
+    border-right: 1px solid #dadada;
+    height: calc(100vh - 199px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  mat-drawer-container.example-container {
+    padding-left: 0 !important;
+   width:100%;
+    display: flex;
+   
+  
+  }
+  
+  pdf-viewer {
+    height: 100%;
+  }
+  
+  .title {
+    width: 284px;
+  }
+  mat-drawer-content{
+    height: calc(100vh - 199px);
+   
+    width: 77%;
+  }
+  button{
+    -webkit-app-region: none;
+    background: transparent;
+    border: none;
+  }
+  .pdfViewer.removePageBorders{
+    background-color: #dadada;
+  }

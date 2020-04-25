@@ -1,0 +1,8 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div ngxUiLoaderBlurred>
+  <ng2-smart-table id="entityVariable" [settings]="settingsEntity" 
+  [source]="sourceEntity"(userRowSelect)="onUserRowSelectEntity($event)" (custom)="onCustomAction($event)">
+  </ng2-smart-table>
+</div>

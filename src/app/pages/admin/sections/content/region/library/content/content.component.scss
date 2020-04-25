@@ -1,0 +1,93 @@
+/* template contetn component drag & drop  */
+.drop-below .mat-checkbox{
+  
+  position: relative;
+  height: 85px;
+  width: 100%;
+  display: block;
+
+}
+.drop-above .mat-checkbox{
+  
+  position: relative;
+  height: 85px;
+  width: 100%;
+  display: block;
+  padding-top:35px;
+  .mat-checkbox-inner-container{ top:45px !important;}
+
+}
+.editblcok .mat-checkbox{ width:100%;}
+.drop-below .mat-checkbox::after{ 
+  content: '';     
+  height: 28px;
+    width: 92%;
+    background: #aeef9930;
+    outline: 1px dashed #000;
+    margin-bottom: -24px;
+
+    display: inline-block;
+    margin-left: 32px;
+}
+.drop-above .mat-checkbox::after{ 
+  content: '';
+  height: 28px;
+  width: 92%;
+  background: #aeef9930;
+  outline: 1px dashed #000;
+  margin-top: -1px;
+  display: inline-block;
+  margin-left: 32px;
+  position: absolute;
+  top: 2px;
+  left: 0;
+}
+.drop-center {
+  background-color: #dddddd;
+ }
+.indentation{
+  font-weight: bold;
+  padding-right:10px;
+}
+ 
+/* template content drag & drop ends here */
+
+.stackDisplay{
+  color: #BBBCBC;    
+  font-size: 13px;
+  text-transform: lowercase;
+}
+
+.createManageLibarary .stackClass .mat-checkbox-label{
+  border: none !important;
+  padding-left: 0 !important;
+}
+
+.createManageLibarary .stackClass .mat-checkbox::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  top: 16px;
+  right: 22px;
+  width: 74% !important;
+  left: 81px !important;
+  background: #F1F1F1;
+  display: block;
+  height: 20px;
+}
+
+.createManageLibarary .stackClass .stackDisplay {
+  max-width: 130px !important;
+}
+
+.createManageLibarary mat-tree-node[role="treeitem"] [aria-level="1"] .mat-icon-button{ 
+  display: none;
+}
+
+.createManageLibarary mat-tree-node[role="treeitem"] [aria-level="2"] .mat-icon-button{ 
+  display: none;
+}
+
+.stackClass {
+  
+}

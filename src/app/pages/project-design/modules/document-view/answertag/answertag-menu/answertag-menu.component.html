@@ -1,0 +1,62 @@
+<!-- <ng2-smart-table class="template-table"  id="templateTable" [settings]="settings" [source]="source" (userRowSelect)="onTemplateSelect($event)" (editConfirm)="onEditSave($event)" (custom)="customAction($event)">
+   </ng2-smart-table> -->
+   <div class="container-fluid">
+    <div class="row home-menu-container templateLevel2MenuWrapper">
+       <div id="homeFilters-section" class="col-xs-12 toolbar-component-container collapsed">
+          <div class="manage-section" >
+             <div class="action-icon-wrapper">
+                <img src="assets/images/Create-active.svg" class="btnToolbar" >
+                <a href="/#/pages/project-design/projectdesignMain/documentViewMain/(create-info//level2Menu:info-request-menu//topmenu:iconviewtopmenu) ">Create Tag</a>
+             </div>
+             <div class="action-icon-wrapper">
+                <img src="assets/images/Delete-active.svg"  class="btnToolbar">
+                <span class="icon-name">Delete</span>
+             </div>
+             <div class="action-icon-wrapper">
+                <img src="assets/images/Delete-active.svg"  class="btnToolbar">
+                <span class="icon-name">Download</span>
+             </div>
+          </div>
+          <div class="filters-section" id="filterSection">
+             <div class="filter-inputs-wrapper" >
+                <ng-multiselect-dropdown  class="filter-input "
+                [placeholder]="'Assigned To'">
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown  class="filter-input "
+                [placeholder]="'Co-Reviewers '">
+                </ng-multiselect-dropdown>
+                <div class="input-wrapper filter-input">
+                   <input type="text" class="form-control" placeholder="Due date" readonly>
+                   <label>
+                   <i>
+                   <img src="assets/images/calender.png"   class="calender-icon"></i>
+                   </label>
+                </div>
+                <ng-multiselect-dropdown  class="filter-input "
+                [placeholder]="' Status'">
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown  class="filter-input "
+                [placeholder]="' Information Request na'">
+                </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown  class="filter-input "
+                [placeholder]="'Updated by'">
+                </ng-multiselect-dropdown> 
+                <div class="input-wrapper filter-input">
+                   <input type="text" class="form-control" placeholder="'Updated on'" readonly>
+                   <label>
+                   <i>
+                   <img src="assets/images/calender.png"   class="calender-icon"></i>
+                   </label>
+                </div>
+                <div class="input-wrapper filter-input">
+                   <input type="text" class="form-control searchItem" placeholder="Search"/>
+                </div>
+             </div>
+             <div class="sectionNameWrapper">
+                <span class="sectionName">Actions</span>
+                <div class="sectionName ">Filter</div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>

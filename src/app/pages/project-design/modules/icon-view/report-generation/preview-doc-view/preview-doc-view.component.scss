@@ -1,0 +1,117 @@
+nb-card-body{
+  padding: 20px !important;
+}
+.usermanual-header{
+    // margin-left: 1%;
+    align-items: center;
+    background: black;
+    padding: 8px 20px;
+    color: #fff;
+    label{
+        margin: 5px 0  0 0;
+        font-weight: lighter;
+    }
+ }
+ .searchPdfData{
+    padding: 5px;
+    margin-left: 5px;
+    color: black;
+ }
+ .padding0{
+     padding: 0;
+ }
+ .textRight{
+     text-align: right;
+ }
+ i {
+    border: solid #86BC25;
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 4px;
+  }
+  .left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+  .previousPage{
+    text-align: center;
+    border: 1px solid #86BC25 ;
+    display:inline-block;
+    vertical-align: middle;
+    padding: 2px 6px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-right: none;
+  }
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  .nextPage{
+    text-align: center;
+    border: 1px solid #86BC25 ;
+    display:inline-block;
+    vertical-align: middle;
+    padding: 2px 6px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+
+  }
+  .pagesText{
+      color:#86BC25;
+      margin-left: 4px;
+  }
+  .currentPage{
+    display:inline-block;
+    vertical-align: middle;
+    border: 1px solid grey ;
+    padding: 2px 6px;
+    color:black;
+  }
+  .totalPage{
+    display:inline-block;
+    vertical-align: middle;
+    margin:0 6px;
+  }
+  .navigatePage{
+    padding-left: 15px;
+    position: absolute;
+    bottom: 10px;
+  }
+  .contentBlock{
+      border:1px solid grey;
+      padding: 15px;
+      position: relative;
+  }
+  #viewer{
+    height: calc(100vh - 230px);
+    overflow-y: auto;
+    border: 1px solid grey;
+    background-color: darkgrey;
+  }
+  .contentWrapper{
+    padding-left: 20px;
+  }
+  .arrowLeftImg{
+    width:24px;
+    transform:rotate(90deg)
+  }
+  .arrowRightImg{
+    transform: rotate(270deg);
+    width:24px;
+  }
+
+.prevNext .page-number{
+  padding-top: 12px;
+    padding-left: 9px;
+  &+span{
+    padding-top: 11px;
+    padding-right: 9px;
+  }
+}
+.nextButton.mat-button,.previousBtn.mat-button{
+  min-width: auto!important;
+}
+  //new style
+
+  

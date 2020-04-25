@@ -1,0 +1,125 @@
+<div class="row" *ngIf="(!editAdminUserFlag)">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-4">
+        <form [formGroup]="searchUserForm">
+          <div class="form-group" id="searchUserForm">
+            <mat-form-field class="example-full-width form-control" floatLabel="never">
+              <input type="text" aria-label="Number" id="txtSearchUser" matInput formControlName="SearchUser"
+                [matAutocomplete]="auto">
+              <mat-placeholder class="placeholder">{{'screens.manage-admin.labels.firstLastEmail' | translate}}</mat-placeholder>
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option class="dropdown-style mat-option ng-star-inserted"
+                  (onSelectionChange)="populateUserDetails(item)" *ngFor="let item of searchUserResult"
+                  [value]="item.firstName">
+                  {{ item.firstName + ' ' + item.lastName + ' ('+ item.email +')'}}
+                </mat-option>
+              </mat-autocomplete>
+              <i class="control-icon nb-search"></i>
+            </mat-form-field>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12" id="createAdminUserForm">
+    <div class="row">
+      <div class="col-10 create-admin-user-form-wrapper">
+        <nb-card>
+          <nb-card-body>
+            <form [formGroup]="createAdminUserForm" (ngSubmit)="createAdminUser()">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <input type="hidden" formControlName="Id">
+                    <label class="custom-form-label" for="txtFirstName">
+                      {{'screens.manage-admin.labels.FirstName' | translate}}
+                      <span class="mandatoryField">*</span>
+                    </label>
+                    <input type="text" formControlName="FirstName" name="FirstName" readonly
+                      class="form-control custom-form-input manage-admin-pointer-none" id="txtFirstName"
+                      [ngClass]="{ 'is-invalid': formSubmitted && form.FirstName.errors }">
+                    <div *ngIf="formSubmitted && form.FirstName.errors" class="invalid-feedback">
+                      <div *ngIf="form.FirstName.errors.required">{{'screens.manage-admin.labels.firstNameRequired' | translate}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="custom-form-label" for="txtLastName"> {{'screens.manage-admin.labels.LastName' | translate}}
+                      <span class="mandatoryField">*</span>
+                    </label>
+                    <input type="text" formControlName="LastName" class="form-control custom-form-input manage-admin-pointer-none"
+                      readonly id="txtLastName" [ngClass]="{ 'is-invalid': formSubmitted && form.LastName.errors }">
+                    <div *ngIf="formSubmitted && form.LastName.errors" class="invalid-feedback">
+                      <div *ngIf="form.LastName.errors.required">{{'screens.manage-admin.labels.lastNameRequired' | translate}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="custom-form-label" for="txtEmail"> {{'screens.manage-admin.labels.Email' | translate}}
+                      <span class="mandatoryField">*</span>
+                    </label>
+                    <input type="text" formControlName="Email" class="form-control custom-form-input manage-admin-pointer-none"
+                      id="txtEmail" readonly [ngClass]="{ 'is-invalid': formSubmitted && form.Email.errors }">
+                    <div *ngIf="formSubmitted && form.Email.errors" class="invalid-feedback">
+                      <div *ngIf="form.Email.errors.required">{{'screens.manage-admin.labels.emailRequired' | translate}}</div>
+                      <div *ngIf="form.Email.errors.pattern">{{'screens.manage-admin.labels.emailInvalid' | translate}}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <input type="hidden" formControlName="Country">
+                    <label class="custom-form-label" for="txtCountryName">
+                      {{'screens.manage-admin.labels.Country' | translate}}
+                      <span class="mandatoryField">*</span>
+                    </label>
+                    <input type="text" formControlName="CountryName" class="form-control custom-form-input manage-admin-pointer-none"
+                      readonly id="txtCountry" [ngClass]="{ 'is-invalid': formSubmitted && form.CountryName.errors }">
+                    <div *ngIf="formSubmitted && form.CountryName.errors" class="invalid-feedback">
+                      <div *ngIf="form.CountryName.errors.required">{{'screens.manage-admin.labels.countryRequired' | translate}}</div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" id="roleDiv">
+                <div class="col-sm-3 verticalMove">
+                  <div class="form-group checkbox-inline">
+                    <input type="checkbox" id="globalAdminCheckBox" (change)="adminCheckBoxChange($event)"
+                      class="check">
+                    <label class="custom-form-label labelGlobalAdminTxt">{{'screens.manage-admin.labels.GloablAdmin' | translate}}</label>
+                  </div>
+                </div>
+                <div class="col-sm-3 verticalMove">
+                  <div class="form-group checkbox-inline">
+                    <input type="checkbox" id="countryAdminCheckBox" (change)="adminCheckBoxChange($event)"
+                      class="check">
+                    <label
+                      class="custom-form-label labelCountryAdminTxt">{{'screens.manage-admin.labels.CountryAdmin' | translate}}</label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </nb-card-body>
+          <nb-card-footer>
+            <button class="button-section rectangle" id="btnCreateEntity" [disabled]="disableCreateButton" *ngIf="(!editAdminUserFlag)"
+              (click)="createAdminUser()">{{'screens.manage-admin.labels.SaveBtn' | translate}}</button>
+            <button class="button-section rectangle disabledbutton disable-section" id="btnCreateEntity"
+              *ngIf="(editAdminUserFlag)"
+              (click)="updateAdminUser()">{{'screens.manage-admin.labels.UpdateBtn' | translate}}</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="canelButton rect-cancel"
+              (click)="closeCreateEditAdminUser()">{{'screens.manage-admin.labels.CancelBtn' | translate}}</button>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+    </div>
+  </div>
+</div>

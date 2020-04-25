@@ -1,0 +1,44 @@
+.editBlockpopupHW{
+    width: 100%;
+    margin-top: 10px;
+    .form-group{
+        width:100%;
+    }
+}
+
+.ediTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+    padding:10px;
+
+}
+.attributeText{
+    display: inline-block;
+    width: 81%;
+    padding-left: 10px;
+    span{
+        font-size: 18px;
+    font-weight: 500;
+    }
+}
+
+.close{
+    color: #fff;
+    border: none;
+    border: 0;
+}
+.close:hover{
+    border: none;
+    border: 0;
+}
+.userName{
+    font-weight: bold;
+    font-size: 13px;
+}
+.answerContent{
+    width: 95%;
+    margin-left: 5px;
+}
+
+

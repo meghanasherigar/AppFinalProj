@@ -1,0 +1,152 @@
+<!-- <div class="centered"><img src="assets/images/loder.gif" *ngIf="showLoader" alt="loder" height="100px" width="100px">
+</div> -->
+
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+
+
+<!--
+  uncomment and put at necessary places to enable pagination
+  <div class="templateContentSection" ngxUiLoaderBlurred></div>
+<cdk-virtual-scroll-viewport itemSize="30" style="height: 420px;" (scrolledIndexChange)="OnScroll($event)">
+    <ng-container *cdkVirtualFor="let item of dataSource1"></ng-container>
+  </cdk-virtual-scroll-viewport> -->
+
+<div id="parentDiv" class="templateContentSection">
+    <mat-tree  [dataSource]="dataSource1" [treeControl]="treeControl">
+      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding [contextMenu]="basicMenu"
+        [contextMenuSubject]="node"
+        [ngClass]="{'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,'nestedBlock':node.isStack==false,
+        'templateBlockColor':node.colorCode=='White',
+        'deliverableBlockColor':node.colorCode=='Teal',
+        'libraryBlockColor':node.colorCode=='Grey',
+       
+                                    'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+                                    'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node}">
+        <button mat-icon-button disabled></button>
+        <mat-checkbox class="checklist-leaf-node" [hidden]="!node.blockId"  [checked]="checklistSelection.isSelected(node)"
+          (change)="checklistSelection.toggle(node);todoItemSelectionToggle(node)" draggable="true"
+          (dragstart)="handleDragStart($event, node);"
+          (dragover)="handleDragOver($event, node);" (drop)="handleDrop($event, node);"
+          (dragend)="handleDragEnd($event);" (dragleave)="handleDragLeave($event);"><span *ngIf="filter"><span
+              class="indentation">{{node.indentation}}.</span></span><span id="item_{{node.nodeIndex}}"
+            *ngIf="!node.isStack" [title]="node.item">{{node.item}}</span><span class="stackDisplay"
+            *ngIf="node.isStack" [title]="node.description">{{node.description}}</span>
+
+          <div *ngIf="blockViewType && blockViewType!=1">
+            <div class="borderSection"></div>
+            <div class="descriptio">
+              <div class="col-md-7" *ngIf="blockViewType==2 || blockViewType==3">
+                <p>{{'screens.home.labels.blockAttributeDetail.BlockType' | translate}} : <span> {{node.blockType ? node.blockType.blockType : ''}}</span></p>
+              </div>
+              <div class="col-md-5" *ngIf="blockViewType==2 || blockViewType==3">
+                <p>{{'screens.home.labels.blockAttributeDetail.Status' | translate}} : <span>{{node.blockStatus ? node.blockStatus.blockStatus : ''}}</span></p>
+              </div>
+              <div class="col-md-12" *ngIf="blockViewType==3">
+                <p>{{'screens.home.labels.blockAttributeDetail.Description' | translate}} :<span> {{node.description}} </span></p>
+              </div>
+            </div>
+          </div>
+                      <img *ngIf="!node.isStack && node.isLocked" src="assets/images/no-drop_icon.png" class="no-drop_icon" placement="left" ngbTooltip="{{'screens.project-designer.iconview.locked-for-editing-by' | translate}} {{node.blockUser.userDetails.fullName}}">
+
+        </mat-checkbox>
+      <div *ngIf="!node.blockId">
+          <div class="empty-node-iconic-view" draggable="true"
+           (dragstart)="handleDragStart($event, node);"
+          (dragover)="handleDragOver($event, node);" (drop)="handleDrop($event, node);"
+          (dragend)="handleDragEnd($event);" (dragleave)="handleDragLeave($event);">
+          </div>
+      </div>
+      </mat-tree-node>
+      <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+        <button mat-icon-button disabled></button>
+        <mat-form-field>
+          <input matInput #itemValue placeholder="New item...">
+        </mat-form-field>
+        <button mat-button (click)="saveNode(node, itemValue.value)">Save</button>
+      </mat-tree-node>
+
+      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding [contextMenu]="basicMenu"
+        [contextMenuSubject]="node"
+        [ngClass]="{'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node, 'nestedBlock':node.isStack==false, 
+                                    'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+                                    'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node,
+                                    'templateBlockColor':node.colorCode=='White',
+                                    'deliverableBlockColor':node.colorCode=='Teal',
+                                    'libraryBlockColor':node.colorCode=='Grey'
+                                  
+                                  }">
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename"
+          (click)="expandBlock(node)">
+          <mat-icon class="mat-icon-rtl-mirror" *ngIf="node.isStack">
+            {{treeControl.isExpanded(node) ? 'remove_circle_outline' : 'add_circle_outline'}}
+          </mat-icon>
+          <mat-icon class="mat-icon-rtl-mirror" *ngIf="!node.isStack">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+
+        <mat-checkbox draggable="true" (dragstart)="handleDragStart($event, node);"
+          (dragover)="handleDragOver($event, node);" (drop)="handleDrop($event, node);"
+          (dragend)="handleDragEnd($event);" (dragleave)="handleDragLeave($event);" 
+          [checked]="checklistSelection.isSelected(node)"
+          (change)="checklistSelection.toggle(node);todoItemSelectionToggle(node)"><span *ngIf="filter"><span
+              class="indentation">{{node.indentation}}.</span></span><span id="item_{{node.nodeIndex}}"
+            *ngIf="!node.isStack" [title]="node.item">{{node.item}}</span><span class="stackDisplay"
+            *ngIf="node.isStack" [title]="node.description">{{node.description}}</span>
+          <div *ngIf="blockViewType && blockViewType!=1">
+            <div class="borderSection"></div>
+            <div class="descriptio">
+              <div class="col-md-7" *ngIf="blockViewType==2 || blockViewType==3">
+                <p>{{'screens.home.labels.blockAttributeDetail.BlockType' | translate}} : <span> {{node.blockType ? node.blockType.blockType : ''}}</span></p>
+              </div>
+              <div class="col-md-5" *ngIf="blockViewType==2 || blockViewType==3">
+                <p>{{'screens.home.labels.blockAttributeDetail.Status' | translate}} : <span>{{node.blockStatus ? node.blockStatus.blockStatus : ''}}</span></p>
+              </div>
+              <div class="col-md-12" *ngIf="blockViewType==3">
+                <p>{{'screens.home.labels.blockAttributeDetail.Description' | translate}} :<span> {{node.description}} </span></p>
+              </div>
+            </div>
+          </div>
+                      <img *ngIf="!node.isStack && node.isLocked" src="assets/images/no-drop_icon.png" class="no-drop_icon" placement="left" ngbTooltip="{{'screens.project-designer.iconview.locked-for-editing-by' | translate}} {{node.blockUser.userDetails.fullName}}">
+
+        </mat-checkbox>
+        <!-- <button mat-icon-button (click)="addNewItem(node)">
+            <mat-icon>add</mat-icon>
+          </button> -->
+      </mat-tree-node>
+    </mat-tree>
+    <span #emptyItem></span>
+    <!-- <div class="example-container">
+        <div
+          #doneList="cdkDropList"
+          [cdkDropListData]="done"
+          [cdkDropListConnectedTo]="[todoList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let item of done" cdkDrag>
+              <input type="checkbox">
+            {{item}}</div>
+        </div>
+      </div> -->
+  
+  <context-menu *ngIf="!designerService.isExtendedIconicView">
+    <ng-template contextMenuItem (execute)="createBlock($event.item)" [enabled]="enableCreate || (this.dataSource1.data[0] && !this.dataSource1.data[0].id)">
+      {{'screens.project-designer.iconview.create' | translate}}
+    </ng-template>
+    <ng-template contextMenuItem divider="true"></ng-template>
+    <ng-template contextMenuItem let-item (execute)="copySelectedItems($event.item)" [enabled]="enableCopy">
+      {{'screens.project-designer.iconview.copy' | translate}}
+    </ng-template>
+    <ng-template contextMenuItem divider="true"></ng-template>
+    <ng-template contextMenuItem let-item [enabled]="disablePaste" (execute)="pasteStackOrBlock($event.item)">
+      {{'screens.project-designer.iconview.paste' | translate}}
+    </ng-template>
+    <ng-template contextMenuItem divider="true"></ng-template>
+      <ng-template contextMenuItem let-item [enabled]="disablePaste" (execute)="pasteStackOrBlockAsReference($event.item)">
+        {{'screens.project-designer.iconview.pasteAsReference' | translate}}
+      </ng-template>
+  </context-menu>
+
+</div>

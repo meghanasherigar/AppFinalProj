@@ -1,0 +1,19 @@
+<!-- <div class="row">
+  <div class="col-12" id="toolbarDiv">
+    <ngx-manage-entities-toolbar (manageEntity)="getEntitiesList($event)"
+      (loadChildComp)="loadMyChildComponent($event)"></ngx-manage-entities-toolbar>
+  </div>
+</div> -->
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<nb-card>
+  <nb-card-body ngxUiLoaderBlurred>
+    <alert></alert>
+    <ngx-create-edit-entity *ngIf="loadComponent" [editEntityRow]="entities" [editChildFlag]="EditFlag"
+      (manageEntity)="getEntityList()" (CancelEntity)="CancelEntityComponent();"></ngx-create-edit-entity>
+
+    <ng2-smart-table id="entitiesSmartTable" class="home-table" [settings]="settings" [source]="source" (userRowSelect)="onUserRowSelect($event)" (custom)="onCustomAction($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

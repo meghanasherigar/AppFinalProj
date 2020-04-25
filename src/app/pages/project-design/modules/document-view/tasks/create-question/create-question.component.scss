@@ -1,0 +1,279 @@
+.editblockHeading{
+    font-weight:bold;
+}
+
+.edidAttributeformGroupLabal
+{
+    color: #d4d3d3;
+    font-size: 11px;
+}
+.edit-block-attribute-mandatory-icon{
+    color:#f50505;
+}
+.saveCancelBtn{
+    float: right;
+}
+.saveCancelBtnTopBorder{
+    border-top: 1px solid #eee!important;
+}
+.editAttributesavButton {
+    height: 35px;
+    width: 109px;
+    border: 1px solid #636561;
+    border-radius: 3px;
+    background-color: #666765;
+    color: #fff;
+}
+.canclebuttonLebal{
+    color:#aba9a9 !important;
+}
+.editBlockpopupHW{
+    width: 100%;
+    margin-top: 10px;
+    .form-group{
+        width:100%;
+    }
+}
+.ediTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+    padding:10px;
+
+}
+.close{
+    color: #fff;
+    border: none;
+    border: 0;
+}
+.close:hover{
+    border: none;
+    border: 0;
+}
+.attributeIcon{
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1.1px solid white;
+    img{
+        height: 11px;
+        width: 11px;
+        vertical-align: middle;
+    }
+}
+.attributeText{
+    display: inline-block;
+    width: 83%;
+    padding-left: 10px;
+    span{
+        font-size: 14px;
+        font-weight: normal;
+    }
+}
+
+.questionWrapper{
+    padding-right: 5px !important;
+    nb-card-footer {
+        padding: 10px 0 10px 10px!important;
+    }
+    .editBlockpopupHW.editorBlockAttributes {
+        // height: auto !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    nb-card-body{
+        padding: 0;
+        // max-height: 294px;
+    }
+    .editBlockpopupHW.editorBlockAttributes {
+        height: calc(100vh - 348px) !important
+    }
+    border: 1px solid #ccc;
+    display: inline-block;
+    margin-top: 0px;
+    padding-top: 10px ;
+    // border-top: none;
+    width: 100%;
+    //overflow-y: auto;
+    border-left: none;
+    height: calc(100vh - 315px) !important;
+    // margin-left: -6px;
+    // height: calc(100vh - 292px);
+    margin-left: -10px;
+    padding-left: 10px;
+    nb-card{
+        margin-bottom: 0;
+    }
+    .dd-style {
+        height: 28px;
+        width: 100%;
+        padding-left: 10px;
+        border: 1px solid #F1F1F1;
+        background-color: #FFFFFF;
+        -webkit-box-shadow: 0 0.5px 0 0 #D8D8D8;
+        box-shadow: 0 0.5px 0 0 #D8D8D8;
+    }
+    .form-grp {
+        display: flex;
+        align-items: 100%;
+        align-items: center;
+       input[type="text"]{
+            width:100%;
+            height: 28px;
+            border: 0.6px solid #D0D0CE;
+        }
+        
+    }
+    .commentArea{
+        width:100%;
+        height:62px;
+        padding:5px;
+        overflow-y:auto;
+        font-size: 12px;
+        border: 1px solid #e6e2e2;
+               
+        &::placeholder{
+            color: #C5C5C5;
+            font-family: "Open Sans";
+            font-size: 10px;
+            font-style: italic;
+        }
+    }
+    .questionArea{
+        width:100%;
+        height:50px;
+        padding:5px;
+        font-size: 12px;
+        overflow-y: auto;
+        border: 1px solid #e6e3e3 !important;
+    }
+    .custom-form-label {
+        color: #7B7B7B;        
+        font-size: 11px;
+    }
+    p{
+        margin-bottom: 6px;
+    }
+    .allowText{
+        color: #333333;    
+        font-family: "Open Sans";
+        font-size: 13px;
+        margin-bottom: 2px;
+        margin-left: -5px;
+        margin-top: 0px;
+    }
+    .fileTypeText{
+        color: #B8B8B8;    
+        font-family: "Open Sans";
+        font-size: 11px;
+        font-style: italic;
+        margin-bottom: 2px;
+        margin-left: -5px;
+    }
+    .selectLibrary{
+        width:100% !important;
+    }
+    .questionText{
+        font-size: 10px;
+        color: #333333;
+    }
+    .conditionalQuestionWrapper{
+        border: 0.6px solid #D0D0CE;
+        display: inline-block;
+        width: 100%;
+        
+    }
+    .options{
+        border-bottom: 0.5px solid #E1E1E1;
+        display: inline-block;
+        padding: 5px 0;
+        width: 100%;
+        label{
+            font-size: 12px;
+            margin-bottom: 0;
+        }
+        input{
+            margin:0 3px 0 0;
+        }
+        .conditionSection{
+            display: flex;
+            align-items: center;
+        }
+    }
+    .options:last-child{
+        border-bottom: none;
+    }
+    .menu-btn-save{
+        color:white;
+            &:focus{
+                outline: none;
+            }
+    }
+    .menu-btn-cancel{
+        color: #86BC25;
+        text-transform: capitalize;
+         &:focus{
+                outline: none;
+            }
+    }
+    
+    
+    .addAnother{
+     padding: 3px 0 8px 14px;
+    color: #DCDCDC;
+    font-size: 10px;
+    font-style: italic;
+    }
+   
+   
+}
+.closeBtn.documentView-close{
+    position: absolute;
+right: 0px;
+z-index: 99;
+top: 12px;
+height: 20px;
+width: 20px;
+}
+.templateCloseButton{ display: none;}
+.invalid-feedback{display: block !important ;}
+.addFlowBtn{
+    text-align: center;
+    width: auto !important;
+    background: #86BC25 !important;
+    margin-top: 15px;
+    label{
+        color: white !important;
+        width: auto !important;
+    }
+}
+.questionTypeStyle{
+    height: 32px !important;
+    border-radius: 0px;
+    font-size: 12px;
+    color: #000;
+}
+.isexisttag {
+    color: #dc3545;
+    font-size: 10px;
+}
+.mandatory-icon{
+    color: red;
+} 
+
+.disable-section {
+    opacity: 0.4;
+  }
+  
+  .disabledbutton {
+    pointer-events: none;
+  }
+
+
+ .createquestionWrapper{
+margin-top: 46px;
+  }
+

@@ -1,0 +1,571 @@
+
+.radioButtons{
+    display: flex;
+    width: 100%;
+    margin: 0;
+    background: rgba(235,235,235,0.5);
+    padding: 15px 10px;
+    .radio-inline{
+      position: relative;
+      width: 50%;
+       margin: 0;
+        
+    }
+  }
+ 
+  .container {
+    display: inline-block;
+    position: relative;
+    padding-left: 20px;
+    margin: 0;
+width: 30%;
+font-size: 13.2px;
+color: #000000;
+    }
+    .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+left: 2px;
+top: -2px;
+    }
+.questionsAnswerWrapper{
+    background: #f1f1f1;
+    border-radius: 3px;
+     margin: 4px 4px 10px 4px;
+     margin-top: -5px;
+    padding: 10px;
+    min-height: 70px;
+    border: 0.5px solid #e2dcdc;
+    &:last-child{
+        margin-bottom: -5px;
+    }
+    .questionDetails{
+       
+        margin: 0;
+        width: 100%;
+        .questionItems{
+           float:left;
+           display: flex;
+            input{
+                -webkit-appearance: none;
+                border: 1px solid #B1AFAF;
+                height: 10px !important;
+                width:10px !important;
+                border-radius: 2px;
+                margin: 0;
+                margin-top: 2px;
+                   &:checked{
+                    background: url('/assets/images/Basic-Checkmark-icon.png') no-repeat center center;
+	                background-size: 100%;
+                }
+            }
+            p{
+                color: #000000;
+                font-size: 12px;
+                margin: -3px 0 7px 8px;
+                span{
+                    margin-right: 8px;
+                    display: inline-block;
+                    vertical-align: top
+                }
+            }
+            span.updatedOn{
+                color: #B5B5B5;
+                font-size: 9px;
+                margin-left: 20px;
+            }
+        }
+        .notApplicableBtn{
+            border-color: orange;
+            background-color: white;
+            color: orange;
+        }
+        .notApplicableButton{
+            float: right;
+            margin-top: -7px;
+            border-color: orange;
+            background-color: white;
+            color: orange;
+                button{
+                    border: 1px solid #ED8B00;
+                    border-radius: 2px;
+                    color: #ED8B00;
+                    font-size: 12px;
+                    text-align: left;
+                    width: 120px;
+                    padding: 8px;
+                    background: transparent;
+                    -webkit-appearance: none;
+                    background-image: url(assets/images/not-applicable.svg);
+                    background-repeat: no-repeat;
+                    background-size: 15%;
+                    background-position: right 6px;
+                }
+                img{
+                    height:15px ;
+                    width:15px;
+                    margin-left: 6px;
+
+                }
+        }
+       
+    }
+    .questionIcons{
+        display: flex;
+        padding-left:46px;
+        width:100%; 
+        img{
+            width: 12px;
+            height: 12px;
+            margin-left: 8px;
+        }
+        img:first-child{
+            margin-left:0;
+        }
+    }
+    .answerDetails{
+        display: flex;
+        margin-top:10px; 
+        margin-left: 10px;
+        .answerBloack{
+            width: 100%;
+            display: flex;
+            span{
+                // width: 3.4%;
+                font-weight: bold;
+                margin-left: 10px;
+            //     padding-left: 14px;
+            &:first-child{
+                // margin-left: 20px;
+                margin-right: 10px;
+            }
+            }
+          
+           
+            
+        }
+    }
+}
+.answerBloack{
+    display: flex !important;
+   
+   
+    .editor{
+       
+       
+        width:100%;
+        display: block !important;
+       
+    }
+}
+// ::ng-deep nb-layout-column {
+//     justify-content: center;
+//     display: flex;
+//   }
+  nb-chat {
+    width: 500px;
+    margin: 0.5rem 0 2rem 2rem;
+  }
+ng-container span,.questionItems span,.questionItems p{
+    font-weight: bold;
+}
+.numberType{
+    width:auto !important;
+    height: 32px;
+    margin-left:6px;
+    padding: 5px 10px !important;
+ 
+}
+.inputWithIcon{
+    display: flex;
+    width: 100%;
+    .datePicker{
+        width:100%;
+        display: flex;
+       .calendar{
+           position: relative;
+           input{
+            width:auto;
+            margin-left:6px;
+           }
+           label{
+            position: absolute;
+            top: 6px;
+            left: 87%;
+           }
+       }
+    }
+}
+.yesBlock{
+    margin-right: 20px;
+    margin-left: 6px;
+}
+.yesNOSection{
+    label{
+        margin: 0;
+    }
+}
+
+.logicTypeDiv{
+    width:100%;
+    .questionItems{
+        p{
+            .subQuestH{
+                padding-left: 0 !important;
+            }
+        }
+    }
+    .questionsAnswerWrapper{
+        padding: 0;
+    border: none;
+    margin: 0;
+    }
+    .questionItems{
+        .updatedOn{
+            width:auto !important;
+        }
+    }
+    select{
+        margin-bottom: 20px;
+        // margin-left: 10px;
+        border: 1px solid #ccc;
+        width: 185px;
+        padding:5px;
+        font-size: 12px;
+    }
+}
+.ApproveReject{
+    text-align: right;
+    // width: 100%;
+  float:right;
+    .approveBtn{
+        box-sizing: border-box;	width: 102px;	border: 1px solid #43B02A;
+            border-radius: 2px;	background-color: transparent; margin-right: 10px; padding:8px 5px; color: #43B02A;
+            &:hover{
+                background-color: #43B02A;
+                color: #fff;
+                span{
+                    background: url("assets/images/accept.svg") no-repeat;
+                    height: 12px;
+                    width: 18px;
+                    display: inline-block;
+                    margin-left: 5px;
+                }
+            }
+            span{
+                background: url("assets/images/accept-2.svg") no-repeat;
+                height: 12px;
+                width: 18px;
+                display: inline-block;
+                margin-left: 5px;
+            }
+    }
+    .rejectBtn{box-sizing: border-box;	width: 102px;padding:8px 8px;	
+        border: 1px solid #DA291C; color: #DA291C;	border-radius: 2px; background: transparent;
+      &:hover{
+            background: #DA291C;
+            color: #fff;
+            span{
+                background: url("assets/images/reject.svg") no-repeat;
+                height: 12px;
+                width: 18px;
+                display: inline-block;
+                margin-left: 5px;
+            }
+        }
+            span{
+                background: url("assets/images/reject-2.svg") no-repeat;
+                height: 12px;
+                width: 18px;
+                display: inline-block;
+                margin-left: 5px;
+            }
+        
+    }
+}
+.approveRejectQuesIco{
+    // margin-top: -5px;
+}
+
+.show {
+    display: flex !important;
+}
+.hide {
+    display: none;
+}
+.editQuestionSec{   background: #f1f1f1;
+padding: 0;
+border: 1px solid #ccc;
+border-radius: 5px;
+.questionWrapper{
+    margin:0;
+    padding: 0;
+}
+} 
+.padd-leftRight{ padding-left: 0; padding-right: 0;}
+.YesNoType{
+    display: inline-block;
+    label{
+        margin-right: 20px;
+        // margin-left: 5px;
+    }
+    input[type="radio"]{
+        margin-right: 3px;
+        margin-top: 1px;
+        // display: inline-block;
+        float: left;
+    }
+}
+.requestItem{
+    // width:20%;
+    display:inline-block;
+    vertical-align: middle;
+    &.requestItemSelect{
+        .dropDownSelect{
+            display: inline-block;
+        }
+        width: auto;
+    }
+    .requestLabel{
+      color: black;
+     }
+    input[type="text"]{
+    width: 96%;
+    padding: 5px !important;
+    height: 30px !important;
+    border-radius: 4px !important;
+    border: 1px solid #E1E1E1 !important;
+    &::placeholder{
+      font-size: 13px;
+      font-style: italic;
+          color: #C5C5C5;
+    }
+    }
+   }
+   .dropDownSelect{
+    border:1px solid transparent;
+    select{
+        border:1px solid #ccc;width:200px;
+        // margin-left:6px;
+        padding:5px;
+    }
+
+   }
+   .questionText{
+    display: inline-block;
+   
+    max-width: 536px;
+   }
+   .approveActive{
+    background-color: #43B02A !important;
+    color: #fff !important;
+    span{
+        background: url("assets/images/accept.svg") no-repeat !important;
+        height: 12px !important;
+        width: 18px !important;
+        display: inline-block !important;
+        margin-left: 5px !important;
+    }
+   }
+   .rejectActive{
+    background: #DA291C !important;
+    color: #fff !important;
+    span{
+        background: url("assets/images/reject.svg") no-repeat !important;
+        height: 12px !important;
+        width: 18px!important;
+        display: inline-block!important;
+        margin-left: 5px!important;
+    }
+   }
+
+   .freeText-editor{
+    width: 100%;
+    .editor{
+        width:80%;
+        display: inline-block !important;
+        // margin-left: 10px;
+        vertical-align: top;
+    }
+    .inputWithIcon{
+        align-items: center;
+        width:260px;
+    }
+}
+.dropdownInput{
+    display: inline-block;
+    // margin-left: 10px;
+    > div.multiselect-dropdown{
+        border: 1px solid #ccc;
+    background: #fff;
+    width: 185px;
+    }
+}
+.dropdownInput .multiselect-dropdown{
+    border: 1px solid #ccc;
+background: #fff;
+width: 185px;
+}
+
+.disableAnswerDiv{
+    pointer-events:none;
+}
+
+.disableFilterSelect {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  
+.disableComment {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .AnswsubQuestion{
+      .subQuestH{
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+          + span{
+            font-weight: normal;
+          }
+      }
+      p{
+          span:last-child{
+            font-weight: normal;
+          }
+      }
+  }
+.fwdmessage{
+    padding: 10px 5px 1px 5px;
+    margin-left: 36px;
+    color: black;
+    font-size: 12px;
+}
+.notApplicableBtn{
+    float:right;
+    button{
+       
+        background-color: white;
+        height: 33px;
+        font-size: 12px;
+        text-align: left;
+        border:1px solid  #ED8B00;
+        color: #ED8B00;
+        padding-left: 6px;
+        padding-right: 28px;
+        margin-right: 10px;
+
+        background-repeat: no-repeat;
+        background-image: url(/assets/images/not-applicable.svg);
+        background-size: 15px 15px;
+        background-position: 92px;
+        border-radius: 2px;
+ 
+    }
+    
+}
+.creatorNotApplicable{
+  pointer-events: none;
+}
+.ShowNotApplicable
+{
+   pointer-events: none;
+}
+.EnableNotApplicable
+{
+    cursor:pointer;
+    
+    // background-color: red;
+}
+.notApllicableText{
+    margin-left: 40px;
+    padding: 10px 0;
+    display: inline-block;
+    font-size: 10px;
+    font-style: italic;
+    color: #B5B5B5;
+    b{
+        color: black;
+    }
+}
+.activeNotAplicable{
+    background-color: #ED8B00 !important;
+    background-image: url(/assets/images/not-applicable-selected.svg) !important;
+    color: white !important;
+}
+.disableAnswerSection{
+    background: rgba(241,241,241,0.3) !important;
+    pointer-events: none;
+    .answerBloack{
+        opacity: 0.5;
+    }
+    .answerDetails,.questionIcons,.questionItems input[type="checkbox"],.questionDetails {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+   
+}
+.forwardedMessage{
+    margin-left: 43px;
+    padding-top: 12px;
+}
+.hashValue{
+    background: #d0d0ce;
+    padding: 3px 5px;
+    color: #000;
+    margin-top: -8px;
+}
+.notApplicableBtn{
+    margin-left: 10px;
+    margin-top: 0px;
+    margin-right: -10px;
+}
+.creatorNotApplicable{
+//   pointer-events: none;
+  display:none !important;
+
+}
+.ShowNotApplicable
+{
+    display:none !important;
+//    pointer-events: none;
+}
+.EnableNotApplicable
+{
+    // cursor:pointer;
+    display:block !important;
+    // background-color: red;
+}
+
+.notification {
+    font-size: 27px;
+    margin-top: -25px;
+    margin-right: -11px;
+    font-weight: 600;
+    color: black;
+}
+.notificationAttachement{    font-size: 27px;
+    margin-top: -25px;
+    margin-right: -16px;
+    font-weight: 600;
+    color: black;
+    margin-left:10px;
+}
+.tabletypeQuestion{
+   
+    .uploadBtnGroup{
+        margin-top: 10px;
+        label{
+            margin-right: 5px;
+        }
+        button{
+            margin-right: 20px;
+        }
+    }
+}
+.questionText.showApprRej{
+    width:440px!important;
+}
+.questionText.showApllicab{
+    max-width: 538px !important;
+}

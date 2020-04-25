@@ -1,0 +1,36 @@
+<div *ngIf="showNotifications">
+  <ngx-veiw-all-notification></ngx-veiw-all-notification>
+</div>
+<div *ngIf="!showNotifications">
+<div class="container-fluid custom-position-sticky">
+  <div class="row">
+    <alert></alert>
+    <div class="col-xs-12">
+      <ngx-home-menu (manageOrganization)="getOrganizationsList($event)"
+        [selectedOrganizationId]="com2.organizationId" #homeMenu></ngx-home-menu>
+      
+    </div>
+  </div>
+</div>
+<nb-layout>
+  <nb-layout-column>
+      <ngx-create-organization-project *ngIf="homeMenu.loadOrgCreateComponent"
+        (CancelOrg)="homeMenu.CancelCreateOrganizationComponent()"> </ngx-create-organization-project>
+      <ngx-edit-organization-project *ngIf="homeMenu.loadOrgEditComponent"
+        (CancelOrg)="homeMenu.CancelCreateOrganizationComponent()"> </ngx-edit-organization-project>
+    <div class="row no-pad table-wrapper">
+      <div class="col-xs-4" style="padding-left: 26px;">
+        <div>
+          <ngx-organization-list #com2></ngx-organization-list>
+        </div>
+      </div>
+      <div class="col-xs-8" style="padding-left: 0px;padding-right: 10px;">
+        <div>
+          <ngx-project-list #com1 class="project-list-table"></ngx-project-list>
+        </div>
+      </div>
+    </div>
+  </nb-layout-column>
+
+</nb-layout>
+</div>

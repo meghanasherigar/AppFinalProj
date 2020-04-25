@@ -1,0 +1,46 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<nb-card>
+  <nb-card-body>
+    <ngx-upload-app-user id="uploadAppUserComponent" *ngIf="loadUploadAppUserComponent" (ReloadGrid)="ReloadGrid()">
+    </ngx-upload-app-user>
+
+    <ngx-add-app-user id="addAppUserComponent" *ngIf="loadAddAppUserComponent">
+    </ngx-add-app-user>
+    
+    <div  class="row" id="appUserSearchSection" *ngIf="!(loadUploadAppUserComponent || loadAddAppUserComponent)">
+      <form [formGroup]="searchAppUserForm">
+        <div class="col-sm-6">
+        <div  class="form-group">
+          <label class="custom-form-label">{{'screens.superAdmin.searchAppUser.labels.searchOption' | translate}}</label>
+          <select class="form-control custom-form-input selectpicker"
+              formControlName="SearchOptionType" (change)="searchOptionOnChange($event)">
+             <option *ngFor="let searchOption of searchOptionList" value={{searchOption}}>
+                {{searchOption}}
+              </option>
+            </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+        <div class="form-group" id="searchUserForm">
+          <label class="custom-form-label">{{'screens.superAdmin.searchAppUser.labels.enterKeyword' | translate}}</label>
+          <input type="search" [placeholder]="'screens.superAdmin.searchAppUser.labels.searchUserPlaceholder' | translate" id="txtSearchAppUserUser"  formControlName="SearchAppUserKeyword">
+           </div>
+        </div>
+      </form>
+      <div class="col-sm-2">
+        <br/>
+        <button class="btn saveButton" (click)="searchAppUsers()">{{'screens.superAdmin.searchAppUser.labels.searchButton' | translate }}</button>
+        <button class="btn resetButton" (click)="resetSearchAppUsers()">{{'screens.superAdmin.searchAppUser.labels.resetButton' | translate }}</button>  
+      </div>
+    </div>
+
+    <ng2-smart-table id="appUsersTable" [settings]="settings" [source]="appUserGridSource"
+    (userRowSelect)="onAppUserRowSelect($event)"
+    (deleteConfirm)="onDeleteConfirmAppUser($event)"
+    (editConfirm)="onSaveConfirmAppUser($event)">
+    </ng2-smart-table>
+
+  </nb-card-body>
+</nb-card>

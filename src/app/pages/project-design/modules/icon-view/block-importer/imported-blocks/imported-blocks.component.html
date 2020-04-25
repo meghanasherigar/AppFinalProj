@@ -1,0 +1,134 @@
+
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="container blockimpoter" ngxUiLoaderBlurred>
+    <div class="row topHeader">
+        <div class="col-sm-6  ">
+            <div class="row topimporterHeader">
+                <div class="col-sm-5">
+                    <input type="checkbox" id="selectAllCheckBox" class="check"
+                    (change)="toggleCheckbox($event)" name="checkbox1">
+                          <h6 class="importHeading">  {{'screens.project-designer.iconview.importBlocks' | translate}}</h6>
+                </div>
+                <div class="col-sm-7">
+                    <div class="blockIcons">  
+                        <div class="cursorClass" title="Merge" [ngClass]=" enableIcons ? '' : 'disable-section'"  (click)="mergeBlocks_Full()">
+                            <img src="assets\images\merge-and-add.svg">
+                            <span class="importSelect" >
+                                <!-- {{'screens.project-designer.iconview.merge' | translate}} -->
+                            </span> 
+                        </div> 
+                      
+                        <div class="cursorClass" title="Add to collection" [ngClass]=" enableIcons ? '' : 'disable-section'" (click)="addToCollection()">
+                            <img src="assets\images\add-to-collection.svg" >
+                            <span class="importSelect" >
+                                <!-- {{'screens.project-designer.iconview.addToCollection' | translate}} -->
+                            </span>
+                        </div>
+                        <!-- <div  title="Filter">
+                            <img src="assets/images/filter.svg" (click)="selectAllBlocks()">
+                            <span class="importSelect">  
+                                 {{'screens.project-designer.iconview.selectAll' | translate}}
+                                </span>
+                        </div> -->
+                       
+                    </div>
+                  
+                  
+                   
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="col-sm-5">
+                <input type="checkbox" id="selectAllCheckBox_dest" class="check"
+                (change)="toggleCheckbox_dest($event)" name="checkbox1">
+            <h6 class="addBlock">  {{'screens.project-designer.iconview.selectAll' | translate}}</h6>
+            </div>
+            <div class="col-sm-7">
+                <div class="blockIcons removeButton" (click)="removeAll()">
+                    <img  src="assets/images/projectdesigner/Remove_without hover.svg" >
+                    <span>   {{'screens.project-designer.iconview.remove' | translate}}</span>
+                </div>
+            </div>
+                
+        </div>
+    </div>
+    
+    <div class="row topHeaderScrolling">
+        <div class="col-sm-6 importBorderRIght">
+            <div class="row">
+                <div class="scrollingHeader">
+                    <mat-tree [dataSource]="dataSource1" [treeControl]="treeControl">
+                        <mat-tree-node *matTreeNodeDef="let node"  matTreeNodeToggle matTreeNodePadding (click)="closeContextMenu()"  [contextMenu]="basicMenu" [contextMenuSubject]="node">
+                            <div [ngClass]="{'mergeBlock': node.mergedNodes.length>0}">
+                            <mat-checkbox class="checklist-leaf-node importP"
+                                [ngClass]="{'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,
+                                    'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+                                    'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node}"
+                                [checked]="checklistSelection.isSelected(node)" 
+                                (change)="checklistSelection.toggle(node);todoItemSelectionToggle(node,$event);" draggable="true"
+                                (dragstart)="handleDragStart($event, node);" (dragover)="handleDragOver($event, node);"
+                                (drop)="handleDrop1($event, node);" (dragend)="handleDragEnd($event);">
+                                <p class="importBorder" title="{{node.item}}">{{node.item}}</p>                                                            
+                            </mat-checkbox>
+                            <div class="editor">
+                                <div  id="{{'editor-importedBlocks' + node.id}}"  [innerHTML]="node.content | safeHtml" ></div>
+                                <!-- <div id="toolbar-menu-importedBlocks"></div> -->                       
+                              </div>
+                        </div>                     
+                       
+                        </mat-tree-node>
+                        <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+                        </mat-tree-node>
+                    </mat-tree>
+                    <context-menu>
+                        <ng-template contextMenuItem (execute)="splitBlock($event.item)">
+                          {{'screens.project-designer.iconview.split' | translate}}
+                        </ng-template>
+                        
+                        <ng-template contextMenuItem divider="true"></ng-template>
+                          <ng-template contextMenuItem let-item (execute)="mergeBlocks_Partial($event.item)">
+                            {{'screens.project-designer.iconview.partialMerge' | translate}}
+                          </ng-template>
+                      </context-menu>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="row topimporterHeader ipmHeader">
+                <mat-tree [dataSource]="dataSource2" [treeControl]="treeControl" class="rightImporterScrolling">
+                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding
+                    (dragstart)="handleDragStart($event, node);" (dragover)="handleDragOver($event, node);"
+                    (drop)="handleDrop2($event, node);"                   
+                    (dragend)="handleDragEnd($event);"[ngClass]="{'matreeHeight':node.id == -1}">                        
+                        <mat-checkbox class="checklist-leaf-node importP" *ngIf="node.id != -1"
+                            [ngClass]="{'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,
+                                        'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+                                        'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node}" draggable="false"
+                                        [checked]="checklistSelection_dest.isSelected(node)"
+                                        (change)="checklistSelection_dest.toggle(node);todoItemSelectionToggle_dest(node,$event);" >
+                            <p [ngClass]="{'importBorderRight': node.id != '-1' , 'importBorderRight1': node.id == '-1' }"><span class="blockTitle" title="{{node.item}}">{{node.item}}</span>
+                              
+                                <span class="importImgRight"  *ngIf="node.id != -1" (click)="removeItem(node,true);"><img
+                                        src="assets/images/projectdesigner/Remove_without hover.svg"
+                                        class="smallIcon icon icon-header"><span 
+                                        class="importRemove">{{'screens.project-designer.iconview.remove' | translate}}</span></span>                                       
+                            </p>
+                            <div class="importBorderRight" id="node.id" [innerHTML]='node.content | safeHtml'></div>
+                        </mat-checkbox>
+                    </mat-tree-node>
+                    <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" class="matreeHeight" matTreeNodePadding>
+                    </mat-tree-node>
+
+                </mat-tree>
+                <span #emptyItem></span>
+
+            </div>
+        </div>
+    </div>
+    <ngx-imported-blocks-partial-merge [hidden]="!loadPartialMerge"></ngx-imported-blocks-partial-merge>
+</div>
+

@@ -1,0 +1,128 @@
+<div class="row manageEntitiesTollbarWrapper">
+  <div id="entityFilters-section" class="col-sm-12 toolbar-component-container collapsed">
+   <div class="createManageSection">
+    <div class="create-section" id="createSection">
+      <div class="action-icon-wrapper">
+        <img src="assets/images/Create-active.svg" (click)="loadMyChildComponent('Add');" class="btnToolbar">
+        <span class="icon-name">{{'screens.project-setup.transaction.transaction-toolbar.Create' | translate}}</span>
+      </div>
+      <span class="section-name">{{'screens.project-setup.transaction.transaction-toolbar.Create' | translate}}</span>
+    </div>
+    <div class="manage-section" id="manageSection">
+      <div class="action-icon-wrapper disable-section disabledbutton" id="editIcon">
+        <img src="assets/images/Edit-active.svg" (click)="loadMyChildComponent('Edit');" class="btnToolbar">
+        <span class="icon-name">{{'screens.project-setup.transaction.transaction-toolbar.Edit' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper" id="editIcon">
+        <img src="assets/images/Edit-active.svg" (click)="loadDatasheet();" class="btnToolbar">
+        <span class="icon-name">{{'screens.project-setup.transaction.transaction-toolbar.DataSheet' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper disable-section disabledbutton" id="deleteIcon">
+        <img src="assets/images/Delete-active.svg" (click)="loadMyChildComponent('Delete')" class="btnToolbar">
+        <span class="icon-name">{{'screens.project-setup.transaction.transaction-toolbar.Delete' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper" id="downloadIcon">
+        <img src="assets/images/Download-active.svg" class="btnToolbar" (click)="downloadEntities();">
+        <span class="icon-name">{{'screens.project-setup.transaction.transaction-toolbar.Download' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper disable-section disabledbutton" id="clearFilterIcon">
+        <img src="assets/images/Clear Filter-active.svg" class="btnToolbar" (click)="clearFilters()">
+        <span class="icon-name">{{'screens.project-setup.transaction.transaction-toolbar.ClearFilter' | translate}}</span>
+      </div>
+      <span class="section-name">{{'screens.project-setup.transaction.transaction-toolbar.Manage' | translate}}</span>
+    </div>
+    <!-- <div class="sectionNames">
+      <span>{{'screens.home.labels.Create' | translate}}</span>
+      <span>{{'screens.home.labels.manage' | translate}}</span>
+    </div> -->
+    
+
+  </div>
+
+    <div class="filters-section" id="filterSection">
+      <div class="filter-icon-wrapper">
+        <div class="action-icon-wrapper">
+          <img src="assets/images/Filter-active.svg" class="btnToolbar" (click)="toggleCollapse()">
+          <span class="icon-name">{{'screens.project-setup.transaction.transaction-create.Filters' | translate}}</span>
+        </div>
+      </div>
+      <div class="filter-inputs-wrapper" *ngIf="show">
+        <ng-multiselect-dropdown [ngClass]="'custom-mg-multiselect'" class="filter-input" [placeholder]="'screens.project-setup.transaction.transaction-toolbar.EntityName' | translate"
+          [data]="ddlistEntityNames" [(ngModel)]="selectedEntityItems" [settings]="dropdownSettings"
+          (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAllEntities($event)" (onDeSelectAll)="onSelectAllEntities($event)">
+        </ng-multiselect-dropdown>
+
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-setup.transaction.transaction-toolbar.Country' | translate" [data]="ddlistCountry"
+          [(ngModel)]="selectedCountryItems" [settings]="dropdownCountrySettings"
+          (onDeSelectAll)="onSelectAllCountry($event)" (onDeSelect)="onItemSelect($event)"
+          (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAllCountry($event)">
+        </ng-multiselect-dropdown>
+
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-setup.transaction.transaction-toolbar.ReportTier' | translate" [data]="ddlistReportTiers"
+          [(ngModel)]="selectedReportTierItems" [settings]="dropdownTierSettings" (onDeSelect)="onItemSelect($event)"
+          (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAllReportTier($event)"
+          (onDeSelectAll)="onSelectAllReportTier($event)">
+        </ng-multiselect-dropdown>
+
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-setup.transaction.transaction-toolbar.EntityTaxID' | translate" [data]="ddlistEntityId"
+          [(ngModel)]="selectedEntityIdItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+          (onDeSelect)="onItemSelect($event)" (onSelectAll)="onSelectAllEntityIds($event)"
+          (onDeSelectAll)="onSelectAllEntityIds($event)">
+        </ng-multiselect-dropdown>
+        <ng-multiselect-dropdown class="filter-input widthCreatedBy" [placeholder]="'screens.project-setup.transaction.transaction-toolbar.CreatedBy' | translate" [data]="ddlistCreatedBy"
+          [(ngModel)]="selectedCreatedByIems" [settings]="dropdownCreatedBySettings" (onDeSelect)="onItemSelect($event)"
+          (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAllCreatedBy($event)"
+          (onDeSelectAll)="onSelectAllCreatedBy($event)">
+        </ng-multiselect-dropdown>
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-setup.transaction.transaction-toolbar.EntityShortName' | translate"
+          [data]="ddlistEntityShortNames" [(ngModel)]="selectedEntityShortNameItems" (onDeSelect)="onItemSelect($event)"
+          [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAllEntShortNm($event)"
+          (onDeSelectAll)="onSelectAllEntShortNm($event)">
+        </ng-multiselect-dropdown>
+        <div class="input-wrapper filter-input">
+          <input type="text" class="form-control" [placeholder]="'screens.project-setup.transaction.transaction-toolbar.TaxableYearEnd' | translate" id="taxableYearDate"
+          (bsValueChange)="onDateSelect($event, 'TaxableYearDate')"
+          bsDaterangepicker #dptaxableYearDate="bsDaterangepicker"
+            [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+          <label>
+            <i>
+              <img src="assets/images/calender.png" (click)="dptaxableYearDate.show()" [attr.aria-expanded]="dptaxableYearDate.isOpen" class="calender-icon"></i>
+          </label>
+        </div>
+        <!-- <nb-rangepicker #dateranger  format="MM/dd/yyyy" [(ngModel)]="taxableYearFrom"
+          (rangeChange)="onDateSelect($event, 'TaxableYearDate')">
+        </nb-rangepicker> -->
+
+        <div class="input-wrapper filter-input">
+          <input type="text" class="form-control" id="createdDate" [placeholder]="'screens.project-setup.transaction.transaction-toolbar.CreationDate' | translate"
+          (bsValueChange)="onDateSelect($event, 'CreatedDate')"
+          bsDaterangepicker #dpcreatedDate="bsDaterangepicker"
+            [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+          <label>
+            <i>
+              <img src="assets/images/calender.png" (click)="dpcreatedDate.show()" [attr.aria-expanded]="dpcreatedDate.isOpen" class="calender-icon"></i></label>
+        </div>
+        <!-- <nb-rangepicker #rangepicker2 format="MM/dd/yyyy" (rangeChange)="onDateSelect($event, 'CreatedDate')">
+        </nb-rangepicker> -->
+
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-setup.transaction.transaction-toolbar.InScope' | translate" [data]="ddlistInScope"
+          [(ngModel)]="selectedInscopeItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+          (onDeSelect)="onItemSelect($event)" (onSelectAll)="onSelectAllInScope($event)"
+          (onDeSelectAll)="onSelectAllInScope($event)">
+        </ng-multiselect-dropdown>
+        <span class="section-name filterText">{{'screens.project-setup.transaction.transaction-create.Filters' | translate}}</span>
+      </div>
+     
+    </div>
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+      {{imageName}}
+      <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+      <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+    </div>
+  </div>
+  <!-- <div class="sectionNameWrapper">
+    <div class="sectionName ">{{'screens.home.labels.Create' | translate}}</div>
+    <div class="sectionName ">{{'screens.home.labels.manage' | translate}}</div>
+      </div> -->
+</div>

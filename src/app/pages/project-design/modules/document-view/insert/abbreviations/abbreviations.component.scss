@@ -1,0 +1,99 @@
+
+.errorMessage{
+    color: red;
+    font-size: 12px;
+    font-weight: lighter;
+    padding-left: 17px;
+    padding-bottom: 10px;
+ }
+ .padding0{ padding: 0 !important;}
+ #btnAbbreviation{color: white;}
+ #right .selected-deliverable{ border: 1px solid #86BC25;
+     // margin-left: 15px;
+     padding: 6px 8px;
+     margin-top: 10px;}
+     #right .selected-deliverable i{ float: right}
+
+     .abbreviationWrapper{
+         width:350px;
+        
+     }
+     .abbreviationContent{
+        padding-left: 30px;
+     }
+     .search-header{
+       
+        border-bottom: 0.5px solid #D8D8D8;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+     }
+     .abbreviationFooter{
+        border-top: 0.5px solid #D8D8D8 !important;
+        padding: 10px;
+     }
+     .footerButton{
+        text-align: right;
+        padding-right: 18px;
+        .menu-btn-cancel{
+            border-radius: 3px;
+        }
+     }
+     .abbreviationIcon{
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      text-align: center;
+      border: 2px solid black;
+      padding: 3px;
+         img{
+            width: 62%;
+            height: 99%;
+         }
+}
+.custom-form-label{
+    font-size: 14px !important;    
+}
+.form-group .form-control::placeholder{
+    font-size: 13px;
+    color:#c1c6ce; 
+}
+.form-control.custom-form-input{
+    font-size: 14px !important;
+    width: 250px;   
+}
+.createTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+    font-weight: normal;
+
+}
+.close{
+    color: #fff;
+    border: none;
+    border: 0;
+    border: 0 none !important;
+    color: #fff;
+    display: inline-block;
+    font-size: 22px;
+    line-height: 1;
+    opacity: 1;
+    text-shadow: none;
+   -webkit-transition: background 0.2s ease-in-out;
+   transition: background 0.2s ease-in-out;
+   vertical-align: top;
+   width: 46px;
+   outline: none;
+}
+.close:hover{
+    border: none;
+    border: 0;
+}
+.disable-section {
+    opacity: 0.4;
+  }
+  
+  .disabledbutton {
+    pointer-events: none;
+  }

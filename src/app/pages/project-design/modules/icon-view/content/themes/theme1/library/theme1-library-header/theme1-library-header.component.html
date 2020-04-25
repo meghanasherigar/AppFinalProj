@@ -1,0 +1,19 @@
+<div class="selectLibrary" *ngIf="section == 'Theme1.1'">
+  <select class="dd-style" id="ddlForLibrary1" [(ngModel)]="selectedLibrary1" (change)="libraryChange1($event)">
+    <optgroup label="Library">
+      <ng-container *ngFor="let library of section1List">
+        <option *ngIf="library.id != 5" [ngValue]="library" [disabled]="library.disabled">
+          {{library.name}}
+        </option>
+      </ng-container>
+    </optgroup>
+    <optgroup label="Block Collection">
+      <ng-container *ngFor="let block of section1List">
+        <option *ngIf="block.id == 5" [ngValue]="block">
+          {{block.name}}
+        </option>
+      </ng-container>
+    </optgroup>
+  </select>
+  <span class="dropdown-down dropdown-Arrow"></span>
+</div>

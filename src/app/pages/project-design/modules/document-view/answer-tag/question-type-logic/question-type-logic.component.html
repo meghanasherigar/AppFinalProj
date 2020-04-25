@@ -1,0 +1,24 @@
+<nb-card>
+  <nb-card-header>
+    <span>Question Type (Logic)</span>
+    <button aria-label="Close" class="close" style="
+        opacity: 1;
+    " type="button"><img (click)="closeDialog()" class="closeBtn documentView-close"
+        src="assets/images/Remove_without hover-White.svg"></button>
+  </nb-card-header>
+  <nb-card-body>
+    <p><b>Q:</b> {{question}}</p>
+    <p>
+      <b>A:</b>
+      <select class="dd-style" id="ddlOptions" (change)="optionChange($event.target.value)" class="questionSelect">
+        <option *ngFor="let option of questionOptions" [ngValue]="option">
+          {{option}}
+        </option>
+      </select>
+    </p>
+    <div class="QTLCsubQuestions" *ngIf="isConditionalQuestion">
+      <p><b>Q:</b> {{subQuestion}}</p>
+      <p><b>A:</b>{{subQuestionAnswer}}</p>
+    </div>
+  </nb-card-body>
+</nb-card>

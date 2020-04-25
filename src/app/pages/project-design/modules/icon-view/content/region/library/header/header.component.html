@@ -1,0 +1,72 @@
+<nb-card>
+  <nb-card-body class="templateHeaderWrapper libraryHeaderWrapper">
+      <div class="row">
+        <div class="left-style top-header1">
+            <div class="col-md-6">
+              <div class="selectLibrary">
+                  <select class="dd-style" id="ddlForLibrary" [(ngModel)]="selectedLibrary" (change)="libraryChange($event)">
+                      <optgroup label="Library">
+                        <option *ngFor="let library of libraryList" [ngValue]="library">
+                          {{library.name}}
+                        </option>
+                      </optgroup>
+                      <optgroup label="Block Collection" >
+                        <option *ngFor="let block of blockCollection" [ngValue]="block">
+                          {{block.name}}
+                        </option>
+                      </optgroup>
+                    </select>
+                    <span class="dropdown-down dropdown-Arrow"></span> 
+              </div>
+       
+            </div>
+        <div class="col-md-6">
+    <div class="rightHeader-icon-style">
+        <img src="assets/images/Read_without hover.svg" (click)="displayDocumentView()" class="smallIcon ">&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="rectangle-copy">
+      
+        <img src="assets/images/listView_gray.svg"  (click)="hideAttributeView()" class="smallIcon listIconView">
+        
+      <!-- <img class="blockIcon" src="assets/images/L1_nav_tab/L1-Project Designer.png">
+      <img src="assets/images/attributeView.png"> -->
+    </div>
+    <div class="rectangle-copy iconGreenColor">
+          
+        <img src="assets/images/Attribute_white.svg" (click)="showAttributeView()" class="smallIcon listIcon">
+      <!-- <img class="blockIcon" src="assets/images/L1_nav_tab/L1-Project Designer.png">
+      <img src="assets/images/attributeView.png"> -->
+    </div>
+  </div>
+  </div>
+</div>
+      </div>
+<div class="col-sm-12 iconsItemsWrapper">
+  <div class="col-sm-6 iconsItems">
+   
+  </div>
+  <div class="col-sm-6 iconsItems">
+ 
+    <div>
+      <input type="text" id="searchbox" [placeholder]="'screens.project-designer.iconview.Type to Search...' | translate" [(ngModel)]="searchText" (keyup)="searchTextChanged.next($event)" *ngIf="isSearchBoxVisible"/>
+      <img src="assets/images/projectdesigner/header/Search.svg" (click)="toggleSearchBox();"
+        class="smallIcon icon icon-header roundedCorner search-icons">
+     </div>
+    
+   
+    <div   [ngClass]= "this.headerIcons.disableIconF?'disableIconF':''">
+      <img src="" (click)="filterPopUp()"
+        class="smallIcon icon icon-header filter-img">
+    </div>
+    <div>
+        <img src="assets/images/projectdesigner/header/Attribute view_not selected.svg" [nbPopover]="attributeComponent" nbPopoverPlacement="bottom" class="smallIcon icon icon-header" placement="top" ngbTooltip="{{'iconviewtooltip.ViewAtribute' | translate}}">
+    </div>
+      <div   *ngIf = (headerIcons.disableIconR)>
+          <img src="assets/images/projectdesigner/header/Remove.svg" (click)="deleteBlock()" class="smallIcon icon icon-header" ngbTooltip="{{'iconviewtooltip.Remove' | translate}}">
+        </div>
+
+</div>
+
+</div>
+
+</nb-card-body>
+</nb-card>

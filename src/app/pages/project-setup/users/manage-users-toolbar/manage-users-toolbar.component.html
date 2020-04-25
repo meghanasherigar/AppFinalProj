@@ -1,0 +1,116 @@
+<div class="row manageUserWrapper">
+  <div id="projectUserFilters-section" class="col-sm-12 toolbar-component-container collapsed">
+   <div class="createManageSection">
+    <div class="create-section" id="createSection">
+      <div class="action-icon-wrapper">
+        <img src="assets/images/Create.png" (click)="loadMyChildComponent('Add');" class="btnToolbar">
+        <span class="icon-name">{{'screens.user.user-toolbar.Create' | translate}}</span>
+      </div>
+      <span class="section-name">{{'screens.user.user-toolbar.Create' | translate}}</span>
+    </div>
+    <div class="manage-section">
+      <div class="action-icon-wrapper disable-section disabledbutton" id="editIcon">
+        <img src="assets/images/Edit.png" (click)="loadMyChildComponent('Edit');" class="btnToolbar">
+        <span class="icon-name">{{'screens.user.user-toolbar.Edit' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper disable-section disabledbutton" id="deleteIcon">
+        <img src="assets/images/Delete.png" (click)="loadMyChildComponent('Delete')" class="btnToolbar">
+        <span class="icon-name">{{'screens.user.user-toolbar.Delete' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper" id="downloadIcon">
+        <img src="assets/images/Download.png" class="btnToolbar" (click)="downloadTransactions();">
+        <span class="icon-name">{{'screens.user.user-toolbar.Download' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper" id="sendIcon">
+        <img src="assets/images/SendMail.png" class="btnToolbar" (click)="loadMyChildComponent('SendMail');">
+        <span class="icon-name">{{'screens.user.user-toolbar.SendMail' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper disable-section disabledbutton" id="resendIcon">
+        <img src="assets/images/SendMail.png" class="btnToolbar" (click)="loadMyChildComponent('ReSendMail');">
+        <span class="icon-name">{{'screens.user.user-toolbar.ReSendMail' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper" id="uploadIcon">
+          <img src="assets/images/Upload.png" class="btnToolbar" (click)="loadMyChildComponent('Upload');">
+          <span class="icon-name">{{'screens.user.user-toolbar.Upload' | translate}}</span>
+        </div>
+      <div class="action-icon-wrapper disabledbutton disable-section" id="clearFilterIcon">
+        <img src="assets/images/ClearFilter.png" class="btnToolbar" (click)="clearFilters()">
+        <span class="icon-name">{{'screens.user.user-toolbar.ClearFilter' | translate}}</span>
+      </div>
+      <span class="section-name">{{'screens.user.user-toolbar.Manage' | translate}}</span>
+    </div>
+    <!-- <div class="sectionNames">
+        <span>{{'screens.home.labels.Create' | translate}}</span>
+        <span >{{'screens.home.labels.manage' | translate}}</span>
+    </div> -->
+  </div>
+
+    <div class="entity-filters-section" id="filterImg">
+      <div class="filter-icon-wrapper">
+        <div class="action-icon-wrapper">
+          <img src="assets/images/Filter.png" class="btnToolbar" (click)="toggleCollapse()">
+          <span class="icon-name">{{'screens.project-setup.transaction.transaction-create.Filters' | translate}}</span>
+        </div>
+      </div>
+      <div class="filter-inputs-wrapper">
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.user.user-toolbar.UserName' | translate" [data]="userNameList"
+          [(ngModel)]="selectedUserNameItems" [settings]="dropdownUserNameSettings"
+          (onSelect)="onItemSelect($event)" (onDeSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAllUserName($event)" (onDeSelectAll)="onSelectAllUserName($event)">
+        </ng-multiselect-dropdown>
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.user.user-toolbar.Role' | translate" [data]="roleList"
+          [(ngModel)]="selectedRoleItems" [settings]="dropdownRoleSettings"
+          (onSelect)="onItemSelect($event)" (onDeSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAllRole($event)" (onDeSelectAll)="onSelectAllRole($event)">
+        </ng-multiselect-dropdown>
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.user.user-toolbar.CreatedBy' | translate" [data]="createdByList"
+        [(ngModel)]="selectedCreatedByItems" [settings]="dropdownCreatedBySettings"
+        (onSelect)="onItemSelect($event)" (onDeSelect)="onItemSelect($event)"
+        (onSelectAll)="onSelectAllCreatedBy($event)" (onDeSelectAll)="onSelectAllCreatedBy($event)">
+      </ng-multiselect-dropdown>
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.user.user-toolbar.Entities' | translate" [data]="entitiesList"
+          [(ngModel)]="selectedEntitiesItems" [settings]="dropdownEntitiesSettings"
+          (onSelect)="onItemSelect($event)" (onDeSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAllEntity($event)" (onDeSelectAll)="onSelectAllEntity($event)">
+        </ng-multiselect-dropdown>
+        
+      </div>
+      <div class="filter-inputs-wrapper">
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.user.user-toolbar.Region' | translate" [data]="regionList"
+          [(ngModel)]="selectedRegionItems" [settings]="dropdownRegionSettings" 
+          (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)" 
+          (onSelectAll)="onSelectAllRegion($event)"  (onDeSelectAll)="onSelectAllRegion($event)">
+        </ng-multiselect-dropdown>
+        <ng-multiselect-dropdown class="filter-input form-group" [placeholder]="'screens.user.user-toolbar.Country' | translate" [data]="countryList" 
+          [(ngModel)]="selectedCountryItems" [settings]="dropdowncountrySettings"
+          (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAllCountry($event)" (onDeSelectAll)="onSelectAllCountry($event)">
+        </ng-multiselect-dropdown>
+        <div class="input-wrapper filter-input">
+            <input type="text" class="form-control" [placeholder]="'screens.user.user-toolbar.CreationDate' | translate" id="eCreationDate"
+              (bsValueChange)="onDateSelect($event)" bsDaterangepicker 
+                #dpeCreationDate="bsDaterangepicker"
+            [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+            <label>
+            <i><img src="assets/images/calender.png" (click)="dpeCreationDate.show()" [attr.aria-expanded]="dpeCreationDate.isOpen"></i></label>
+        </div>
+          <ng-multiselect-dropdown class="filter-input form-group" [placeholder]="'screens.user.user-toolbar.Status' | translate" [data]="statusList" 
+            [(ngModel)]="selectedStatusItems" [settings]="dropdownStatusSettings"
+            (onDeSelect)="onItemSelect($event)" (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAllStatus($event)" (onDeSelectAll)="onSelectAllStatus($event)">
+          </ng-multiselect-dropdown>
+          <span class="section-name">{{'screens.project-setup.transaction.transaction-create.Filters' | translate}}</span>
+        </div>
+     
+    </div>
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+      {{imageName}}
+      <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+      <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+    </div>
+  </div>
+  <!-- <div class="sectionNameWrapper">
+    <div class="sectionName ">{{'screens.home.labels.Create' | translate}}</div>
+    <div class="sectionName ">{{'screens.home.labels.manage' | translate}}</div>
+      </div> -->
+</div>

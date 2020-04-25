@@ -1,0 +1,169 @@
+<!-- Top level Menu -->
+<div class="row">
+  <div id="projectDesignFilters" class="col-sm-12 toolbar-component-container collapsed editorHW projectDesignToolbar"
+    [ngClass]="{ 'displayToolBar': (selectedDesignerTab == 1), 'hideToolBar' : (selectedDesignerTab != 1)}">
+    <div class="manage-section managedocs-section" id="manageSection">
+      <div class="manage-section" id="manageSection">
+        <div class="action-icon-wrapper" id="editIcon">
+          <img src="assets/images/Save.svg" class="btnToolbar" (click)="saveGlobalLibrary();">
+          <span class="icon-name">{{'screens.user.AdminView.Library.Menus.Save'|translate}}</span>
+        </div>
+        <div class="action-icon-wrapper" id="editIcon">
+          <img src=" assets/images/DocumentView/Generate-active.svg" class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.document-view.Generate' | translate}}</span>
+        </div>
+        <div class="action-icon-wrapper" id="editIcon">
+          <img src="assets/images/Publish.svg" (click)="publishBlock()" class="btnToolbar">
+          <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Publish' | translate }}</span>
+        </div>
+        <div class="action-icon-wrapper" id="editIcon">
+          <input hidden type="file" #uploader (change)="uploadFile($event.target.files)" />
+          <img src="assets/images/manageLibrary/Block Importer.svg" (click)="uploader.click()" class="btnToolbar">
+          <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.BlockImporter' | translate }}</span>
+        </div>
+        <div class="action-icon-wrapper" id="editIcon">
+          <img src="assets/images/manageLibrary/CreateBlock-active.svg" (click)="createBlock()" class="btnToolbar">
+          <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.CreateBlock' | translate }}</span>
+        </div>
+        <div class="action-icon-wrapper" id="editIcon">
+          <img src="assets/images/manageLibrary/CreateStack-active.svg"
+            [class.disabled]="EnableStack === true ? null : true" (click)="EnableStack === true ? createStack() : null"
+            class="btnToolbar">
+          <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.CreateStack' | translate }}</span>
+        </div>
+        <div class="action-icon-wrapper" id="editIcon">
+          <img src="assets/images/Copy-active.svg" [class.disabled]="EnableCopy  === true ? null : true"
+            (click)="EnableCopy  === true ? copyBlocks() : null" class="btnToolbar">
+          <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Copy' | translate }}</span>
+        </div>
+        <div class="action-icon-wrapper" id="ungroup">
+          <img src="assets/images/manageLibrary/Unstack.svg" [class.disabled]="EnableUngroup === true ? null : true"
+            (click)="EnableUngroup === true ? UngroupStack() : null" class="btnToolbar">
+          <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Ungroup' | translate }}</span>
+        </div>
+        <div class="action-icon-wrapper" id="editIcon">
+          <img src="assets/images/Delete-active.svg" [class.disabled]="EnableRemove === true ? null : true"
+            (click)="EnableRemove === true ? DeleteBLocks() : null" class="btnToolbar">
+          <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Remove' | translate }}</span>
+        </div>
+        <div class="action-icon-wrapper" id="AttributesIcon">
+          <img src=" assets/images/DocumentView/Attributes-active.svg"
+            [class.disabled]="EnableAttribute === true ? null : true"
+            (click)="EnableAttribute === true ? toggleBlockAttributeComponent() : null" class="btnToolbar">
+          <span class="icon-name">{{ 'screens.user.AdminView.Library.Menus.Attributes' | translate }}</span>
+        </div>
+        <div class="action-icon-wrapper" id="FormatPainterIcon" 
+        [ngClass]="{'disable-section':designerServiceProjDesign.enableDefaultPainter === false }">           
+            <img src="assets/images/DocumentView/FormatPainter-active.svg" (click)="formatPainter()"
+                class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.document-view.FormatPainter' | translate}}</span>
+        </div>
+        <span class="section-name">{{ 'screens.home.labels.Import' | translate }}</span>
+        <div class="smalliconpadding borderRight">
+          <div class="action-icon-wrapper" id="PromoteIcon" [class.smallicondisplay]="hidePromote === true ? null : true" [hidden]="hidePromote">
+            <img src=" assets/images/DocumentView/Promote-active.svg" [class.disabled]="hidePromote === false && selectedBlock ? null : true" (click)="hidePromote === false && selectedBlock ? promoteBlock() : null" class="btnToolbar">
+            <span
+              class="icon-name smalliconspan" (click)="hidePromote === false && selectedBlock ? promoteBlock() : null">{{'screens.project-designer.document-view.Promote' | translate}}</span>
+          </div>
+          <div class="action-icon-wrapper"  id="DemoteIcon" [class.smallicondisplay]="hideDemote === true ? null : true" [hidden]="hideDemote">
+            <img src="assets/images/DocumentView/Demote-active.svg" [class.disabled]="hideDemote === false && selectedBlock ? null : true" (click)="hideDemote === false && selectedBlock ? demoteBlock() : null" class="btnToolbar">
+            <span class="icon-name smalliconspan" (click)="hideDemote === false && selectedBlock ? demoteBlock() : null">{{'screens.project-designer.document-view.Demote' | translate}}</span>
+          </div>
+          <!-- <span class="section-name">{{'screens.project-designer.document-view.Indent' | translate}}</span> -->
+        </div>
+      </div>
+
+
+
+      <div id="toolbar-menu" class="filters-section smalliconpadding"
+        [ngStyle]="{'display':show==true? 'block':'none'}">
+      </div>
+      <div class=" findReplace" ngbTooltip="Find Replace" placement="bottom" id="findAndReplaceIcon"
+        [nbPopover]="findReplaceRef" nbPopoverPlacement="bottom">
+      </div>
+      <ng-template #findReplaceRef>
+        <div class="FindAndReplace">
+          <div class="row form-group">
+            <div class="col-md-2">
+              <label>
+                {{'screens.project-designer.document-view.FindReplace.label.FindWhat' | translate}}</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [(ngModel)]="searchedText" class="form-control custom-form-input">
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-md-2">
+              <label>{{'screens.project-designer.document-view.FindReplace.label.ReplaceWith' | translate}}</label>
+            </div>
+            <div class="col-md-10">
+              <input type="text" [(ngModel)]="replaceWith" class="form-control custom-form-input">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" class="menu-btn-save createBlockSave"
+                [ngClass]="{ 'disable-section': (searchedText == undefined || searchedText == '')}" id="btnFindAll"
+                (click)="findText($event,'Find')">{{'screens.project-designer.document-view.FindReplace.label.FindButton' | translate}}</button>
+
+              <button type="button" class=" menu-btn-save createBlockSave"
+                [ngClass]="{ 'disable-section': (searchedText == undefined || searchedText == '')}"
+                id="btnCreateOrganization"
+                (click)="findText($event,'Replace')">{{'screens.project-designer.document-view.FindReplace.label.ReplaceButton' | translate}}</button>
+
+              <button nbButton type="button" class="menu-btn-cancel createCancel" (click)="dismiss('Cancel')"><label
+                  class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label>
+              </button>
+
+              <button type="button" class="menu-btn-save createBlockSave"
+                [ngClass]="{ 'disable-section': (searchedText == undefined || searchedText == '')}"
+                id="btnReplaceSelected"
+                (click)="replaceSelected($event,'ReplaceSelected')">{{'screens.project-designer.document-view.FindReplace.label.ReplaceSelected' | translate}}</button>
+
+              <button type="button" class="menu-btn-save createBlockSave" [hidden]="!isNext()" id="btnNext"
+                (click)="findNext()">{{'screens.project-designer.document-view.FindReplace.label.Next' | translate}}</button>
+
+
+              <button type="button" class="menu-btn-save createBlockSave" [hidden]="!isPrevious()" id="btnPrevious"
+                (click)="findPrevious()">{{'screens.project-designer.document-view.FindReplace.label.Previous' | translate}}</button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+      {{imageName}}
+      <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+      <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+    </div>
+  </div>
+  <div id="projectDesignTaskFilters"
+    [ngClass]="{ 'displayToolBar': (selectedDesignerTab == 5), 'hideToolBar' : (selectedDesignerTab != 5)}"
+    class="col-sm-12 toolbar-component-container collapsed editorHW">
+    <div class="manage-section managedocs-section" id="manageSection">
+      <div class="manage-section">
+        <div class="action-icon-wrapper" id="CreateQuestionIcon" [ngClass]="{'disableResetIcons':!isBlockSelected}">
+          <img src=" assets/images/DocumentView/CreateBlock-active.svg" (click)="toggleCreateQuestion()"
+            class="btnToolbar">
+          <span
+            class="icon-name">{{'screens.project-designer.document-view.tasks.create-question-label' | translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="projectDesignInsertFilters"
+    [ngClass]="{ 'displayToolBar': (selectedDesignerTab == 2), 'hideToolBar' : (selectedDesignerTab != 2)}"
+    class="col-sm-12 toolbar-component-container collapsed editorHW">
+    <ngx-insert-level2-menu-library></ngx-insert-level2-menu-library>
+  </div>
+  <div id="projectDesignInsertFilters"
+    [ngClass]="{ 'displayToolBar': (selectedDesignerTab == 3), 'hideToolBar' : (selectedDesignerTab != 3)}"
+    class="col-sm-12 toolbar-component-container collapsed editorHW">
+    <ngx-layout-level2-menu-library></ngx-layout-level2-menu-library>
+  </div>
+  <div id="projectDesignInsertFilters"
+    [ngClass]="{ 'displayToolBar': (selectedDesignerTab == 4), 'hideToolBar' : (selectedDesignerTab !=4)}"
+    class="col-sm-12 toolbar-component-container collapsed editorHW">
+    <ngx-review-level2-menu-library></ngx-review-level2-menu-library>
+  </div>
+</div>

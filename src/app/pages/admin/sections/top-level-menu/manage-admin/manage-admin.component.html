@@ -1,0 +1,93 @@
+<div class="row topLevelMenuManageAdminWrapper">
+  <div id="manageAdminFilters" class="col-sm-12 toolbar-component-container collapsed">
+   <div class="createManageSection">
+    
+    <div class="create-section">
+      <div class="action-icon-wrapper" id="createManageAdminIcon">
+        <img src="assets/images/Create-active.svg" (click)="onCreateAdminUser();" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.admin.labels.Create' | translate }}</span>
+      </div>
+      <span class="section-name">{{ 'screens.admin.labels.Create' | translate }}</span>
+    </div>
+    <div class="manage-section manage-section-menu">
+      <div class="action-icon-wrapper" id="editManageAdminIcon">
+        <img src="assets/images/Edit-active.svg" (click)="onEditAdminUser();" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.admin.labels.Edit' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" id="deleteManageAdminIcon">
+        <img src="assets/images/Delete-active.svg" (click)="onDeleteAdminUsers();" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.admin.labels.Delete' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" id="downloadManageAdminIcon">
+        <img src="assets/images/Download-active.svg" (click)="onDownloadAdminUsers();" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.admin.labels.download' | translate }}</span>
+      </div>
+      <div class="action-icon-wrapper" id="clearFIlterManageAdminIcon">
+        <img src="assets/images/Clear Filter-active.svg" (click)="clearFilters();" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.admin.labels.clearFilter' | translate }}</span>
+      </div>
+      <span class="section-name">{{ 'screens.admin.labels.action' | translate }}</span>
+    </div>
+    <!-- <div class="sectionNames">
+        <span >{{'screens.home.labels.Create' | translate}}</span>
+        <span >Actions</span>
+
+    </div> -->
+   </div>
+
+    <div class="filters-section">
+      <div class="filter-icon-wrapper">
+        <div class="action-icon-wrapper">
+          <img src="assets/images/Filter-active.svg" class="btnToolbar" (click)="toggleCollapse()">
+          <span class="icon-name">{{ 'screens.admin.labels.filter' | translate }}</span>
+        </div>
+      </div>
+      <div class="filter-inputs-wrapper" id="filterManageAdmin">
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.admin.tableHeaders.Name' | translate" [data]="ddlListUsers"
+          [(ngModel)]="selectedUserValues" [settings]="ddlSettings" (onDeSelect)="onManageAdminFilterSelect($event)"
+          (onSelect)="onManageAdminFilterSelect($event)" (onSelectAll)="onSelectAll('user')"
+          (onDeSelectAll)="onSelectAll('user')">
+        </ng-multiselect-dropdown>
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.admin.tableHeaders.Role' | translate" [data]="ddlListRoles"
+          [(ngModel)]="selectedUserRoles" [settings]="ddlSettings" (onDeSelect)="onManageAdminFilterSelect($event)"
+          (onSelect)="onManageAdminFilterSelect($event)" (onSelectAll)="onSelectAll('role')"
+          (onDeSelectAll)="onSelectAll('role')">
+        </ng-multiselect-dropdown>
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.admin.tableHeaders.Country' | translate" [data]="ddlListCountry"
+          [(ngModel)]="selectedCountry" [settings]="ddlSettings" (onDeSelect)="onManageAdminFilterSelect($event)"
+          (onSelect)="onManageAdminFilterSelect($event)" (onSelectAll)="onSelectAll('country')"
+          (onDeSelectAll)="onSelectAll('country')">
+        </ng-multiselect-dropdown>
+        <div class="small-column"></div>
+        <div class="small-column"></div>
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.admin.tableHeaders.createdByName' | translate" [data]="ddlListCreatedBy"
+          [(ngModel)]="selectedCreatedByUsers" [settings]="ddlSettings" (onDeSelect)="onManageAdminFilterSelect($event)"
+          (onSelect)="onManageAdminFilterSelect($event)" (onSelectAll)="onSelectAll('createdBy')"
+          (onDeSelectAll)="onSelectAll('createdBy')">
+        </ng-multiselect-dropdown>
+        <div class="input-wrapper filter-input">
+          <input type="text" class="form-control" [placeholder]="'screens.admin.tableHeaders.createdDate' | translate" id="creationDate" 
+          (bsValueChange)="onDateSelect($event, 'CreationDate')" bsDaterangepicker 
+          #dpcreationDate="bsDaterangepicker"
+      [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+            <label>
+              <i>
+                <img src="assets/images/calender.png" (click)="dpcreationDate.show()" [attr.aria-expanded]="dpcreationDate.isOpen" class="calender-icon"></i></label>
+        </div>
+        <nb-rangepicker #rangepicker  format="MM/dd/yyyy"
+          (rangeChange)="onDateSelect($event, 'CreationDate')" [min]="creationMinDate" [max]="creationMaxDate">
+        </nb-rangepicker>
+        <span class="section-name">{{ 'screens.admin.labels.filter' | translate }}</span>
+      </div>
+    </div>
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+      {{imageName}}
+      <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+      <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+    </div>
+  </div>
+  <!-- <div class="sectionNameWrapper">
+    <div class="sectionName ">{{'screens.home.labels.Create' | translate}}</div>
+    <span class="sectionName">Actions</span>
+      </div> -->
+</div>

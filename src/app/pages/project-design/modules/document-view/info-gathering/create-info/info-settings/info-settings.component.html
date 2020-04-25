@@ -1,0 +1,127 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="infoRequestSettingsWrapper" ngxUiLoaderBlurred>
+  <div class="infoRequestType">
+    <div class="requestHeader">
+      {{'screens.project-designer.iconview.InformationGathering.informationRequestType' | translate}}
+    </div>
+    <div class="requestBody">
+      <span class="templateLevelText" [ngClass]="!EnableDeliverable ? 'activeText' : 'inActiveText'">{{'screens.project-designer.iconview.InformationGathering.TemplateLevel' | translate}}</span>
+      <label class="switch" [ngClass]="{'switchClass':EnableDeliverable}">
+        <input type="checkbox" [disabled]="disabledChckbox">
+        <span class="slider round" [ngClass]="!EnableDeliverable ?'deliverable':'template'"></span>
+      </label>
+
+      <span class="checkboxText" [ngClass]="EnableDeliverable ? 'activeText' : 'inActiveText'">{{'screens.project-designer.iconview.InformationGathering.DeliverableLevel' | translate}}</span>
+    </div>
+  </div>
+  <div class="infoRequestDetails">
+    <form [formGroup]="detailsForm">
+      <nb-accordion>
+        <nb-accordion-item expanded=true>
+          <nb-accordion-item-header class="requestHeader">{{'screens.project-designer.iconview.InformationGathering.InformationRequestDetails' | translate}}</nb-accordion-item-header>
+          <nb-accordion-item-body class="selectInfo">
+            <div class="requestWrapper">
+              <div class="infoRequestContent entityWrapper" *ngIf="EnableDeliverable">
+                <div *ngIf="EnableDeliverable; let idx = index" class="entities ">
+                  <div class="requestBlocks" *ngFor="let record of deliverableList;let idx=index">
+                    <input type="radio" [checked]="idx === 0" (change)="changeEntity($event,record)" name="radio">
+                    <span class="blocks" title="{{record.name}}">{{record.name}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="infoDetails" [ngClass]="{'noEntities':!EnableDeliverable}">
+                <div class="requestItem">
+                  <p class="requestLabel">{{'screens.project-designer.iconview.InformationGathering.Name' | translate}}<span class="mandatoryField"> *</span></p>
+                  <input type="text" name="RequestName" formControlName="RequestName" (keypress) = "validateSpecialChar($event)"
+                    class="form-control manage-admin-pointer-none" [placeholder]="'screens.project-designer.iconview.InformationGathering.Inforequestname' | translate" maxlength="200">
+                </div>
+                <div class="requestItem">
+                  <p class="requestLabel">{{'screens.project-designer.iconview.InformationGathering.AssignTo' | translate}}<span class="mandatoryField"> *</span></p>
+                  <ng-multiselect-dropdown class="filter-input" [data]="AssignToList" name="AssignTo"
+                    [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedAssignToItems"
+                    [settings]="AssignToDropdownSetting" (onDeSelect)="onAssignToItemSelect($event)"
+                    (onSelect)="onAssignToItemSelect($event)" (onSelectAll)="onAllAssignToItemSelect($event, 1)"
+                    (onDeSelectAll)="onAllAssignToItemSelect($event, 0)">
+                  </ng-multiselect-dropdown>
+                </div>
+                <div class="requestItem">
+                  <p class="requestLabel">{{'screens.project-designer.iconview.InformationGathering.Coreviewer' | translate}}</p>
+                  <ng-multiselect-dropdown class="filter-input" [data]="CoReviewerList"
+                    [ngModelOptions]="{standalone: true}" [(ngModel)]="selectedCoReviewerItems"
+                    [settings]="coReviewerDropdownSetting" (onDeSelect)="onCoReviewerItemSelect($event)"
+                    (onSelect)="onCoReviewerItemSelect($event)" (onSelectAll)="onAllCoReviewerItemSelect($event, 1)"
+                    (onDeSelectAll)="onAllCoReviewerItemSelect($event, 0)">
+                  </ng-multiselect-dropdown>
+                </div>
+                <div class="requestItem">
+                  <p class="requestLabel">{{'screens.project-designer.iconview.InformationGathering.DueDate' | translate}}<span class="mandatoryField"> *</span></p>
+                  <div class="inputWithIcon">
+                    <div class="datePicker">
+                      <input type="text" class="form-control custom-form-input" name="DueDate"
+                         formControlName="DueDate" id="txtDueDate" [placeholder]="'screens.project-designer.iconview.InformationGathering.DDMMMYYYY' | translate" bsDatepicker
+                        #dpTaxableYearEnd="bsDatepicker"
+                        [bsConfig]="{ isAnimated: true,minDate: todayDate, dateInputFormat: 'DD MMM YYYY' }" readonly>
+                      <label><i><img (click)="dpTaxableYearEnd.show()" [attr.aria-expanded]="dpTaxableYearEnd.isOpen"
+                            src="assets/images/calender.png" class="calender-icon"></i></label>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="requestItem">
+                  <input type="checkbox" id="viewBlocksCheckBox" formControlName="ViewBlocks" class="check"
+                    [(ngModel)]="IsViewBlocks" (change)="onCheckboxSelect()">
+                  <span class="viewText">{{'screens.project-designer.iconview.InformationGathering.ViewBlocks' | translate}}</span>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="blockDetails" [hidden]="!IsEnableViewBlcok">
+              <div class="blockHeading">Blocks ({{ViewBlockList.length}}) <span>{{'screens.project-designer.iconview.InformationGathering.Viewaccesswarningmsg' | translate}}
+                </span>
+              </div>
+              <div class="blocksWrapper">
+                <div class="requestBlocks" *ngFor="let record of ViewBlockList"
+                  [ngClass]="{ 'templateBlock':record.colorCode=='White', 'deliverableBlock':record.colorCode=='Teal'}">
+                  <input type="checkbox" class="check" value="{{record.blockId}}" [checked]="getBlockValue(record)"
+                    (change)="saveBlockList(record)">
+                  <span class="blocks"  title="{{ record.title != '' ? record.title  : record.description}}">{{ record.title != '' ? record.title  : record.description }}</span>
+                </div>
+              </div>
+              <!-- <div class="blockDetails" *ngIf="IsEnableViewBlcok">
+                    <div class="blockHeading">Blocks (07)<span>choose blocks to give view access </span></div>
+                    <div class="blocksWrapper">
+                      <div class="requestBlocks" *ngFor="let record of ViewBlockList">
+                        <input type="checkbox" class="check" [checked]="getBlockValue(record)"
+                          value="{{record.blockId}}" (change)="saveBlockList(record)">
+                        <span class="blocks">{{record.title}}</span>
+                      </div>
+                    </div>
+                  </div> -->
+            </div>
+
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+      </nb-accordion>
+    </form>
+  </div>
+
+  <div class="questions">
+    <nb-accordion>
+      <nb-accordion-item expanded=true>
+        <nb-accordion-item-header class="requestHeader">{{'screens.project-designer.iconview.InformationGathering.Questions' | translate}}</nb-accordion-item-header>
+        <nb-accordion-item-body>
+          <div class="requestQuestions-table">
+            <ng2-smart-table id="transSmartTable" class="home-table" [settings]="settings" [source]="source"
+              (custom)="onCustomAction($event)">
+            </ng2-smart-table>
+          </div>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </div>
+</div>

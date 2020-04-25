@@ -1,0 +1,56 @@
+<form [formGroup]="importTemplate" (ngSubmit)="importTemplates()">
+  <nb-card class="createStackTopHeader">
+    <nb-card-header class="createTopHeader">{{'screens.home.labels.ImportTemplates' | translate}}
+      <button aria-label="Close" class="close" type="button" (click)="dismiss()"><span
+          aria-hidden="true">×</span></button>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="col-md-12">
+        <div *ngIf="noTemplates" class="ResultError">
+          {{'screens.home.labels.ErrorMessages.ImportTemplate.Result' | translate}}
+        </div>
+        <input type="hidden" formControlName="templateName" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && form.templateName.errors }"  id="templateName">
+        <ng-multiselect-dropdown [ngClass]="'custom-mg-multiselect'" class="dd-style" [data]="templateList"
+          formControlName="selectedTemplates" [settings]="dropdownSettings" (onDeSelect)="onTemplateSelect($event)"
+          (onSelect)="onTemplateSelect($event)">
+        </ng-multiselect-dropdown>
+        <div *ngIf="submitted && form.templateName.errors" class="invalid-feedback">
+          <div *ngIf="form.templateName.errors.required">
+            {{'screens.home.labels.ErrorMessages.ImportTemplate.Required' | translate}}
+          </div>
+        </div>
+        <br>
+
+        <div class="filters-section" id="filterSection">
+          <div class="action-icon-wrapper checkboxAlign">
+            <div class="col-md-12 bottomMargin">
+              <input type="radio" name="libraryTemplates" value="Global OECD Template"
+                formControlName="libraryTemplates" />
+              {{'screens.home.labels.GlobalOECDTemplates' | translate}}
+            </div>
+            <br>
+            <div class="col-md-12">
+              <input type="radio" name="libraryTemplates" value="Country Template" formControlName="libraryTemplates" />
+              {{'screens.home.labels.LocalCountryTemplates' | translate}}
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="stackFooter">
+      <nb-card-footer class="footerRightButton">
+
+        <button nbButton type="button" class="menu-btn-cancel cancelBtnStack" style="color:black;"
+          (click)="dismiss()"><label
+            class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="menu-btn-save stackBtnSave"
+          id="btnCreateOrganization">{{'screens.home.labels.Import' | translate}}</button>
+      </nb-card-footer>
+    </nb-card-footer>
+  </nb-card>
+
+</form>

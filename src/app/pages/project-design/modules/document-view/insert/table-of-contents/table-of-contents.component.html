@@ -1,0 +1,28 @@
+<nb-card>
+  <nb-card-header class="search-header">
+    <div>
+      <label for="lblTableOfContents">
+        {{'screens.project-designer.document-view.EditHeader' | translate}}
+      </label>
+    </div>
+    <div class="closeBtn" (click)="dismiss()">
+        X
+    </div>
+  </nb-card-header>
+  <nb-card-body>    
+    <div class="col-sm-12 editorSendMail padding0">
+            <div class="TOCPage" id="editor-TOC"></div>
+            <div id="toolbar-menu-TOC" class="filters-section coverpage-editor"></div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton type="button" class="button-section rectangle sendBtn" id="btnEditHeader" (click)="editHeader()">
+          {{'screens.project-user.SaveBtn' | translate}}
+      </button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button nbButton type="button" class="menu-btn-cancel sendCancelBtn" style="color:black;" 
+      (click)="dismiss()"><label
+      class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+  </nb-card-footer>
+</nb-card>
+

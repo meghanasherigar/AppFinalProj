@@ -1,0 +1,687 @@
+<div [ngClass]="infoGatheringIcons.DisablePageForReviewWhenInProgress == false ? '' : 'disableFilterSelect'">
+  <div class="" [formGroup]="formData">
+    <div formArrayName="questionTypeDetails">
+      <ng-container *ngFor="let question of questionTypeDetails.controls; let i = index;" [formGroupName]="i">
+        <div class="questionsAnswerWrapper"
+          [hidden]="(selectedEntityId != undefined && getquestionFormGroup(i).controls['entityId'].value != selectedEntityId) || getquestionFormGroup(i).controls['blockType'].value != blockType || getIsHiddenQuestion(getquestionFormGroup(i).controls['questionId'].value)"
+          [ngClass]="getIsDisabledQuestion(getquestionFormGroup(i).controls['questionId'].value) ? 'disableFilterSelect' : ''">
+          <div class="questionDetails">
+            <div class="questionItems"
+              [ngClass]="!checkedQuestionForEdit(getquestionFormGroup(i).controls['questionId'].value) ? 'show' : 'hide'">
+              <input type="checkbox" name="questionCheckbox" (change)="toggleCheckbox($event,question)"
+                value="{{getquestionFormGroup(i).controls['questionId'].value}}" />
+              <p><span>Q{{i + 1}}:</span>
+                <span class="questionText" [title]="getquestionFormGroup(i).controls['title'].value"
+               [ngClass]="{
+                'showApllicab':(infoGatheringIcons.HideNotApplicable==false && infoGatheringIcons.EnableApproveRejectReviewer==false),
+                'showApprRej':(infoGatheringIcons.EnableApproveRejectReviewer==true)
+              
+              } ">{{getquestionFormGroup(i).controls['title'].value}}</span>
+              </p>
+              <span class="updatedOn">{{questionCreationDates[i] | dateFormat}}</span>
+            </div>
+            <div class="col-md-12 padd-leftRight  editQuestionSec "
+              [ngClass]="checkedQuestionForEdit(getquestionFormGroup(i).controls['questionId'].value)? 'show' : 'hide'">
+              <div class="question">
+                <input type="checkbox" name="questionCheckbox" (change)="toggleCheckbox($event,question)"
+                  value="{{getquestionFormGroup(i).controls['questionId'].value}}" />
+                <p><span>Q{{i + 1}}:</span></p>
+              </div>
+              <ngx-create-question loaderId="{{'CreateQuestionLoader' + i}}"></ngx-create-question>
+            </div>
+          </div>
+          <div class="ApproveReject">
+            <button (click)="approveReject('Approve',question,i)"
+              *ngIf="infoGatheringIcons.EnableApproveRejectReviewer && (approveRejectStatus[i] == null || approveRejectStatus[i] == false)"
+              class="approveBtn">{{'screens.project-designer.document-view.info-gathering.approve' | translate}}<span></span></button>
+            <button class="approveBtn approveActive"
+              *ngIf="(infoGatheringIcons.EnableApproveRejectAssignee || infoGatheringIcons.EnableApproveRejectReviewer) && (approveRejectStatus[i] == true)">{{'screens.project-designer.document-view.info-gathering.approved' | translate}}<span></span></button>
+            <button (click)="approveReject('Reject',question, i)"
+              *ngIf="infoGatheringIcons.EnableApproveRejectReviewer && (approveRejectStatus[i] == null || approveRejectStatus[i] == true)"
+              class="rejectBtn">{{'screens.project-designer.document-view.info-gathering.reject' | translate}}<span></span></button>
+            <button class="rejectBtn rejectActive"
+              *ngIf="(infoGatheringIcons.EnableApproveRejectAssignee || infoGatheringIcons.EnableApproveRejectReviewer) && (approveRejectStatus[i] == false)">{{'screens.project-designer.document-view.info-gathering.rejected' | translate}}<span></span></button>
+            <div class="notApplicableButton notApplicableBtn"
+              [ngClass]="infoGatheringIcons.ShowNotApplicable && !getquestionFormGroup(i).controls['allowToEdit'].value ?
+           'ShowNotApplicable':infoGatheringIcons.EnableNotApplicable && getquestionFormGroup(i).controls['allowToEdit'].value ?'EnableNotApplicable':'ShowNotApplicable'"
+              [class.creatorNotApplicable]="creatorNotApplicable" (click)="NotApplicable(question)"
+              *ngIf="!infoGatheringIcons.HideNotApplicable">
+              <button
+                [class.activeNotAplicable]="getquestionFormGroup(i).controls['isNotApplicable'].value==true">{{'screens.project-designer.document-view.info-gathering.notApplicableText' | translate}}</button>
+              <!-- chk {{approveRejectStatus[i]}} 1 {{infoGatheringIcons.EnableApproveRejectReviewer}} 2 {{infoGatheringIcons.EnableApproveRejectAssignee }} -->
+            </div>
+            <!-- <img src="assets/images/more-info-selected.svg" class="smallIcon icon icon-header"
+              title="{{getquestionFormGroup(i).controls['comments'].value}}"> -->
+
+          </div>
+          <!-- 1 {{infoGatheringIcons.ShowNotApplicable}} 2 {{infoGatheringIcons.EnableNotApplicable}} 3 {{getquestionFormGroup(i).controls['allowToEdit'].value}} -->
+
+          <div class="questionIcons approveRejectQuesIco">
+            <div *ngIf="review" class="hashValue">{{getquestionFormGroup(i).controls['tag'].value}}</div>
+            <span class="notification" *ngIf="commentsAvailable[i] == true">.</span>
+            <img src="assets/images/comment-selected.svg" (click)="toggleComment(i)" class="smallIcon icon icon-header"  ngbTooltip="{{ 'screens.Project-Management.Blocks.GridColumn.Comments' | translate }}"> 
+            <img src="assets/images/forward-q.svg" (click)="popupForwardMail(question)"
+              *ngIf="infoGatheringIcons.EnableForwardIcon" class="smallIcon icon icon-header">
+            <img src="assets/images/history-selected.svg" class="smallIcon icon icon-header"
+              *ngIf="infoGatheringIcons.EnableViewHistory" [nbPopover]="answerHistory" nbPopoverPlacement="right"
+              placement="right" popoverClass="my-custom-class" ngbTooltip="{{ 'screens.Project-Management.Blocks.GridColumn.Answerhistory' | translate }}"
+              (click)="getQuestions(question)">
+            <span class="notificationAttachement"
+              *ngIf="getquestionFormGroup(i).controls['files'].value.length!=0">.</span>
+            <input hidden type="file" #uploader (change)="uploadFile($event.target.files, i)" accept="application/pdf,application/msword,
+        application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+            <img src="assets/images/attach-file-selected.svg" class="smallIcon icon icon-header"
+              (click)="uploader.click()"
+              ngbTooltip="{{ getquestionFormGroup(i).controls['files'].value.length + ' File Attached'}}"
+              [ngClass]="getquestionFormGroup(i).controls['allowAssigneeAttached'].value == true ? '' : 'disableFilterSelect'" >
+            <img src="assets/images/more-info-selected.svg" class="smallIcon icon icon-header"
+              title="{{getquestionFormGroup(i).controls['comments'].value}}">
+            <img src="assets/images/edit selected.svg" *ngIf="infoGatheringIcons.EnableEditQuestion"
+              (click)="onEditQuestionClick(question)" class="smallIcon icon icon-header" ngbTooltip="{{ 'screens.Project-Management.Blocks.GridColumn.EditQuestion' | translate }}"
+              [ngClass]="editquestionClick ? 'disableFilterSelect' : ''">
+          </div>
+
+          <div *ngIf="getquestionFormGroup(i).controls['fwdMessages'].value.length!=0" class="forwardedMessage">
+            {{getquestionFormGroup(i).controls['fwdMessages'].value}}
+            {{getquestionFormGroup(i).controls['forwardedOn'].value | dateFormat}}
+            <time>{{ getquestionFormGroup(i).controls['forwardedOn'].value | date:'shortTime' }}</time>
+            <!-- <ng2-smart-table [settings]="settings" id="FwdMessagesTable"
+            [source]="getquestionFormGroup(i).controls['fwdMessages'].value" (custom)="onCustomAction($event)">
+          </ng2-smart-table> -->
+          </div>
+          <!-- (changeTab)="selectedTab($event)" -->
+          <div *ngIf="checkCommentSection(i)" class="chatBoxSec">
+            <nb-tabset fullWidth class="custom-tab-width">
+              <nb-tab tabTitle="Internal">
+                <ngx-chat-box [messages]="internalComments(i)" [position]="i" [tabDetail]=false>
+                </ngx-chat-box>
+              </nb-tab>
+              <nb-tab tabTitle="External">
+                <ngx-chat-box [messages]="externalComments(i)" [position]="i" [tabDetail]=true>
+                </ngx-chat-box>
+              </nb-tab>
+            </nb-tabset>
+          </div>
+          <ng-container *ngIf="getquestionFormGroup(i).controls['files']">
+            <div *ngIf="getquestionFormGroup(i).controls['files'].value.length!=0">
+              <ng2-smart-table [settings]="settings" id="attachmentTable"
+                [source]="getquestionFormGroup(i).controls['files'].value" (custom)="onCustomAction($event)">
+              </ng2-smart-table>
+            </div>
+          </ng-container>
+          <ng-container *ngFor="let answers of getquestionFormGroup(i).controls['answerDetails']">
+            <div *ngFor="let version of answers">
+              {{version.answer}}
+            </div>
+          </ng-container>
+          <div class="answerDetails"
+            [ngClass]="getquestionFormGroup(i).controls['isNotApplicable'].value==true && !creatorNotApplicable ? 'disableAnswerSection':''">
+            <div [ngSwitch]="getquestionFormGroup(i).controls['type'].value" class="answerBloack">
+              <ng-container *ngSwitchCase="'Free Text'">
+
+                <span>A:</span>
+                <div class="editor">
+                  <div id="{{'freeTextAnswerEditor' + i}}"
+                    [ngClass]="{'disableAnswerDiv': !getquestionFormGroup(i).controls['allowToEdit'].value}"></div>
+                  <div id="{{'freeTextAnswerToolbar-Menu' + i}}"></div>
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="questionType.TableType">
+                <div class="editor tabletypeQuestion">
+                  <div style="width: 95%; margin-left: 5px;">
+                    <div>A:</div>
+                    <div class="answerBlock">
+                      <div [id]="'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value"
+                        [innerHTML]="tableTypeEditor" (click)="DisableTableDelete($event,$event.id)"
+                        (focusout)="DisableTableDelete($event,$event.id)" (keydown)="tableEditorChange($event)">
+                      </div>
+                      <div [id]="'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 uploadBtnGroup">
+                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}} :</label>
+                    <input hidden type="file" #uploader (change)="uploadFileTableType($event.target.files, i)" accept="application/pdf,application/msword,
+                                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                    <button type="submit" class="menu-btn-save linkToButton" (click)="uploader.click()">Browse</button>
+                    <span id="fileName" class="selectedFileName"></span>
+                  </div>
+                  <div class="col-md-6 text-right uploadBtnGroup">
+                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                      <label
+                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                    <button type="submit" class="menu-btn-save linkToButton"
+                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="'Number Type'">
+                <span>A:</span>
+                <input formControlName="answer" (keydown)="valueCheck($event)"
+                  [attr.disabled]="!getquestionFormGroup(i).controls['allowToEdit'].value ? '' : null"
+                  class="numberType" type="number">
+              </ng-container>
+              <ng-container *ngSwitchCase="'Date Type'">
+                <div class="inputWithIcon">
+                  <div class="datePicker">
+                    <span>A:</span>
+                    <div class="calendar">
+                      <input type="text"
+                        [attr.disabled]="!getquestionFormGroup(i).controls['allowToEdit'].value ? '' : null"
+                        class="form-control custom-form-input" name="DueDate"  formControlName="answer" id="txtDueDate"
+                        placeholder="DD MMM YYYY" bsDatepicker #dpTaxableYearEnd="bsDatepicker"
+                        [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly>
+                      <label><img (click)="dpTaxableYearEnd.show()" [attr.aria-expanded]="dpTaxableYearEnd.isOpen"
+                          src="assets/images/calender.png"
+                          [attr.disabled]="!getquestionFormGroup(i).controls['allowToEdit'].value ? '' : null"
+                          [ngClass]="getquestionFormGroup(i).controls['allowToEdit'].value == true ? '' : 'disableFilterSelect'"
+                          class="calender-icon"></label>
+                    </div>
+
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="'Logic Type'">
+                <div class="logicTypeDiv">
+                  <span>A:</span>
+                  <select class="dd-style"
+                    [attr.disabled]="!getquestionFormGroup(i).controls['allowToEdit'].value ? '' : null" id="ddlOptions"
+                    formControlName="selectedOption" (click)="logicTypeChange($event,i)">
+                    <option *ngFor="let option of getquestionFormGroup(i).controls['options'].value; let j = index;"
+                      [ngValue]="j">
+                      {{option}}
+                    </option>
+                  </select>
+                  <div [hidden]=" !showConditionalQuestion(i) || !isConditionQuestion ">
+                    <div formArrayName="subQuestions" class="AnswsubQuestion">
+                      <div *ngFor="let subquestion of getsubQuestionFormGroup(i).controls; let j = index;"
+                        class="questionsAnswerWrapper"  [hidden]="subquestion.controls['questionId'].value != subQuestionFormGroupQuestionId">
+                        <div [formGroupName]="j"
+                         >
+                          <!-- <span>A:</span> -->
+                          <div class="questionDetails">
+                            <div class="questionItems">
+                              <input type="checkbox">
+                              <p><span class="subQuestH">Q1:</span><span>{{subquestion.controls['title'].value}}</span>
+                              </p>
+                              <span class="updatedOn">12-12-2019 12:23:00</span>
+                            </div>
+                            <div class="notApplicableButton">
+                              <button>Not Applicable</button>
+                              <img src="assets/images/more-info-selected.svg" class="smallIcon icon icon-header">
+                            </div>
+
+                          </div>
+                          <div class="questionIcons">
+                            <img src="assets/images/comment-selected.svg" class="smallIcon icon icon-header">
+                            <img src="assets/images/forward-q.svg" class="smallIcon icon icon-header">
+                            <input hidden type="file" #uploader (change)="uploadFile($event.target.files, i)" accept="application/pdf,application/msword,
+                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                            <img src="assets/images/attach-file-selected.svg" class="smallIcon icon icon-header"
+                              (click)="uploader.click()">
+                          </div>
+                          <div class="answerDetails">
+                            <div [ngSwitch]="subquestion.controls['type'].value" class="freeText-editor">
+                              <ng-container *ngSwitchCase="'Free Text'">
+                                <span>A:</span>
+                                <div class="editor">
+                                  <div id="{{'freeTextSubAnswerEditor' + i+j}}"></div>
+                                  <div id="{{'freeTextSubAnswerToolbar-Menu' + i+j}}"></div>
+                                </div>
+                              </ng-container>
+                              <ng-container *ngSwitchCase="questionType.TableType">
+                                <div class="editor tabletypeQuestion">
+                                  <div style="width: 95%; margin-left: 5px;">
+                                    <div>A:</div>
+                                    <div class="answerBlock">
+                                      <div
+                                        id="{{'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value + i+j}}"
+                                        (keydown)="tableEditorChange($event)">
+                                      </div>
+                                      <div
+                                        id="{{'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value + i+j}}">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6 uploadBtnGroup">
+                                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}}
+                                      :</label>
+                                    <input hidden type="file" #uploader
+                                      (change)="uploadFileTableType($event.target.files, i)"
+                                      accept="application/pdf,application/msword,
+                                                        application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="uploader.click()">Browse</button>
+                                    <span id="fileName" class="selectedFileName"></span>
+                                  </div>
+                                  <div class="col-md-6 text-right uploadBtnGroup">
+                                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                                      <label
+                                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                                  </div>
+                                </div>
+                              </ng-container>
+                              <ng-container *ngSwitchCase="'Number Type'">
+                                <span>A:</span>
+                                <input formControlName="answer" class="numberType" type="number">
+                              </ng-container>
+                              <ng-container *ngSwitchCase="'Date Type'">
+
+                                <div class="inputWithIcon">
+                                  <div class="datePicker">
+                                    <span>A:</span>
+                                    <input type="text" class="form-control custom-form-input" name="DueDate"
+                                       formControlName="answer" id="txtDueDate" placeholder="DD MMM YYYY" bsDatepicker
+                                      #dpTaxableYearEnd="bsDatepicker"
+                                      [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly>
+                                    <label><img (click)="dpTaxableYearEnd.show()"
+                                        [attr.aria-expanded]="dpTaxableYearEnd.isOpen" src="assets/images/calender.png"
+                                        class="calender-icon"></label>
+                                  </div>
+                                </div>
+                              </ng-container>
+                              <ng-container *ngSwitchCase="'Yes/No Type'">
+                                <span>A: </span>
+                                <div class="YesNoType">
+                                  <label>
+                                    <input type="radio" value="Yes" formControlName="answer">
+                                    Yes
+                                  </label>
+                                  <label>
+                                    <input type="radio" value="No" formControlName="answer">
+                                    No
+                                  </label>
+                                </div>
+                              </ng-container>
+                              <ng-container *ngSwitchCase="'Drop Down Type'">
+                                <ng-container *ngIf="!subquestion.controls['multiSelect'].value">
+                                  <div class="requestItem requestItemSelect">
+                                    <span>A:</span>
+                                    <div class="dropDownSelect">
+                                      <select class="dd-style" id="ddlOptions" formControlName="answer">
+                                        <option *ngFor="let option of subquestion.controls['options'].value"
+                                          [ngValue]="option">
+                                          {{option}}
+                                        </option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </ng-container>
+                                <ng-container *ngIf="subquestion.controls['multiSelect'].value">
+                                  <span>A:</span>
+                                  <ng-multiselect-dropdown class="filter-input dropdownInput" [placeholder]="'Options'"
+                                    formControlName="answer" [data]="subquestion.controls['options'].value"
+                                    [settings]="multiSelectDropdownSettings">
+                                  </ng-multiselect-dropdown>
+                                </ng-container>
+                              </ng-container>
+                              <ng-container *ngSwitchCase="questionType.ComparabilityAnalysisType">
+                                <div class="editor">
+                                  <div style="width: 95%; margin-left: 5px;">
+                                    <div>A:</div>
+                                    <div class="answerBlock">
+                                      <div
+                                        id="{{'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value + i+j}}"
+                                        (keydown)="tableEditorChange($event)">
+                                      </div>
+                                      <div
+                                        id="{{'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value + i+j}}">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6 uploadBtnGroup">
+                                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}}
+                                      :</label>
+                                    <input hidden type="file" #uploader
+                                      (change)="uploadFileTableType($event.target.files, i)"
+                                      accept="application/pdf,application/msword,
+                                                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="uploader.click()">Browse</button>
+                                    <span id="fileName" class="selectedFileName"></span>
+                                  </div>
+                                  <div class="col-md-6 text-right uploadBtnGroup">
+                                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                                      <label
+                                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                                  </div>
+                                </div>
+                              </ng-container>
+                              <ng-container *ngSwitchCase="questionType.BenchmarkRangeType">
+                                <div class="editor">
+                                  <div style="width: 95%; margin-left: 5px;">
+                                    <div>A:</div>
+                                    <div class="answerBlock">
+                                      <div
+                                        id="{{'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value + i+j}}"
+                                        (keydown)="tableEditorChange($event)">
+                                      </div>
+                                      <div
+                                        id="{{'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value + i+j}}">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6 uploadBtnGroup">
+                                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}}
+                                      :</label>
+                                    <input hidden type="file" #uploader
+                                      (change)="uploadFileTableType($event.target.files, i)"
+                                      accept="application/pdf,application/msword,
+                                                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="uploader.click()">Browse</button>
+                                    <span id="fileName" class="selectedFileName"></span>
+                                  </div>
+                                  <div class="col-md-6 text-right uploadBtnGroup">
+                                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                                      <label
+                                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                                  </div>
+                                </div>
+                              </ng-container>
+                              <ng-container *ngSwitchCase="questionType.PLQuestionType">
+                                <div class="editor">
+                                  <div style="width: 95%; margin-left: 5px;">
+                                    <div>A:</div>
+                                    <div class="answerBlock">
+                                      <div
+                                        id="{{'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value + i+j}}"
+                                        (keydown)="tableEditorChange($event,i,j)">
+                                      </div>
+                                      <div
+                                        id="{{'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value + i+j}}">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6 uploadBtnGroup">
+                                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}}
+                                      :</label>
+                                    <input hidden type="file" #uploader
+                                      (change)="uploadFileTableType($event.target.files, i)"
+                                      accept="application/pdf,application/msword,
+                                                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="uploader.click()">Browse</button>
+                                    <span id="fileName" class="selectedFileName"></span>
+                                  </div>
+                                  <div class="col-md-6 text-right uploadBtnGroup">
+                                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                                      <label
+                                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                                  </div>
+                                </div>
+                              </ng-container>
+                              <ng-container *ngSwitchCase="questionType.CoveredTransactionType">
+                                <div class="editor">
+                                  <div style="width: 95%; margin-left: 5px;">
+                                    <div>A:</div>
+                                    <div class="answerBlock">
+                                      <div
+                                        id="{{'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value + i+j}}"
+                                        (keydown)="tableEditorChange($event)">
+                                      </div>
+                                      <div
+                                        id="{{'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value + i+j}}">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6 uploadBtnGroup">
+                                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}}
+                                      :</label>
+                                    <input hidden type="file" #uploader
+                                      (change)="uploadFileTableType($event.target.files, i)"
+                                      accept="application/pdf,application/msword,
+                                                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="uploader.click()">Browse</button>
+                                    <span id="fileName" class="selectedFileName"></span>
+                                  </div>
+                                  <div class="col-md-6 text-right uploadBtnGroup">
+                                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                                      <label
+                                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                                  </div>
+                                </div>
+                              </ng-container>
+                              <ng-container *ngSwitchCase="questionType.ListType">
+                                <div class="editor">
+                                  <div style="width: 95%; margin-left: 5px;">
+                                    <div>A:</div>
+                                    <div class="answerBlock">
+                                      <div
+                                        id="{{'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value + i+j}}"
+                                        (keydown)="tableEditorChange($event)">
+                                      </div>
+                                      <div
+                                        id="{{'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value + i+j}}">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6 uploadBtnGroup">
+                                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}}
+                                      :</label>
+                                    <input hidden type="file" #uploader
+                                      (change)="uploadFileTableType($event.target.files, i)"
+                                      accept="application/pdf,application/msword,
+                                                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="uploader.click()">Browse</button>
+                                    <span id="fileName" class="selectedFileName"></span>
+                                  </div>
+                                  <div class="col-md-6 text-right uploadBtnGroup">
+                                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                                      <label
+                                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                                    <button type="submit" class="menu-btn-save linkToButton"
+                                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                                  </div>
+                                </div>
+                              </ng-container>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+              <ng-container *ngSwitchCase="'Yes/No Type'" class="yesNOSection">
+                <span>A: </span>
+                <div>
+                  <label class="yesBlock">
+                    <input type="radio" value="Yes" formControlName="answer"
+                      [attr.disabled]="!getquestionFormGroup(i).controls['allowToEdit'].value ? '' : null">
+                    Yes
+                  </label>
+                  <label>
+                    <input type="radio" value="No" formControlName="answer"
+                      [attr.disabled]="!getquestionFormGroup(i).controls['allowToEdit'].value ? '' : null">
+                    No
+                  </label>
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="'Drop Down Type'">
+                <ng-container *ngIf="getquestionFormGroup(i).controls['multiSelect'].value == false">
+                  <span>A:</span>
+                  <div class="dropDownSelect">
+                    <select class="dd-style" id="ddlOptions" formControlName="answer"
+                      [attr.disabled]="!getquestionFormGroup(i).controls['allowToEdit'].value ? '' : null">
+                      <option *ngFor="let option of getquestionFormGroup(i).controls['options'].value"
+                        [ngValue]="option">
+                        {{option}}
+                      </option>
+                    </select>
+                  </div>
+                </ng-container>
+                <ng-container *ngIf="getquestionFormGroup(i).controls['multiSelect'].value">
+                  <div class="requestItem">
+                    <span>A:</span>
+                    <ng-multiselect-dropdown class="filter-input dropdownInput" [placeholder]="'Options'"
+                      formControlName="answer" [data]="getquestionFormGroup(i).controls['options'].value"
+                      [settings]="multiSelectDropdownSettings"
+                      [ngClass]="{'disableAnswerDiv': !getquestionFormGroup(i).controls['allowToEdit'].value}">
+                    </ng-multiselect-dropdown>
+                  </div>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngSwitchCase="questionType.ComparabilityAnalysisType">
+                <div class="editor">
+                  <div style="width: 95%; margin-left: 5px;">
+                    <div>A:</div>
+                    <div class="answerBlock">
+                      <div [id]="'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value"
+                        [innerHTML]="tableTypeEditor" (keydown)="tableEditorChange($event)">
+                      </div>
+                      <div [id]="'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 uploadBtnGroup">
+                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}} :</label>
+                    <input hidden type="file" #uploader (change)="uploadFileTableType($event.target.files, i)" accept="application/pdf,application/msword,
+                                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                    <button type="submit" class="menu-btn-save linkToButton" (click)="uploader.click()">Browse</button>
+                    <span id="fileName" class="selectedFileName"></span>
+                  </div>
+                  <div class="col-md-6 text-right uploadBtnGroup">
+                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                      <label
+                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                    <button type="submit" class="menu-btn-save linkToButton"
+                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="questionType.BenchmarkRangeType">
+                <div class="editor">
+                  <div style="width: 95%; margin-left: 5px;">
+                    <div>A:</div>
+                    <div class="answerBlock">
+                      <div [id]="'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value"
+                        [innerHTML]="tableTypeEditor" (keydown)="tableEditorChange($event)">
+                      </div>
+                      <div [id]="'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 uploadBtnGroup">
+                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}} :</label>
+                    <input hidden type="file" #uploader (change)="uploadFileTableType($event.target.files, i)" accept="application/pdf,application/msword,
+                                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                    <button type="submit" class="menu-btn-save linkToButton" (click)="uploader.click()">Browse</button>
+                    <span id="fileName" class="selectedFileName"></span>
+                  </div>
+                  <div class="col-md-6 text-right uploadBtnGroup">
+                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                      <label
+                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                    <button type="submit" class="menu-btn-save linkToButton"
+                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="questionType.PLQuestionType">
+                <div class="editor">
+                  <div style="width: 95%; margin-left: 5px;">
+                    <div>A:</div>
+                    <div class="answerBlock">
+                      <div [id]="'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value"
+                        [innerHTML]="tableTypeEditor" (keydown)="tableEditorChange($event)">
+                      </div>
+                      <div [id]="'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 uploadBtnGroup">
+                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}} :</label>
+                    <input hidden type="file" #uploader (change)="uploadFileTableType($event.target.files, i)" accept="application/pdf,application/msword,
+                                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                    <button type="submit" class="menu-btn-save linkToButton" (click)="uploader.click()">Browse</button>
+                    <span id="fileName" class="selectedFileName"></span>
+                  </div>
+                  <div class="col-md-6 text-right uploadBtnGroup">
+                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                      <label
+                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                    <button type="submit" class="menu-btn-save linkToButton"
+                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="questionType.CoveredTransactionType">
+                <div class="editor">
+                  <div style="width: 95%; margin-left: 5px;">
+                    <div>A:</div>
+                    <div class="answerBlock">
+                      <div [id]="'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value"
+                        [innerHTML]="tableTypeEditor" (keydown)="tableEditorChange($event)">
+                      </div>
+                      <div [id]="'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 uploadBtnGroup">
+                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}} :</label>
+                    <input hidden type="file" #uploader (change)="uploadFileTableType($event.target.files, i)" accept="application/pdf,application/msword,
+                                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                    <button type="submit" class="menu-btn-save linkToButton" (click)="uploader.click()">Browse</button>
+                    <span id="fileName" class="selectedFileName"></span>
+                  </div>
+                  <div class="col-md-6 text-right uploadBtnGroup">
+                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                      <label
+                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                    <button type="submit" class="menu-btn-save linkToButton"
+                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="questionType.ListType">
+                <div class="editor">
+                  <div style="width: 95%; margin-left: 5px;">
+                    <div>A:</div>
+                    <div class="answerBlock">
+                      <div [id]="'tableTypeEditor' + getquestionFormGroup(i).controls['questionId'].value"
+                        [innerHTML]="tableTypeEditor" (keydown)="tableEditorChange($event)">
+                      </div>
+                      <div [id]="'tableTypeMenu' + getquestionFormGroup(i).controls['questionId'].value"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 uploadBtnGroup">
+                    <label>{{'screens.project-designer.appendix.uploadScreen.UploadFile' | translate}} :</label>
+                    <input hidden type="file" #uploader (change)="uploadFileTableType($event.target.files, i)" accept="application/pdf,application/msword,
+                                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" />
+                    <button type="submit" class="menu-btn-save linkToButton" (click)="uploader.click()">Browse</button>
+                    <span id="fileName" class="selectedFileName"></span>
+                  </div>
+                  <div class="col-md-6 text-right uploadBtnGroup">
+                    <button nbButton type="button" class="menu-btn-cancel" (click)="onSubmit()">
+                      <label
+                        class="menu-txt-cancel">{{'screens.project-designer.appendix.label.Upload' | translate}}</label></button>
+                    <button type="submit" class="menu-btn-save linkToButton"
+                      (click)="downloadFileTableTypeQuestions()">{{'screens.project-designer.appendix.label.Download' | translate}}</button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div *ngIf="getquestionFormGroup(i).controls['isNotApplicable'].value==true" class="notApllicableText">
+            <!-- <strong> {{'screens.project-designer.document-view.info-gathering.marked-as-not-applicable' | translate}} </strong>    -->
+            <span>{{'screens.project-designer.document-view.info-gathering.markedtext' | translate}}<b>{{'screens.project-designer.document-view.info-gathering.notApplicableText' | translate}}</b></span>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #answerHistory class='customClass'>
+  <ngx-answer-history-popup [selectedQuestion]="selectedAnswerAvailableViewModel" class="custom">
+  </ngx-answer-history-popup>
+</ng-template>

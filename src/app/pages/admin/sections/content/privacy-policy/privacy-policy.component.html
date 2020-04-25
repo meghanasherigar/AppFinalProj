@@ -1,0 +1,36 @@
+ 
+ <ngx-ui-loader [loaderId]='loaderId'
+ [bgsPosition]="loaderPosition"
+ [bgsColor]="loaderColor"></ngx-ui-loader>
+ 
+<nb-card ngxUiLoaderBlurred>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-md-4">
+        <span class="title">{{'screens.admin.privacyPolicy.title' | translate}}</span>
+      </div>
+      <div class="col-md-4 text-right">
+        <span class="user-style">{{'screens.admin.privacyPolicy.userType' | translate}}</span>
+        <!-- <br/><br /> -->
+        <select class="dd-style custom-form-input" id="ddlUserList" [(ngModel)]="selectedUser"
+          (change)="userTypeChange()">
+          <option *ngFor="let user of userlist" [ngValue]="user">
+            {{user}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-4 text-right">
+        <p  class="right-section " *ngIf="lastModifiedDate">
+            {{'screens.admin.commonMessage.updatedby' | translate}} {{username}} on
+          {{lastModifiedDate  | dateFormat}}</p>
+        <p class="right-section" *ngIf="lastPublished?.isPublishedUser">
+            {{'screens.admin.commonMessage.publishedby' | translate}} {{lastPublished.publishedBy}} on
+          {{ lastPublished.publishedOn  | dateFormat}}</p>
+      </div>
+
+    </div>
+    <br />
+    <div class="borderBlock" id="editor"></div>
+    <!-- <ckeditor [(ngModel)]="editorValue" (input)="editorValue = $event.target.innerText" [config]="config"></ckeditor> -->
+  </nb-card-body>
+</nb-card>

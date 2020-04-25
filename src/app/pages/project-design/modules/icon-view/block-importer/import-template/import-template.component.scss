@@ -1,0 +1,73 @@
+.select_form_control{
+    height: calc(2rem + 6px)!important;
+}
+.ResultError {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+.disabledTextInput{
+    background-color: #e9ecef;
+    opacity: 1;
+}
+.dd-style {
+    height: 30.24px;
+    width: 260px;
+    border: 1px solid #F1F1F1;
+    background-color: #FFFFFF;
+    box-shadow: 0 0.5px 0 0 #D8D8D8;
+    display: block;
+    margin-bottom: 20px;
+  }
+.create-stack-attribute-mandatory-icon{
+    color: red;
+} 
+.create-stack-textarea{
+    height: 79px !important;
+}
+.createStackTopHeader{
+    width: 500px;
+    margin-top: 60px;
+}
+.createTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+
+}
+.close{
+    color: #fff;
+    border: none;
+    border: 0;
+    border: 0 none !important;
+    color: #fff;
+    display: inline-block;
+    font-size: 22px;
+    line-height: 1;
+    opacity: 1;
+    text-shadow: none;
+   -webkit-transition: background 0.2s ease-in-out;
+   transition: background 0.2s ease-in-out;
+   vertical-align: top;
+   width: 46px;
+   outline: none;
+}
+.close:hover{
+    border: none;
+    border: 0;
+}
+
+.stackBtnSave{
+    color: #fff;
+    }
+    .cancelBtnStack{
+        border-radius: 5px !important; 
+    }
+    .stackFooter{
+        border-top: 1px solid #eee !important;
+    }
+    .bottomMargin{
+       margin-bottom: 13px !important; 
+    }

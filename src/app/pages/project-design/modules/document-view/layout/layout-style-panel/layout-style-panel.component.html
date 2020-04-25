@@ -1,0 +1,44 @@
+<nb-card class="editBlockpopupHW editorBlockAttributes">
+  <ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+  <nb-card-header class="ediTopHeader">
+    <div class="attributeIcon">
+      <img src="assets/images/Attribute view_white.svg">
+    </div>
+    <div class="attributeText">
+      <span>{{'screens.project-designer.document-view.stylePanel' | translate}}</span>
+    </div>
+
+    <img class="closeBtn documentView-close" src="assets/images/Remove_without hover-White.svg"
+      (click)="showStylePanel()">
+
+  </nb-card-header>
+  <nb-card-body>
+    <div class="col-md-12 ">
+      <div class="form-group">
+        <label>{{'screens.project-designer.document-view.styleName' | translate}}</label>
+        <input type="text" class="form-control custom-form-input" #layoutName id="layoutName" value="{{layoutStyle.layoutName}}" (keyup)="validateLayoutName($event)">
+      </div>
+    </div>
+
+    <div class="col-md-12 " *ngFor="let style of layoutStyle.styles">
+      <div class="form-group">
+        <input type="text" readonly class="form-control custom-form-input" [(ngModel)]="style.styleOn"
+          [contextMenu]="basicMenu" [contextMenuSubject]="style">
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="saveCancelBtnTopBorder">
+    <div class="footerRightButton text-center">
+      <button nbButton type="button" class="menu-btn-cancel" style="color:black;" (click)="showStylePanel()"><label
+          class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.document-view.cancel' | translate}}</label></button>
+      &nbsp;&nbsp;
+      <button type="submit" class="menu-btn-save" id="btnCreateOrganization"
+        (click)="addNewStyle()">{{layoutStyle.isNew ? ('screens.project-designer.document-view.add' | translate) : ('screens.project-designer.document-view.modify' | translate) }}</button>
+    </div>
+  </nb-card-footer>
+</nb-card>
+<context-menu>
+  <ng-template contextMenuItem (execute)="openFormattingOptionsPopup($event.item)" [enabled]="isLayoutStyleEnabled">
+    {{'screens.project-designer.document-view.modify' | translate}}
+  </ng-template>
+</context-menu>

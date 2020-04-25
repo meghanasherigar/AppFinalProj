@@ -1,0 +1,204 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+
+<div class="ProjectSettings-container">
+
+  <!-- <nb-accordion>
+    <nb-accordion-item (click)="expandPanel(expansionPanel, $event,header)" [collapsed]='false'>
+      <nb-accordion-item-header>{{'screens.project-setting.General'| translate}} </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <div class="projectmngtList" id="general"
+        *ngFor="let general of projectSettingsHeaders.generalSetting;let i of index">
+        <div class="row">
+          <div class="col-md-10">
+              <label class="form-control custom-form-input-text">
+                  {{general.description}}
+                </label>
+          </div>
+          <div class="col-md-2">
+            <form>
+              <input type="radio"  [checked]="general.value === 1"  (change)="onGeneralSelection(1,i)"name="general.value" value="1"> {{'screens.project-setting.Yes'| translate}} 
+              <input type="radio"[checked]="general.value === 0"  (change)="onGeneralSelection(0,i)" name="general.value" value="0" > {{'screens.project-setting.No'| translate}}
+            </form>
+         
+          </div>
+        </div>
+      </div>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+  </nb-accordion>-->
+
+  <nb-accordion>
+    <nb-accordion-item (click)="expandPanel(expansionPanel, $event,header)" [collapsed]='false'>
+      <nb-accordion-item-header>{{'screens.project-setting.AutomaticEMails'| translate}} </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <div class="projectmngtList" id="automaticEmails"
+        *ngFor="let automaticEmails of projectSettingsHeaders.automaticEmailsSetting;let i of index">
+        <div class="row">
+          <div class="col-md-10">
+              <label>
+                  {{automaticEmails.description}}
+              </label>
+          </div>
+          <div class="col-md-2">
+            <form>
+              <span><input type="radio" [checked]="automaticEmails.value === 1" (change)="onAutoEmailsSelection(1,i)" name="automaticEmails.value" value="1"> {{'screens.project-setting.On'| translate}}  </span>
+              <span>
+                <input type="radio" [checked]="automaticEmails.value === 0"(change)="onAutoEmailsSelection(0,i)" name="automaticEmails.value" value="0" >{{'screens.project-setting.Off'| translate}}</span>
+            </form>
+         
+          </div>
+        </div>
+      </div>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+
+
+  <nb-accordion>
+    <nb-accordion-item #expansionPanel1 (click)="expandPanel(expansionPanel1, $event)" [collapsed]='false'>
+      <nb-accordion-item-header>{{'screens.project-setting.ProjectManagement'| translate}} </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <div class="col-md-10">
+          <h5>{{'screens.project-setting.Milestone'| translate}}</h5>
+        </div>
+        <div class="col-md-2">
+          <h5>{{'screens.project-setting.Percentage'| translate}}</h5>
+        </div>
+      </nb-accordion-item-body>
+      <nb-accordion-item-body>
+        <div class="projectmngtList" id="milestone"
+          *ngFor="let milestone of projectSettingsHeaders.milestoneSettings;let i of index">
+          <div class="row">
+            <div class="col-md-10">
+              <input [(ngModel)]="milestone.description" (ngModelChange)="compareData()"class="form-control custom-form-input-text" type="text" />
+            </div>
+            <div class="col-md-2">
+              <input [(ngModel)]="milestone.value" (ngModelChange)="compareData()" class="form-control custom-form-input" type="text" pattern="[0-9]"
+                appTwoDigitDecimaNumber /><span>%</span>
+            </div>
+          </div>
+        </div>
+        <nb-accordion-item-body>
+          <div class="projectmngtList row">
+            <div class="col-md-10">
+              <h5>{{'screens.project-setting.Alerts'| translate}}</h5>
+            </div>
+            <div class="col-md-2">
+              <h5> {{'screens.project-setting.Days'| translate}}</h5>
+            </div>
+          </div>
+        </nb-accordion-item-body>
+        <div class="projectmngtList" id="alertsone"
+          *ngFor="let alertsone of projectSettingsHeaders.alertSettings;let i of index">
+          <div class="row">
+            <div class="col-md-10 deleteIconPosition">
+              <label class="">
+                {{alertsone.description}}
+              </label>
+            </div>
+            <div class="col-md-2">
+              <input [(ngModel)]="alertsone.value" (ngModelChange)="compareData()" class="form-control custom-form-input" type="text"
+                pattern="[0-9]" /><span></span>
+            </div>
+          </div>
+        </div>
+        <nb-accordion-item-body>
+          <div class="projectmngtList row">
+            <div class="col-md-10">
+              <h5>{{'screens.project-setting.ExternalSettings' | translate}}</h5>
+            </div>
+          </div>
+        </nb-accordion-item-body>
+        <div class="projectmngtList" id="externalUserSettings"
+          *ngFor="let externalusersetting of projectSettingsHeaders.externalUserSetting;let i of index">
+          <div class="row">
+            <div class="col-md-10 deleteIconPosition">
+              <label class="">
+                {{externalusersetting.description}}
+              </label>
+            </div>
+
+            <div class="col-md-2">
+              <form>
+                <span><input type="radio" [checked]="externalusersetting.value === 1" (change)="toggleExternalUserSettings(1,i)" name="externalusersetting.value" value="1"> {{'screens.project-setting.On'| translate}}  </span>
+                <span>
+                  <input type="radio" [checked]="externalusersetting.value === 0" (change)="toggleExternalUserSettings(0,i)" name="externalusersetting.value" value="0" >{{'screens.project-setting.Off'| translate}}</span>
+              </form>
+            </div>
+          </div>
+        </div>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+  <nb-accordion>
+    <nb-accordion-item #expansionPanel2 (click)="expandPanel(expansionPanel2, $event)" [collapsed]='isExternalUser'
+      [disabled]='isExternalUser'>
+      <nb-accordion-item-header>
+        {{'screens.project-setting.ExternalUserAccessControl'| translate}}
+      </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <div class="row">
+          <div class="col-sm-6">
+
+            <form [formGroup]="ExternalUserAccessControlForm">
+              <div class="form-group" id="externalUserAccessControl">
+                <div class="projectmngtList" *ngFor="let domain of domainData;let i of index">
+                  <label class="form-control custom-form-input-text">
+                    {{domain.name}}
+
+                    <span>
+                      <img src="assets/images/Delete-gray.svg" class="DeleteIconList" (click)="deleteDomain(i);">
+                    </span>
+
+                  </label>
+
+                </div>
+                <div formArrayName="domainAdd"
+                  *ngFor="let domain of ExternalUserAccessControlForm.get('domainAdd')['controls'], let i = index;">
+                  <div class="row">
+                    <div class="col-sm-12 form-group" [formGroupName]="i">
+                      <input type="text" (blur)="onKeyPress($event)" (keypress)="onKeyPress($event)"
+                        [id]="'txtDomainName_'+ i" placeholder="{{'screens.project-setting.EnterDomain' | translate}}"
+                        formControlName="ExternalUserAccessControl"
+                        [ngClass]="{ 'is-invalid': submitted && ExternalUserAccessControlForm.controls.domainAdd.controls[i].controls['ExternalUserAccessControl'].errors}"
+                        class="form-control Proform">
+                      <div *ngIf="show" class="addLead-crossIcon" ngbTooltip="{{'screens.project-user.RemoveDomain' | translate}}">
+                        <a class="fa fa-times" (click)="removeDomainById(i)"></a>
+                      </div>
+                      <div
+                        *ngIf="submitted && ExternalUserAccessControlForm.controls.domainAdd.controls[i].controls['ExternalUserAccessControl'].errors"
+                        class="invalid-feedback">
+                        <div
+                          *ngIf="ExternalUserAccessControlForm.controls.domainAdd.controls[i].controls['ExternalUserAccessControl'].errors.required">
+                          {{'screens.project-setting.DomainNameValidationMsg' | translate}}
+                        </div>
+                        <div
+                          *ngIf="ExternalUserAccessControlForm.controls.domainAdd.controls[i].controls['ExternalUserAccessControl'].errors.pattern">
+                          {{'screens.project-setting.EnterDomain' | translate}}
+                        </div>
+                      </div>
+                      <!-- <div *ngIf="show" class="proSetting">
+                        <span>
+                          <img src="assets/images/Mark_as_read.svg" class="ProjectInputIconList" (click)="onRead()">
+                        </span>
+                      </div> -->
+
+
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" id="addLeadBtn" class="addBtn" [ngClass]='{disabled: disabledButton}'
+                  (click)="addButtonClick();  $event.preventDefault();">{{'screens.project-setting.AddMore'| translate}}</button>
+
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+
+</div>

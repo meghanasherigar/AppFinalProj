@@ -1,0 +1,42 @@
+.select_form_control{
+    height: calc(2rem + 6px)!important;
+}
+.disabledTextInput{
+    background-color: #e9ecef;
+    opacity: 1;
+}
+.create-stack-attribute-mandatory-icon{
+    color: red;
+} 
+.create-stack-textarea{
+    height: 79px !important;
+}
+.createStackTopHeader{
+    width: 1027px;
+    margin-top: 60px;
+}
+.createTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+
+}
+.close{
+    color: #fff;
+    border: none;
+    border: 0;
+}
+.close:hover{
+    border: none;
+    border: 0;
+}
+
+.stackBtnSave{
+    color: #fff;
+    }
+    .cancelBtnStack{
+        border-radius: 5px !important; 
+    }
+    .stackFooter{
+        border-top: 1px solid #eee !important;
+    }

@@ -1,0 +1,15 @@
+<div class="container-fluid custom-position-sticky">
+<div class="row">
+  <div class="col-md-12">
+    <router-outlet name="level2Menu"></router-outlet>
+  </div>
+</div>
+</div>
+<nb-layout>
+  <nb-sidebar>
+    <router-outlet name="leftNav"></router-outlet>
+  </nb-sidebar>
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

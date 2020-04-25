@@ -1,0 +1,143 @@
+// .drop-above {
+//   border-top: 10px solid #dddddd;
+//   margin-top: -10px;
+// }
+
+// .drop-above {
+//   border-top: 28px solid #aeef9930;;
+//   margin-top: -20px;   
+//   width: 94%;
+//   outline: 1px dashed #000;
+//   outline-offset: -2px;
+//   // margin-top: 2px;
+//    height: 19px;
+// }
+.scrollingHeader{
+  width: 100%;
+  padding: 20px;
+  .mat-tree{
+    overflow-y: auto;
+  }
+}
+.drop-below .mat-checkbox{
+  
+    position: relative;
+    height: 85px;
+    width: 100%;
+    display: block;
+  
+  }
+  .drop-above .mat-checkbox{
+    
+    position: relative;
+    height: 85px;
+    width: 100%;
+    display: block;
+    padding-top:35px;
+    .mat-checkbox-inner-container{ top:45px !important;}
+  
+  }
+  .editblcok .mat-checkbox{ width:100%;}
+  .drop-below .mat-checkbox::after{ 
+    // border-bottom: 10px solid #dddddd;
+    // margin-bottom: -10px;
+    content: '';     
+    height: 28px;
+      width: 92%;
+      background: #aeef9930;
+      outline: 1px dashed #000;
+      /* position: absolute; */
+      /* bottom: 18px; */
+      /* left: 0; */
+      margin-bottom: -24px;
+  
+      display: inline-block;
+      margin-left: 32px;
+  }
+  .drop-above .mat-checkbox::after{ 
+    content: '';
+    height: 28px;
+    width: 92%;
+    background: #aeef9930;
+    outline: 1px dashed #000;
+    margin-top: -1px;
+    display: inline-block;
+    margin-left: 32px;
+    position: absolute;
+    top: 2px;
+    left: 0;
+  }
+  // .drop-below:last-child::after{ 
+  //   // border-bottom: 10px solid #dddddd;
+  //   // margin-bottom: -10px;
+  //   content: '';     
+  //   height: 28px;
+  //     width: 94%;
+  //     background: #aeef9930;
+  //     outline: 1px dashed #000;
+  //     /* position: absolute; */
+  //     /* bottom: 18px; */
+  //     /* left: 0; */
+  //     margin-bottom: -24px;
+  //     display: inline-block;
+  // }
+  .drop-center {
+    background-color: #dddddd;
+   }
+  .stackDisplay{
+    color: gray !important;
+  }
+  .indentation{
+    font-weight: bold;
+    padding-right:10px;
+  }
+  .AuditTrail{
+    button.mat-icon-button{
+      border: none;
+      box-shadow: none;
+    }
+    .auditdate{
+      margin-bottom: 25px;
+      font-weight: bold;
+      font-size: 16px;
+      position: relative;
+      width: 100%;
+      span{
+        position: absolute;
+        top: 1px;
+        background: #fff;
+        z-index: 9;
+        padding-right: 10px;
+      }
+      &::after{
+        content: '';
+        width: 90%;
+        height: 0.9px;
+        background: #ccc;
+        position: absolute;
+        left: 0;
+        top: 10px;
+        z-index: 1;
+      }
+    }
+      .CreatedBy{
+        font-size: 12px;
+        color: #727272;
+        span{
+          margin-left: 30px;
+        }
+      }
+      .mat-checkbox-inner-container{
+        margin-left: 50px;
+      }
+      .mat-checkbox-label{
+        span{
+          b{
+            margin: 0 5px;
+          }
+        }
+      }
+      .editedBy{text-transform: lowercase;}
+    }
+  
+  

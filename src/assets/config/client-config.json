@@ -1,0 +1,26 @@
+{
+  "name": "PROD",
+  "projectSetupApiUrl": "https://ddigitaldoxmicroservices.deloitteonline.com/projectsetup",
+  "userManagementApiUrl": "https://ddigitaldoxmicroservices.deloitteonline.com/usermanagement",
+  "projectManagementApiUrl": "https://ddigitaldoxmicroservices.deloitteonline.com/projectmanagement",
+  "projectDesignApiUrl": "https://ddigitaldoxmicroservices.deloitteonline.com/projectdesigner",
+  "dpassAuthEndpointsUrl":"https://dtpdigitaldoxidentity.deloitteonline.com",
+  "projectSetupApiUrlUS": "https://ddigitaldoxmicroservices.deloitteonline.com/projectsetup",
+  "expiryTimeInMinutes": 10,
+  "idealTimoutInMinutes": 30,
+  "useAAALogIn": true,
+  "useDpassLogin": true,
+  "useCcpLogin": true,
+  "enableScripts": false,
+  "authEndpoints": {
+    "authority": "https://dforge-idsrv-intus.azurewebsites.net/idsrv",
+    "scope": "openid email profile tipcc tipid tipdd taxtip",
+    "clientId": "tip-digital-dox3-spa",
+    "responseType": "id_token token",
+    "redirectURI": "http://localhost:4200/#/login",
+    "postLogoutRedirectURI": "http://localhost:4200/logout",
+    "silentRedirectURI": "http://localhost:4200/assets/silent-renew.html"
+  },
+  "userProfileAPIUrl": "https://dforge-aaapi-intus.azurewebsites.net/aa//api/v1/self/profile",
+  "adobeAnalyticsJavaScripts": "//assets.adobedtm.com/launch-EN0dce3bf6447b4a88a8472b13ed1fdd20.min.js"
+}

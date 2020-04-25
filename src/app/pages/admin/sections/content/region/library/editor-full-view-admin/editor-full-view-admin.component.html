@@ -1,0 +1,58 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+<nb-card class="" ngxUiLoaderBlurred>
+  <nb-card-body class="document-full-viewBody padd-leftRight border-full margin-top">
+    <h1 class="{{waterMarkOrientation}}" [ngStyle]="setWaterMarkStyle()">
+      {{waterMarkprop.Text }}
+    </h1>
+    <div id="parentDiv" class="content-container" infiniteScroll [ngStyle]="{background: pageColor}">
+      <div *ngIf="headerShow">
+        <div class="" id="{{'headerEditor'}}" [innerHtml]="headerText | safeHtml">
+        </div>
+      </div>
+      <div class="editor-deloitte-logo"> <img src="assets/images/logo-deloitte-black.png" class="img-responsive"></div>
+      <ng-container *ngFor="let blockContent of flatView;let i = index">
+        <div *ngIf="!blockContent.isStack">
+          <span heading [innerHTML]="blockContent.indentation" class="editorIndentation"></span>
+          <div heading class="editor-heading" id="{{'editor_title' + i}}" [innerHTML]="blockContent.documentTitle | safeHtml"
+          (focusout)="BlockEditing($event, i,blockContent.blockId)" (blur)="onBlurMethod(i)"
+          (dblclick)="formatPainter(i);" 
+          (click)="formatPainter(i);" 
+          (mouseup)="formatPainter(i);">
+          </div>
+          <div class="" id="{{'editor' + i}}" [innerHTML]="blockContent.content | safeHtml"
+            (focusout)="BlockEditing($event, i,blockContent.blockId)" (blur)="onBlurMethod(i)"
+            (dblclick)="formatPainter(i);" 
+            (click)="formatPainter(i);" 
+            (mouseup)="formatPainter(i);"></div>
+        </div>
+        <div *ngIf="blockContent.isPageBreak" class="pageBreakStyle">
+          <span>{{'screens.project-designer.document-view.PageBreak' | translate}}</span>
+        </div>
+        <!-- FootNotes -->
+        <ng-container *ngFor="let footNote of blockContent.footNotes">
+          <div class="footNoteCont">
+            <div class="footnoteCount">{{footNote.symbol}}</div>
+            <div class="footnoteText" [innerHtml]="footNote.text | safeHtml"
+              (focusout)="FootNotesEditing($event, footNote.id)" id="{{'footNoteEditor' + footNote.id}}">
+            </div>
+
+          </div>
+        </ng-container>
+      </ng-container>
+      <br />
+      <div *ngIf="footerShow">
+        <div class="" id="footerEditor" [innerHtml]="footerText | safeHtml" [ngClass]="{'bordertop':showBorderTop}">
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<!-- 
+      TODO- add properties to div from below for pagination
+      <div class="content-container" infiniteScroll [infiniteScrollDistance]="scrollDistance" id="parentDiv"
+      [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" [scrollWindow]=false
+      [immediateCheck]=true (scrolled)="onScrollDown($event)" (scrolledUp)="onScrollUp($event)">
+        <ng-container *ngFor="let blockContent of flatView;let i = index"> 
+          content-editor goes here
+        </ng-container>-->

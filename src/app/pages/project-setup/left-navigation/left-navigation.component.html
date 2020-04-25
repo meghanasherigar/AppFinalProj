@@ -1,0 +1,17 @@
+<div class="sidebar-wrapper sidebar-projectSetup">
+    <div (click)="toggle()"><img src="assets/images/Hamburger_icon.svg" class="HamburgerIcon"></div>
+    <nb-menu [items]="menu"></nb-menu>
+    <div class="sidebar-toggle-btn-wrapper"><a href="#" (click)="toggle()"
+      class="pull-right noUnderline sidebar-toggle-btn">{{ isExpanded?'Collapse':''}} &nbsp;<i class="fa"
+        [ngClass]="{ 'fa-chevron-circle-left': isExpanded,  'fa-chevron-circle-right': !isExpanded}"></i></a></div>
+
+  <div class="sidebar-toggle-btn-wrapper left-navigation-btns">
+    <a href="#" (click)="toggleExpand()" 
+      class="noUnderline sidebar-toggle-btn PrivacyLegalStyle">{{ 'screens.footer.PrivacyAndLegal' | translate }} &nbsp;<i class="fa AngleIcon"
+        [ngClass]="{ 'fa-angle-down': isExpanded, 'fa-angle-up': !isExpanded}"></i></a>
+        <a href="#" *ngIf="!isExpanded" (click)="generatePrivacyPolicy()" 
+        class="noUnderline sidebar-toggle-btn privacyPloicy">{{ 'screens.footer.privacyPolicy' | translate }} &nbsp;<i class="fa"></i></a>
+        <a href="#" *ngIf="!isExpanded" (click)="generateTermsofUse()"
+        class="noUnderline sidebar-toggle-btn privacyPloicy">{{ 'screens.footer.termsOfUse' | translate }} &nbsp;<i class="fa"></i></a>
+      </div>
+</div>

@@ -1,0 +1,75 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div cdkDropListGroup class="row regionWrapper" ngxUiLoaderBlurred>
+  <div class="col-md-4 blockClass" *ngIf="isDisplay2_1">
+    <div class="blockWrapper" [ngClass]="{'selectedBlockCollection':selectedLibrary1 =='Blocks', 'theme2-selectedLibrary':selectedLibrary1 !='Blocks'}">
+      <nb-card>
+        <nb-card-body class="templateHeaderWrapper libraryHeaderWrapper">
+          <div class="row">
+            <div class="left-style top-header1">
+              <div class="col-md-6">
+                <ngx-library-header [data]="sectionData" [section]="section1" *ngIf="displaySectionA"
+                  (viewLoaded)="compLoaded(section1)"></ngx-library-header>
+              </div>
+              <div class="col-md-6">
+                <ngx-template-deliverable-header [section]="section1" [selectedSection]="selectedSection1">
+                </ngx-template-deliverable-header>
+              </div>
+            </div>
+          </div>
+          <ngx-library-header-icons [section]="section1" [selectedSection]="selectedSection1">
+          </ngx-library-header-icons>
+        </nb-card-body>
+      </nb-card>
+      <ngx-theme2-library-content [section]="section1"></ngx-theme2-library-content>
+    </div>
+  </div>
+
+  <div class="col-md-4 blockClass editblcok" *ngIf="isDisplay2_2">
+    <div class="blockWrapper" [ngClass]="{'selectedBlockCollection':selectedLibrary2 =='Blocks', 'theme2-selectedLibrary':selectedLibrary2 !='Blocks'}">
+      <nb-card>
+        <nb-card-body class="templateHeaderWrapper libraryHeaderWrapper">
+          <div class="row">
+            <div class="left-style top-header1">
+              <div class="col-md-6">
+                <ngx-library-header [data]="sectionData" [section]="section2" *ngIf="displaySectionB"
+                  (viewLoaded)="compLoaded(section2)"></ngx-library-header>
+              </div>
+              <div class="col-md-6">
+                <ngx-template-deliverable-header [section]="section2" [selectedSection]="selectedSection2">
+                </ngx-template-deliverable-header>
+              </div>
+            </div>
+          </div>
+          <ngx-library-header-icons [section]="section2" [selectedSection]="selectedSection2">
+          </ngx-library-header-icons>
+        </nb-card-body>
+      </nb-card>
+      <ngx-theme2-library-content [section]="section2"></ngx-theme2-library-content>
+    </div>
+  </div>
+  <div class="col-md-4 blockClass" *ngIf="isDisplay2_3">
+      <div class="blockWrapper">
+        <nb-card>
+          <nb-card-body class="templateHeaderWrapper">
+            <div class="row">
+              <div class="left-style" [ngClass]="{ 'top-deliverable-header': selectedSection3 == 'Deliverables', 'top-header1': selectedSection3 != 'Deliverables' }">
+                <div class="col-md-6">
+                  <ngx-theme2-template-deliverable-header *ngIf="displaySectionC" (viewLoaded)="compLoaded(section3)"
+                    [data]="sectionData" [section]="section3" [section3TreeList]="section3TreeList">
+                  </ngx-theme2-template-deliverable-header>
+                </div>
+             
+              <div class="col-md-6">
+                <ngx-template-deliverable-header [section]="section3" [selectedSection] = "selectedSection3"></ngx-template-deliverable-header>
+              </div>
+            </div>
+            </div>
+            <ngx-template-deliverable-header-icons [section]="section3" [selectedSection] = "selectedSection3"></ngx-template-deliverable-header-icons>
+          </nb-card-body>
+        </nb-card>
+        <ngx-theme2-template-deliverable-content  [section]="section3" [selectedSection] = "selectedSection3"></ngx-theme2-template-deliverable-content>
+      </div>
+    </div>
+</div>

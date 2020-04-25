@@ -1,0 +1,8 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="selectQuestions-table" ngxUiLoaderBlurred>
+  <ng2-smart-table  #table [settings]="settings" [source]="questionsList"  
+      (userRowSelect)="onRowSelection($event);">
+  </ng2-smart-table>
+</div>

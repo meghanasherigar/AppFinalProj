@@ -1,0 +1,30 @@
+.activeTab{
+    color:#fff !important;
+}
+.blockItem{
+//  width:16%;
+ padding-right: 0;
+ margin-right: 30px;
+}
+#answerTagTable{
+    table{
+        display: block;
+        overflow-x: auto;
+        width: 90%;
+        table-layout: fixed;
+        margin: 0 auto;
+    }
+   
+}
+.tableIco{
+    border-collapse: collapse;
+    width:15px;
+    height: 15px;
+    tr{
+        td{
+            border: 1px solid #000;
+            padding:2px;
+        
+        }
+    }
+}

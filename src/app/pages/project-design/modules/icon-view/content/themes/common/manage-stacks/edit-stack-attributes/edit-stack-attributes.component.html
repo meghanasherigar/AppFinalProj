@@ -1,0 +1,77 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+
+<form [formGroup]="editStackForm" (ngSubmit)="editStack()">
+
+  <nb-card class="editeStackTopHeader ">
+      <nb-card-header class="editTopHeader">Edit Stack Attribute
+          <button aria-label="Close" class="close" type="button"  (click)="dismiss()"><span aria-hidden="true">×</span></button>
+      </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.create-stack-component.labels.StackLevel' | translate}} </label>
+          <select class="form-control custom-form-input ddlHeight" id="ddlStackLevel" formControlName="StackLevel">
+              <option [selected]="true" value="">--Select--</option>
+              <option *ngFor="let stackLevel of stackLevels" [ngValue]="stackLevel.id">
+                {{stackLevel.stackLevel}}
+              </option>
+            </select>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.create-stack-component.labels.StackType' | translate}} <span
+              class="create-stack-attribute-mandatory-icon"> *</span></label>
+          <select class="form-control custom-form-input ddlHeight" id="ddlStackType" formControlName="StackType"
+            (change)="onStackTypeChanged($event)" [ngClass]="{ 'is-invalid': submitted && form.StackType.errors }">
+            <option [selected]="true" value="">--Select--</option>
+            <option *ngFor="let stackType of stackTypes" [ngValue]="stackType.blockTypeId">
+              {{stackType.blockType}}
+            </option>
+          </select>
+          <div *ngIf="submitted && form.StackType.errors" class="invalid-feedback">
+            <div *ngIf="form.StackType.errors.required">Stack type is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label
+            class="custom-form-label">{{'screens.create-stack-component.labels.StackDescriptor' | translate}}<span
+              class="create-stack-attribute-mandatory-icon"> *</span></label>
+          <textarea class="form-control create-stack-textarea custom-form-input"
+            [ngClass]="{ 'is-invalid': submitted && form.StackDescription.errors }"
+            formControlName="StackDescription" maxlength="250"></textarea>
+          <div *ngIf="submitted && form.StackDescription.errors" class="invalid-feedback">
+            <div *ngIf="form.StackDescription.errors.required">Stack description is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.create-stack-component.labels.TransactionType' | translate}}
+          </label>
+          <ng-select class="form-control custom-form-input ddlHeight" bindValue="transactionType" [items]="transactionList" bindLabel="transactionType" id="ddlTransactionType" formControlName="TransactionType">
+            </ng-select>
+        </div>
+      </div>
+    </div>
+
+
+  </nb-card-body>
+  <nb-card-footer>
+    <nb-card-footer class="footerRightButton">
+      <button type="submit" class="menu-btn-save"  [disabled]="!editStackForm.dirty || editStackForm.invalid" [ngClass]="{'disableSaveButton':!editStackForm.dirty || editStackForm.invalid}"
+        id="btnCreateOrganization">{{'screens.home.labels.Save' | translate}}</button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button nbButton type="button" class="menu-btn-cancel" style="color:black;" (click)="dismiss()"><label
+          class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+    </nb-card-footer>
+    <!-- <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button> -->
+  </nb-card-footer>
+</nb-card>
+
+</form>

@@ -1,0 +1,441 @@
+// Top level Filter menu
+.disable-checkbox {
+    pointer-events: none;
+    cursor: none !important;
+  }
+  .smalliconpadding{ 
+    padding: 1px 10px;
+    border-left: 0.3px solid #d2cdcd;
+    height: 70px;
+    position: relative;
+  }
+  .rectangle {
+    height: 85.5px;
+    width: 229px;
+    border: 0.5px solid #D8D8D8;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 7px 0 rgba(224, 224, 224, 0.5);
+  }
+
+  img.disabled {
+    opacity: 0.4;
+  }
+  
+  .theme-1 {
+    height: 11px;
+    width: 37px;
+    color: #000000;
+    font-family: "Open Sans";
+    font-size: 9px;
+    line-height: 11px;
+  }
+  
+  .checkboxAlign {
+    align-items: normal !important;
+  }
+  
+  .btnControl {
+    padding: none !important;
+    color: teal;
+    background-color: transparent;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+  
+  .inputWithIcon input[type=text] {
+    padding-left: 10px;
+  }
+  
+  .inputWithIcon {
+    position: relative;
+  }
+  
+  .inputWithIcon i {
+    position: absolute;
+    right: -1px;
+    top: 0px;
+    padding: 9px 8px;
+  }
+  
+  .gg {
+    font-size: 16px;
+    padding-left: 0px;
+  
+  }
+  
+  .disable-section {
+    opacity: 0.4;
+  }
+  
+  .disabledbutton {
+    pointer-events: none;
+  }
+  
+  .disableFilterSelect {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  
+  .enable-section {
+    opacity: none !important;
+  }
+  
+  .multiselect-dropdown {
+    background-color: white;
+    color: black !important;
+  }
+  
+  .toolbar-component-container {
+    display: flex;
+    justify-content: flex-start;
+  
+    padding: 10px 5px;
+    padding-bottom: 5px;
+    position: relative;
+  
+    @media screen and (max-width: 991px) {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  
+    @media screen and (max-width: 576px) {
+      padding: 0 0 15px 0;
+    }
+  
+    &.collapsed {
+  
+      .create-section,
+      .manage-section,
+      .filters-section {
+        position: relative;
+  
+        .section-name {
+          height: 0px;
+          visibility: hidden;
+        }
+      }
+  
+      .filters-section {
+        .filter-icon-wrapper {
+          display: block;
+        }
+  
+        .filter-inputs-wrapper {
+          display: none;
+        }
+      }
+  
+      .collapse-btn-wrapper {
+        bottom: calc(50% - 7px);
+  
+        @media screen and (max-width: 576px) {
+          bottom: 5px;
+        }
+      }
+    }
+  
+    .collapse-btn-wrapper {
+      position: absolute;
+      right: 45px;
+      bottom: 5px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: black;
+      font-size: 11px;
+  
+      @media screen and (max-width: 576px) {
+        bottom: 10px;
+        right: 10px;
+        left: auto;
+      }
+  
+      .collapse-text {
+        margin: .375rem 0;
+        font-size: 11px;
+      }
+  
+      .collapse-img {
+        margin-left: 10px;
+      }
+    }
+  
+    .create-section,
+    .manage-section,
+    .filters-section {
+      position: relative;
+      // border-right: 1px solid #D2D4CD;
+      // margin-top: -2.25rem;
+      // min-width: 67.5px;
+      padding: 0px 10px;
+      padding-top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+  
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -1px;
+        height: 100%;
+        max-height: 65px;
+        width: 1px;
+        background: #D2D4CD;
+      }
+  
+      @media screen and (max-width: 991px) {
+        padding: 15px;
+  
+        // border-right: none;
+        &:after {
+          display: none;
+        }
+      }
+  
+      .action-icon-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+        cursor: pointer;
+  
+        &:first-of-type {
+          margin-left: 0;
+        }
+  
+        &:last-of-type {
+          margin-right: 0;
+        }
+  
+        .btnToolbar {
+          height: auto;
+          max-width: 37px;
+        }
+  
+        .icon-name {
+          margin-top: 4px;
+          color: black;
+          font-size: 9px;
+          line-height: 13px;
+        }
+  
+        .disableIcon {
+          color: grey;
+        }
+      }
+  
+  
+      .section-name {
+        position: absolute;
+        bottom: 0;
+        font-size: 10px;
+        top: auto;
+        width: 100%;
+        text-align: center;
+        transition: all .3s ease-in;
+        color: #BEBEBE;
+        font-family: "Open Sans";
+        font-size: 10px;
+        line-height: 14px;
+  
+        @media screen and (max-width: 991px) {
+          display: none;
+        }
+  
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
+      }
+    }
+  
+    .create-section {
+      flex: 0 0 auto;
+      padding-left: 16.28px;
+      padding-right: 14.43px;
+  
+      @media screen and (max-width: 991px) {
+        flex: 0 1 auto;
+      }
+    }
+  
+    .manage-section {
+      flex: 0 0 auto;
+      padding-left: 10.28px;
+      padding-right: 22.43px;
+  
+      @media screen and (max-width: 991px) {
+        flex: 0 1 auto;
+      }
+  
+      .action-icon-wrapper {
+        min-width: 46px;
+        margin: 0 21px 0 0;
+      }
+    }
+  
+    .filters-section {
+      flex: 1 1 auto;
+      border-right: none;
+      padding-bottom: 5px;
+      // padding-left: 2.25rem;
+      justify-content: flex-start;
+  
+      &:after {
+        display: none;
+      }
+  
+      @media screen and (max-width: 768px) {
+        // padding-left: 10px;
+      }
+  
+      // max-width: 850px;
+      .filter-icon-wrapper {
+        display: none;
+      }
+  
+      .filter-inputs-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding: 10px 0;
+        padding-top: 0;
+        width: 100%;
+        max-width: 100%;
+  
+        @media screen and (min-width: 991px) {
+          max-width: 864px;
+        }
+  
+        @media screen and (max-width: 990px) {
+          max-width: 100%;
+          justify-content: center;
+        }
+  
+        .filter-input {
+          width: calc(20% - 12.5px);
+          max-width: 160px;
+          background-color: #ffffff;
+          border-style: solid;
+          border: 1px solid #D2D4CD;
+          color: black;
+          margin: 0 6.25px;
+          margin-bottom: 8.2px;
+          height: 28px;
+  
+          position: relative;
+          font-size: 12px;
+  
+          @media screen and (min-width: 991px) {
+  
+            &:nth-child(n + 6) {
+              margin-bottom: 0;
+            }
+          }
+  
+          @media screen and (max-width: 991px) {
+            width: calc(50% - 12.5px);
+            max-width: 100%;
+          }
+  
+          @media screen and (max-width: 576px) {
+            width: 100%;
+          }
+  
+          &::placeholder {
+            /* Firefox, Chrome, Opera */
+            color: black;
+            font-size: 12px;
+          }
+  
+          &:-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: black;
+            font-size: 12px;
+          }
+  
+          &::-ms-input-placeholder {
+            /* Microsoft Edge */
+            color: black;
+            font-size: 12px;
+          }
+  
+          .multiselect-dropdown[_ngcontent-c20] {
+            max-width: 100%;
+  
+            .dropdown-btn {
+              padding: 6px;
+            }
+          }
+  
+          span {
+            border: none;
+            border-radius: 0;
+            color: gray !important;
+          }
+  
+          input {
+            background-color: #ffffff;
+            color: black;
+            // margin: 4.1px 6.25px;
+            width: 100%;
+            font-size: 12px;
+            max-height: 26px;
+            border: none !important;
+  
+            &::placeholder {
+              /* Firefox, Chrome, Opera */
+              color: black;
+              font-size: 12px;
+            }
+  
+            &:-ms-input-placeholder {
+              /* Internet Explorer 10-11 */
+              color: black;
+              font-size: 12px;
+            }
+  
+            &::-ms-input-placeholder {
+              /* Microsoft Edge */
+              color: black;
+              font-size: 12px;
+            }
+          }
+  
+          i {
+            position: absolute;
+            top: 2.5px;
+            right: 5px;
+            background-color: #ffffff;
+          }
+  
+          .dropdown {
+            max-height: 100% !important;
+  
+            .dropdown-toggle {
+              padding: 0 !important;
+            }
+          }
+        }
+  
+        .filter-name {
+          position: absolute;
+          bottom: -4px;
+          display: block;
+          text-align: center;
+          width: 100%;
+          font-size: 10px;
+        }
+      }
+  
+      .section-name {
+        margin-left: 0px;
+        text-align: center;
+        bottom: -5px;
+      }
+    }
+  }
+  

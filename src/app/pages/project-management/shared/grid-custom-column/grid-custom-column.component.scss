@@ -1,0 +1,118 @@
+.completion-status-container
+{
+    border-color: lightgrey;
+    border-radius: 5px;
+    height: 5px;
+    background-color: lightgrey;
+    width: 65%;
+    margin-top: 10px;
+}
+
+
+
+.completion-status
+{
+    height:4px;
+    border-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #43B02A;
+}
+.selectBlockAttrDropDown{
+    position: relative; 
+    select{
+        -webkit-appearance: none;
+      }
+}
+.gridNumber{
+    position: relative;
+    /* display: table-cell; */
+    float: right;
+    top: -12px;
+    left: 36px;
+}
+
+// Tooltip style
+
+.tooltip-stepper .tooltip-inner {
+        max-width: 431px !important;
+        min-width: 431px !important;
+        }
+
+.tooltip-stepper .nb-stepper .header .step.completed .label-index
+{
+background-color:#86BC25 !important;
+border:2px solid white;
+}
+
+.smallIcon{
+    position: absolute;
+    top: 7px;
+    right: -18px;
+    height: 14px;
+    width: 14px;
+}
+.due-date-exceeded
+{
+    color: red!important;
+    border: 1px solid red;
+    width: 149px !important;
+}
+
+.offline-deliverable
+{
+    color: orange;
+}
+
+.clickable-deliverable
+{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.filingCheckbox{
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto!important;
+}
+
+.send-reminder
+{
+    color: #86BC25 !important;
+    font-size: 12px !important;
+    cursor: pointer;
+
+}
+#taskCommentDescription{
+    margin-top: 14px;
+    border: none;
+    background: none;
+    margin-right: 18px;
+}
+
+.GridContent{
+    margin-bottom: 0px !important;
+}
+.TaskdueDateStyle{
+    color: red !important;
+}
+.MyTasksmallIcon{
+    position: absolute;
+    top: 15px;
+    right: 16px;
+    height: 14px;
+    width: 14px;
+}
+.SelectInputField{
+    width: 110px;
+    height: 27px;
+    padding-left: 3px;
+}
+.inputWithIconProjectManagement.tooltip-inner{
+    width: auto !important;
+}
+.AttachedsmallIcon{
+    position: absolute;
+    right: 0px;
+    top: 24px;
+}

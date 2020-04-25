@@ -1,0 +1,93 @@
+<form [formGroup]="editStackForm" (ngSubmit)="editStack()">
+
+  <nb-card class="editeStackTopHeader editorStackAttributes">
+    <nb-card-header class="ediTopHeader">
+      <div class="attributeIcon">
+        <img src="assets/images/Attribute view_white.svg">
+      </div>
+      <div class="attributeText">
+        <span>{{ 'screens.user.AdminView.Library.CreatBlock.EditStackAttributes' | translate }}</span>
+      </div>
+      <img class="closeBtn documentView-close" src="assets/images/Remove_without hover-White.svg"
+        (click)="closeStackAttribute()">
+    </nb-card-header>
+    <nb-card-body>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.create-stack-component.labels.StackLevel' | translate}} </label>
+          <div class="selectLibrary width100">
+            <select class="form-control custom-form-input ddlHeight" id="ddlStackLevel" formControlName="StackLevel">
+              <option [selected]="true" value="">{{ 'screens.user.AdminView.Library.SelectAll' | translate }}</option>
+              <option *ngFor="let stackLevel of stackLevels" [ngValue]="stackLevel.id">
+                {{stackLevel.stackLevel}}
+              </option>
+            </select>
+            <span class="dropdown-down dropdown-Arrow"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.create-stack-component.labels.StackType' | translate}}
+            <span class="create-stack-attribute-mandatory-icon"> *</span></label>
+          <select class="form-control custom-form-input ddlHeight" id="ddlStackType"
+            [attr.disabled]="selectDisable ? '' : null" formControlName="StackType"
+            (change)="onStackTypeChanged($event)" [ngClass]="{ 'is-invalid': submitted && form.StackType.errors }">
+            <option [selected]="true" value="">{{ 'screens.user.AdminView.Library.SelectAll' | translate }}</option>
+            <option *ngFor="let stackType of stackTypes" [ngValue]="stackType.blockTypeId">
+              {{stackType.blockType}}
+            </option>
+          </select>
+          <div *ngIf="submitted && form.StackType.errors" class="invalid-feedback">
+            <div *ngIf="form.StackType.errors.required">
+              {{ 'screens.user.AdminView.Library.CreatBlock.ErrorMEssages.StackType' | translate }}
+            </div>
+          </div>
+          <div *ngIf="submitted && form.StackType.errors" class="invalid-feedback">
+            <div *ngIf="form.StackType.errors.required">
+              {{ 'screens.user.AdminView.Library.CreatBlock.ErrorMEssages.StackType' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.create-stack-component.labels.StackDescriptor' | translate}}<span
+              class="create-stack-attribute-mandatory-icon"> *</span></label>
+          <textarea class="form-control create-stack-textarea custom-form-input"
+            [ngClass]="{ 'is-invalid': submitted && form.StackDescription.errors }" formControlName="StackDescription"
+            maxlength="250"></textarea>
+          <div *ngIf="submitted && form.StackDescription.errors" class="invalid-feedback">
+            <div *ngIf="form.StackDescription.errors.required">
+              {{ 'screens.user.AdminView.Library.CreatBlock.ErrorMEssages.StackDescription' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.create-stack-component.labels.TransactionType' | translate}}
+          </label>
+          <div class="selectLibrary width100">
+            <input type="hidden" formControlName="TransactionType" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && form.TransactionType.errors }" id="hdnBlockStatus">
+            <ng-select class="form-control custom-form-input ddlHeight" bindValue="transactionType"
+              [items]="transactionList" bindLabel="transactionType" id="ddlTransactionType"
+              formControlName="TransactionType" >
+            </ng-select>
+            <span class="dropdown-down dropdown-Arrow"></span>
+          </div>
+          <div *ngIf="submitted && form.TransactionType.errors" class="invalid-feedback">
+            <div *ngIf="form.TransactionType.errors.required">
+              {{ 'screens.user.AdminView.Library.CreatBlock.ErrorMEssages.TransactionType' | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="saveCancelBtnTopBorder">
+      <div class="footerRightButton text-center">
+        <button nbButton type="button" class="menu-btn-cancel" style="color:black;"
+          (click)="closeStackAttribute()"><label
+            class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+        &nbsp;&nbsp;
+        <button type="submit" class="menu-btn-save btnSave" [disabled]="(!editStackForm.dirty || editStackForm.invalid)"  [ngClass]="{'disableSaveButton':!editStackForm.dirty || editStackForm.invalid}"
+          id="btnCreateOrganization">{{'screens.home.labels.Save' | translate}}</button>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</form>

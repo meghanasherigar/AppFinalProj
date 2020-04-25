@@ -1,0 +1,67 @@
+<nb-card class="linkToheader">
+  <nb-card-header class="search-header">
+      <div class="row">
+          <div class="col-xs-9" >
+              <div class="header-text col-xs-6">Link block/stack to</div>
+             <div class="col-xs-6 alignRight">
+                <input type="text" [(ngModel)]="searchText" (change) = "search()" placeholder="search deliverable" class="search-box">
+             </div> 
+          </div>   
+          <div class="col-xs-3">
+              <span class="header-text">Selected</span>
+          </div>
+        </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="col-md-2">
+       <div class="linkToSection">
+        <button class="linkTo-btn-save" (click)="loadDeliverable()">Deliverables</button>
+        <button class="linkTo-btn-save" (click) = "loadGroupDeliverable()">Groups</button>
+    </div>
+  </div>
+    <div class="col-md-7">
+      <div class="linkToSection">
+        <div *ngIf="isDefault"> 
+          <div class="errorMessage" *ngIf="validationMessage">Please select atleast a deliverable to link</div>
+        
+         <ng2-smart-table class="home-table" [settings]="deliverableSettings" (userRowSelect)="onDeliverableSelect($event)" [source]="deliverableSource">
+                       </ng2-smart-table> 
+        </div>
+        <div *ngIf="!isDefault">
+          <div class="errorMessage" *ngIf="validationMessage">Please select atleast a deliverable to link</div>
+          
+          <ng2-smart-table class="home-table" [settings]="groupDeliverableSettings" (userRowSelect)="onGroupedDeliverableSelect($event)" [source]="groupedDeliverableSource">
+                       </ng2-smart-table> 
+        </div>
+    </div>
+  </div>
+    <div class="col-md-3">
+      <div class="linkToSection">
+      <div id="right">     
+        <span class="deliverablesButton">{{'screens.project-designer.iconview.LinktoDeliverables.Deliverables' | translate}}</span>
+        <div *ngFor="let select of selectedIndividualDeliverable" class=" selected-deliverable" >{{select.entityName}}
+        <i class="fas fa-times remove-deliverable"(click)="removeIndividualDeliverable(select)"></i>
+        </div>
+        <span class="deliverablesButton">{{'screens.project-designer.iconview.LinktoDeliverables.Groups' | translate}}</span>
+        <div *ngFor="let select of selectedGroupDeliverable" class=" selected-deliverable" >{{select.groupName}}
+          <i class="fas fa-times remove-deliverable"(click)="removeGroupDeliverable(select)"></i>
+          </div>  
+      </div>     
+      </div>
+    </div>
+
+
+  </nb-card-body>
+  <nb-card-footer class="footerCard">
+      <nb-card-footer class="footerRightButton">        
+      <button nbButton type="button" class="menu-btn-cancel" style="color:black;" 
+      (click)="dismiss()"><label
+      class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="submit" class="menu-btn-save linkToButton" (click) = "linkToDeliverables()"
+      id="btnCreateOrganization">Link</button>
+      
+      </nb-card-footer>
+      </nb-card-footer>        
+</nb-card>

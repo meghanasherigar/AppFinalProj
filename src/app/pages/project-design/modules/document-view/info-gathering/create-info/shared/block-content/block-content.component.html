@@ -1,0 +1,32 @@
+<div id="parentDiv" class="content-container" infiniteScroll>
+  <ng-container *ngFor="let blockContent of blockDetails;let i = index">
+    <ng-container *ngIf="loadedBlockContent">
+      <div id="contenteditor" [hidden]="loadedBlockContent.blockTypeId != blockContent.blockTypeId">
+        <div heading class="editor-heading" [innerHTML]="blockContent.title" *ngIf="blockContent.title != null"></div>
+        <div heading class="editor-heading" [innerHTML]="blockContent.description" *ngIf="blockContent.title == ''">
+        </div>
+        <div *ngIf="blockContent.title != null" class="imgResponsive" [innerHTML]="blockContent.content | safeHtml ">
+        </div>
+
+        <div class="previewNotAvailble" *ngIf="blockContent.title == null">
+          <img src="assets/images/hidden-block.svg">
+          <div>
+            <span>
+              {{'screens.project-designer.document-view.info-gathering.create-info.blockContentNoPreview' | translate}}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="isNoBlockContent">
+    <div class="previewNotAvailble">
+      <img src="assets/images/hidden-block.svg">
+      <div>
+        <span>
+          {{'screens.project-designer.document-view.info-gathering.create-info.blockContentNoPreview' | translate}}</span>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<br>
+<br>

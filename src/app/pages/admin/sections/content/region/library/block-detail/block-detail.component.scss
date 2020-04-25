@@ -1,0 +1,28 @@
+.contentTopHeader{
+    border: 1px solid #eee;
+}
+.blockHeight{
+    min-height: 500px;
+}
+.globalP{
+    font-weight: bold;
+    font-style: italic;
+}
+.contentP{
+    background: #eee;
+    padding: 10px;
+}
+.pHeading{
+    padding: 0px;
+}
+.contentStyle{
+    padding: 20px;
+}
+.documentTemplateWrapper .col-md-8.showEditorBlock{
+    width:49% !important;
+    flex: 0 0 49.00%;
+  
+  }
+  .editorBlock{
+      width:100%;
+  }

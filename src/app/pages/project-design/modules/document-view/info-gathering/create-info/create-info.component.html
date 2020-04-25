@@ -1,0 +1,57 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+
+<div class="createInfoWrapper">
+    <div class="circleWrapper">
+      <div class="circleSection containerSection">
+       
+          <!-- <div *ngFor="let status of possibleRoutes ;let i = index" style="display:inline-block;margin-right:10px;"  class="circleIcon"> 
+              <div class="circleItem">  
+            <div [ngClass]="currentIndex == status.id?'active':''"
+                style="border:1px solid ;height:41px;width:41px;border-radius: 50%;line-height:41px;text-align: center;margin:auto;">
+                {{status.id}}
+              </div>
+              <p> {{status.name}}</p>
+            </div>
+          </div> -->
+
+          <div class="container">
+               <ul class="progressbar">
+                  <li  *ngFor="let status of possibleRoutes ;let i = index"  [ngClass]="currentIndex == status.id?'active':''">
+                      <div [ngClass]="currentIndex == status.id?'active':''">
+                      
+                          <p> {{status.name| translate}}</p>
+                      </div>
+                  
+                  
+                  </li>
+                 
+          </ul>
+          </div>
+      
+
+
+
+
+      </div>
+      
+    </div>
+    <div class="buttonWrapper">
+        <button (click)="goPrevious()" *ngIf="showPrevious" class="previous">{{'screens.project-designer.document-view.info-gathering.create-info.Previous' | translate}}</button>
+        <button #nextbutton (click)="goNext()" *ngIf="showNext" class="next">{{'screens.project-designer.document-view.info-gathering.create-info.Next' | translate}}</button>
+       
+    </div>
+    <div class="clearfix">
+
+    </div>
+</div>
+
+
+
+
+<ngx-select-questions [hidden]="currentIndex !=1"></ngx-select-questions>
+<ngx-info-settings [hidden]="currentIndex != 2"></ngx-info-settings>
+<ngx-cover-page [hidden]="currentIndex != 3"></ngx-cover-page>
+<ngx-information-preview [hidden]="currentIndex != 4"></ngx-information-preview>
+<!-- <router-outlet></router-outlet> -->

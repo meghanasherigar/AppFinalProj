@@ -1,0 +1,260 @@
+<div class="row">
+  <div class="col-sm-12" id="editTransaction">
+    <nb-card>
+      <nb-card-body>
+        <form [formGroup]="editTransactionForm" (ngSubmit)="editTransaction()">
+          <span>{{'screens.project-setup.transaction.transaction-create.Entity' | translate}}</span>
+          <hr />
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <input type="hidden">
+                <label for="txtLegalEntityName" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.LegalName' | translate}}<span
+                    class="mandatoryField">*</span></label>
+                      <ng-multiselect-dropdown id="legalEntityNameSingleDD" [placeholder]="'screens.project-setup.transaction.transaction-create.LegalName' | translate" [data]="entityList"
+                      name="legalEntityName" formControlName="legalEntityName" [(ngModel)]="selectedLegalEntityName"
+                      [settings]="legalEntityNameDropdownSetting" (onDeSelect)="legalNameOnChange($event)"
+                      (onSelect)="legalNameOnChange($event)">
+                    </ng-multiselect-dropdown>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <input type="hidden">
+                <label class="custom-form-label" for="txtLegalEntityCountryName">{{'screens.project-setup.transaction.transaction-create.PlaceHolderLegalCountryName' | translate}}<span
+                    class="mandatoryField">*</span></label>
+                    <div class="selectLibrary countryDropDown" [ngClass]="{ 'disable-section disabledbutton': (legalEntityCountryList.length === 1)}">
+                    <select class="form-control custom-form-input reportTierHeight selectpicker" id="ddllegalEntityCountryName" 
+                    formControlName="legalEntityCountry" (change)="legalCountryChangeOnChange($event)">
+                    <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+                    <option *ngFor="let name of legalEntityCountryList" value={{name.countryId}}>
+                        {{name.countryName}}
+                    </option>
+                  </select>
+              </div>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">   
+                <label for="txtTransactionType" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.TransactionType' | translate}}</label>
+                      <ng-multiselect-dropdown id="transactionTypeSingleDD" [placeholder]="'screens.project-setup.transaction.transaction-create.TransactionType' | translate" [data]="transactionTypeList"
+                      name="transactionType" formControlName="transactionType" [(ngModel)]="selectedTransactionType"
+                      [settings]="transactionTypeDropdownSetting" (onDeSelect)="transactionTypeOnChange($event)"
+                      (onSelect)="transactionTypeOnChange($event)">
+                    </ng-multiselect-dropdown>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="txtcounterProjectTransactionType" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.ProjectTransactionType' | translate}}</label>
+                <input type="text" class="form-control"[placeholder]="'screens.project-setup.transaction.transaction-create.PlaceholderTransactionType' | translate"
+                  formControlName="projectTransactionTypeName"
+                   [ngClass]="{ 'is-invalid': submitted && form.projectTransactionTypeName.errors }"  >
+                <div *ngIf="submitted && form.projectTransactionTypeName.errors" class="invalid-feedback">
+                  <div *ngIf="form.projectTransactionTypeName.errors.required">
+                    {{'screens.project-setup.transaction.transaction-create-validation.ValidationMsg' | translate}}
+                  </div>
+                </div>
+              </div>
+            </div>
+       
+          </div>
+
+          <div class="row">
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <input type="hidden">
+                <label for="txtTransactionAmount" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.TransactionAmount' | translate}}</label>
+                <input type="text"  class="form-control" formControlName="entityTransactionAmount"
+                  [ngClass]="{ 'is-invalid': submitted && form.entityTransactionAmount.errors }">
+                  <div *ngIf="form.entityTransactionAmount.errors" class="invalid-feedback">
+                    {{'screens.project-setup.transaction.transaction-create-validation.AmountPatternValidationMsg' | translate}}
+                  </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="txtTransactionCurrency" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.TransactionCurrency' | translate}} </label>
+                <ng-multiselect-dropdown id="transactionCurrencySingleDD" [placeholder]="'screens.project-setup.transaction.transaction-create.TransactionCurrency' | translate" [data]="transactionCurrency"
+                name="entityTransactionCurrency" formControlName="entityTransactionCurrency" [(ngModel)]="selectedTransactionCurrency"
+                [settings]="transactionCurrencyDropdownSetting">
+              </ng-multiselect-dropdown>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="txtTaxableYearEnd" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.TransactionTaxableYearEnd' | translate}}<span
+                    class="mandatoryField">*</span></label>
+                    <div class="selectLibrary countryDropDown" [ngClass]="{ 'disable-section disabledbutton': (transactionTaxableYearEndList.length === 1)}">
+                        <select class="form-control custom-form-input reportTierHeight"  id="ddlTransactionTaxableYearEnd" 
+                          formControlName="entityTransactionTaxableYearEnd" placeholder="MM/DD/YYYY"
+                          [ngClass]="{ 'is-invalid': submitted && form.entityTransactionTaxableYearEnd.errors }">
+                          <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+                          <option *ngFor="let year of transactionTaxableYearEndList" value={{year}}>
+                              {{year}}
+                          </option>
+                        </select>
+                        <div *ngIf="submitted && form.entityTransactionTaxableYearEnd.errors" class="invalid-feedback">
+                          <div *ngIf="form.entityTransactionTaxableYearEnd.errors.required">
+                            {{'screens.project-setup.transaction.transaction-create-validation.TaxableYearValidationMsg' | translate}}
+                          </div>
+                      </div>
+                    </div>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="checkbox" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.TransactionInScope' | translate}}<span
+                  class="mandatoryField">*</span></label><br />
+              <input type="hidden" formControlName="transactionInScopeValid" class="form-control" [ngClass]="{ 'is-invalid'
+                : submitted && form.transactionInScopeValid.errors }"  id="hdntransactionInScopeValid">
+              <label class="checkbox-inline">
+                <input type="checkbox" class="form-control" formControlName="transactionInScope"
+                  (change)="toggleCheckbox($event)" id="checkbox1" [checked]="inScope.checkbox1" class="check"
+                  name="checkbox1" class="gg">
+                <label>{{'screens.project-setup.transaction.transaction-create.Yes' | translate}}</label>
+              </label>
+              <label class="checkbox-inline">
+                <input type="checkbox" class="form-control" id="checkbox2" formControlName="transactionInScope"
+                  (change)="toggleCheckbox($event)" [checked]="inScope.checkbox2" class="check" name="checkbox2"
+                  class="gg">
+                <label>{{'screens.project-setup.transaction.transaction-create.No' | translate}}</label>
+              </label>
+              <div *ngIf="submitted && form.transactionInScopeValid.errors" class="invalid-feedback">
+                <div *ngIf="form.transactionInScopeValid.errors.required">
+                  {{'screens.project-setup.transaction.transaction-create-validation.InScopeValidationMsg' | translate}}
+                </div>
+              </div>
+            </div>
+          </div>
+  </div>
+  <span>{{'screens.project-setup.transaction.transaction-create.CounterParty' | translate}}</span>
+  <hr />
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="form-group">
+        <input type="hidden">
+        <label for="txtLegalEntityName" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.LegalName' | translate}} </label>
+          <ng-multiselect-dropdown id="legalEntityNameSingleCounterDD" [placeholder]="'screens.project-setup.transaction.transaction-create.LegalName' | translate" [data]="entityList"
+          name="counterpartyLegalEntityName" formControlName="counterpartyLegalEntityName" [(ngModel)]="selectedCounterLegalEntityName"
+          [settings]="legalEntityNameDropdownSetting" (onDeSelect)="counterpartyLegalNameOnChange($event, '')"
+          (onSelect)="counterpartyLegalNameOnChange($event, '')">
+        </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <input type="hidden">
+        <label class="custom-form-label" for="txtLegalEntityCountryName"> {{'screens.project-setup.transaction.transaction-create.PlaceHolderLegalCountryName' | translate}}</label>
+            <div class="selectLibrary countryDropDown" [ngClass]="{ 'disable-section disabledbutton': (counterPartyCountryList.length === 1)}">
+            <select class="form-control custom-form-input reportTierHeight selectpicker" id="ddllegalEntityCounterCountryName" 
+            formControlName="counterPartyCountry" (change)="counterPartyCountryChangeOnChange($event)" 
+            >
+            <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+            <option *ngFor="let name of counterPartyCountryList" value={{name.countryId}}>
+              {{name.countryName}}
+          </option>
+          </select>
+         
+      </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="txtcounterTransactionType" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.TransactionType' | translate}}</label>
+        <ng-multiselect-dropdown id="transactionTypeSingleCounterDD" [placeholder]="'screens.project-setup.transaction.transaction-create.TransactionType' | translate" [data]="transactionTypeList"
+        name="counterpartyTransactionType" formControlName="counterpartyTransactionType" [(ngModel)]="selectedCounterTransactionType"
+        [settings]="transactionTypeDropdownSetting" (onDeSelect)="counterpartyTransactionTypeOnChange($event)"
+        (onSelect)="counterpartyTransactionTypeOnChange($event)">
+      </ng-multiselect-dropdown>
+      </div>
+    </div>
+
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="txtcounterProjectTransactionType" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.ProjectTransactionType' | translate}}</label>
+        <input type="text"  class="form-control"placeholder="{{'screens.project-setup.transaction.transaction-create.PlaceholderTransactionType' | translate}}"
+          id="txtcounterProjectTransactionType" formControlName="counterpartyProjectTransactionTypeName"
+          [ngClass]="{ 'is-invalid': submitted && form.counterpartyProjectTransactionTypeName.errors }"  >
+        <div *ngIf="submitted && form.counterpartyProjectTransactionTypeName.errors" class="invalid-feedback">
+          <div *ngIf="form.counterpartyProjectTransactionTypeName.errors.required">
+            {{'screens.project-setup.transaction.transaction-create-validation.ValidationMsg' | translate}}</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="txtCounterPartyTransactionAmount" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.TransactionAmount' | translate}}</label>
+        <input type="text"  class="form-control" id="txtCounterPartyTransactionAmount"
+          formControlName="counterpartyTransactionAmount"
+          [ngClass]="{ 'is-invalid': submitted && form.counterpartyTransactionAmount.errors }">
+          <div *ngIf="form.counterpartyTransactionAmount.errors" class="invalid-feedback">
+            {{'screens.project-setup.transaction.transaction-create-validation.AmountPatternValidationMsg' | translate}}
+          </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="txtCounterPartyTransactionCurrency" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.TransactionCurrency' | translate}}</label>
+        <ng-multiselect-dropdown id="counterTransactionCurrencySingleDD" [placeholder]="'screens.project-setup.transaction.transaction-create.TransactionCurrency' | translate" [data]="transactionCurrency"
+        name="counterpartyTransactionCurrency" formControlName="counterpartyTransactionCurrency" [(ngModel)]="selectedCounterTransactionCurrency"
+        [settings]="transactionCurrencyDropdownSetting">
+      </ng-multiselect-dropdown>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="form-group">
+        <label for="txtTaxableYearEnd" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.TransactionTaxableYearEnd' | translate}}</label>
+        <div class="selectLibrary countryDropDown" [ngClass]="{ 'disable-section disabledbutton': (counterPartyTaxableYearEndList.length === 1)}">
+            <select class="form-control custom-form-input reportTierHeight"  id="ddlcounterpartyTransactionTaxableYearEnd" 
+            formControlName="counterpartyTransactionTaxableYearEnd" placeholder="MM/DD/YYYY"
+             [ngClass]="{ 'is-invalid': submitted && form.counterpartyTransactionTaxableYearEnd.errors }">
+            <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+            <option *ngFor="let year of counterPartyTaxableYearEndList" value={{year}}>
+                {{year}}
+            </option>
+          </select>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="form-group">
+      <label for="checkbox" class="custom-form-label">{{'screens.project-setup.transaction.transaction-create.TransactionInScope' | translate}}<span
+        class="mandatoryField">*</span></label><br />
+      <input type="hidden" formControlName="counterpartyTransactionInScope" class="form-control" [ngClass]="{ 'is-invalid'
+        : submitted && form.counterpartyTransactionInScope.errors }"  id="hdntransactionInScopeValid">
+      <label class="checkbox-inline">
+        <input type="checkbox" class="form-control" id="checkbox1" class="check" name="checkbox1"
+          [checked]="counterPartyInScope.checkbox1" (change)="toggleCounterPartyCheckbox($event)"
+          class="gg"><label>{{'screens.project-setup.transaction.transaction-create.Yes' | translate}}</label>
+      </label>
+      <label class="checkbox-inline">
+        <input type="checkbox" class="form-control" id="checkbox2" class="check" name="checkbox2"
+          [checked]="counterPartyInScope.checkbox2" (change)="toggleCounterPartyCheckbox($event)"
+          class="gg"><label>{{'screens.project-setup.transaction.transaction-create.No' | translate}}</label>
+      </label>
+      <div *ngIf="submitted && form.counterpartyTransactionInScope.errors" class="invalid-feedback">
+        <div *ngIf="form.counterpartyTransactionInScope.errors.required">
+          {{'screens.project-setup.transaction.transaction-create-validation.InScopeValidationMsg' | translate}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+</nb-card-body>
+<nb-card-footer>
+  <button class="button-section rectangle" (click)="editTransaction()" [disabled]="editTransactionForm.pristine && editTransactionForm.invalid" [ngClass]="{'disableSaveButton': editTransactionForm.pristine && editTransactionForm.invalid}">{{'screens.project-setup.transaction.transaction-create.Update' | translate}}</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button class="canelButton rect-cancel" (click)="closeEditTransactionPopup('CancelEdit');">{{'screens.project-setup.transaction.transaction-create.Cancel' | translate}}</button>
+</nb-card-footer>
+</nb-card>
+</div>
+</div>

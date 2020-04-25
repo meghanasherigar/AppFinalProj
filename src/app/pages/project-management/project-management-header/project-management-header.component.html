@@ -1,0 +1,35 @@
+<div class="header-container level2header" [class.left]="position === 'normal'" [class.right]="position === 'inverse'">
+  <nav class="navbar navbar-light bg-transparent navbar-expand-md px-0">
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse"
+      data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+      <ul class="navbar-nav pl-0">
+        <li class="nav-item rectangle-copy" [ngClass]="selectedMenu === myMenus.Deliverable ? 'rectangle-active':' '">
+          <a class="nav-link" class="textcolorlevel1 noUnderline"
+          (click)="navigatetoLink(['pages/project-management/ProjectManagementMain', { outlets: { primary: 'Deliverable', level2Menu: 'DeliverableLevel2Menu', topmenu: 'ProjectManagementTopMenu'} }], myMenus.Deliverable)">
+            {{ 'screens.Project-Management.Header.Deliverable' | translate }}</a>
+        </li>
+        <li class="nav-item rectangle-copy"
+          [ngClass]="selectedMenu === myMenus.Block ? 'rectangle-active':' '">
+          <a class="nav-link hover" class="textcolorlevel1 noUnderline"
+          (click)="navigatetoLink(['pages/project-management/ProjectManagementMain', { outlets: { primary: 'Blocks', level2Menu: 'BlocksLevel2Menus', topmenu: 'ProjectManagementTopMenu'} }], myMenus.Block)">
+            {{ 'screens.Project-Management.Header.Blocks' | translate }}</a>
+        </li>
+        <li class="nav-item rectangle-copy"
+          [ngClass]="selectedMenu === myMenus.Task ? 'rectangle-active':' '">
+          <a class="nav-link hover" class="textcolorlevel1 noUnderline"
+          (click)="navigatetoLink(['pages/project-management/ProjectManagementMain', { outlets: { primary: 'tasks', level2Menu: 'PMTaskLevel2Menu', topmenu: 'ProjectManagementTopMenu'} }], myMenus.Task)">
+            {{ 'screens.Project-Management.Header.Tasks' | translate }}</a>
+        </li>
+        <li class="nav-item rectangle-copy"
+        [ngClass]="selectedMenu === myMenus.Visualization ? 'rectangle-active':' '">
+        <a class="nav-link hover" class="textcolorlevel1 noUnderline"
+        (click)="navigatetoLink(['pages/project-management/ProjectManagementMain', { outlets: { primary: 'Visualization', level2Menu: 'VisualizationLevel2Menu', topmenu: 'ProjectManagementTopMenu'} }], myMenus.Visualization)">
+          {{ 'screens.Project-Management.Header.Visualization' | translate }}</a>
+      </li>
+      </ul>
+    </div>
+  </nav>
+</div>

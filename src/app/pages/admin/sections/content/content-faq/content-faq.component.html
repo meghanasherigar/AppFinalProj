@@ -1,0 +1,89 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+
+<nb-card class="faqWrapper" ngxUiLoaderBlurred>
+<nb-card-body>
+  <div class="row">
+    <div class="col-sm-6 frequently-asked-que">{{'screens.admin.contentFAQ.title' | translate}}</div>
+    <div class="col-sm-6 last-updated-by-roh">
+      <p *ngIf="lastModified">{{'screens.admin.commonMessage.updatedby' | translate}} {{lastModified?.userName}} on {{lastModified?.lastModifiedOn  | dateFormat}}</p>
+      <p *ngIf="lastPublished" >{{'screens.admin.commonMessage.publishedby' | translate}} {{lastPublished?.publishedBy}} on {{lastPublished?.publishedOn  | dateFormat}}</p>
+    </div>
+  </div>
+  <br />
+  <div *ngFor="let cat of listOfCategories let i = index">
+    <nb-accordion>
+      <nb-accordion-item #expansionPanel (mouseover)="ShowIconsSet(showIcons)" (mouseout)="HideIconsSet(showIcons)"
+        [collapsed]='cat.collapsed'>
+        <nb-accordion-item-header class="fill-24" (click)="expandPanel(expansionPanel, $event,cat)"><span
+            class="custom-icon-1"></span>
+          <span class="equalImg">=</span>
+          <input type="checkbox" [checked]="cat.checked" (click)="selectedCategoryAndQueIds(cat, undefined)" />
+          <div data-placeholder="Enter header here" *ngIf="!cat.editable" class="col-sm-10 header-text">
+            {{cat.description}}</div>
+          <input type="text" *ngIf="cat.editable" class="col-sm-10 header-text headerPlaceholder textBackGround"
+            placeholder="Enter heading here" [(ngModel)]="cat.description" />
+          <div class="  iconsDiv padding0">
+            <div #showIcons class="  hideIcons ">
+              <div (click)="editHeading(cat.id)" title="Edit" *ngIf="!cat.editable" class="editIcon contentIcon"></div>
+              <div (click)="addSubHeading(cat.id)" title="Add Sub topic" class="addIcon contentIcon"></div>
+              <div (click)="deleteSelectedHeading(cat.id)" title="Delete" class="deleteIcon contentIcon"
+                *ngIf="!(cat.id.indexOf('temp') > -1)"></div>
+              <div (click)="discardCategory(cat)" title="Discard" *ngIf="cat.editable" class="discardIcon contentIcon">
+              </div>
+            </div>
+            <div *ngIf="cat.colourCode == 0" style="display: inline-block;margin-right:8px">P</div>
+            <div *ngIf="cat.colourCode == 2" style="display: inline-block;margin-right:8px">P*</div>
+
+          </div>
+        </nb-accordion-item-header>
+        <nb-accordion-item-body class="no-padding">
+          <div *ngFor="let question of cat.questions let j = index">
+            <nb-accordion class="inner-accordian">
+              <nb-accordion-item #expansionPanel1 (click)="expandPanelQuestion(expansionPanel1, $event,cat.id,question)"
+                (mouseover)="ShowIconsSet(showIconsQuestion)" (mouseout)="HideIconsSet(showIconsQuestion)"
+                [collapsed]="question.collapsed">
+                <nb-accordion-item-header class="fill-24"><span class="custom-icon-1"></span>
+                  <span class="equalImg">=</span>
+                  <input type="checkbox" [checked]="question.checked"
+                    (click)="selectedCategoryAndQueIds(undefined, question)" />
+                  <div data-placeholder="Enter sub header here" (input)="question.description = $event.target.innerText"
+                    [textContent]="question.description" *ngIf="!question.editable" class="col-sm-10 header-text">
+                    {{question.description}}
+                  </div>
+                  <input type="text" *ngIf="question.editable" class="col-sm-10 header-text header-text-inputBackground"
+                    [(ngModel)]="question.description" placeholder="Enter sub heading here" />
+                  <div class=" iconsDiv padding0 ">
+                    <div #showIconsQuestion class="hideIcons ">
+                      <div (click)="editSubHeading(cat.id,question.id, i, j)" title="Edit" *ngIf="!cat.editable"
+                        class="editIcon contentIcon"></div>
+                      <div (click)="deleteSelectedSubHeading(cat.id,question.id)" title="Delete"
+                        class="deleteIcon contentIcon"
+                        *ngIf="!((cat.id.indexOf('temp') > -1) || (question.id.indexOf('temp') > -1))"></div>
+                      <div (click)="discardSubheading(cat,question)" *ngIf="question.editable" title="Discard"
+                        class="discardIcon contentIcon"></div>
+                    </div>
+                    <div *ngIf="question.colourCode == 0" style="display: inline-block;margin-right:8px">P</div>
+                    <div *ngIf="question.colourCode == 2" style="display: inline-block;margin-right:8px">P*</div>
+
+                  </div>
+                </nb-accordion-item-header>
+                <nb-accordion-item-body class="textAreaBodyWrapper" (click)="$event.stopPropagation()">
+                  <ngx-ck-editor-new [editable]="editable" [editorValue]="question.answer?.description"
+                    [indexValue]="sharedAdminService.currentIndex" [id]="question.id" [discardheading]="discardheading"></ngx-ck-editor-new>
+                </nb-accordion-item-body>
+              </nb-accordion-item>
+            </nb-accordion>
+          </div>
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </div>
+  <div>
+    <button id="addTopic" class="fill-33-copy"
+      (click)="addTopic(); $event.preventDefault()">{{'screens.admin.contentFAQ.addTopicButtonText' | translate}}</button>
+  </div>
+
+</nb-card-body>
+</nb-card>

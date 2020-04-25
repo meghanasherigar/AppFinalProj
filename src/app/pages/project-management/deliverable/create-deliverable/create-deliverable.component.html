@@ -1,0 +1,183 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+
+<div></div>
+<form [formGroup]="createDeliverableForm" (ngSubmit)="createDeliverable()">
+
+  <nb-card class="createDeliverableTopHeader">
+    <nb-card-header class="createTopHeader">
+      {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.CreateDeliverableLabel' | translate }}
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row">
+
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="custom-form-label">
+              {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.DeliverableNameLabel' | translate }}
+              <span class="mandatoryField">*</span>
+            </label>
+
+            <input formControlName="DeliverableName" maxlength="512" class="form-control custom-form-input"
+              [ngClass]="{ 'is-invalid': submitted && form.DeliverableName.errors }">
+
+            <div *ngIf="submitted && form.DeliverableName.errors" class="invalid-feedback">
+              <div *ngIf="form.DeliverableName.errors.required">
+                  {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.DeliverableNameError' | translate }}
+              </div>
+              <!-- <div *ngIf="form.DeliverableName.errors.pattern">
+                enter valid pattern
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="custom-form-label">
+              {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.CountryLabel' | translate }}
+              <span class="mandatoryField">*</span>
+            </label>
+            <div>
+              <mat-form-field class="example-full-width width100">
+                <input type="text" class="form-control custom-form-input" placeholder="" aria-label="Number"
+                  id="txtCountry" matInput formControlName="Country" [matAutocomplete]="auto" alphabetsonly>
+                <mat-autocomplete #auto="matAutocomplete" class="entity-country">
+                  <mat-option *ngFor="let matchedCountry of matchedCountries" [value]="matchedCountry.country"
+                    class="dropdown-style mat-option ng-star-inserted">
+                    {{ matchedCountry.country}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <mat-error *ngIf="submitted && form.Country.errors" class="invalid-feedback">
+                <div *ngIf="form.Country.errors.required">
+                    {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.CountryError' | translate }}
+                </div>
+              </mat-error>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="custom-form-label">
+                {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.TaxableYearEndLabel' | translate }}
+              <span class="mandatoryField">*</span>
+            </label>
+            <div class="inputWithIcon">
+              <input type="text" class="form-control custom-form-input"  formControlName="TaxableYearEnd"
+                id="txtTaxableYearEnd"  [ngClass]="{ 'is-invalid': submitted && form.TaxableYearEnd.errors }"
+               [placeholder]="'DD MMM YYYY'|translate" bsDatepicker #dpTaxableYearEnd="bsDatepicker"
+                [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly>
+              <label>
+                <i>
+                  <img (click)="dpTaxableYearEnd.show()" [attr.aria-expanded]="dpTaxableYearEnd.isOpen"
+                    src="assets/images/calender.png" class="calender-icon"></i>
+              </label>
+
+              <!-- validation msg:start -->
+              <div *ngIf="submitted && form.TaxableYearEnd.errors" class="invalid-feedback">
+                <div *ngIf="form.TaxableYearEnd.errors.required">
+                    {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.TaxableYearEndError' | translate }}
+                </div>
+              </div>
+              <!-- validation msg:end -->
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="custom-form-label">
+              {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.TargetIssueDateLabel' | translate }}
+              <span class="mandatoryField">*</span>
+            </label>
+            <div class="inputWithIcon">
+              <input type="text" class="form-control custom-form-input"  formControlName="TargetDeliverableIssueDate"
+                id="txtTargetDeliverableIssueDate"
+                 [ngClass]="{ 'is-invalid': submitted && form.TargetDeliverableIssueDate.errors }"
+                [placeholder]="'DD MMM YYYY'|translate" bsDatepicker #dpTargetDeliverableIssueDate="bsDatepicker"
+                [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly>
+              <label>
+                <i>
+                  <img (click)="dpTargetDeliverableIssueDate.show()"
+                    [attr.aria-expanded]="dpTargetDeliverableIssueDate.isOpen" src="assets/images/calender.png"
+                    class="calender-icon"></i>
+              </label>
+              <!-- validation msg:start -->
+              <div *ngIf="submitted && form.TargetDeliverableIssueDate.errors" class="invalid-feedback">
+                <div *ngIf="form.TargetDeliverableIssueDate.errors.required">
+                  {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.TargetDueDateError' | translate }}
+                </div>
+              </div>
+              <!-- validation msg:end -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="custom-form-label">
+              {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.ReportTierLabel' | translate }}
+              <span class="mandatoryField">*</span>
+            </label>
+            <div class="selectLibrary width100">
+              <select class="form-control custom-form-input ddlHeight" id="ddlReportTier" formControlName="ReportTier">
+                <option [selected]="true" value=""> {{'screens.Shared.TreeText.select' | translate }}</option>
+                <option *ngFor="let reportTier of reportTypes" [ngValue]="reportTier.id">
+                  {{reportTier.reportTier}}
+                </option>
+              </select>
+              <span class="dropdown-down dropdown-Arrow"></span>
+            </div>
+            <div *ngIf="submitted && form.ReportTier.errors" class="invalid-feedback">
+                {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.ReportTierError' | translate }}
+              </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="custom-form-label">
+              {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.FiscalYearLabel' | translate }}
+              <span class="mandatoryField">*</span>
+            </label>
+            <div>
+              <input type="number" id="FiscalYear" formControlName="FiscalYear" class="form-control custom-form-input"
+                [ngClass]="{ 'is-invalid': submitted && form.FiscalYear.errors }">
+              <div *ngIf="submitted && form.FiscalYear.errors" class="invalid-feedback">
+                {{ 'screens.Project-Management.Deliverable.Offline-Deliverable.FiscalYearError' | translate }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </nb-card-body>
+    <nb-card-footer class="footerCard text-right">
+      <button nbButton type="button" class="menu-btn-cancel" (click)="dismissDialog()">
+        <label class="menu-txt-cancel">
+          {{ 'screens.Project-Management.Deliverable.Deliverable-Edit.Cancel' | translate }}
+        </label>
+      </button>
+      <button type="submit" class="menu-btn-save" id="btnCreateDeliverable">
+        <label class="menu-txt-save">
+          {{ 'screens.Project-Management.Deliverable.Deliverable-Edit.Save' | translate }}
+        </label>
+      </button>
+    </nb-card-footer>
+  </nb-card>
+
+
+
+</form>

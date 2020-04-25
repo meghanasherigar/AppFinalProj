@@ -1,0 +1,62 @@
+<nb-card class="abbreviationWrapper">
+    <nb-card-header class="createTopHeader">{{'screens.project-designer.document-view.Abbreviations.AddAbbreviations' | translate}}
+        <button aria-label="Close" class="close" type="button" (click)="dismiss()"><span
+            aria-hidden="true">×</span></button>
+      </nb-card-header>
+  <nb-card-body class="col-md-offset-1 col-md-11">
+    <form [formGroup]="addAbbreviationForm">
+      <div class="form-group abbreviationSearchForm" id="abbreviationForm">
+        <div class="abbreviationContent">
+          <div class="row">
+              <div class="form-group">
+                  <label class="custom-form-label">{{'screens.project-designer.document-view.Abbreviations.Abbreviation' | translate}}</label>
+                  <input type="text" formControlName="Abbreviation" [(ngModel)]="Abbreviation" class="form-control custom-form-input"
+                     [ngClass]="{ 'is-invalid': submitted && form.Abbreviation.errors }" id="hdnAbbreviation"
+                    (change)="duplicateCheck();">
+                  
+                  <div *ngIf="submitted && form.Abbreviation.errors" class="invalid-feedback">
+                    <div *ngIf="form.Abbreviation.errors.required">{{'screens.project-designer.document-view.Abbreviations.Abbreviationrequired' | translate}}</div>
+                  </div>
+                </div>
+          </div>
+          <div class="row">
+              <div class="form-group">
+                  <label class="custom-form-label">{{'screens.project-designer.document-view.Abbreviations.FullForm' | translate}}</label>
+                  <input type="text" formControlName="FullForm" [(ngModel)]="FullForm" class="form-control custom-form-input"
+                     [ngClass]="{ 'is-invalid': submitted && form.FullForm.errors }" id="idFullForm">    
+                    <div class="form-group checkbox-inline" *ngIf="isRecordExist">
+                        <input type="checkbox" id="useAbbreviationCheckBox" formControlName="UseAbbreviation" class="check"
+                        (change)="toggleCheckbox($event)" name="checkbox1">
+                        <label class="labelUseAbbreviationTxt">{{'screens.project-designer.document-view.Abbreviations.Abbreviationmsg' | translate}}</label>
+                    </div>
+                    
+                  <div *ngIf="submitted && form.FullForm.errors" class="invalid-feedback">
+                    <div *ngIf="form.FullForm.errors.required">{{'screens.project-designer.document-view.Abbreviations.FullFormmsg' | translate}}</div>
+                  </div>
+                </div>
+          </div>
+          <div class="row" *ngIf="isRecordExist && !isChecked">
+              <div class="form-group">
+                  <label class="custom-form-label">Add New</label>
+                  <input type="text" formControlName="AddNew" [(ngModel)]="AddNew" class="form-control custom-form-input"
+                     [ngClass]="{ 'is-invalid': submitted && form.AddNew.errors }" id="hdnAddNew">
+                  
+                  <div *ngIf="submitted && form.AddNew.errors" class="invalid-feedback">
+                    <div *ngIf="form.AddNew.errors.required">{{'screens.project-designer.document-view.Abbreviations.Addnewmsg' | translate}}</div>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer class="abbreviationFooter">
+    <div class="col-md-offset-1 col-md-11 footerButton ">
+      <button nbButton type="button" class="menu-btn-cancel" style="color:black;"  (click)="dismiss()"><label
+          class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="submit" class="menu-btn-save" (click)="saveAbbreviation()"
+        id="btnAbbreviation">{{'screens.home.labels.Save' | translate}}</button>
+    </div>
+  </nb-card-footer>
+</nb-card>

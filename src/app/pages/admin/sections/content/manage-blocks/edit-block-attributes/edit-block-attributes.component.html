@@ -1,0 +1,124 @@
+<form [formGroup]="editAttributeForm" (ngSubmit)="editBlock()">
+    
+    <nb-card class="editBlockpopupHW ">
+          <nb-card-header class="ediTopHeader">{{ 'screens.user.AdminView.Library.CreatBlock.EditBlockAttributes' | translate }}
+              <button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span></button>
+          </nb-card-header>
+          <nb-card-body>
+        
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label
+                class="custom-form-label">{{'screens.create-block-component.labels.BlockTitle' | translate}}</label>
+              <input type="text" formControlName="BlockTitle" placeholder="eg:Busines Overview"
+                class="form-control custom-form-input">
+            </div>
+          </div>
+      
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label
+                class="custom-form-label">{{'screens.create-block-component.labels.BlockDescriptor' | translate}}
+                <span class="edit-block-attribute-mandatory-icon">*</span></label>
+              <input type="text"placeholder="Block description" class="form-control  custom-form-input" id=""
+                [ngClass]="{ 'is-invalid': submitted && form.BlockDescription.errors }" formControlName="BlockDescription"
+                type="text">
+              <div *ngIf="submitted && form.BlockDescription.errors" class="invalid-feedback">
+                <div *ngIf="form.BlockDescription.errors.required">Block description is required</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label class="custom-form-label">Block Type<span
+                  class="edit-block-attribute-mandatory-icon">*</span></label>
+              <select class="form-control custom-form-input ddlHeight" id="ddlBlockType" formControlName="BlockType"
+                (change)="onBlockTypeChanged($event)" [ngClass]="{ 'is-invalid': submitted && form.BlockType.errors }">
+                <option [selected]="true" value="">--Select--</option>
+                <option *ngFor="let blockType of blockTypes" [ngValue]="blockType.blockTypeId">
+                  {{blockType.blockType}}
+                </option>
+              </select>
+              <div *ngIf="submitted && form.BlockType.errors" class="invalid-feedback">
+                <div *ngIf="form.BlockType.errors.required">Block type is required</div>
+              </div>
+            </div>
+          </div>
+      <div class="col-sm-4">
+            <div class="form-group">
+              <label
+                class="custom-form-label">{{'screens.create-block-component.labels.ProjectYear' | translate}}<span
+                  class="create-block-attribute-mandatory-icon">*</span></label>
+              <input type="text" class="form-control  custom-form-input" id="" formControlName="ProjectYear" type="text">
+            </div>
+          </div>
+         
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label
+                class="custom-form-label">{{'screens.create-block-component.labels.Industry' | translate}}</label>
+              <input type="hidden" formControlName="BlockIndustries" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && form.BlockIndustries.errors }"   id="hdnBlockIndustry">
+              <ngx-dropdown-treeview class="home-industry org-industry" [config]="config"
+                (selectedChange)="onIndustrySelected($event)" [items]="blockIndustries">
+              </ngx-dropdown-treeview>
+            </div>
+          </div>
+      <div class="col-sm-4">
+            <div class="form-group">
+              <label
+                class="custom-form-label">{{'screens.create-block-component.labels.TemplatesUtilized' | translate}}<span
+                  class="create-block-attribute-mandatory-icon">*</span></label>
+              <input type="text"placeholder="System Genrated"
+                [ngClass]="{ 'is-invalid': submitted && form.TemplatesUtilized.errors }"
+                formControlName="TemplatesUtilized" class="form-control custom-form-input" disabled>
+              <div *ngIf="submitted && form.TemplatesUtilized.errors" class="invalid-feedback">
+                <div *ngIf="form.TemplatesUtilized.errors.required">Template utilized is required</div>
+              </div>
+            </div>
+          </div>
+       <div class="col-sm-4">
+            <div class="form-group">
+              <label
+                class="custom-form-label">{{'screens.create-block-component.labels.Status' | translate}}<span
+                  class="edit-block-attribute-mandatory-icon">*</span></label>
+              <select class="form-control custom-form-input ddlHeight" id="ddlBlockStatus" formControlName="BlockStatus"
+                (change)="onBlockStatusChanged($event)" [ngClass]="{ 'is-invalid': submitted && form.BlockStatus.errors }">
+                <option [selected]="true" value="">--Select--</option>
+                <option *ngFor="let status of blockStatus" [ngValue]="status.blockStatusId">
+                  {{status.blockStatus}}
+                </option>
+              </select>
+              <div *ngIf="submitted && form.BlockStatus.errors" class="invalid-feedback">
+                <div *ngIf="form.BlockStatus.errors.required">Block status is required</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+              <div class="form-group">
+                <label class="custom-form-label">{{'screens.create-block-component.labels.TransactionType' | translate}}</label>
+                <ng-select class="form-control custom-form-input ddlHeight" bindValue="transactionType" [items]="transactionList" bindLabel="transactionType" id="ddlTransactionType" formControlName="TransactionType">
+                </ng-select>
+              </div>
+            </div>
+          
+        </div>
+  
+      </nb-card-body>
+      <nb-card-footer class="saveCancelBtnTopBorder">
+        <nb-card-footer class="footerRightButton saveCancelBtn">
+          <button nbButton type="button" class="menu-btn-cancel" style="color:black;"
+            (click)="dismiss()"><label
+              class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <button type="submit" class="menu-btn-save" [disabled]="!editAttributeForm.dirty || editAttributeForm.invalid" [ngClass]="{'disableSaveButton':!editAttributeForm.dirty || editAttributeForm.invalid}"
+            id="btnCreateOrganization">{{'screens.home.labels.Save' | translate}}</button>
+  
+  
+        </nb-card-footer>
+        <!-- <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button> -->
+      </nb-card-footer>
+    </nb-card>
+  </form>

@@ -1,0 +1,47 @@
+@import '../../styles/themes';
+@import '~@nebular/theme/styles/global/breakpoints';
+@import '~bootstrap/scss/mixins/breakpoints';
+
+@include nb-install-component() {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .socials {
+    font-size: 2rem;
+
+    a {
+      padding: 0.4rem;
+      color: nb-theme(color-fg);
+      transition: color ease-out 0.1s;
+
+      &:hover {
+        color: nb-theme(color-fg-heading);
+      }
+    }
+  }
+
+  @include media-breakpoint-down(is) {
+    .socials {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.PrivacyTextColor{
+  color: #fff;
+  font-size: 11px;
+  padding-right: 20px;
+}
+
+.footerWrapper{
+  width: 100% !important;
+}
+
+.privacy-2019-section a{
+  color: #5dcfe3 !important;
+}
+
+
+.privacy-2019-section {	height: 53px;	width: 100%;background: #fbfbfb;	color: #97999B;	font-family: "Open Sans";	font-size: 11px;	line-height: 15px;	text-align: center;}

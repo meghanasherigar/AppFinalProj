@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row home-menu-container templateLevel2MenuWrapper">
+    <div id="insertToolbar-section" class="col-xs-12 toolbar-component-container collapsed">
+      <div class="manage-section">
+       
+        <div class="action-icon-wrapper">
+          <ngx-switcher [firstValue]="false" class="customSwitch pull-right" (valueChange)="toggleAnswerTags($event)"
+            [secondValue]="true" [value]="this.designerService.isToggleAnswerTag" [vertical]="false">
+          </ngx-switcher>
+          <span
+            class="dropdown-item marginTop">{{'screens.project-designer.document-view.info-gathering.showOrHideAnswerTag' | translate}}
+          </span>
+        </div>
+        <div class="action-icon-wrapper">
+          <img src="assets/images/Edit-active.svg" class="EditQuestIco" (click)="edit()">
+          <span>{{'screens.project-designer.document-view.editAnswer' | translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>

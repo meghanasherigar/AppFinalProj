@@ -1,0 +1,38 @@
+<div [formGroup]="questionData" class="questionData">
+    <div class="radio-inline">
+       
+            <label class="container">{{ 'screens.project-designer.document-view.tasks.dropdownType.checkbox-label' | translate }}
+                <input type="radio" [checked]="ModeOfOptions" value="true" checked formControlName="ModeOfOptions">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">{{ 'screens.project-designer.document-view.tasks.dropdownType.radio-button-label' | translate }}
+                <input type="radio" value="false" [checked]="!ModeOfOptions"
+                formControlName="ModeOfOptions">
+                <span class="checkmark"></span>
+              </label>
+   
+        </div>
+    <div class="dropDownOptionsText">{{ 'screens.project-designer.document-view.tasks.dropdownType.dropdowntype-options-label' | translate }}
+            <span class="mandatory-icon">*</span>:
+    </div>
+    <div formArrayName="DropdownOptions">
+        <div *ngFor="let option of DropdownOptions.controls; index as i" class="typeSomethingBlock">
+            <input type="text" formControlName="{{i}}"
+            [ngClass]="{ 'is-invalid': submitted && option.invalid }" 
+                placeholder="{{ 'screens.project-designer.document-view.tasks.dropdownType.option-placeholder' | translate }}"> 
+                <div *ngIf="submitted && option.invalid" class="invalid-feedback">
+                        {{ 'screens.project-designer.document-view.tasks.errorMessages.dropDownOptions' | translate }}                      
+                    </div> 
+        </div>
+       
+      
+        
+        <!-- <div *ngIf="form.DropdownOptions.invalid" class="invalid-feedback">               
+                {{ 'screens.project-designer.document-view.tasks.errorMessages.dropDownOptions' | translate }}
+        </div> -->
+    </div>
+    <button
+        (click)="AddAnotherOption()" class="addAnother">
+        {{ 'screens.project-designer.document-view.tasks.logicType.add-another-btn-text' | translate }}
+    </button>
+</div>

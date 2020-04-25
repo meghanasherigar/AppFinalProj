@@ -1,0 +1,85 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+
+<div class="container blockimpoter" ngxUiLoaderBlurred>
+    <div class="row topHeader">
+        <div class="col-sm-6">
+            <div class="row topimporterHeader">
+                <div class="col-sm-6">
+                    <input type="checkbox" id="selectAllCheckBox" class="check"
+                    (change)="toggleCheckbox($event, 0)" name="checkbox1">
+                    <h6 class="importHeading">{{'screens.user.AdminView.Library.Labels.BlockImporter.ImportBlock' | translate}}</h6>
+                </div>
+                <div class="col-sm-6">
+                    <img src="assets/images/projectdesigner/Copy_clicked.svg" (click)="selectAllBlocks()">&nbsp;<span class="importSelect"> {{'screens.user.AdminView.Library.Labels.BlockImporter.SelectAll' | translate}}</span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <!-- <img src="assets/images/projectdesigner/Filter.svg">&nbsp;<span class="importSelect">{{'screens.user.AdminView.Library.Labels.BlockImporter.Filter' | translate}}</span> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <h6 class="addBlock">{{'screens.user.AdminView.Library.Labels.BlockImporter.AddToCollection' | translate}}</h6>
+        </div>
+    </div>
+    <div class="row topHeaderScrolling">
+        <div class="col-sm-6 importBorderRIght">
+            <div class="row">
+                <div class="scrollingHeader">
+                    <mat-tree [dataSource]="dataSource1" [treeControl]="treeControl">
+                        <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+                            <mat-checkbox class="checklist-leaf-node importP"
+                                [ngClass]="{'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,
+                                        'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+                                        'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node}"
+                                [checked]="checklistSelection.isSelected(node)" (dblclick)="extendedPopup('available', node)"
+                                (change)="checklistSelection.toggle(node);" draggable="true"
+                                (dragstart)="handleDragStart($event, node);" (dragover)="handleDragOver($event, node);"
+                                (drop)="handleDrop1($event, node);" (dragend)="handleDragEnd($event);">
+                                <p class="importBorder">{{node.item}}</p>
+                            </mat-checkbox>
+                        </mat-tree-node>
+                        <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+                        </mat-tree-node>
+
+                    </mat-tree>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row topimporterHeader ipmHeader">
+                <mat-tree [dataSource]="dataSource2" [treeControl]="treeControl">
+                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+                        <label class="checklist-leaf-node"
+                            [ngClass]="{'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,
+                                            'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+                                            'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node}" draggable="false"
+                            (dragstart)="handleDragStart($event, node);" (dragover)="handleDragOver($event, node);"
+                            (dblclick)="extendedPopup('selected', node)" (drop)="handleDrop2($event, node);"
+                            (dragend)="handleDragEnd($event);">
+                            <p [ngClass]="{'importBorderRight': node.id != '-1' , 'importBorderRight1': node.id == '-1' }">{{node.item}}
+                                <span class="importImgRight" *ngIf="node.id != -1" (click)="removeItem(node);"><img
+                                        src="assets/images/projectdesigner/Remove_without hover.svg"
+                                        class="smallIcon icon icon-header"><span
+                                        class="importRemove">{{'screens.user.AdminView.Library.Labels.BlockImporter.Remove' | translate}}</span></span>
+                            </p>
+                        </label>
+                    </mat-tree-node>
+                    <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+                    </mat-tree-node>
+
+                </mat-tree>
+                <span #emptyItem></span>
+
+            </div>
+        </div>
+    </div>
+    <div class="row importFooter">
+        <div class="col-sm-offset-9 col-sm-3">
+            <button nbButton type="button" class="menu-btn-cancel importCancel" style="color:black;"
+                (click)="RefreshContent()"><label class="menu-txt-cancel canclebuttonLebal">{{'screens.user.AdminView.Library.Labels.BlockImporter.Cancel' | translate}}</label></button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="menu-btn-save importAddButtton" (click)="addBlocks()">{{'screens.user.AdminView.Library.Labels.BlockImporter.Add' | translate}}</button>
+        </div>
+
+    </div>
+</div>

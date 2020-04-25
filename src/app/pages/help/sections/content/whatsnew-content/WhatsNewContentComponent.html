@@ -1,0 +1,24 @@
+<nb-card class="whatsnewWrapper">
+    <nb-card-body>
+        <div class="row">
+            <span class="frequently-asked-que col-sm-12">{{'screens.admin.whatsNew.title' | translate}}</span>
+            <!-- <span class="last-updated-by-roh col-sm-12">Last updated:By Vipul on 06th June 2019</span> -->
+        </div>
+        <br />
+        <nb-accordion *ngFor="let cat of listOfCategories">
+            <nb-accordion-item #expansionPanel (click)="expandPanel(expansionPanel, $event, cat)"
+                [collapsed]='cat.collapsed'>
+                <nb-accordion-item-header class="fill-24">
+                    <span class="custom-icon-1"></span>
+                    <div data-placeholder="Enter header here" (input)="cat.question = $event.target.innerText"
+                        [textContent]="cat.question" class="col-sm-10 header-text">{{cat.question}}</div>
+                </nb-accordion-item-header>
+                <nb-accordion-item-body class="textAreaBodyWrapper">
+                        <div id="whatsnewtextArea_{{ cat.id }}" [innerHTML]="cat.answer" class="textAreawidth helpWhatsnewContent">
+                                {{cat.answer}}
+                            </div>
+                </nb-accordion-item-body>
+            </nb-accordion-item>
+        </nb-accordion>
+    </nb-card-body>
+</nb-card>

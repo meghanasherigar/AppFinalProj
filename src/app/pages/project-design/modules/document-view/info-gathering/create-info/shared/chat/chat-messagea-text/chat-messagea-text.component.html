@@ -1,0 +1,13 @@
+<div class="msgTextClass" [ngClass]="replyCheck()">
+    <h4 class="sender" *ngIf="sender || date">{{ sender }} <time>{{ date  | date:'shortTime' }}</time></h4>
+    <p class="text" *ngIf="message">{{ message }}</p>
+</div>
+<span [nbPopover]="EditDelete" nbPopoverPlacement="bottom" class="EditCommentBtn">
+
+</span>
+<ng-template #EditDelete>
+    <div class="commentEditpopup">
+        <p (click)="edit()">Edit</p>
+        <p (click)="delete()">Delete</p>
+    </div>
+</ng-template>

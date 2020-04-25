@@ -1,0 +1,22 @@
+
+<div class=" custom-tab-width"><ul class="col-sm-12 list-inline">
+    <li  class="blockItem"  *ngFor="let tab of blockTypeAsTabs;let i=index">
+      <a (click)="loadAnswerTagGrid(tab.blockTypeId);onTabSelect(i)" [ngClass]="currentTabIndex == i+1?'activeTab':''" >&nbsp;
+        <span id="activeTab"
+          class="display-text">{{'enums.blockType.' + tab.blockType | translate}}&nbsp;</span></a>
+    </li>
+  </ul>
+</div>
+<nb-card>
+  <nb-card-body class=" custom-tab-width">
+    
+    <ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="scrollableTable">
+    <ng2-smart-table id="answerTagTable" [settings]="mySettings" [source]="source">
+      </ng2-smart-table>
+</div>
+   
+  </nb-card-body>
+</nb-card>

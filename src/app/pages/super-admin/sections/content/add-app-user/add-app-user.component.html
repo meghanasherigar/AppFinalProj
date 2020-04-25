@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-sm-12" id="addAppUserFormSection">
+    <div class="row">
+      <div class="col-10 add-app-user-form-wrapper">
+        <nb-card>
+          <nb-card-body>
+            <div [formGroup]="addAppUserForm">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">                   
+                    <label class="custom-form-label" for="txtFirstName">
+                      {{'screens.superAdmin.addAppUser.labels.firstName' | translate}}
+                      <span class="mandatoryField">*</span>
+                    </label>
+                    <input type="text" formControlName="FirstName"
+                      class="form-control custom-form-input add-app-user-pointer-none" id="txtFirstName">                   
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="custom-form-label" for="txtLastName"> {{'screens.superAdmin.addAppUser.labels.lastName' | translate}}
+                      <span class="mandatoryField">*</span>
+                    </label>
+                    <input type="text" formControlName="LastName" class="form-control custom-form-input add-app-user-pointer-none"
+                        id="txtLastName">
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="custom-form-label" for="txtEmail"> {{'screens.superAdmin.addAppUser.labels.email' | translate}}
+                      <span class="mandatoryField">*</span>
+                    </label>
+                    <input type="text" formControlName="Email" class="form-control custom-form-input add-app-user-pointer-none"
+                      id="txtEmail">                    
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="custom-form-label" for="txtOrganizationName"> {{'screens.superAdmin.addAppUser.labels.organizationName' | translate}}
+                      <span class="mandatoryField">*</span>                     
+                    </label>
+                    <input type="text" formControlName="OrganizationName" class="form-control custom-form-input add-app-user-pointer-none"
+                      id="txtOrganizationName" [placeholder]="'screens.superAdmin.addAppUser.labels.DeloitteForInternalUser' | translate">                
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">                    
+                    <label class="custom-form-label" for="txtCountryCode">
+                      {{'screens.superAdmin.addAppUser.labels.countryCode' | translate}}                      
+                    </label>                   
+                     <select formControlName="CountryCode" class="form-control custom-form-input add-app-user-pointer-none"
+                     id="txtCountryCode">
+                      <option value="" disabled="true" [selected]="true">{{'screens.superAdmin.addAppUser.labels.selectCountryCode' | translate}}</option>
+                      <option *ngFor="let country of countryMaster; let i = index" [value]="countryMaster[i].countryCode">
+                        {{countryMaster[i].countryName}} &nbsp; <span>-</span> &nbsp; {{countryMaster[i].countryCode}}
+                      </option>
+                     </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" id="roleDiv">
+                <div class="col-sm-3 verticalMove">
+                  <div class="form-group checkbox-inline">
+                    <input type="checkbox" id="isExternalUserCheckBox" formControlName="IsExternalUser"
+                      class="check">
+                    <label class="custom-form-label labelGlobalAdminTxt">{{'screens.superAdmin.addAppUser.labels.externalUser' | translate}}</label>
+                  </div>
+                </div>
+                <div class="col-sm-3 verticalMove">
+                  <div class="form-group checkbox-inline">
+                    <input type="checkbox" id="hasAppAccessCheckBox" formControlName="HasAppAccess"
+                      class="check">
+                    <label
+                      class="custom-form-label labelHasAppAccessTxt">{{'screens.superAdmin.addAppUser.labels.appAccess' | translate}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nb-card-body>
+          <nb-card-footer>
+            <button class="actionButton" id="btnAddAppUser"
+            (click)="addNewAppUser()">{{'screens.superAdmin.addAppUser.labels.saveButton' | translate}}</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="actionButton"
+              (click)="closeAddAppUserComponent()">{{'screens.superAdmin.addAppUser.labels.cancelButton' | translate}}</button>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+    </div>
+  </div>
+</div>

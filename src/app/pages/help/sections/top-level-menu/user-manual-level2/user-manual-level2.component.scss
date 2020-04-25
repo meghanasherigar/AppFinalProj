@@ -1,0 +1,58 @@
+ #downloadIcon{
+     text-align: center;
+     cursor: pointer;
+ }
+ #ddlCountry{
+    box-sizing: border-box;	
+    height: 28px;	
+    width: 160px;	
+    color: #000000;
+    border: 1px solid #D2D4CD;
+    margin-bottom:5px;
+    padding: 0 !important;
+ }
+ .manage-section span{
+     display: block;
+     margin-top: 5px;
+     font-size: 9px;
+ }
+ .search-wrapper input{
+    box-sizing: border-box;
+    height: 29px;
+    padding: 5px;
+    color: #000000;
+    width: 161px;
+    background-image: url(/assets/images/search-icon.png);
+    background-size: 27%;
+    background-repeat: no-repeat;
+    border: 1px solid #D2D4CD;
+    background-color: #FFFFFF;
+    background-position: right;
+ }
+
+ .usermanual-menu{
+     display: flex;
+     align-items: center;
+    //  padding: 10px 0;
+ }  
+ .borderRight{
+     border-right: 1px solid #e8e8e8;
+ }
+ .action-text{
+    display: block;
+    margin-left: 44px;
+    margin-top: 9px;
+    font-size: 10px;
+ }
+.usermanualmenu_wrapper{
+    padding: 13px 0 5px 0; 
+}
+.margin0{
+    margin: 0;
+}
+.padding0{
+    padding: 0;
+}
+.icon-name{
+    color:black;
+}

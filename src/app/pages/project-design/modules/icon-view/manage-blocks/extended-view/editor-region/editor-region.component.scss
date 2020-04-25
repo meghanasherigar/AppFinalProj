@@ -1,0 +1,136 @@
+.dd-style {
+  height: 30.24px;
+  width: 208px;
+  padding-left: 10px;
+  border: 1px solid #dcd9d9;
+  background-color: #FFFFFF;
+  //box-shadow: 0 0.5px 0 0 #D8D8D8;
+}
+.closeBtn{
+  cursor: pointer;
+    height: 20px;
+    width: 20px;
+}
+.documentTemplateWrapper .selectTemplate{
+  padding-bottom: 15px;
+}
+
+.headerIcon {
+    border: 0.6px solid #D0D0CE;
+    overflow:auto;
+    
+    height: calc(100vh - 322px) !important;
+
+}
+.libraryItems {
+  background-color: white;
+}
+
+.smallIcon{
+height: auto;
+max-width: 25px;
+margin:5px;
+}
+.libraryItemsRight
+{
+  margin-left:80px;
+}
+.top-header2{
+padding:10px;
+margin: 0;
+}
+.templateHeaderWrapper{
+padding:15px !important;
+overflow: hidden;
+}
+.icon-header:hover,
+.icon-header:focus {
+  filter: invert(30%) grayscale(100%) brightness(70%) contrast(4);
+}
+.templateHeaderWrapper .rectangle-copy{
+  height: 30.24px;
+    width: 44.5px;
+    border: 1px solid #F1F1F1;
+    background-color: #FFFFFF;
+    -webkit-box-shadow: 0 0.5px 0 0 #D8D8D8;
+    box-shadow: 0 0.5px 0 0 #D8D8D8;
+}
+.disableIconSe{
+  opacity: 0;
+  pointer-events: none;
+}
+.disableIconAs{
+  opacity: 0;
+  pointer-events: none;
+}
+.disableIconCreate{
+  opacity: 0;
+  pointer-events: none;
+}
+.disableIconF{
+  opacity: 0;
+  pointer-events: none;
+}
+.iconItemWrapper{
+  padding: 10px 15px 0px 15px;
+  text-align: right;
+    .iconItem{
+      display: inline-block;
+    }
+}
+.documentTemplateWrapper .showEditorBlock{
+  width:58% !important;
+  flex: 0 0 58.00%;
+
+}
+.documentTemplateWrapper .showQuestion{
+  width:48.9% !important;
+  flex: 0 0 48.9%;
+
+}
+
+
+.documentTemplateWrapper .col-md-4.templateCustomWidth{
+  width:25.33% !important;
+  flex: 0 0 25.3%;
+  padding-right: 5px;
+
+}
+.padd-leftRight{ padding-left: 0; padding-right: 0;}
+.documentView-close{ position: absolute;
+  right: 10px;
+  z-index: 99;
+  top: 10px;}
+.editBlockpopupHW{ margin-top: 42px;}
+.templatesBlock{
+  padding-right: 10px;
+}
+.documentTemplateWrapper .showEditBlockforStaffing{
+  flex: 0 0 50%;
+}
+#contenteditor > div.editor-heading > div p{
+  margin-left: 10px;
+}
+.paddingRightZero{
+  padding-right: 0;
+}
+.setMilestone{
+    margin-top: 0px;
+    margin-bottom: 14px;
+    padding-left: 15px;
+  span{
+    font-weight: bold;margin-right: 10px;
+
+  }
+  select{
+    padding: 4px;
+  }
+}
+.selectMilestone{
+display: inline-block;
+width: 223px !important;
+}
+.onHideWidth{
+  width: calc(100vw - 30px);
+}
+

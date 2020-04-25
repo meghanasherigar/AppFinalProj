@@ -1,0 +1,24 @@
+<div class="chatBoxContainer">
+  <div *ngFor="let msg of messages; let i = index;">
+    <ng-container *ngIf="isEditId !== msg.id || isEditNumber !== msg.index">
+      <ngx-chat-message-text [message]="msg.message" [id]="msg.id" [msg]="msg" [parentId]="msg.parentId"
+        [sender]="msg.auditTrail.createdBy.email" [date]="msg.auditTrail.createdOn" [reply]="commetReplyCheck(i)">
+      </ngx-chat-message-text>
+    </ng-container>
+    <ng-container *ngIf="isEditId === msg.id || isEditNumber === msg.index">
+      <ngx-chat-message-edit [message]="msg.message" [position]="position" [msg]="msg" [id]="msg.id"
+        [parentId]="msg.parentId" [sender]="msg.auditTrail.createdBy.email" [date]="msg.auditTrail.createdOn"
+        [reply]="commetReplyCheck(i)">
+      </ngx-chat-message-edit>
+    </ng-container>
+  </div>
+  <ng-container *ngIf="messages.length == 0">
+    <div class="emptyCommentBox">
+      {{'screens.project-designer.document-view.info-request.chatBoxEmptyComment' | translate}}
+    </div>
+  </ng-container>
+</div>
+<div class="commentInputSec">
+  <input type="text" [placeholder]="chatBoxTextBoxPlaceHolder" (keyup)="onEnter($event)" [(ngModel)]="message"><button
+    (click)="sendmessage();" class="menu-btn-save">send</button>
+</div>

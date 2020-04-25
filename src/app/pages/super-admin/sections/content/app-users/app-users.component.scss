@@ -1,0 +1,29 @@
+.saveButton{
+    border: 1px solid #86BC25;
+    background: #86BC25;
+    color:white;
+    padding: 8px 16px;
+    margin: 0 0 0 8px;
+    font-size: 12px;
+    text-transform: capitalize;
+    border-radius: 2px;
+    &:focus,&:active{
+        box-shadow:none;
+        outline: none;
+    }
+}
+
+.resetButton{
+    border: 1px solid #86BC25;
+    background: #86BC25;
+    color:white;
+    padding: 8px 16px;
+    margin: 0 0 0 8px;
+    font-size: 12px;
+    text-transform: capitalize;
+    border-radius: 2px;
+    &:focus,&:active{
+        box-shadow:none;
+        outline: none;
+    }
+}

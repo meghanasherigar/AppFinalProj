@@ -1,0 +1,105 @@
+              <nb-card>
+                    <nb-card-header class="search-header">
+                            <div class="row">
+                                    <label for="lblTo" class="emailLabel" > 
+                                        &nbsp;&nbsp;{{'screens.project-user.RegistrationEmail' | translate}}
+                                    </label>  
+                              </div>
+                        </nb-card-header>
+                  <nb-card-body>
+                      <form  [formGroup]="SendEmailProjectUserForm" (ngSubmit)="SendEmailProjectUser()">
+                          <div class="row" id="sendEmailProjectUserDiv">
+                              <div class="col-sm-12">
+                                  <div class="form-group">
+                                      <label for="lblTo" class="emailLabel" >
+                                          {{'screens.project-user.To' | translate}}
+                                      </label>
+                                      <!-- <textarea type="email" formControlName="ToEmailAddress" readonly
+                                          class="form-control manage-admin-pointer-none top-level" id="txtToEmailAddress">
+                                      </textarea> -->
+                                      <input type="text" formControlName="ToEmailAddress" class="form-control"  id="txtToEmailAddress" readonly>
+                                      <button class="bccBtn" id="btnBCCEnable" *ngIf="EnableBCCBtn"
+                                      (click)="EnableBCC()">{{'screens.project-user.BCCBtn' | translate}}</button>
+                                  </div>
+                              </div>
+                              <div class="col-sm-12">
+                                  <div class="form-group">
+                                      <label for="lblCC" class="emailLabel">
+                                          {{'screens.project-user.CC' | translate}}
+                                      </label>
+                                      <mat-form-field class="example-full-width form-control" floatLabel="never">
+                                            <mat-chip-list #chipList>
+                                                <mat-chip *ngFor="let item of emailsCC"  [selectable]="selectable"  [removable]="removable"  (removed)="removeEmailIds(item)">
+                                                    {{ item }}
+                                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input  type="text" aria-label="Number" id="txtCCEmailAddress" formControlName="CCEmailAddress" 
+                                                [matAutocomplete]="auto" [matChipInputFor]="chipList" #ccReset >
+                                            </mat-chip-list>
+                                            <mat-autocomplete #auto="matAutocomplete"  (optionSelected)='getSelectedCCEmailIds($event.option.value, ccReset)'>
+                                                <mat-option class="dropdown-style mat-option ng-star-inserted"
+                                                    *ngFor="let item of searchUserCCResult" [value]="item.email" >
+                                                    {{ item.firstName + ' ' + item.lastName + ' ('+ item.email +')'}}
+                                                </mat-option>
+                                            </mat-autocomplete>
+                                        </mat-form-field>
+                                      <!-- <textarea type="email" formControlName="CCEmailAddress"
+                                          class="form-control manage-admin-pointer-none top-level" id="txtCCEmailAddress">
+                                      </textarea> (input)="onSearchChange($event.target.value)" --> 
+                                  </div>
+                              </div>
+                              <div class="col-sm-12" *ngIf="EnableBCCControl">
+                                  <div class="form-group">
+                                      <label for="lblBCC" class="emailLabel">
+                                          {{'screens.project-user.BCC' | translate}}
+                                      </label>
+                                      <mat-form-field class="example-full-width form-control" floatLabel="never">
+                                        <mat-chip-list #bCCList>
+                                            <mat-chip *ngFor="let item of emailsBCC"  [selectable]="selectable"  [removable]="removable"  (removed)="removeBCCEmailId(item)">
+                                              {{ item }}
+                                              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                            </mat-chip>
+                                            <input type="text" aria-label="Number" id="txtBCCEmailAddress"  formControlName="BCCEmailAddress"
+                                             [matAutocomplete]="auto" [matChipInputFor]="bCCList" #bccReset >
+                                          </mat-chip-list>
+                                    <mat-autocomplete #auto="matAutocomplete"  (optionSelected)='getSelectedBCCEmailIds($event.option.value, bccReset)'>
+                                        <mat-option class="dropdown-style mat-option ng-star-inserted"
+                                            *ngFor="let item of searchUserBCCResult" [value]="item.email" >
+                                            {{ item.firstName + ' ' + item.lastName + ' ('+ item.email +')'}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                                      <!-- <textarea type="email" formControlName="BCCEmailAddress"
+                                          class="form-control manage-admin-pointer-none top-level" id="txtBCCEmailAddress">
+                                      </textarea> -->
+                                  </div>
+                              </div>
+                              <div class="col-sm-12">
+                                  <div class="form-group">
+                                      <label for="lblSubject" class="emailLabel">
+                                          {{'screens.project-user.Subject' | translate}}
+                                      </label>
+                                      <input type="text" formControlName="Subject" maxlength="50"
+                                          class="form-control manage-admin-pointer-none" id="txtSubject">
+                                  </div>
+                              </div>
+                              <div class="col-sm-12">
+                                  <!-- <div class="form-group"> -->
+                                    <div id="toolbar-menu" class="filters-section"></div>
+                                    <div class="coverPage" id="editor"></div>
+                                    <!-- <ckeditor formControlName="EmailBody" [config]="config"></ckeditor> -->
+                                  <!-- </div> -->
+                              </div>
+                          </div>
+                      </form>
+                  </nb-card-body>
+                  <nb-card-footer>
+                      <button nbButton type="button" class="button-section rectangle sendBtn" id="btnCreateEntity" (click)="SendEmailProjectUser()">
+                            {{'screens.project-user.SendBtn' | translate}}
+                        </button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <button nbButton type="button" class="menu-btn-cancel sendCancelBtn" style="color:black;" 
+                        (click)="dismiss()"><label
+                        class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+                    </nb-card-footer>
+              </nb-card>

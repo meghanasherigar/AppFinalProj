@@ -1,0 +1,150 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="questionWrapper createquestionWrapper" ngxUiLoaderBlurred>
+  <form [formGroup]="createQuestionForm" (ngSubmit)="createQuestion()">
+    <nb-card class="editBlockpopupHW editorBlockAttributes ">
+      <nb-card-body>
+        <div class="col-md-12">
+          <div class="form-group form-grp">
+            <label
+              class="custom-form-label col-sm-4 padding0">{{'screens.project-designer.document-view.tasks.question-type-label' | translate}}
+              <span class="mandatory-icon">* </span>:
+            </label>
+            <input type="hidden" formControlName="QuestionType" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && form.QuestionType.errors }" id="hdnQuestionType">
+
+            <div class="col-sm-8 padding0">
+              <div class=" selectLibrary">
+                <select class="form-control dd-style questionTypeStyle" (change)="questionTypeChange($event);"
+                  formControlName="DDQuestionType"
+                  [attr.disabled]="this.designerService.allowTagNameChange ? '' : null">
+                  <option [selected]="true" [ngValue]="null">{{'screens.project-designer.document-view.tasks.Select' | translate}}</option>
+                  <option *ngFor="let item of questions" value={{item.id}}>{{item.typeName}}</option>
+                </select>
+                <span class="dropdown-down dropdown-Arrow"></span>
+                <div *ngIf="submitted && form.QuestionType.errors" class="invalid-feedback">
+                  <div *ngIf="form.QuestionType.errors.required">
+                    {{ 'screens.project-designer.document-view.tasks.errorMessages.questionType' | translate }}</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="form-group form-grp">
+            <label
+              class="custom-form-label col-sm-4 padding0">{{'screens.project-designer.document-view.tasks.define-label' | translate}}
+              <span class="mandatory-icon">* </span> :
+            </label>
+
+            <div class="col-sm-8 padding0">
+              <input type="text" [placeholder]="'screens.project-designer.document-view.tasks.TypeDefine' | translate" #tag (keydown.space)="$event.preventDefault()"
+                class="form-control custom-form-input"
+                [ngClass]="{ 'is-invalid': submitted && form.QuestionHashTag.errors }"
+                (blur)="questionTagIsExistByProjectId()" formControlName="QuestionHashTag">
+              <div *ngIf="submitted && form.QuestionHashTag.errors" class="invalid-feedback">
+                <div *ngIf="form.QuestionHashTag.errors.required">
+                  {{ 'screens.project-designer.document-view.tasks.errorMessages.hashTag' | translate }}</div>
+                <div *ngIf="form.QuestionHashTag.hasError('pattern')">
+                {{ 'screens.project-designer.document-view.tasks.errorMessages.hashTagPrefix' | translate }}
+                <span></span>
+                </div>
+              </div>
+
+              <div *ngIf="isTagExist" class="isexisttag">
+                {{ 'screens.project-designer.document-view.tasks.errorMessages.hashTagExist' | translate }}
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-grp">
+            <div class="col-sm-1 padding0">
+              <input type="checkbox" formControlName="AllowAttachment">
+            </div>
+            <div class="col-sm-11 padding0">
+              <p class="allowText">{{'screens.project-designer.document-view.tasks.allow-attach-files' | translate}}</p>
+              <p class="fileTypeText">{{'screens.project-designer.document-view.tasks.file-types' | translate}}</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <p class="custom-form-label  padding0">
+              {{'screens.project-designer.document-view.tasks.question' | translate}}
+              <span class="mandatory-icon">* </span>:
+            </p>
+
+            <div>
+              <input type="text" class="form-control questionArea"
+                [ngClass]="{ 'is-invalid': submitted && form.QuestionText.errors }" matInput
+                formControlName="QuestionText" (change)="questionTextChange($event)" [matAutocomplete]="auto">
+
+              <mat-autocomplete #auto="matAutocomplete" class="entity-country">
+                <mat-option *ngFor="let item of ProjectVariableList" [value]="item.name" (click)="evaluateValue($event)"
+                  class="dropdown-style mat-option ng-star-inserted">
+                  {{ item.name}}
+                </mat-option>
+              </mat-autocomplete>
+              <div *ngIf="submitted && form.QuestionText.errors" class="invalid-feedback">
+                <div *ngIf="form.QuestionText.errors.required">
+                  {{ 'screens.project-designer.document-view.tasks.errorMessages.questionText' | translate }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <p class="custom-form-label  padding0">
+              {{'screens.project-designer.document-view.tasks.comment' | translate}}</p>
+            <div>
+              <textarea class="commentArea" formControlName="Comments"
+                [placeholder]="'screens.project-designer.document-view.tasks.ExtraAdditionMsg' | translate"></textarea>
+            </div>
+            <div id="QuestionTypeContent" [ngSwitch]="selectedQuestionType">
+              <div *ngSwitchCase="'Drop Down Type'">
+                <question-dropdown-type [questionData]="createQuestionForm" [submitted]="submitted"
+                  [editedDetails]="dropdownDetails">
+                </question-dropdown-type>
+              </div>
+              <div *ngSwitchCase="'Table Type'">
+                <button nbButton type="button" class="menu-btn-cancel addFlowBtn" (click)="popupTableType()"><label
+                    class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.document-view.tasks.DefineTable' | translate}}</label></button>
+                <!-- <ngx-tabletype [questionData]="createQuestionForm"></ngx-tabletype> -->
+              </div>
+              <div *ngSwitchCase="'Comparability Analysis Type'">
+                <button nbButton type="button" class="menu-btn-cancel addFlowBtn" (click)="popupTableType()"><label
+                    class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.document-view.tasks.DefineTable' | translate}}</label></button>
+              </div>
+              <div *ngSwitchCase="'Benchmark Range Type'">
+                <button nbButton type="button" class="menu-btn-cancel addFlowBtn" (click)="popupTableType()"><label
+                    class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.document-view.tasks.DefineTable' | translate}}</label></button>
+              </div>
+              <div *ngSwitchCase="'P/L Question Type'">
+                <button nbButton type="button" class="menu-btn-cancel addFlowBtn" (click)="popupTableType()"><label
+                    class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.document-view.tasks.DefineTable' | translate}}</label></button>
+              </div>
+              <div *ngSwitchCase="'Covered Transaction Type'">
+                <button nbButton type="button" class="menu-btn-cancel addFlowBtn" (click)="popupTableType()"><label
+                    class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.document-view.tasks.DefineTable' | translate}}</label></button>
+              </div>
+              <div *ngSwitchCase="'List Type'">
+                <button nbButton type="button" class="menu-btn-cancel addFlowBtn" (click)="popupTableType()"><label
+                    class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.document-view.tasks.DefineTable' | translate}}</label></button>
+              </div>
+              <div *ngSwitchCase="'Logic Type'">
+                <button nbButton type="button" class="menu-btn-cancel addFlowBtn" (click)="AddLogicFlow()"><label
+                    class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.document-view.tasks.logicType.add-logic-flow' | translate}}</label></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+      <nb-card-footer class="footerCard">
+        <div>
+
+          <button nbButton type="button" class="menu-btn-cancel"
+            (click)="closeBlockAttribute('toggleCreateQuestion')"><label
+              class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>&nbsp;&nbsp;
+          <button type="submit" [ngClass]="(loaderStarted == false) ? '' : 'disable-section disabledbutton'"
+            class="menu-btn-save" id="btnCreateOrganization">{{'screens.home.labels.Save' | translate}}</button>
+        </div>
+
+
+      </nb-card-footer>
+    </nb-card>
+  </form>
+</div>

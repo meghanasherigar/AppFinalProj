@@ -1,0 +1,137 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="container blockimpoter">
+ 
+  <div class="row topHeader">
+     
+    <div class="col-sm-6">       
+      <div class="row topimporterHeader">
+        <div class="col-sm-10">
+          <h6 class="importHeading">{{'screens.project-designer.iconview.suggestBlock.suggestBlock' | translate}}</h6>
+        </div>
+        <div class="col-sm-2">
+          <img src="assets/images/projectdesigner/Copy_clicked.svg" (click)="selectAllBlocks()"> <span
+            class="importSelect">{{'screens.project-designer.iconview.suggestBlock.selectAll' | translate}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <h6 class="addBlock">{{'screens.project-designer.iconview.suggestBlock.defaultTemplate' | translate}}</h6>
+    </div>
+    <div class="col-sm-1">
+      <button aria-label="Close" class="close" type="button" (click)="cancelSuggestions()"><span
+        aria-hidden="true">×</span></button>
+    </div>
+  </div>
+    <div class="row topHeaderScrolling">
+    <div class="col-sm-6 importBorderRIght">
+        <div class="row" id="roleDiv">
+            <div class="col-sm-3">
+              <div class="form-group checkbox-inline" id="globalLibrary" (click)="toggleCheckbox($event)">
+                <input type="checkbox" class="check" [checked]="libraryCheckbox.checkbox1" name="checkbox1">
+                <label class="libraryContent">{{'screens.project-designer.iconview.suggestBlock.globalLibrary' | translate}}</label>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group checkbox-inline" id="countryLibrary" (click)="toggleCheckbox($event)">
+                <input type="checkbox" class="check" [checked]="libraryCheckbox.checkbox2" name="checkbox2">
+                <label class="libraryContent">{{'screens.project-designer.iconview.suggestBlock.countryLibrary' | translate}}</label>
+              </div>
+            </div>
+            <div class="col-sm-3">
+             <img src="assets/images/projectdesigner/Copy_clicked.svg" (click)="selectAllBlocks()"><span
+             class="importSelect">{{'screens.project-designer.iconview.suggestBlock.selectAll' | translate}}</span>
+
+
+            </div>
+          </div>
+        <div> <p class="suggestedText">{{'screens.project-designer.iconview.suggestBlock.searchMsg' | translate}}</p></div>
+      <div class="row">
+          <div class="col-sm-9">
+              <input type="text" id="searchbox" [placeholder]="'screens.project-designer.iconview.Type to Search...' | translate" [(ngModel)]="searchText" (keyup)="searchTextChanged.next($event)"/>
+           <img src="assets/images/projectdesigner/header/Search.svg" 
+             class="smallIcon icon icon-header roundedCorner search-icons">
+         </div>
+      </div>
+      <div class="row">
+        <div class="scrollingHeader">
+          <mat-tree [dataSource]="dataSource1" [treeControl]="treeControl">
+
+            <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+                <mat-checkbox class="checklist-leaf-node importP" [ngClass]="{'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,
+                'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+                'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node}"
+[checked]="checklistSelection.isSelected(node)"
+(change)="checklistSelection.toggle(node);todoItemSelectionToggle(node);" draggable="true"
+(dragstart)="handleDragStart($event, node);" (dragover)="handleDragOver($event, node);"
+(drop)="handleDrop1($event, node);" (dragend)="handleDragEnd($event);">
+<p class="importBorder">
+    <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'toggle ' + node.filename"
+    (click)="expandBlock(node)" class="mat-button-wrapper mat-icon-button">
+    <mat-icon class="mat-icon-rtl-mirror">
+      {{treeControl.isExpanded(node) ? 'remove_circle_outline' : 'add_circle_outline'}}
+    </mat-icon>
+  </button>
+  
+  <span class="stackDisplay">{{node.item}}</span></p>
+</mat-checkbox>
+              
+              
+            </mat-tree-node>
+
+            <mat-tree-node *matTreeNodeDef="let node;" matTreeNodeToggle matTreeNodePadding [ngClass]="{'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,
+            'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+            'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node}">
+              <button mat-icon-button disabled class="mat-icon-button mat-button-wrapper"></button>
+              <mat-checkbox class="checklist-leaf-node" [checked]="checklistSelection.isSelected(node)"
+                (change)="checklistSelection.toggle(node);" draggable="true"
+                (dragstart)="handleDragStart($event, node);" (dragover)="handleDragOver($event, node);"
+                (drop)="handleDrop1($event, node);" (dblclick)="extendedPopup('available', node)" (dragend)="handleDragEnd($event);">
+                <span>{{node.item}}</span>
+              </mat-checkbox>
+            </mat-tree-node>
+
+
+          </mat-tree>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="row topimporterHeader ipmHeader">
+        <mat-tree [dataSource]="dataSource2" [treeControl]="treeControl" class="rightImporterScrolling">
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
+            <label class="checklist-leaf-node"
+              [ngClass]="{'drop-above': dragNodeExpandOverArea === 'above' && dragNodeExpandOverNode === node,
+                                      'drop-below': dragNodeExpandOverArea === 'below' && dragNodeExpandOverNode === node,
+                                      'drop-center': dragNodeExpandOverArea === 'center' && dragNodeExpandOverNode === node}" draggable="false"
+              (dragstart)="handleDragStart($event, node);" (dragover)="handleDragOver($event, node);"
+              (dblclick)="extendedPopup('selected', node)" (drop)="handleDrop2($event, node);"
+              (dragend)="handleDragEnd($event);">
+              <p [ngClass]="{'importBorderRight': node.id != '-1' , 'importBorderRight1': node.id == '-1' }">
+                {{node.item}}
+                <span class="importImgRight" *ngIf="node.id != -1" (click)="removeItem(node);"><img
+                    src="assets/images/projectdesigner/Remove_without hover.svg"
+                    class="smallIcon icon icon-header"><span class="importRemove">{{'screens.project-designer.iconview.suggestBlock.remove' | translate}}</span></span>
+              </p>
+            </label>
+          </mat-tree-node>
+          <mat-tree-node *matTreeNodeDef="let node; when: hasNoContent" matTreeNodePadding>
+          </mat-tree-node>
+
+        </mat-tree>
+        <span #emptyItem></span>
+
+      </div>
+    </div>
+  </div>
+  <div class="row importFooter">
+    <div class="col-sm-offset-9 col-sm-3">
+      <button nbButton type="button" class="menu-btn-cancel importCancel"
+        (click)="cancelSuggestions()"><label class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.iconview.suggestBlock.cancel' | translate}}</label></button>
+     
+     <button type="button" [disabled]="enableDisableSave"  [ngClass]="{'disableSaveButton': enableDisableSave}" (click)="addBlocks()"  class="menu-btn-save importAddButtton">{{'screens.project-designer.iconview.suggestBlock.add' | translate}}</button>
+    </div>
+
+  </div>
+</div>

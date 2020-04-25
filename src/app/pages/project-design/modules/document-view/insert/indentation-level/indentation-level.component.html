@@ -1,0 +1,42 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+<div *ngIf="isRendered">
+  <nb-card class="createAttributeForm">
+    <nb-card-header class="createTopHeader">{{'screens.project-designer.document-view.indentationLevel' | translate}}
+      <button aria-label="Close" class="close" type="button" (click)="dismiss()"><span
+          aria-hidden="true">×</span></button>
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group" *ngFor="let indentation of indentationList;let index = index;">
+            <div class="row">
+              <div class="col-sm-6">
+                <label class="custom-form-label">{{'screens.project-designer.document-view.level' | translate}}
+                  {{indentation.level}}</label>
+              </div>
+              <div class="col-sm-6">
+
+                <select class="form-control custom-form-input ddlHeight" [(ngModel)]="indentation.selectedType">
+                  <option *ngFor="let type of indentationTypes" [(ngValue)]="type">
+                    {{type}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="footerCard">
+      <nb-card-footer class="footerRightButton">
+        <button nbButton type="button" class="menu-btn-cancel createCancel" style="color:black;"
+          (click)="dismiss()"><label
+            class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="menu-btn-save createBlockSave"
+          (click)="saveIndentations()">{{'screens.project-designer.document-view.ok' | translate}}</button>
+
+      </nb-card-footer>
+    </nb-card-footer>
+  </nb-card>
+</div>

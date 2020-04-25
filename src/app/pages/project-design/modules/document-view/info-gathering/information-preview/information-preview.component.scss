@@ -1,0 +1,113 @@
+
+.myclass{
+    border-color: #696969;
+    border-width: 1px;
+    border-style: solid;
+    margin:5px 5px 5px 5px;
+    padding: 0;
+    
+}
+.previewContent{
+    padding: 0;
+    border: 1px solid #d8d8d8;
+    width: 97.5%;
+    margin: 0 20px;
+    height: calc(100vh - 325px) !important;
+
+}
+.CoverPageHeader{
+    background-color: black;
+    padding: 12px;
+    h4{
+        margin: 0;
+        font-size: 14px;
+        color:white;
+
+    }
+    
+}
+.padd-leftRight{ 
+    padding-left: 2px; padding-right: 2px;
+}
+.headerIcon {
+    border: 0.6px solid #D0D0CE;
+    overflow-y:auto;
+    padding: 10px 0;
+    height: calc(100vh - 445px) !important;
+}
+.headerIcon-table {
+    border: 0.6px solid #D0D0CE;
+    overflow:auto;
+}
+.padding0{
+    padding: 0;
+}
+.textRight{
+    text-align: right;
+}
+.smallIcon{
+    height: auto;
+    max-width: 25px;
+    margin:5px;
+}
+.icon-name {
+    margin-top: 4px;
+    color: black;
+    font-size: 9px;
+    line-height: 13px;
+}
+.progress-value {
+    background-color: #86BC25;
+    height: 7px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    transition-duration: 400ms;
+    transition-property: width, background-color;
+}
+.progress-container {
+    height: 7px;
+    border-radius: 0.17rem;
+    background-color: #f1f5f8;
+}
+.display-text{
+color: #86BC25;	
+font-size: 12px;	
+text-align: center;
+height: 15px;
+}
+
+.display-text-active{
+color:black;	
+font-size: 12px;	
+text-align: center;
+height: 15px;
+}
+
+.rect-cancel{
+    height: 35px !important;	width: 100px !important;font-size:12px;	border: 1px solid #86BC25;	border-radius: 3px;	background-color: #FFFFFF;
+}
+.canelButton{
+        height: 17px;	width: 25px;	color: #86BC25;	font-size: 12px;	line-height: 17px;	text-align: center;
+}
+.editor-heading{ 
+    font-size: 14px;
+    color: #000;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    overflow: auto;
+}
+.content-container{
+    max-height: 300px; overflow:auto;
+}
+.logoImage{
+    width:100%;
+    padding:25px 15px;
+    img{
+        width:112px;
+        height: 25px;;
+    }
+}
+.previewWrapper{
+    margin-bottom: 10px;
+}

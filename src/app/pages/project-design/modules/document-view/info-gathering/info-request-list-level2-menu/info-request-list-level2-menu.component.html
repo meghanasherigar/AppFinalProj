@@ -1,0 +1,96 @@
+<div class="container-fluid">
+   <div class="row home-menu-container templateLevel2MenuWrapper">
+      <div id="homeFilters-section" class="col-xs-12 toolbar-component-container collapsed">
+         <div class="manage-section levelWrapper" >
+            <div class="action-icon-wrapper" (click)="goCreateRequest()" id="createInfoReqIcon"
+            [ngClass] = "(infoGatheringIcons.EnableCreateInfoRequest) ? '' : 'disable-section disabledbutton' ">
+               <img src="assets/images/information_Gathering/Create_infro_request.svg" class="btnToolbar" >
+               <a class="iconColor" href="/#/pages/project-design/projectdesignMain/documentViewMain/(create-info//level2Menu:info-request-menu//topmenu:iconviewtopmenu) ">{{'screens.project-designer.iconview.InformationGathering.CreateInfoRequest' | translate}}</a>
+            </div>
+            <div id="IconVisibility" class="manage-section">
+               <div class="action-icon-wrapper" [ngClass]="{'disableResetIcons':!isBlockSlected}">
+                  <img src="assets/images/information_Gathering/pullback.svg" class="btnToolbar" (click)="pullBackPopUp();">
+                  <span class="icon-name">{{'screens.project-designer.iconview.InformationGathering.PullBack' | translate}}</span>
+               </div>
+               <div class="action-icon-wrapper"  [ngClass]="{'disableResetIcons':!isSendReminder}" >
+                  <img src="assets/images/information_Gathering/send_reminder.svg"  class="btnToolbar" (click)="sendReminderMailPopUp();">
+                  <span class="icon-name">{{'screens.project-designer.iconview.InformationGathering.SendReminder' | translate}}</span>
+               </div>
+               <div class="action-icon-wrapper" [ngClass]="{'disableResetIcons':!isBlockSlected}" (click)="deleteInfoRequests()">
+                  <img src="assets/images/information_Gathering/delete.svg"  class="btnToolbar">
+                  <span class="icon-name">{{'screens.project-designer.iconview.InformationGathering.Delete' | translate}}</span>
+               </div>
+               
+         </div>
+         <div class="manage-section clearFilter">
+         <div class="action-icon-wrapper" [ngClass]="{'disable-section disabledbutton' : (filterDisable == true)}" (click)="clearFilters()">
+            <img src="assets/images/information_Gathering/clear_filter.svg"  class="btnToolbar">
+            <span class="icon-name">{{'screens.project-designer.iconview.InformationGathering.ClearFilter' | translate}}</span>
+         </div>
+         </div>
+         <div class="filters-section" id="filterSection"  [ngClass]="{'hideFilters':show==false}"> 
+            <div class="filter-inputs-wrapper">
+               <ng-multiselect-dropdown class="filter-input " [data]="ddlAssignedTo" [placeholder]="'screens.project-designer.iconview.InformationGathering.AssignedTo' | translate"
+                  [settings]="dropdownSettings" [(ngModel)]="selectedAssignee" (onDeSelect)="onItemSelect($event)"
+                  (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event,1)"
+                  (onDeSelectAll)="onSelectAll($event,1)">
+               </ng-multiselect-dropdown>
+               <ng-multiselect-dropdown class="filter-input " [data]="ddlCoReviewers" [placeholder]="'screens.project-designer.iconview.InformationGathering.Coreviewer' | translate"
+                  [settings]="dropdownSettings" [(ngModel)]="selectedCoReviewers" (onDeSelect)="onItemSelect($event)"
+                  (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event,2)"
+                  (onDeSelectAll)="onSelectAll($event,2)">
+               </ng-multiselect-dropdown>
+               <div class="input-wrapper filter-input">
+                  <input type="text" class="form-control" id="dueDate" [placeholder]="'screens.project-designer.iconview.InformationGathering.DueDate' | translate"
+                     (bsValueChange)="onDateSelect($event, 'DueDate')" bsDaterangepicker
+                     #dpcreatedDate="bsDaterangepicker"
+                     [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+                  <label>
+                     <i>
+                        <img src="assets/images/calender.png" (click)="dpcreatedDate.show()"
+                           [attr.aria-expanded]="dpcreatedDate.isOpen" class="calender-icon"></i></label>
+               </div>
+               <ng-multiselect-dropdown class="filter-input " [data]="ddlStatus" [placeholder]="'screens.project-designer.iconview.InformationGathering.Status' | translate"
+                  [settings]="dropdownSettings" [(ngModel)]="selectedStatus" (onDeSelect)="onItemSelect($event)"
+                  (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event,3)"
+                  (onDeSelectAll)="onSelectAll($event,3)">
+               </ng-multiselect-dropdown>
+               <ng-multiselect-dropdown class="filter-input " [data]="ddlInfoRequestNames"
+                  [placeholder]="'screens.project-designer.iconview.InformationGathering.informationRequest' | translate" [settings]="dropdownSettings"
+                  [(ngModel)]="selectedInfoReqNames" (onDeSelect)="onItemSelect($event)"
+                  (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event,4)"
+                  (onDeSelectAll)="onSelectAll($event,4)">
+               </ng-multiselect-dropdown>
+               <ng-multiselect-dropdown class="filter-input " [data]="ddlUpdatedBy" [placeholder]="'screens.project-designer.iconview.InformationGathering.UpdatedBy' | translate"
+                  [settings]="dropdownSettings" [(ngModel)]="selectedUpdatedBy" (onDeSelect)="onItemSelect($event)"
+                  (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event,5)"
+                  (onDeSelectAll)="onSelectAll($event,5)">
+               </ng-multiselect-dropdown>
+               <div class="input-wrapper filter-input">
+                  <input type="text" class="form-control" id="updatedOn" [placeholder]="'screens.project-designer.iconview.InformationGathering.UpdatedOn' | translate"
+                     (bsValueChange)="onDateSelect($event, 'UpdatedOn')" bsDaterangepicker
+                     #dpcreatedDate="bsDaterangepicker"
+                     [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+                  <label>
+                     <i>
+                        <img src="assets/images/calender.png" (click)="dpcreatedDate.show()"
+                           [attr.aria-expanded]="dpcreatedDate.isOpen" class="calender-icon"></i></label>
+               </div>
+               <!-- <div class="input-wrapper filter-input">
+                  <input type="text" class="form-control searchItem" placeholder="Search" />
+               </div> -->
+            </div>
+            <div class="sectionNameWrapper">
+               <span class="sectionName">{{'screens.project-designer.iconview.InformationGathering.Actions' | translate}}</span>
+               <div class="sectionName ">{{'screens.project-designer.iconview.InformationGathering.Filter' | translate}}</div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+   {{imageName}}
+   <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+   <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+ </div>
+</div>

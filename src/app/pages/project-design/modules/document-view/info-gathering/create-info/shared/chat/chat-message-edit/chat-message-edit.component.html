@@ -1,0 +1,5 @@
+<div class="editCommentSec" [ngClass]="replyCheck()">
+    <p class="sender" *ngIf="sender || date">{{ sender }} <time>{{ date  | date:'shortTime' }}</time></p>
+    <input type="text" class="text" [(ngModel)]="msg.message"><button (click)="update(msg)" class="menu-btn-save">
+        Update</button>
+</div>

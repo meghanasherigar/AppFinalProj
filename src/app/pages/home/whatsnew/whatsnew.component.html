@@ -1,0 +1,32 @@
+<h1>{{'screens.whatsnew.labels.whatsnew_title' | translate}}</h1>
+
+<div class="container-fluid mainDiv">
+  <div class="row">
+    <div class="col-sm-6 sideMove">
+      <div id="carouselExampleIndicators" class="carousel slide whatsnew" data-ride="carousel">
+        <div class="carousel-inner" >
+          <div [ngClass]="i==0?'item active':'item'" *ngFor="let item of listOfCategories;let i = index">
+            <div id="rcorners1">
+              <span>{{item.question}}</span>
+              <br/>
+              <br/>
+              <div [innerHTML]="item.answer" class="contentScroll"></div>
+            </div>
+          </div>
+          <ol class="carousel-indicators" >
+           <li data-target="#carouselExampleIndicators"*ngFor="let item of listOfCategories;let i=index" [attr.data-slide-to]="i" [ngClass]="i==0 ? 'active':''"></li>
+          </ol>
+          <div class="skipbutton text-center"> 
+            <a (click)="skipWhatsNew()" style="cursor: pointer;">{{'screens.whatsnew.labels.skip' | translate}}</a>
+        </div>
+        </div>
+      </div>
+     
+    </div>
+    <div class="col-sm-6 text-center landing-img">
+      <div class="landingRightImg">
+        <img class="img-responsive" src="assets/images/TP_Dox_White_logo.png">
+      </div>
+    </div>
+  </div>
+</div>

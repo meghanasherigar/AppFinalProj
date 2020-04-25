@@ -1,0 +1,25 @@
+.contextmenu{
+    box-shadow: 0 0 4px #ccc;
+    position: absolute;
+    border: 1px solid #ccc;
+    font-size: 14px !important;
+    background: white;
+    padding: 4px 10px;
+    color: #181818;
+    position: fixed !important;
+}
+
+.menuItem{
+cursor: pointer;
+&:hover {
+    background: rgb(71, 70, 70) !important;
+    color: white;
+}
+}
+.ck-balloon-panel.ck-balloon-panel_caret_se ul.ck-mentions{
+    padding-left: 0 !important;
+}
+.pointer
+{
+    cursor: pointer;
+}

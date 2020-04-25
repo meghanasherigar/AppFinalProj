@@ -1,0 +1,36 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+<div class="blockProcessWrapper">
+<div class="createInfoWrapper">
+  <div class="circleWrapper">
+    <div class="circleSection containerSection">
+
+      <div class="container">
+        <ul class="progressbar">
+          <li *ngFor="let status of possibleimportBlockRoutes ;let i = index"
+            [ngClass]="currentIndex == status.id?'active':''">
+            <div [ngClass]="currentIndex == status.id?'active':''">
+              <p> {{status.name| translate}}</p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="buttonWrapper">
+    <button nbButton type="button" class="menu-btn-cancel importCancel" style="color:black;"  (click)="cancelBlockImporter()"
+    ><label class="menu-txt-cancel canclebuttonLebal">{{'screens.create-block-component.labels.Cancel' | translate}}</label></button>
+    <button (click)="goPrevious()" *ngIf="currentIndex == indexValue.two" class="previous">{{'screens.create-block-component.labels.Previous' | translate}}</button>
+    <button #nextbutton (click)="goNext()" [disabled]="" *ngIf="currentIndex == indexValue.one" class="next">{{'screens.create-block-component.labels.Next' | translate}}</button>
+    <button *ngIf="currentIndex == indexValue.two" type="submit" (click)="importBlocks()" class="menu-btn-save importAddButtton">{{'screens.create-block-component.labels.Import' | translate}}</button>
+  </div>
+  <div class="clearfix">
+
+  </div>
+</div>
+<div class="container blockimpoter">
+
+<ngx-imported-blocks [hidden]="currentIndex == indexValue.two"></ngx-imported-blocks>
+<ngx-block-importer-attributes [hidden]="currentIndex == indexValue.one"></ngx-block-importer-attributes>
+</div>
+</div>

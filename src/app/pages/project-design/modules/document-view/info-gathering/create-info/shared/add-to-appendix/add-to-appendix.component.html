@@ -1,0 +1,59 @@
+<nb-card>
+<nb-card-header class="search-header">
+    <div class="row">
+      <div class="col-xs-12">
+          <span class="header-text">Upload</span>
+        </div>
+    </div>
+</nb-card-header>
+<nb-card-body>
+<form [formGroup]="addToAppendixFrom">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="txtFirstName"> Appendix Name
+              <span class="mandatoryField">*</span>
+            </label>
+            <input type="text" formControlName="AppendixName" class="form-control manage-admin-pointer-none"
+              id="txtAppendixName" [ngClass]="{ 'is-invalid': form.AppendixName.errors }">
+            <div *ngIf="form.AppendixName.errors" class="invalid-feedback">
+              <div *ngIf="form.AppendixName.errors.required">{{'screens.project-user.Validation.Required.FirstName' | translate}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="txtLastName"> Comment
+            </label>
+            <input type="text" formControlName="Comment" class="form-control manage-admin-pointer-none"
+              id="txtComment">
+          </div>
+        </div>
+    <div class="col-sm-12 dropdown-filter-section">
+        <div class="form-group">
+            <label class="labelEntitiesTxt"> Associate with</label>
+            <div *ngIf="Show" class="selectLibrary">
+                <ng-multiselect-dropdown class="filter-input" [placeholder]="'Deliverables'" [data]="deliverablesList"
+                name="Deliverables" formControlName="Deliverables" [(ngModel)]="deliverablesList"
+                [settings]="deliverablesDropdownSetting" [disabled]="true">
+              </ng-multiselect-dropdown>
+            </div>
+            <div *ngIf="!Show" class="selectLibrary">
+                <ng-multiselect-dropdown class="filter-input" [placeholder]="'Entities'" [data]="deliverablesList"
+                name="Entities" formControlName="Entities" [(ngModel)]="deliverablesList"
+                [settings]="deliverablesDropdownSetting" [disabled]="true">
+              </ng-multiselect-dropdown>
+            </div>
+        </div>
+      </div>
+</form>
+</nb-card-body>
+<nb-card-footer class="footerCard alignRight">
+    <nb-card-footer class="footerRightButton">        
+    <button nbButton type="button" class="menu-btn-cancel" style="color:black;" 
+    (click)="dismiss()"><label class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="submit" class="menu-btn-save linkToButton" (click) = "SaveAddToAddpendix()"
+    id="btnSuggestBlocksStacks">Save</button>
+    </nb-card-footer>
+</nb-card-footer>        
+</nb-card>

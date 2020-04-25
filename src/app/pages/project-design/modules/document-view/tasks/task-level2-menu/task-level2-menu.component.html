@@ -1,0 +1,33 @@
+<div class="manage-section managedocs-section" id="manageSection">
+  <div class="manage-section">
+      <div class="action-icon-wrapper" id="CreateQuestionIcon" [ngClass]="{'disableResetIcons':!isBlockSelected}">
+          <img src=" assets/images/DocumentView/CreateBlock-active.svg" (click)="toggleCreateQuestion('toggleCreateQuestion')"
+              class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.document-view.info-gathering.create-question-label' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper " id="CreateStackIcon" [ngClass]="{'disableResetIcons':!isEnableAssignTo}">
+          <img src=" assets/images/DocumentView/CreateStack-active.svg" (click)="blockStackReview(false)"
+              class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.document-view.info-gathering.Block/StackReview' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper " id="UnStackIcon">
+          <img src=" assets/images/DocumentView/UnStack-active.svg" (click)="blockStackReview(true)"
+              class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.document-view.info-gathering.ReportReview' | translate}}</span>
+      </div>
+      <div class="action-icon-wrapper">
+        <ngx-switcher [firstValue]="false" class="customSwitch pull-right" (valueChange)="toggleQuestionList($event)"
+          [secondValue]="true" [value]="this.designerService.showOrHideQuestionList" [vertical]="false">
+        </ngx-switcher>
+        <span
+          class="dropdown-item marginTop">{{'screens.project-designer.document-view.info-gathering.showOrHideQuestion' | translate}}
+        </span>
+      </div>
+  </div>
+
+</div>
+<!-- <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+  {{imageName}}
+  <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+  <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+</div> -->

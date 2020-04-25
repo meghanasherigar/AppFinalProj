@@ -1,0 +1,94 @@
+<div class="row manageUserWrapper answerTagPage">
+  <div id="projectUserFilters-section" class="col-sm-12 toolbar-component-container" [ngClass]="{'collapsed':!show}">
+    <div class="createManageSection">
+      <div class="create-section" id="createSection">
+        <!-- <div class="action-icon-wrapper "id="createEntity" *ngIf="!IsEntityEnableFilter" 
+      [ngClass]="{'disableResetIcons':!isIconVisible}"> -->
+        <div class="action-icon-wrapper " id="createEntity" *ngIf="!IsEntityEnableFilter"
+          [ngClass]="(answerTagIcons.enableCreate) ? '' : 'disable-section disabledbutton' ">
+          <img src="assets/images/Create.png" (click)="createProject();" class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.document-view.Create' | translate}}</span>
+        </div>
+        <!-- disable-section disabledbutton -->
+        <div class="action-icon-wrapper " *ngIf="!IsEntityEnableFilter"
+          [ngClass]="(answerTagIcons.enableDelete) ? '' : 'disable-section disabledbutton' ">
+          <img src="assets/images/Delete.png" class="btnToolbar" (click)="deleteVariable();">
+          <span class="icon-name">{{'screens.project-designer.document-view.Delete' | translate}}</span>
+        </div>
+        <!-- <div class="action-icon-wrapper" id="uploadIcon" *ngIf="IsAnswerTagTabSelected">
+          <img src="assets/images/Upload.png" class="btnToolbar" (click)="upload();">
+          <span class="icon-name">{{'screens.project-designer.document-view.Upload' | translate}}</span>
+        </div> -->
+        <div class="action-icon-wrapper" id="downloadIcon" *ngIf="!IsAnswerTagTabSelected">
+          <img src="assets/images/Download.png" class="btnToolbar" (click)="downloadVariable();">
+          <span class="icon-name">{{'screens.project-designer.document-view.Download' | translate}}</span>
+        </div>        
+        <div class="action-icon-wrapper" id="clearFilterIcon" [ngClass]="{'disableResetIcons':!isClearFilterVisible}">
+          <img src="assets/images/ClearFilter.png" class="btnToolbar" (click)="clearFilters()">
+          <span class="icon-name">{{'screens.project-designer.document-view.ClearFilter' | translate}}</span>
+        </div>
+        <span class="section-name">{{'screens.project-designer.document-view.Actions' | translate}}</span>
+      </div>
+      <div id="filterImg" class="filters-section answertagVevel2">
+        <div class="filter-inputs-wrapper" *ngIf="IsEntityEnableFilter">
+          <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-designer.document-view.LegalEntityName' | translate" [data]="LegalEntityNameList"
+            [(ngModel)]="selectedLegalEntityNameItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+            (onDeSelect)="onItemSelect($event)" (onSelectAll)="onSelectAllLegalEntityName($event)"
+            (onDeSelectAll)="onSelectAllLegalEntityName($event)">
+          </ng-multiselect-dropdown>
+          <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-designer.document-view.country' | translate" [data]="CountryList"
+            [(ngModel)]="selectedCountryItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+            (onDeSelect)="onItemSelect($event)" (onSelectAll)="onSelectAllCountry($event)"
+            (onDeSelectAll)="onSelectAllCountry($event)">
+          </ng-multiselect-dropdown>
+          <ng-container *ngIf="!IsSystemTags">
+            <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-designer.document-view.ShortName' | translate" [data]="ShortNameList"
+                          [(ngModel)]="selectedShortNameItems"  [settings]="dropdownSettings"
+               (onSelect)="onItemSelect($event)"             (onDeSelect)="onItemSelect($event)"
+               (onSelectAll)="onSelectAllShortName($event)"             (onDeSelectAll)="onSelectAllShortName($event)">
+                        </ng-multiselect-dropdown>
+          </ng-container>
+          <div class="input-wrapper filter-input">
+            <input type="text" class="form-control" [placeholder]="'screens.project-designer.document-view.TaxableYearEnd' | translate" id="eCreationDate"
+              (bsValueChange)="onDateSelect($event)" bsDaterangepicker #dpeCreationDate="bsDaterangepicker"
+              [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+            <label>
+              <i><img src="assets/images/calender.png" (click)="dpeCreationDate.show()"
+                  [attr.aria-expanded]="dpeCreationDate.isOpen"></i></label>
+          </div>
+        </div>
+        <div class="filter-inputs-wrapper" *ngIf="!IsEntityEnableFilter">
+          <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.project-designer.document-view.Variable' | translate" [data]="VariableList"
+            [(ngModel)]="selectedVariableItems" [settings]="dropdownSettings" (onDeSelect)="onProjectItemSelect($event)"
+            (onSelect)="onProjectItemSelect($event)" (onSelectAll)="onSelectAllVariable($event)"
+            (onDeSelectAll)="onSelectAllVariable($event)">
+          </ng-multiselect-dropdown>
+          <ng-multiselect-dropdown class="filter-input form-group" [placeholder]="'screens.project-designer.document-view.Value' | translate" [data]="ValueList"
+            [(ngModel)]="selectedValueItems" [settings]="dropdownSettings" (onDeSelect)="onProjectItemSelect($event)"
+            (onSelect)="onProjectItemSelect($event)" (onSelectAll)="onSelectAllValue($event)"
+            (onDeSelectAll)="onSelectAllValue($event)">
+          </ng-multiselect-dropdown>
+        </div>
+        <span class="section-name">{{'screens.project-designer.document-view.Filters' | translate}}</span>
+      </div>
+      <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+        {{imageName}}
+        <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+        <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+      </div>
+    </div>
+  </div>
+
+  <nb-card>
+    <nb-card-body>
+      <nb-tabset fullWidth class="custom-tab-width" (changeTab)="selectedTab($event)">
+        <nb-tab [tabTitle]="'screens.project-designer.document-view.SystemTags' | translate">
+          <ngx-manage-answer></ngx-manage-answer>
+        </nb-tab>
+        <nb-tab [tabTitle]="'screens.project-designer.document-view.AnswerTags' | translate">
+          <ngx-answer-tag></ngx-answer-tag>
+        </nb-tab>
+      </nb-tabset>
+
+    </nb-card-body>
+  </nb-card>

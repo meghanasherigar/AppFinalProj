@@ -1,0 +1,184 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader> 
+<form [formGroup]="transactionForm" ngxUiLoaderBlurred>
+  <div formArrayName="transactions" class="attributeView deliverableAttributeView">
+    <div class="divParent">
+      <div class="headerTitle">
+        <p class="titleText">{{'screens.project-setup.transaction.transaction-create.DataSheet' | translate}}</p>
+        <p class="closeBtn" (click)="onCloseDatasheet()"> X</p>
+
+        
+      </div>
+      <div class="row header">
+        <div class=" attributeSubHeader"> {{'screens.project-setup.transaction.transaction-create.LegalName' | translate}}<span class="mandatoryField">*</span>
+        </div>
+        <div class=" attributeSubHeader"> {{'screens.project-setup.transaction.transaction-create.PlaceHolderLegalCountryName' | translate}}
+        </div>
+        <div class=" attributeSubHeader"> Counterparty {{'screens.project-setup.transaction.transaction-create.LegalName' | translate}}
+        </div>
+        <div class=" attributeSubHeader">{{'screens.project-setup.transaction.transaction-create.PlaceHolderCounterPartyCountryName' | translate}}
+        </div>
+        <div class=" attributeSubHeader"> {{'screens.project-setup.transaction.transaction-create.TransactionType' | translate}}
+        </div>
+        <div class=" attributeSubHeader"> Counterparty {{'screens.project-setup.transaction.transaction-create.TransactionType' | translate}}
+        </div>
+        <div class=" attributeSubHeader"> {{'screens.project-setup.transaction.transaction-create.ProjectTransactionType' | translate}}
+        </div>
+        <div class=" attributeSubHeader"> Counterparty {{'screens.project-setup.transaction.transaction-create.ProjectTransactionType' | translate}}
+        </div>
+        <div class=" attributeSubHeader"> {{'screens.project-setup.transaction.transaction-create.TransactionTaxableYearEnd' | translate}}<span class="mandatoryField">*</span>
+        </div>
+        <div class=" attributeSubHeader"> {{'screens.project-setup.transaction.transaction-create.TransactionCurrency' | translate}}
+        </div>
+        <div class=" attributeSubHeader"> {{'screens.project-setup.transaction.transaction-create.TransactionAmount' | translate}}
+        </div>
+        <div class=" attributeSubHeader"> Counterparty {{'screens.project-setup.transaction.transaction-create.TransactionTaxableYearEnd' | translate}}
+        </div>
+        <div class=" attributeSubHeader"> Counterparty {{'screens.project-setup.transaction.transaction-create.TransactionCurrency' | translate}}
+        </div>
+        <div class=" attributeSubHeader"> Counterparty {{'screens.project-setup.transaction.transaction-create.TransactionAmount' | translate}}
+        </div>
+        <div class=" attributeSubHeader"> {{'screens.project-setup.transaction.transaction-create.TransactionInScope' | translate}}<span class="mandatoryField">*</span>
+        </div>
+        <div class=" attributeSubHeader"> Counterparty {{'screens.project-setup.transaction.transaction-create.TransactionInScope' | translate}}
+        </div>
+      </div>
+      <div class="entityWrapper">
+        <div *ngFor="let tr of transactions.controls;let i=index" [formGroupName]="i" class="itemWrapper" [ngClass]="{'lowhighlight':!tr.valid}">
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input" formControlName="legalEntityName"
+              (change)="legalNameOnChange($event,tr,i)" [ngClass]="{'highlight':!transactions.controls[i].get('legalEntityName').valid}" >
+              <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+              <option *ngFor="let name of entityList" value={{name.entityId}}>
+                {{name.legalEntityName}}
+              </option>
+            </select>
+          </div>
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input" formControlName="legalEntityCountry" [ngClass]="{'highlight':!transactions.controls[i].get('legalEntityCountry').valid,'disable-section': legalEntityCountryList[i].length===1,'disabledbutton': legalEntityCountryList[i].length===1}"
+            (change)="updateTransaction($event,tr,i)" >
+              <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+              <option *ngFor="let c of legalEntityCountryList[i]" value={{c.Id}}>
+                {{c.Country}}
+              </option>
+            </select>
+          </div>
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input" formControlName="counterpartyLegalEntityName" [ngClass]="{'highlight':!transactions.controls[i].get('counterpartyLegalEntityName').valid}"
+              (change)="counterpartyLegalNameOnChange($event,tr,i)" >
+              <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+              <option *ngFor="let name of entityList" value={{name.entityId}}>
+                {{name.legalEntityName}}
+              </option>
+            </select>
+          </div>
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input" formControlName="counterPartyCountry" (change)="updateTransaction($event,tr,i)"
+              [ngClass]="{ 'disable-section': counterPartyCountryList[i].length===1,'disabledbutton': counterPartyCountryList[i].length===1,'highlight':!transactions.controls[i].get('counterPartyCountry').valid }" >
+              <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+              <option *ngFor="let c1 of counterPartyCountryList[i]" value={{c1.Id}}>
+                {{c1.Country}}
+              </option>
+            </select>
+          </div>
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input" formControlName="transactionType"
+              (change)="transactionTypeOnChange($event,tr,i)">
+              <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+              <option *ngFor="let trans of transactionTypeList" value={{trans.id}}>
+                {{trans.transactionType}}
+              </option>
+            </select>
+          </div>
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input" formControlName="counterpartyTransactionType"
+              (change)="counterpartyTransactionTypeOnChange($event,tr,i)">
+              <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+              <option *ngFor="let trans of transactionTypeList" value={{trans.id}}>
+                {{trans.transactionType}}
+              </option>
+            </select>
+          </div>
+          <div class=" blockAttributes">
+            <input type="text" class="form-control" placeholder=""
+            (focusout)="updateTransaction($event,tr,i);"  
+            [ngClass]="{'highlight':!transactions.controls[i].get('projectTransactionTypeName').valid}"
+              formControlName="projectTransactionTypeName">
+          </div>
+          <div class=" blockAttributes">
+            <input type="text" class="form-control" placeholder=""
+            (focusout)="updateTransaction($event,tr,i);" 
+            [ngClass]="{'highlight':!transactions.controls[i].get('counterpartyProjectTransactionTypeName').valid}"
+              formControlName="counterpartyProjectTransactionTypeName">
+          </div>
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input" formControlName="entityTransactionTaxableYearEnd" [ngClass]="{'highlight':!transactions.controls[i].get('entityTransactionTaxableYearEnd').valid}"
+            (change)="updateTransaction($event,tr,i)"
+             [ngClass]="{ 'disable-section': transactionTaxableYearEndList[i].length===1,'disabledbutton': transactionTaxableYearEndList[i].length===1 }">
+              <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+              <option *ngFor="let year of transactionTaxableYearEndList[i]" value={{year.year}}>
+                {{year.year}}
+              </option>
+            </select>
+          </div>
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input" (change)="updateTransaction($event,tr,i);" 
+                  formControlName="entityTransactionCurrency">
+              <option value="">{{'screens.project-setup.transaction.transaction-create.SelectCurrency' | translate}}</option>
+              <option *ngFor="let cur of transactionCurrency" [ngValue]="cur.id">
+                {{cur.currency}}
+              </option>
+            </select>
+          </div>
+          <div class=" blockAttributes">
+            <input type="text"  class="form-control" formControlName="entityTransactionAmount"
+            [ngClass]="{'highlight':!transactions.controls[i].get('entityTransactionAmount').valid}"
+              (focusout)="updateTransaction($event,tr,i);" >
+          </div>
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input" formControlName="counterpartyTransactionTaxableYearEnd" (change)="updateTransaction($event,tr,i)"
+              [ngClass]="{ 'disable-section': counterPartyTaxableYearEndList[i].length===1,'disabledbutton': counterPartyTaxableYearEndList[i].length===1,'highlight':!transactions.controls[i].get('counterpartyTransactionTaxableYearEnd').valid }" >
+              <option value=''>{{'screens.project-setup.transaction.transaction-create.Select' | translate}}</option>
+              <option *ngFor="let year1 of counterPartyTaxableYearEndList[i]" value={{year1.year}}>
+                {{year1.year}}
+              </option>
+            </select>
+          </div>
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input" (change)="updateTransaction($event,tr,i);" 
+                  formControlName="counterpartyTransactionCurrency">
+              <option value="">{{'screens.project-setup.transaction.transaction-create.SelectCurrency' | translate}}</option>
+              <option *ngFor="let cur of transactionCurrency" [ngValue]="cur.id">
+                {{cur.currency}}
+              </option>
+            </select>
+          </div>
+          <div class=" blockAttributes">
+            <input type="text"  class="form-control" formControlName="counterpartyTransactionAmount"
+            [ngClass]="{'highlight':!transactions.controls[i].get('counterpartyTransactionAmount').valid}"
+              (focusout)="updateTransaction($event,tr,i);" >
+          </div>
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input ddlHeight" formControlName="transactionInScope"
+            (change)="updateTransaction($event,tr,i);" >
+              <option value="Yes">{{'screens.project-designer.document-view.info-request.Yes' | translate}}</option>
+              <option value="No">{{'screens.project-designer.document-view.info-request.No' | translate}}</option> 
+            </select>
+          </div>
+          <div class=" blockAttributes">
+            <select class="form-control custom-form-input ddlHeight" formControlName="counterpartyTransactionInScope"
+            (change)="updateTransaction($event,tr,i);" [ngClass]="{'highlight':!transactions.controls[i].get('counterpartyTransactionInScope').valid}">
+            <option value=""></option>
+              <option value="Yes">{{'screens.project-designer.document-view.info-request.Yes' | translate}}</option>
+              <option value="No">{{'screens.project-designer.document-view.info-request.No' | translate}}</option> 
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="saveButton">
+        <button  class="menu-btn-save" (click)="onSaveDatasheet()" type="submit">{{'screens.project-setup.transaction.transaction-create.Save&Close' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</form>    

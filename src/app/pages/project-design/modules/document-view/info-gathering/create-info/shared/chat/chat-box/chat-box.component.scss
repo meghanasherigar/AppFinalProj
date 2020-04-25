@@ -1,0 +1,35 @@
+.chatBoxContainer{
+    width: 97%;
+    min-height: 110px;
+    margin: 20px 10px 12px 30px;
+    background: white;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    max-height: 235px;
+    padding: 10px;
+   position: relative;
+   
+}
+.chatBoxSec{
+    ul{
+        border-bottom: 1px solid #ccc;
+    }
+    
+}
+.emptyCommentBox{
+    margin-left: 40%;
+    margin-top: 31px;
+    font-size: large;
+    color: grey;
+}
+
+.commentInputSec{
+    margin-left: 30px;
+    width: 97%;
+    input{
+        width: 42%;
+    padding: 8px 10px;
+    margin-right: 10px;
+    }
+}
+

@@ -1,0 +1,409 @@
+<div class="container-fluid">
+  <div class="row home-menu-container templateLevel2MenuWrapper">
+    <div id="homeFilters-section" class="col-xs-12 toolbar-component-container collapsed">
+      <div class="manage-section pagesetup-section">
+        <div class="action-icon-wrapper" id="marginIcon" [nbPopover]="pageMargin" nbPopoverPlacement="bottom"
+          [ngClass]="toolbarIcons.enableMargins ? '' : 'disable-section'">
+          <img src="assets/images/Toolbar/active/margin.svg" class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.document-view.Margin' | translate}}</span>
+        </div>
+      <div class="action-icon-wrapper" id="sizeIcon" [nbPopover]="pageLayoutSize" nbPopoverPlacement="bottom"
+        [ngClass]="toolbarIcons.enableSize ? '' : 'disable-section'">
+        <img src="assets/images/Toolbar/active/size.svg" class="btnToolbar">
+        <span class="icon-name">{{'screens.project-designer.document-view.Size' | translate}}</span>
+
+      </div>
+        <div class="action-icon-wrapper" id="orrientationIcon" [nbPopover]="pageOrientation" nbPopoverPlacement="bottom"
+          [ngClass]="toolbarIcons.enableOrientation ? '' : 'disable-section'">
+          <img src="assets/images/Toolbar/active/orientation.svg" class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.document-view.Orientation' | translate}}</span>
+        </div>
+        <ng-template #pageMargin>
+          <div class="MarginOptPopup">
+            <div class="orientationBox" (click)="selectMargin(marginStyles.normal)">
+              <table>
+                <tr>
+                  <td [ngClass]="designerService.currentMarginStyle === marginStyles.normal ? 'highlight':''">
+                    <img src="assets/images/Toolbar/active/columns.svg">
+                  </td>
+                  <td>
+                    <span>{{'screens.project-designer.document-view.Normal' | translate}}
+                      <table>
+                        <tr>
+                          <td>{{'screens.project-designer.document-view.Top' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginModerate' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.Left' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginModerate' | translate}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{'screens.project-designer.document-view.Bottom' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginModerate' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.Right' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginModerate' | translate}}</td>
+                        </tr>
+                      </table></span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="orientationBox" (click)="selectMargin(marginStyles.narrow)">
+              <table>
+                <tr>
+                  <td [ngClass]="designerService.currentMarginStyle === marginStyles.narrow ? 'highlight':''">
+                    <img src="assets/images/Toolbar/active/columns.svg">
+                  </td>
+                  <td>
+                    <span>{{'screens.project-designer.document-view.Narrow' | translate}}
+                      <table>
+                        <tr>
+                          <td>{{'screens.project-designer.document-view.Top' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginNarrow' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.Left' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginNarrow' | translate}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{'screens.project-designer.document-view.Bottom' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginNarrow' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.Right' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginNarrow' | translate}}</td>
+                        </tr>
+                      </table></span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="orientationBox" (click)="selectMargin(marginStyles.moderate)">
+              <table>
+                <tr>
+                  <td [ngClass]="designerService.currentMarginStyle === marginStyles.moderate ? 'highlight':''">
+                    <img src="assets/images/Toolbar/active/columns.svg">
+                  </td>
+                  <td>
+                    <span>{{'screens.project-designer.document-view.Moderate' | translate}}
+                      <table>
+                        <tr>
+                          <td>{{'screens.project-designer.document-view.Top' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginModerate' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.Left' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginNormal' | translate}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{'screens.project-designer.document-view.Bottom' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginModerate' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.Right' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginNormal' | translate}}</td>
+                        </tr>
+                      </table></span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="orientationBox" (click)="selectMargin(marginStyles.wide)">
+              <table>
+                <tr>
+                  <td [ngClass]="designerService.currentMarginStyle === marginStyles.wide ? 'highlight':''">
+                    <img src="assets/images/Toolbar/active/columns.svg">
+                  </td>
+                  <td>
+                    <span>{{'screens.project-designer.document-view.Wide' | translate}}
+                      <table>
+                        <tr>
+                          <td>{{'screens.project-designer.document-view.Top' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginModerate' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.Left' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginWide' | translate}}</td>
+                        </tr>
+                        <tr>
+                          <td>{{'screens.project-designer.document-view.Bottom' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginModerate' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.Right' | translate}}</td>
+                          <td>{{'screens.project-designer.document-view.MarginWide' | translate}}</td>
+                        </tr>
+                      </table></span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="orientationBox" (click)="selectMargin(marginStyles.custom)"
+              [ngClass]="designerService.currentMarginStyle === marginStyles.custom ? 'highlight':''">
+              {{'screens.project-designer.document-view.Custom' | translate}}
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #pageOrientation>
+          <div>
+            <div class="orientationBox" (click)="selectOrientation($event)">
+              <img src="assets/images/Toolbar/active/columns.svg">
+              <span>{{'screens.project-designer.document-view.Portrait' | translate}}</span>
+            </div>
+            <div class="orientationBox" (click)="selectOrientation($event)">
+              <img src="assets/images/Toolbar/active/columns.svg">
+              <span>{{'screens.project-designer.document-view.Landscape' | translate}}</span>
+            </div>
+          </div>
+        </ng-template>
+
+        <div class="section-Name  alignCenter">
+          <span>{{'screens.project-designer.document-view.sectionText.PageSetup' | translate}}</span>
+        </div>
+      </div>
+
+      <div class="manage-section">
+        <div class="action-icon-wrapper" id="pageBorderIcon"
+          [ngClass]="toolbarIcons.enablePageBorder ? '' : 'disable-section'" [nbPopover]="pageborder"
+          nbPopoverPlacement="bottom">
+          <img src="assets/images/Toolbar/active/page-boarder.svg" class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.document-view.PageBoarder' | translate}}</span>
+        </div>
+
+        <ng-template #pageborder>
+          <div class="page-Border">
+            <h6>{{'screens.project-designer.document-view.Style' | translate}}:</h6>
+            <div class="border-style">
+              <div [ngClass]="selectedBasicStyle == lineStyles[0] ? 'borderHighlight' : ''">
+                <span (click)="setBorder('none')">{{'screens.project-designer.document-view.None' | translate}}</span>
+              </div>
+              <div *ngFor="let borderStyle of borderStyles;" (click)="setBorder(borderStyle)"
+                [ngClass]="borderStyle == selectedBasicStyle ? 'borderHighlight' : ''">
+                <span [ngStyle]="{ border: borderStyle }"></span>
+              </div>
+            </div>
+
+            <h6>{{'screens.project-designer.document-view.Color' | translate}}:</h6>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [disabled]="disableStyleFields"
+                [ngStyle]="{ background: selectedBorderColor }">
+              </button>
+              <div class="dropdown-menu colorPalletBox" aria-labelledby="dropdownMenuButton">
+                <button class="colorPalletBox" *ngFor="let color of colors" class="colorButtons"
+                  [ngStyle]="{ background: color }" (click)="setPageBorderColor(color)">
+                </button>
+                <button (click)="toggleDefineColors()" class="menu-btn-save">Define Colors</button>
+              </div>
+            </div>
+
+            <h6>{{'screens.project-designer.document-view.Width' | translate}}:</h6>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [disabled]="disableStyleFields">
+                <div *ngIf="isWidthSelected" class="BorderwidthStyle">
+                  <span class="selectedBorderStyle" [ngStyle]="{ border: selectedBorder }"></span>
+                </div>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <div *ngFor="let widthStyle of selectedBorderWidthStyles;"
+                  (click)="setBorderWidth(widthStyle.borderWidth)">
+                  <div class="BorderwidthStyle">
+                    <span class="selectedBorderStyle"
+                      [ngStyle]="{ border: widthStyle.borderWidth, cursor : 'pointer' }"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h6>{{'screens.project-designer.document-view.AppliedTo' | translate}}:</h6>
+            <div class="borderTypeCheckbox" *ngFor="let type of borderTypes">
+              <input type="checkbox" (change)="setBorderType(type, $event)" [ngModel]="isChecked(type)"
+                [disabled]="disableStyleFields">
+              <span>{{ type }}</span>
+            </div>
+
+            <div class="buttonGroup">
+              <button type="submit" class="menu-btn-save"
+                (click)="openSaveConfirmDialog()">{{'screens.home.labels.Save' | translate}}</button>
+            </div>
+          </div>
+
+
+        </ng-template>
+
+        <!-- Page Color -->
+        <div class="headerButton action-icon-wrapper" id="pageColorIcon" [nbPopover]=" pageColorRefBox"
+          nbPopoverPlacement="bottom" [ngClass]="toolbarIcons.enableColor ? '' : 'disable-section'">
+          <img class="btnToolbar" src=" assets/images/DocumentView/Publish-active.svg">
+          <span class="icon-name">{{'screens.project-designer.document-view.PageColor' | translate}}</span>
+        </div>
+        <!-- <div class="headerButton action-icon-wrapper" id="pageSizeIcon" [nbPopover]="pageLayoutSize"
+          nbPopoverPlacement="bottom" [ngClass]="toolbarIcons.enableColor ? '' : 'disable-section'">
+          <img class="btnToolbar" src=" assets/images/DocumentView/Publish-active.svg">
+          <span class="icon-name">{{'screens.project-designer.document-view.PageSize' | translate}}</span>
+        </div> -->
+        <ng-template #pageLayoutSize>
+          <div class="pageLayoutSize">
+            <ul style="cursor: pointer;">
+              <li (click)="selectPageSize($event)">
+                <a>
+                  <h5>{{'screens.project-designer.document-view.Letter' | translate}}</h5>
+                </a>
+              </li>
+              <p style="pointer-events: none;">{{'screens.project-designer.document-view.LetterSize' | translate}} </p>
+              <li (click)="selectPageSize($event)">
+                <a>
+                  <h5>{{'screens.project-designer.document-view.Legal' | translate}}</h5>
+                </a>
+              </li>
+              <p>{{'screens.project-designer.document-view.LegalSize' | translate}} </p>
+              <li (click)="selectPageSize($event)">
+                <a>
+                  <h5>{{'screens.project-designer.document-view.A5' | translate}}</h5>
+                </a>
+              </li>
+              <p>{{'screens.project-designer.document-view.A5Size' | translate}} </p>
+              <li (click)="selectPageSize($event)">
+                <a>
+                  <h5>{{'screens.project-designer.document-view.A4' | translate}}</h5>
+                </a>
+              </li>
+              <p>{{'screens.project-designer.document-view.A4Size' | translate}} </p>
+              <li (click)="selectPageSize($event)">
+                <a>
+                  <h5>{{'screens.project-designer.document-view.A3' | translate}}</h5>
+                </a>
+              </li>
+              <p>{{'screens.project-designer.document-view.A3Size' | translate}} </p>
+              <li (click)="selectPageSize($event)">
+                <a>
+                  <h5>{{'screens.project-designer.document-view.B5' | translate}}</h5>
+                </a>
+              </li>
+              <p>{{'screens.project-designer.document-view.B5Size' | translate}} </p>
+            </ul>
+
+          </div>
+        </ng-template>
+        <!-- <div class="action-icon-wrapper">
+          <img class="btnToolbar" src=" assets/images/DocumentView/Publish-active.svg" (click)="waterMarkPopUp()" />
+          <span class="icon-name ">WaterMark</span>
+        </div> -->
+        <ng-template #pageColorRefBox>
+          <div class="colorbox">
+            <div class="pagecolorHeading">
+              <button type="button" class="noColorBtn" (click)="selectTheme(null)">No Color</button>
+              <h5>{{'screens.project-designer.document-view.ThemeColors' | translate}}</h5>
+            </div>
+            <div class="colorPalletBox">
+              <button *ngFor="let color of colors" class="colorButtons" [ngStyle]="{ background: color }"
+                (click)="selectTheme(color)"></button>
+            </div>
+          </div>
+        </ng-template>
+
+        <div class="action-icon-wrapper" id="WaterMarkIcon"
+          [ngClass]="toolbarIcons.enableWaterMark ? '' : 'disable-section'">
+          <img src="assets/images/Toolbar/active/watermark.svg" class="btnToolbar" (click)="waterMarkPopUp()">
+          <span class="icon-name">{{'screens.project-designer.document-view.WaterMark' | translate}}</span>
+        </div>
+        <div class="section-Name ">
+          <span>{{'screens.project-designer.document-view.sectionText.PageBackground' | translate}}</span>
+        </div>
+        <div class="action-icon-wrapper" id="ParagraphSpacingIcon"
+        [ngClass]="toolbarIcons.enableParagraphSpacing ? '' : 'disable-section'">
+          <img src="assets/images/Toolbar/active/page-boarder.svg" class="btnToolbar" (click)="ParagraphSpacing()">
+          <span class="icon-name">{{'screens.project-designer.document-view.ParagraphSpacing' | translate}}</span>
+        </div>
+      </div>
+      <div class="viewSection manage-section">
+        <!-- <div id="rulerChkBox" [ngClass]="toolbarIcons.enableRuler ? '' : 'disable-section'">
+          <label class="checkbox-inline custom-form-label">
+            <input type="checkbox">
+            {{'screens.project-designer.document-view.Ruler' | translate}}
+          </label>
+        </div> -->
+        <div id="navigationPaneChkBox" [ngClass]="toolbarIcons.enableNavigationPane ? '' : 'disable-section'">
+          <label class="checkbox-inline custom-form-label">
+            <input #navigateCheckBox id="navigateCheckBox" type="checkbox" [checked]="isNavigationPaneChecked"
+              (change)="checkValue(navigateCheckBox.checked)">
+            {{'screens.project-designer.document-view.NavigationPane' | translate}}
+          </label>
+        </div>
+        <div class="section-Name ">
+          <span> {{'screens.project-designer.document-view.View' | translate}}</span>
+        </div>
+      </div>
+      <div class="styleSection manage-section" id="styleSection"
+        [ngClass]="toolbarIcons.enableStyleSection ? '' : 'disable-section'">
+        <div class="styleSelectedWrapper">
+          <div class="styleSelected">
+            <div class="col-sm-10" [nbPopover]="layoutStylePopOver" id="layoutStylePopOver" nbPopoverPlacement="bottom"
+              nbPopoverTrigger="noop">
+              {{selectedLayoutStyle.layoutName}}
+              <div class="bottomBorder">
+                {{ selectedLayoutStyle.layoutName == '' ? '' : (selectedLayoutStyle.isDefault ? ('screens.project-designer.document-view.default' | translate) : ('screens.project-designer.document-view.custom' | translate)) }}
+              </div>
+            </div>
+            <div class="col-sm-2">
+            </div>
+          </div>
+        </div>
+
+        <div class="styleSelectionTypesSection" *ngIf="isStyleRendered">
+          <div class="styleType truncate" 
+            *ngFor="let selectedStyle of selectedLayoutStyle.styles" [contextMenu]="basicMenu"
+            [contextMenuSubject]="selectedStyle">
+            <span
+              [ngStyle]="selectedStyle.formattedStyleProperty">{{'screens.project-designer.document-view.sampleText' | translate}}</span>
+            <div class="bottomBorder">
+              {{(!selectedStyle.name || selectedStyle.name == null || selectedStyle.name == '') ? selectedStyle.styleOn : selectedStyle.name}}
+            </div>
+          </div>
+        </div>
+        <div class="styleSelectionTypesSection" *ngIf="!isStyleRendered"></div>
+        <div class="section-Name ">
+          <span>{{'screens.project-designer.document-view.sectionText.Styles' | translate}}</span>
+        </div>
+      </div>
+      <ng-template #layoutStylePopOver>
+        <div class="styleSection manage-section styleSectionPopover" id="styleSection"
+          [ngClass]="toolbarIcons.enableStyleSection ? '' : 'disable-section'">
+          <div class="styleSelected" [ngClass]="layout.id == selectedLayoutStyle.id ? 'active-layout-style' : ''" *ngFor="let layout of layoutStyles" (click)="setLayoutStyle(layout.id)">
+            <div class="col-sm-10" *ngIf="layout.layoutName != '' && !layout.isDefault" [contextMenu]="basicMenu1"
+              [contextMenuSubject]="layout">
+              {{layout.layoutName}}
+              <div class="bottomBorder">
+                {{'screens.project-designer.document-view.custom' | translate}}
+              </div>
+            </div>
+            <div class="col-sm-10" *ngIf="layout.layoutName != '' && layout.isDefault">
+              {{layout.layoutName}}
+              <div class="bottomBorder">
+                {{'screens.project-designer.document-view.default' | translate}}
+              </div>
+            </div>
+            <div class="col-sm-2">
+            </div>
+          </div>
+          <div class="styleSelected" (click)='addNewStylePanel()'>
+            <div class="col-sm-10">
+              <img src="assets/images/manageLibrary/CreateBlock-active.svg" class="createNewStyle">
+              <div class="bottomBorder">
+                {{'screens.project-designer.document-view.createNew' | translate}}
+              </div>
+            </div>
+            <div class="col-sm-2">
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <div class="manage-section stylePanelSection">
+        <div class="action-icon-wrapper" id="stylePanelIcon"
+          [ngClass]="toolbarIcons.enableStylePanel ? '' : 'disable-section'" (click)='showStylePanel(selectedLayoutStyle.id)'>
+          <img src="assets/images/Toolbar/active/style-pannel.svg" class="btnToolbar">
+          <span class="icon-name">{{'screens.project-designer.document-view.StylePannel' | translate}}</span>
+        </div>
+      </div>
+      <context-menu #basicMenu>
+        <ng-template contextMenuItem (execute)="openFormattingOptionsPopup($event.item)" [enabled]="isLayoutStyleEnabled">
+          {{'screens.project-designer.document-view.modify' | translate}}
+        </ng-template>
+      </context-menu>
+      <context-menu #basicMenu1>
+        <ng-template contextMenuItem (execute)="showStylePanel($event.item.id)">
+          {{'screens.project-designer.document-view.modify' | translate}}
+        </ng-template>
+        <ng-template contextMenuItem (execute)="removeStyle($event.item)">
+          {{'screens.project-designer.document-view.remove' | translate}}
+        </ng-template>
+      </context-menu>
+    </div>
+  </div>
+</div>

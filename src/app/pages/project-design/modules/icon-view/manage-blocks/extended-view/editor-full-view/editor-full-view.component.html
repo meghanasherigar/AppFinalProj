@@ -1,0 +1,80 @@
+<div class="editor-loader"> 
+<ngx-ui-loader [loaderId]='loaderId'
+ [bgsPosition]="loaderPosition"
+  [bgsColor]="loaderColor"></ngx-ui-loader>
+  </div>
+<nb-card class="" ngxUiLoaderBlurred>
+  <nb-card-body class="document-full-viewBody padd-leftRight border-full " style="border: 0px"
+    [ngClass]="designerService.isDeliverableSection?'when-milestone':''" (click)="hideContextMenu()">
+    <h1 class="{{waterMarkOrientation}}" [ngStyle]="setWaterMarkStyle()">
+      {{waterMarkprop.Text }}
+    </h1>
+    <div id="parentDiv" class="content-container " infiniteScroll [ngStyle]="{background: pageColor}">
+      <div *ngIf="headerShow" class="headerEditor">
+        <div class="" id="{{'headerEditor'}}" [innerHtml]="headerText | safeHtml">
+        </div>
+      </div> 
+      <ng-container *ngFor="let blockContent of flatView;let i = index">
+        <div *ngIf="!blockContent.isStack" id="contenteditor" >
+          <span heading [innerHTML]="blockContent.indentation | safeHtml" class="editorIndentation"></span>
+          <div class="editor-heading" id="{{'editor_title_' + i}}" 
+          [ngClass]="[LibraryFormat?'LibraryFormatHeader':'indexStyle'+ blockContent.indentation.split('.').length,canEdit ? '' : 'disable-edit']" 
+           [innerHTML]="blockContent.documentTitle | safeHtml"
+            (focusout)="BlockTitleEditing($event, i)" (focusin)="BlockFocusIn($event, i)" (blur)="onBlurMethod(i)"
+            (dblclick)="formatPainter(i);" 
+            (click)="formatPainter(i);" 
+            (mouseup)="formatPainter(i);">
+            </div>
+          <ng-container *ngIf="blockContent.content"> 
+            <div class="{{'editor_content'}}" (contextmenu)="contextMenu($event)"
+            [ngClass]="[LibraryFormat?'LibraryFormatBody':'indexContent' + blockContent.indentation.split('.').length, (canEdit && !blockContent.isAppendixBlock) ? '' : 'disable-edit']"
+              id="{{'editor' + i}}" [innerHTML]="blockContent.content | safeHtml" (focusout)="BlockEditing($event, i)"
+              (focusin)="BlockFocusIn($event, i)" (blur)="onBlurMethod(i)"
+              (dblclick)="formatPainter(i);" 
+              (click)="formatPainter(i);" 
+              (mouseup)="formatPainter(i);"></div>
+          </ng-container>
+          <ng-container *ngIf="!blockContent.content">
+            <div class="{{'editor_subcontent'}}"
+            [ngClass]="[LibraryFormat?'LibraryFormatBody':'indexSubContent' + blockContent.indentation.split('.').length,(canEdit && !blockContent.isAppendixBlock) ? '' : 'disable-edit']"
+               id="{{'editor' + i}}" (contextmenu)="contextMenu($event)" (focusout)="BlockEditing($event, i)"
+               (focusin)="BlockFocusIn($event, i)" (blur)="onBlurMethod(i)"
+              (dblclick)="formatPainter(i);" 
+              (click)="formatPainter(i);" 
+              (mouseup)="formatPainter(i);"></div>
+          </ng-container>
+          <div *ngIf="blockContent.isPageBreak" class="pageBreakStyle">
+            <span>{{'screens.project-designer.document-view.PageBreak' | translate}}</span>
+          </div>
+        </div>
+        <!-- FootNotes -->
+        <ng-container  *ngFor="let footNote of blockContent.footNotes">
+          <div class="footNoteCont">
+            <div class="footnoteCount">{{footNote.symbol}}</div>
+            <div class="footnoteText" [innerHtml]="footNote.text | safeHtml" (focusout)="FootNotesEditing($event, footNote.id)"  id="{{'footNoteEditor' + footNote.id}}"
+            [ngClass]="(canEdit && !blockContent.isAppendixBlock) ? '' : 'disable-edit'">
+          </div>
+        </div>
+        </ng-container>
+      </ng-container>
+      <br />
+      <div *ngIf="footerShow" class="footerEditor">
+        <div class="" id="footerEditor" [innerHtml]="footerText | safeHtml" [ngClass]="{'bordertop':showBorderTop}">
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+<div [hidden]="!designerService.contextmenu" [ngClass]="highlightContextMenu?'':'disableFilterSelect'">
+  <ngx-context-menu [x]="contextmenuX" [y]="contextmenuY" [tag]="selectedText" [questionIndex]="selectedQuestionIndex"
+    [questionType]="selectedQuestionType">
+  </ngx-context-menu>
+</div>
+<!-- 
+      TODO- add properties to div from below for pagination
+      <div class="content-container" infiniteScroll [infiniteScrollDistance]="scrollDistance" id="parentDiv"
+      [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" [scrollWindow]=false
+      [immediateCheck]=true (scrolled)="onScrollDown($event)" (scrolledUp)="onScrollUp($event)">
+        <ng-container *ngFor="let blockContent of flatView;let i = index"> 
+          content-editor goes here
+        </ng-container>-->

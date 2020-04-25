@@ -1,0 +1,47 @@
+<div class="summeryGraphSec">
+  <div class="row">
+    <div class="col-md-1">    
+      <div class="SummeryCount">
+         <h1 #SummeryCount> {{summaryOptions.count}}</h1>
+         <p>{{summaryOptions.header}}</p>
+      </div>
+    </div>
+    <div class="col-md-11"> 
+      <div class="summeryGraph">
+        <div *ngFor="let part of summaryOptions.parts; let i = index" ngbTooltip="{{part.displayValue}}" 
+        class="summary-parts"  (click)="onSelection(part)"
+        [ngStyle]="{ 'width': (100/summaryOptions.parts.length) + '%' }">
+          <span [ngClass]="summaryOptions.colorArray[i]">
+        </span>
+          <!-- <div class="highlightedDesc"> 
+            <div class="higlightpoint">
+                <span [ngClass]="part.color=='red'?'part-red':
+                part.color=='green'?'part-green':
+                part.color=='blue'?'part-blue':
+                part.color == 'darkblue'?'part-darkblue':
+                part.color == 'lightblue'?'part-lightblue':
+                part.color == 'yellow'?'part-yellow':
+                ' '">
+                  {{part.color}}
+              </span>
+            </div>
+            <label>{{part.displayText}}</label>
+            <h5 id="pointerValue">{{part.displayValue}}</h5>
+          </div> -->
+          
+        </div>
+        <div *ngFor="let part of summaryOptions.parts;let i = index" class="summary-parts" 
+        [ngStyle]="{ 'width': (100/summaryOptions.parts.length) + '%' }">
+          <div class="highlightedDesc"> 
+            <div class="higlightpoint">
+                <span [ngClass]="summaryOptions.colorArray[i]">
+              </span>
+            </div>
+            <label>{{'enums.milestones.' + part.displayText | translate}}</label>
+            <h5 id="pointerValue">{{part.displayValue}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

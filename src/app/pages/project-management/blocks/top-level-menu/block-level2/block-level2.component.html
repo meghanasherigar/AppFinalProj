@@ -1,0 +1,130 @@
+<div class="row ">
+  <div id="DeliverableFilters" [ngClass]="{'collapsed ':!show}" class="col-sm-12 toolbar-component-container">
+    <div class="manage-section" style="position: relative;">
+      <div class="action-icon-wrapper" id="clearFilter" [ngClass]="{'disabledbutton ':!show}">
+        <img src="assets/images/Clear Filter-active.svg" (click)="clearFilters();" class="btnToolbar">
+        <span class="icon-name">{{ 'screens.Project-Management.Blocks.Header.ClearFilter' | translate }}</span>
+      </div>
+      <!-- <span class="section-name">{{ 'screens.Project-Management.Blocks.Header.Actions' | translate }}</span> -->
+    </div>
+    <div class="filters-section">
+      <div class="filter-icon-wrapper">
+        <div class="action-icon-wrapper">
+          <img src="assets/images/Filter-active.svg" class="btnToolbar" (click)="toggleCollapse()">
+          <span class="icon-name">{{ 'screens.Project-Management.Blocks.Header.Filter' | translate }}</span>
+        </div>
+      </div>
+      <div class="filter-inputs-wrapper" id="DeliverableFilters" [hidden]="!show" >
+          <div [nbPopover]="templateDeliverablesRef" nbPopoverPlacement="bottom" class="selectTemplateEntity">
+              <div class="selectBlockAttrDropDown">
+              <div *ngIf="defaultLabel">
+                {{ 'screens.Project-Management.Blocks.Header.DeliverableAll' | translate }}
+              </div>
+              <div *ngIf="options">
+                {{selectedTemplateItem}}
+              </div>
+              <div *ngIf="!options">
+                <div *ngFor="let item of selectedEntityTemplate" class="selectedEntities">
+                  {{item.name}}
+                </div>
+              </div>
+              <span class="dropdown-down dropdown-Arrow"> </span> 
+            </div>
+            </div>
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Blocks.Header.BlockType' | translate" [data]="BlockTypes"
+          [(ngModel)]="BlockType" [settings]="BlockTypesSettings" (onSelect)="onBlockTypeSelect($event)"
+          (onDeSelect)="onBlockTypeDeSelect($event)" (onSelectAll)="onBlockTypeSelect($event)"
+          (onDeSelectAll)="onBlockTypeDeSelect($event)">
+        </ng-multiselect-dropdown>
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Blocks.Header.AssignTo' | translate" [data]="AssignToUsers"
+          [(ngModel)]="AssignTo" [settings]="AssignToUsersSettings" (onSelect)="onAssignToSelect($event)"
+          (onDeSelect)="onAssignToDeSelect($event)" (onSelectAll)="onAssignToSelect($event)"
+          (onDeSelectAll)="onAssignToDeSelect($event)">
+        </ng-multiselect-dropdown>
+        
+        <!-- commenting serch for now as it is not requires -->
+        <!-- <div class="input-wrapper filter-input">
+          <ngx-search (search)="onSearch($event)"> </ngx-search>
+        </div> -->
+        
+        <div class="small-column"></div>
+        <div class="small-column"></div>
+        <div class="input-wrapper filter-input">
+          <input type="text" class="form-control" [placeholder]="'screens.Project-Management.Blocks.Header.DueDate' | translate" bsDaterangepicker
+            #dpcreationDate="bsDaterangepicker" [(ngModel)]="DueDate" (bsValueChange)="onDueDate($event)"
+            [bsConfig]="{ isAnimated: true, rangeInputFormat: 'DD MMM YYYY' }" readonly>
+          <label>
+            <i>
+              <img src="assets/images/calender.png" (click)="dpcreationDate.show()"
+                [attr.aria-expanded]="dpcreationDate.isOpen" class="calender-icon">
+            </i>
+          </label>
+        </div>
+        <br/>
+        <nb-rangepicker #rangepicker  format="DD MMM YYYY" (rangeChange)="onDueDate($event)">
+        </nb-rangepicker>
+        <ng-multiselect-dropdown class="filter-input" [placeholder]="'screens.Project-Management.Blocks.Header.CompletionStatus' | translate" [data]="CompletionStatusList"
+        [(ngModel)]="CompletionStatus" [settings]="CompletionStatusSettings"
+        (onSelect)="onCompletionStatusSelect($event)" (onDeSelect)="onCompletionStatusDeSelect($event)"
+        (onSelectAll)="onCompletionStatusSelect($event)" (onDeSelectAll)="onCompletionStatusDeSelect($event)">
+      </ng-multiselect-dropdown>
+        <span class="section-name">{{ 'screens.Project-Management.Deliverable.Header.Filters' | translate }}</span>
+      </div>
+    </div>
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+      {{imageName}}
+      <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+      <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+    </div>
+
+  </div>
+
+  <!-- Start Deliverable dropdown Ref -->
+  <ng-template #templateDeliverablesRef>
+    <div class="templateEntityPopOver">
+      <div class="row radioButtons">
+        <div class="radio-inline">
+          <label class="container">
+              {{ 'screens.Project-Management.Blocks.Header.Filter-Label.TEMPLATES' | translate }}
+            <input name="options" [(ngModel)]="options" type="radio" [value]="true" [checked]="options"
+              (change)="handleChange(options)" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="radio-inline">
+          <label class="container">
+              {{ 'screens.Project-Management.Blocks.Header.Filter-Label.DELIVERABLE' | translate }}
+            <input name="options" [(ngModel)]="options" type="radio" [value]="false" [checked]="!options"
+              (change)="handleChange(options)" />
+            <span class="checkmark"></span>
+          </label>
+
+        </div>
+      </div>
+      <div *ngIf="options">
+
+        <input class="TemplateInput"  [placeholder]="'screens.Shared.Search.placeholders.Search' | translate" type="text" [(ngModel)]="searchtext" />
+        <div>
+          <ul>
+            <li *ngFor="let template of TemplateList | search : searchtext; index as i;"><input type="checkbox"
+                name="templateSelection" (change)="updateCheckedOptions(i, template, constants.TEMPLATE, $event)"
+                [checked]="template.checked" class="entityCheckbox"><label>{{template.name}}</label>
+          </ul>
+        </div>
+      </div>
+      <div *ngIf="!options">
+        <input  class="TemplateInput"  placeholder="Search" type="text" [(ngModel)]="searchtext" />
+        <div>
+          <ul>
+            <li *ngFor="let deliverable of DeliverableList | search : searchtext; index as i;"><input type="checkbox"
+                name="deliverableSelection" (change)="updateCheckedOptions(i, deliverable, constants.DELIVERABLE, $event)"
+                [checked]="deliverable.checked" class="entityCheckbox">
+              <label>{{deliverable.name}}</label>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- End Deliverable dropdown Ref -->

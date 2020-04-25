@@ -1,0 +1,80 @@
+<nb-card class="faqWrapper">
+  <nb-card-body>
+    <div class="row">
+      <p class="frequently-asked-que col-sm-12">{{'screens.admin.contentFAQ.title' | translate}}</p>
+      
+    </div>
+    <div *ngFor="let cat of listOfCategories">
+      <nb-accordion>
+        <nb-accordion-item #expansionPanel (click)="expandPanel(expansionPanel, $event,cat)"
+          (mouseover)="ShowIconsSet(showIcons)" (mouseout)="HideIconsSet(showIcons)" [collapsed]='cat.collapsed'>
+          <nb-accordion-item-header class="fill-24"><span class="custom-icon-1"></span>
+            <div data-placeholder="Enter header here"
+              (input)="cat.description = $event.target.textContent" *ngIf="!cat.editable"
+              class="col-sm-10 header-text">{{cat.description}}</div>
+              <input type="text" *ngIf="cat.editable" class="col-sm-10 header-text textBackGround" value="cat.description" [(ngModel)] = "cat.description"/>
+              <!-- <div data-placeholder="Enter header here" [attr.contenteditable]="cat.editable" *ngIf = "!isIE"
+              (input)="cat.description = $event.target.textContent" [textContent]="cat.description"
+              class="col-sm-10 header-text">{{cat.description}}</div> -->
+              <!-- <div *ngIf="cat.colourCode == 0">P</div>
+              <div *ngIf="cat.colourCode == 2">P*</div> -->
+              <!-- <div #showIcons class="hideIcons"><img (click)="addSubHeading(cat.id)" class="iconHeight"
+                title="Add sub task" src="assets/images/Sub-topic-gray.png" alt="+">&nbsp;&nbsp; -->
+              <!-- <img src="assets/images/Edit-gray.png" class="iconHeight" (click)="editHeading(cat.id)" title="Edit"
+                *ngIf="!cat.editable">
+              &nbsp;&nbsp;
+              <img src="assets/images/Delete-gray.png" class="iconHeight" title="Delete" (click)="deleteHeading(cat.id)"
+                *ngIf="!(cat.id.indexOf('temp') > -1)">&nbsp;&nbsp;
+              <img src="assets/images/Discard-gray.png" class="iconHeight" title="Discard"
+                (click)="discardCategory(cat)" *ngIf="cat.editable"> -->
+            <!-- </div> -->
+            
+          </nb-accordion-item-header>
+          <nb-accordion-item-body class="no-padding">
+            <div *ngFor="let question of cat.questions">
+              <nb-accordion class="inner-accordian">
+                <nb-accordion-item #expansionPanel1
+                  (click)="expandPanelQuestion(expansionPanel1, $event,cat.id,question)"
+                  (mouseover)="ShowIconsSet(showIconsQuestion)" (mouseout)="HideIconsSet(showIconsQuestion)"
+                  [collapsed]="question.collapsed">
+                  <nb-accordion-item-header class="fill-24"><span class="custom-icon-1"></span>
+                    <div data-placeholder="Enter sub header here" 
+                      (input)="question.description = $event.target.innerText" [textContent]="question.description"  *ngIf="!question.editable"
+                      class="col-sm-10 header-text">{{question.description}} 
+                    </div>
+                    <input type="text" *ngIf="question.editable" class="col-sm-10 header-text textBackGround" value="question.description" [(ngModel)] = "question.description"/>
+                    <!-- <div *ngIf="question.colourCode == 0">P</div>
+                    <div *ngIf="question.colourCode == 2">P*</div> -->
+                    <div  #showIconsQuestion class="hideIcons">
+                      <!-- <img src="assets/images/Edit-gray.png" class="iconHeight" title="Edit"
+                        (click)="editSubHeading(cat.id,question.id)" *ngIf="!question.editable">&nbsp;&nbsp;
+                      <img src="assets/images/Delete-gray.png" class="iconHeight" title="Delete"
+                        (click)="deleteSubHeading(cat.id,question.id)"
+                        *ngIf="!((cat.id.indexOf('temp') > -1) || (question.id.indexOf('temp') > -1))">&nbsp;&nbsp;
+                      <img src="assets/images/Discard-gray.png" class="iconHeight" title="Discard"
+                        (click)="discardSubheading(cat,question)" *ngIf="question.editable"> -->
+                    </div>
+                   
+                  </nb-accordion-item-header>
+                  <nb-accordion-item-body class="textAreaBodyWrapper">
+                    <div id="faqtextArea_{{ cat.id + question.id}}" [innerHTML]="question.answer.description" class="textAreawidth helpContent" *ngIf="question.answer">
+                        {{question.answer.description}}
+                    </div>
+                      
+                    <!-- <textarea [id]="'faqtextArea_'+ cat.id + question.id" placeholder="Enter content here"
+                      class="textAreawidth helpContent" [(ngModel)]="question.answer.description" *ngIf="question.answer"
+                      [readonly]="!question.answer.editable">{{question.answer.description}}</textarea> -->
+                  </nb-accordion-item-body>
+                </nb-accordion-item>
+              </nb-accordion>
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+      </nb-accordion>
+    </div>
+    <!-- <div>
+      <button id="addTopic" class="fill-33-copy"
+        (click)="addTopic(); $event.preventDefault()">{{'screens.admin.contentFAQ.addTopicButtonText' | translate}}</button>
+    </div> -->
+  </nb-card-body>
+</nb-card>

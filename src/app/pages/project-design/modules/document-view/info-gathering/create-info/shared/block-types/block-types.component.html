@@ -1,0 +1,44 @@
+<div class="blockTypeWrapper ">
+  <!-- <div class="padding0 textRight leftArrow"><img src="assets/images/back-enabled.svg" (click)="prevPage()" /></div> -->
+  <ul class=" list-inline progressBar">
+    <li class="progressItem" *ngFor="let item of blockTypeDetails;let i=index">
+      <ng-container *ngIf="item.blockType.blockType != 'Introduction'">
+        <a (click)="loadQuestionAndAnswers(item.blockType,i);onTabSelected(i)" class="blockTypeItem"
+          [ngClass]="currentTabIndex == i+1?'activeTab':''"><b id="activeTab"
+            class="display-text">{{'enums.blockType.' + item.blockType.blockType | translate}} {{' ('+item.numberOfAnswers+'/'+ item.numberOfQuestions+')'}}</b></a>
+        <nb-progress-bar class="size-small status-success" [value]="(item.numberOfAnswers * 100)/item.numberOfQuestions"
+          status="success">
+          <div class="progress-container">
+            <div class="progress-value">
+
+            </div>
+          </div>
+        </nb-progress-bar>
+      </ng-container>
+      <ng-container *ngIf="item.blockType.blockType == 'Introduction'">
+        <a (click)="loadQuestionAndAnswers(item.blockType,i);onTabSelected(i)" [ngClass]="currentTabIndex == i+1?'activeTab':''" class="blockTypeItem"><b
+            id="activeTab" class="display-text">{{'enums.blockType.' + item.blockType.blockType | translate}}</b></a>
+        <nb-progress-bar class="size-small status-success" [value]="100" status="success">
+          <div class="progress-container">
+            <div class="progress-value">
+
+            </div>
+          </div>
+        </nb-progress-bar>
+      </ng-container>
+    </li>
+  </ul>
+  <!-- <div class="padding0 rightArrow"><img src="assets/images/back-enabled.svg" (click)="nextPage()" /></div> -->
+  <div class="buttons "> 
+    <button class="previous" (click)="goPrevious()" *ngIf="isPrevious()">{{'screens.project-designer.document-view.info-gathering.create-info.Previous' | translate}}</button>
+    <button class="next nextBar" (click)="goNext()" *ngIf="isNext()">{{'screens.project-designer.document-view.info-gathering.create-info.Next' | translate}}</button>
+
+  </div>
+  <div class="percentage">
+    <p>{{percentage}} %</p>
+  </div>
+
+  <div class="clearfix">
+
+  </div>
+</div>

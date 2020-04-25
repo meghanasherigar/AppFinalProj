@@ -1,0 +1,10 @@
+.taskListComponent{
+    margin: 0 20px;
+    overflow-x: auto;
+    border: 1px solid #d0d0ce;
+    overflow: auto;
+    height: calc(100vh - 501px);
+    table{
+        min-height: 225px;
+    }
+}

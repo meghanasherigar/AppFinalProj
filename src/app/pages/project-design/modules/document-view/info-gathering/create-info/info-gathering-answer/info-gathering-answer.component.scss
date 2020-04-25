@@ -1,0 +1,35 @@
+.createBlockpopupHW{
+    width: 1027px;
+    margin-top: 60px;
+}
+.createBlockpopupHW.blockGeneratePopUp{
+    .createTopHeader{
+        padding: 0;
+    }
+    nb-card-body{
+        padding: 0;
+    }
+}
+.ediTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+    padding:10px;
+
+}
+.generateText{
+    display: inline-block;
+    width: 81%;
+    padding-left: 10px;
+    span{
+        font-size: 18px;
+    font-weight: 500;
+    }
+}
+.custom-tab-width ul{ border-bottom: 1px solid #ccc !important; }
+.custom-tab-width ul li.tab{    display: inline-block;
+    border: 1px solid #ccc;}
+    .custom-tab-width ul li.tab.active{ background: #000; color: #fff;}
+    .custom-tab-width ul li.tab.active a{ color: #fff;}
+    .custom-tab-width ul li.tab a{ color: #000;}
+    .custom-tab-width ul li.tab a:hover,.custom-tab-width ul li.tab a:focus{ color: #000;}

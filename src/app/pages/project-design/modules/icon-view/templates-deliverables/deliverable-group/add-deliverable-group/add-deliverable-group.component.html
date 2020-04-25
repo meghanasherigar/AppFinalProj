@@ -1,0 +1,98 @@
+<ngx-ui-loader [loaderId]='loaderId' [bgsPosition]="loaderPosition" [bgsColor]="loaderColor"></ngx-ui-loader>
+
+<nb-card class="add-deliverable">
+  <nb-card-header class="createTopHeader">
+    {{headerMessage}}
+    <button aria-label="Close" class="close" type="button" (click)="dismiss()"><span
+        aria-hidden="true">×</span></button>
+  </nb-card-header>
+
+  <nb-card-body  class="circleBlock">
+  <div>
+    <div class="circleSection containerSection">
+     
+      <div class="container">
+           <ul class="progressbar">
+              <li  *ngFor="let status of possibleRoutes ;let i = index"   [ngClass]="currentIndex == status.id?'active':''">
+                  <div>
+                        <!-- <p> {{status.name}}</p> -->
+                  </div>
+                      
+              </li>
+             
+      </ul>
+      </div>
+    </div>
+    <div class="buttonWrapper">
+      <button type="submit" class="next" (click)="nextClick()" *ngIf="displayPreviousSection"
+        id="btnNext">{{'screens.create-block-component.labels.Next' | translate}}</button>
+        <button type="submit" class="previous" (click)="previousClick()"  *ngIf="displayNextSection"
+        id="btnNext">{{'screens.create-block-component.labels.Previous' | translate}}</button>
+    </div>
+    <div class="clearfix">
+    </div>
+    </div>
+  </nb-card-body>
+  <nb-card-body class="row" [hidden]="!displayPreviousSection" class="deliverableGroupList">
+   
+
+    <ng2-smart-table id="deliverableGroupList" #deliverabletable class="home-table" [settings]="gridsettings"
+      (custom)="onCustomAction($event)" (userRowSelect)="onDeliverableSelect($event)" [source]="dataSource">
+    </ng2-smart-table>
+  </nb-card-body>
+
+  <nb-card-body [hidden]="!displayNextSection" class="groupDetails">
+
+    <div class="row" [formGroup]="groupDetailsForm">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="custom-form-label validationicon">
+            {{'screens.project-designer.deliverableGroup.GroupName' | translate}}
+            <span class="add-deliverable-validation">*</span></label>
+          <input type="text" formControlName="GroupName" [placeholder]="'screens.project-designer.deliverableGroup.GroupName' | translate"  (blur)="validateDuplicateGroupNmae()"class="form-control custom-form-input"
+            [ngClass]="{ 'is-invalid': submitted && groupDetailsForm.controls['GroupName'].errors }">
+          <div *ngIf="submitted && groupDetailsForm.controls['GroupName'].errors" class="invalid-feedback">
+            {{'screens.project-designer.deliverableGroup.GroupNameWarning' | translate}}
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="custom-form-label">
+            {{'screens.project-designer.deliverableGroup.Description' | translate}}
+            <span class="add-deliverable-validation">*</span></label>
+          <input type="text" formControlName="Description" [placeholder]="'screens.project-designer.deliverableGroup.Description' | translate"
+            class="form-control custom-form-input"
+            [ngClass]="{ 'is-invalid': submitted && groupDetailsForm.controls['Description'].errors }">
+          <div *ngIf="submitted && groupDetailsForm.controls['Description'].errors" class="invalid-feedback">
+            {{'screens.project-designer.deliverableGroup.DescriptionWarning' | translate}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+
+
+
+ 
+  <!-- <nb-card-footer class="footerCard">
+    <nb-card-footer class="footerRightButton" *ngIf="displayPreviousSection">
+      <button type="submit" class="menu-btn-save createBlockSave" (click)="nextClick()"
+        id="btnNext">{{'screens.create-block-component.labels.Next' | translate}}</button>
+    </nb-card-footer>
+    <nb-card-footer class="footerRightButton" *ngIf="displayNextSection">
+      <button type="submit" class="menu-btn-save createBlockSave" (click)="previousClick()"
+        id="btnNext">{{'screens.create-block-component.labels.Previous' | translate}}</button>
+    </nb-card-footer>
+  </nb-card-footer> -->
+
+
+  <nb-card-footer class="footerCard" *ngIf="displayNextSection">
+    <nb-card-footer class="footerRightButton">
+      <button nbButton type="button" class="menu-btn-cancel createCancel" (click)="dismiss()"><label
+          class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+      <button type="submit" class="menu-btn-save createBlockSave"  [disabled]="disablebutton" (click)="saveGroup()"
+        id="btnCreateGroup">{{'screens.home.labels.Save' | translate}}</button>
+    </nb-card-footer>
+  </nb-card-footer>
+</nb-card>

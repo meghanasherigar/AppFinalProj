@@ -1,0 +1,14 @@
+<div class="rightHeader-icon-style">
+    <div *ngIf="selectedSection == 'Library'">
+      <img class="smallIcon"  src="assets/images/Read_without hover.svg" (click)="displayDocumentView()" placement="bottom" ngbTooltip="{{'iconviewtooltip.documentView' | translate}}"></div>
+    <div *ngIf="selectedSection != 'Library'">
+      <img src="assets/images/projectdesigner/header/Edit_without hover.svg" (click)="displayDocumentView()" class="smallIcon"  placement="bottom" ngbTooltip="{{'iconviewtooltip.documentView' | translate}}"></div>
+    <div class="rectangle-copy iconGreenColor">
+      <img src="assets/images/List view_selected.png" (click)="hideAttributeView()" class="smallIcon"  placement="bottom" ngbTooltip="{{'iconviewtooltip.listView' | translate}}">
+    </div>
+    <div class="rectangle-copy">
+      <img src="assets/images/Attribute view_not selected.png" (click)="showAttributeView()" placement="bottom" ngbTooltip="{{'iconviewtooltip.ViewAtribute' | translate}}"
+        class="smallIcon listIcon">
+    </div>
+  </div>
+ 

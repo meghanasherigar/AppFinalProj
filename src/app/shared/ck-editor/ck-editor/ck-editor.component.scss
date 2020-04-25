@@ -1,0 +1,15 @@
+.documentView
+{
+   height: auto;
+}
+.documentTemplateWrapper .document-full-viewBody{ overflow-x: hidden;}
+
+.borderBlock{
+    border-color: #ccc;
+    border-width: 1px;
+    border-style: solid;
+    overflow: auto;
+    padding: 10px 14px;
+    margin:0px 0 15px 0;
+    &:last-child{ margin-bottom: 0;}
+}

@@ -1,0 +1,75 @@
+.editeStackTopHeader{
+    width: 100%;
+    margin-top: 10px;
+    height: 582px !important;
+    .form-group{
+        width:100%;
+    }
+}
+
+.create-stack-attribute-mandatory-icon {
+    color: red;
+} 
+.editTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+
+}
+.close{
+    color: #fff;
+    border: none;
+    border: 0;
+}
+.close:hover{
+    border: none;
+    border: 0;
+}
+.stackBtnSave{
+color: #fff;
+}
+.cancelBtnStack{
+    border-radius: 5px !important; 
+}
+.saveCancelBtnTopBorder{
+    padding: 1px !important;
+}
+.ediTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+    padding: 7px;
+    font-size: 14px;
+}
+.btnSave{
+    color: #fff;
+}
+.canclebuttonLebal{
+    color:#aba9a9 !important;
+}
+.saveCancelBtnTopBorder{
+    border-top: 1px solid #eee!important;
+}
+.attributeIcon{
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 50%;
+    border: 1.1px solid white;
+    img{
+        height: 11px;
+        width: 11px;
+        vertical-align: middle;
+    }
+}
+.attributeText{
+    display: inline-block;
+    width: 82%;
+    padding-left: 10px;
+    span{
+        font-size: 14px;
+        font-weight: normal;
+    }
+}

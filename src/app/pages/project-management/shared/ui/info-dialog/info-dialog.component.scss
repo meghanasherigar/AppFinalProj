@@ -1,0 +1,31 @@
+.createDeliverableTopHeader{
+    width: 1027px;
+    margin-top: 60px;
+}
+
+.infoTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+
+}
+.infoDescriptionTopHeader{
+    nb-card-footer{
+        button.menu-btn-save{
+            color: #fff;
+            margin-left: 20px;
+            .menu-txt-save{
+                height: 10px;
+            }
+        }
+    }
+}
+.infoDescription{
+    width: 774px;    color: #373737;    font-size: 13px;    line-height: 18px; text-align: justify;  max-height: 280px;
+}
+.closeIcon{
+    color: #fff;
+    margin-left: 24px;
+    font-size: 21px;
+    cursor: pointer;
+}

@@ -1,0 +1,7 @@
+.custom-tab-width ul{ border-bottom: none !important; display: block !important; }
+.custom-tab-width ul li.tab{    display: inline-block;
+    border: 1px solid #ccc;}
+    .custom-tab-width ul li.tab.active{ background: #000; color: #fff;}
+    .custom-tab-width ul li.tab.active a{ color: #fff;}
+    .custom-tab-width ul li.tab a{ color: #000;}
+    .custom-tab-width ul li.tab a:hover,.custom-tab-width ul li.tab a:focus{ color: #000;}

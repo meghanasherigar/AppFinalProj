@@ -1,0 +1,220 @@
+<div [ngSwitch]="componentType">
+  <div class="DeliverableNameTooltip">
+  <div *ngSwitchCase="'deliverableName'">
+    <span>
+      <label [ngClass]="row.deliverableId===defaultObjectId?
+        'offline-deliverable':'clickable-deliverable'"
+        [ngbTooltip]="'View block level detail'" placement="bottom"
+        (click)="navigateToBlocks(row.deliverableId)">{{row.deliverableName}}</label>
+    </span>
+  </div>
+  </div>
+
+  <div *ngSwitchCase="'reportTier'">
+    <span>
+      <select id="ddlReportTier" (change)="saveDataOnDropDownChange($event,'reportTiers')">
+        <option *ngFor="let tier of masterData.reportTiers" [value]="tier.id" [selected]="tier.id===row.reportTier.id">
+          {{tier.reportTier}}
+        </option>
+      </select>
+    </span>
+  </div>
+
+  <ng-template #milestoneSteps>
+    <nb-stepper orientation="horizontal" linearMode="true" disableStepNavigation="true" [selectedIndex]="100"
+      style="pointer-events: none;width: 550px">
+      <nb-step *ngFor="let milestone of masterData.milestones; let i = index" [label]="milestone.description"
+        [completed]="row.mileStoneReached.value >= milestone.value">
+        {{milestone.value}} {{row.mileStoneReached.value}}
+      </nb-step>
+    </nb-stepper>
+  </ng-template>
+<div class="milestoneSteper">
+  <div *ngSwitchCase="'milestoneReached'" class="stapsforms" [ngbTooltip]="milestoneSteps" 
+    tooltipClass="tooltip-stepper" placement="bottom">
+    <span>
+      <div class="row">
+      <div class="selectBlockAttrDropDown" *ngIf="userHasAccess">
+      <select id="ddlMilestone" (change)="saveDataOnDropDownChange($event,'milestones')" class="milestoneReachedStyle">
+        <option *ngFor="let milestone of masterData.milestones" [value]="milestone.id"
+          [selected]="milestone.id===row.mileStoneReached.id">
+          {{'enums.milestones.' + milestone.description | translate}}
+        </option>
+        
+      </select>
+      <span class="dropdown-down dropdown-Arrow"> </span>
+    </div>
+    <div *ngIf="!userHasAccess">{{row.mileStoneReached.description}}</div>
+  </div>
+    </span>
+  </div>
+</div>
+  <div *ngSwitchCase="'comments'" class="commentsField">
+    <input id="commentDescription" [(ngModel)]=row.comments (blur)="saveDeliverableReportRow()" />
+  </div>
+
+  <div *ngSwitchCase="'completionStatus'">
+    <div class="completion-status-container">
+      <div class="completion-status" [ngStyle]="{ 'width': (row.mileStoneReached.value) + '%' }">
+
+      </div>
+      <div class="gridNumber" [innerHtml]="row.mileStoneReached.value +'%'"></div>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'TaskCompletionStatus'">
+    <div class="completion-status-container" *ngIf="row.taskType === TaskTypes.INFORMATIONREQUEST">
+      <div class="completion-status" [ngStyle]="{ 'width': calculateTaskCompletionStatus(row) + '%' }">
+
+      </div>
+      <div class="gridNumber" [innerHtml]="row.completionStatus"></div>
+    </div>
+    <div *ngIf="row.taskType !== TaskTypes.INFORMATIONREQUEST">
+      --
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'MyTaskCompletionStatus'">
+    <div class="completion-status-container"
+    *ngIf="row.taskType === TaskTypes.INFORMATIONREQUEST">
+      <div class="completion-status" [ngStyle]="{ 'width': calculateTaskCompletionStatus(row) + '%' }">
+
+      </div>
+      <div class="gridNumber" [innerHtml]="row.completionStatus"></div>
+    </div>
+    <div *ngIf="row.taskType === TaskTypes.BLOCKREVIEW || row.taskType === TaskTypes.REPORTREVIEW">
+      <div>
+        <img *ngIf="row.status !== taskStatus.COMPLETE " src="assets/images/ProjectManagement/complete_task_active.svg"
+        (click)="markMyTaskAsComplete(row)" ngbToolTip="'Complete Task'"/>
+        <img *ngIf="row.status === taskStatus.COMPLETE" 
+        src="assets/images/ProjectManagement/complete_task_inactive.svg">
+      </div>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'filingRequirement'">
+    <input class="filingCheckbox" type="checkbox" [checked]="cell" disabled />
+  </div>
+  <div *ngSwitchCase="'localTPRequirements'">
+    <img src="assets/images/tp-req.svg" ngbTooltip="{{'iconviewtooltip.transferPricing' | translate}}" placement="bottom"  class="filter-green" (click)="showDescription()" />
+  </div>
+
+
+  <div *ngSwitchCase="'TaskComments'" class="commentsField">
+    <input id="taskCommentDescription" [ngbTooltip]="row.comment" placement="top" [(ngModel)]="row.comment"
+    (blur)="saveTaskReportRow()" />
+
+    <div *ngIf="row.taskType=== TaskTypes.OTHERS">
+      <img src="assets/images/attach-file-selected.svg" class="AttachedsmallIcon" 
+      (click)="downloadTaskAttachment(row)">
+    </div>
+
+  </div>
+
+  <div *ngSwitchCase="'AssignedBy'">
+    <span *ngIf="row.taskType=== TaskTypes.OTHERS">--</span>
+    <span *ngIf="row.taskType!== TaskTypes.OTHERS">{{row.auditTrail?
+        row.auditTrail.createdBy.firstName + ' ' + row.auditTrail.createdBy.lastName 
+        : ' '
+      }}
+    </span>
+  </div>
+
+  <div *ngSwitchCase="'AssignedTo'">
+    <div *ngIf="row.taskType!== TaskTypes.OTHERS && row.assignTo && row.assignTo.length>0">
+      <span *ngFor="let usersAssigned of row.assignTo">
+        {{usersAssigned.firstName + ' ' + usersAssigned.lastName}}
+        <br />
+      </span>
+    </div>
+    <div *ngIf="row.taskType === TaskTypes.OTHERS">--</div>
+  </div>
+
+  <div *ngSwitchCase="'LastUpdated'">
+    <span *ngIf="row.taskType!== TaskTypes.OTHERS && row.auditTrail">
+      {{row.auditTrail.updatedOn|date:'dd MMM yyyy'}}</span>
+    <span *ngIf="row.taskType=== TaskTypes.OTHERS">--</span>
+  </div>
+
+  <ng-template #taskDueDateExceeded>
+    <p class="GridContent">{{ 'screens.Shared.Grid.Task_Not_Completed' | translate }}</p>
+    <a (click)="openEmailDialog()" class="send-reminder">{{ 'screens.Shared.Grid.Send_Reminder' | translate }}</a>
+  </ng-template>
+
+
+  <div *ngSwitchCase="'UserTaskDueDate'">
+    <p [ngClass]="checkTaskDueDate()?'TaskdueDateStyle':''">
+    {{row.dueDate|date:'dd MMM yyyy'}}
+  </p>
+    <img *ngIf="checkTaskDueDate()" src="assets/images/error-img.png" class="MyTasksmallIcon">
+  </div>
+  
+  <div *ngSwitchCase="'MyTaskName'">
+    <div [ngClass]="row.taskType=== TaskTypes.OTHERS?'':'clickable-deliverable'" 
+    (click)="navigateToDesignerPages(row)">
+      {{row.name}}
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'TaskDueDate'">
+    <div class="inputWithIconProjectManagement">
+      <input type="text" [id]="componentType" [value]="formatDate()" placeholder="DD MMM YYYY" bsDatepicker
+        #dpCommon="bsDatepicker" class="targetDate" [ngClass]="checkTaskDueDate()?'due-date-exceeded':' '"
+        [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" (bsValueChange)="saveTaskDueDate($event)"
+        readonly>
+      <label style="position: absolute;">
+        <i>
+          <img (click)="dpCommon.show()" [attr.aria-expanded]="dpCommon.isOpen" src="assets/images/calender.png"
+            class="calender-icon"></i>
+      </label>
+      <div *ngIf="checkTaskDueDate()" 
+      triggers="click"
+      [ngbTooltip]="taskDueDateExceeded" placement="bottom">
+        <img src="assets/images/error-img.png" class="smallIcon">
+      </div>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'Entity'">
+      <div class="clickable-deliverable" (click)="entitySelect(row)">
+        {{row.legalEntityName}}
+      </div>
+    </div>
+    
+  <div *ngSwitchCase="'TaskStatus'">
+    <span *ngIf="row.taskType!== TaskTypes.OTHERS">{{row.status}}</span>
+    <!-- Display drop down in case of Other tasks -->
+    <div *ngIf="row.taskType== TaskTypes.OTHERS">
+     <div class="selectBlockAttrDropDown">
+      <select id="ddlTaskStatus" (change)="saveDataOnTaskStatusChange($event)" class="SelectInputField">
+        <option *ngFor="let status of masterData.taskStatuses" [value]="status.value"
+          [selected]="status.value===row.status">
+          {{status.display}}
+        </option>
+      </select>
+      <span class="dropdown-down dropdown-Arrow"> </span>
+    </div>
+    </div>
+  </div>
+
+</div>
+<div class="row targetdateTooltip">
+  <div *ngIf="showCalendar() && userHasAccess">
+    <div class="inputWithIconProjectManagement" ngbTooltip="Delivery date exceeded" placement="bottom">
+      <input type="text" [id]="componentType" [value]="formatDate()" placeholder="DD MMM YYYY" bsDatepicker
+        #dpCommon="bsDatepicker" class="targetDate" [ngClass]="checkDate()?'due-date-exceeded':' '"
+        [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" (bsValueChange)="saveDate($event)" readonly>
+      <label style="position: absolute;">
+        <i>
+          <img (click)="dpCommon.show()" [attr.aria-expanded]="dpCommon.isOpen" src="assets/images/calender.png"
+            class="calender-icon"></i>
+      </label>
+      <div *ngIf="checkDate()">
+        <img src="assets/images/error-img.png" class="smallIcon">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="showCalendar() && !userHasAccess">
+    {{formatDate()}}
+  </div>
+</div>

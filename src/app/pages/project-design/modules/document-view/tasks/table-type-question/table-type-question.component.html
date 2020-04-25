@@ -1,0 +1,50 @@
+<nb-card>
+    <nb-card-header class="search-header">
+        <div class="row">
+            <div class="col-xs-12">
+                <span class="header-text" *ngIf="TableText">{{'screens.project-designer.document-view.tasks.tableType.TableTypeQuestion' | translate}}</span>
+                <span class="header-text" *ngIf="ComparabilityText">{{'screens.project-designer.document-view.tasks.tableType.ComparabilityAnalysisTypeQuestion' | translate}}</span>
+                <span class="header-text" *ngIf="BenchmarkText">{{'screens.project-designer.document-view.tasks.tableType.BenchmarkRangeTypeQuestion' | translate}}</span>
+                <span class="header-text" *ngIf="PLText">{{'screens.project-designer.document-view.tasks.tableType.PLQuestionType' | translate}}</span>
+                <span class="header-text" *ngIf="ListText">{{'screens.project-designer.document-view.tasks.tableType.ListTypeQuestion' | translate}}</span>
+            </div>
+          </div>
+    </nb-card-header>
+  <nb-card-body>
+  <div>
+        <div class="myclass">
+          <div *ngIf="TableText">
+              <div class="row">
+                  <div class="col-sm-12">
+                      <div class="form-group">
+                          <label class="custom-form-label">{{'screens.project-designer.document-view.tasks.tableType.NoofColumns' | translate}}</label>
+                          <input type="number" name="noOfColumns" [(ngModel)] = "noOfColumns" [placeholder]="'screens.project-designer.document-view.tasks.tableType.NoofColumns' | translate" 
+                          class="form-control custom-form-input" (keyup)="CreateUserDefinedTableType(1);">
+                    </div>
+                    </div>
+              </div>
+              <div class="row" >
+                  <div class="col-sm-12">
+                      <div class="form-group">
+                          <label class="custom-form-label">{{'screens.project-designer.document-view.tasks.tableType.NoofRows' | translate}}</label>
+                          <input type="number" name="noOfRows" [(ngModel)] = "noOfRows" [placeholder]="'screens.project-designer.document-view.tasks.tableType.NoofRows' | translate" 
+                          class="form-control custom-form-input" (keyup)="CreateUserDefinedTableType(1);">
+                    </div>
+                    </div>
+              </div>
+          </div>
+            <div class="coverPage" id="tableTypeeditor" [innerHTML]="innerHtmlTableType | safeHtml"></div>
+            <div id="tableType-toolbar-menu" class="filters-section"></div>
+          </div>
+  </div>
+  </nb-card-body>
+  <nb-card-footer class="footerCard alignRight">
+      <nb-card-footer class="footerRightButton">        
+      <button nbButton type="button" class="menu-btn-cancel" style="color:black;" 
+      (click)="dismiss()"><label class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <button type="submit" class="menu-btn-save linkToButton" (click) = "saveDataLocal()"
+      id="btnsaveDataLocal">{{'screens.home.labels.Save' | translate}}</button>
+    </nb-card-footer>
+  </nb-card-footer>        
+  </nb-card>

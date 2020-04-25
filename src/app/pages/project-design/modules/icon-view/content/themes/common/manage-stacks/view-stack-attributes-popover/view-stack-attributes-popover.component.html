@@ -1,0 +1,36 @@
+<div class="row" *ngIf="isAttributeLoaded">
+  <div class="col-sm-12">
+    <nb-card class="popupcardwidth">
+      <nb-card-header class="viewborderBottom"><label class="blockAttributeLabel">Stack Attributes</label>
+        <label *ngIf ="canEdit" class="editborder"(click)="editStack()">Edit</label>
+        
+      </nb-card-header>
+      <nb-card-body class="cardColor">
+
+        <div class="row">
+          <div class="col-sm-12">
+              <table style="width:100%">
+                  <tr>
+                    <th> Stack Level:</th>
+                    <td>{{stackLevel}}</td>
+                  </tr>
+                  <tr>
+                      <th> Stack Type:</th>
+                      <td>{{blockType}}</td>
+                    </tr>
+                    <tr>
+                        <th> Description :</th>
+                        <td>{{stackAttributeDetail.description}} </td>
+                      </tr>
+                      <tr>
+                          <th> Transaction :</th>
+                          <td>{{transactionType}}</td>
+                        </tr>
+                </table>
+        </div>
+      </div>
+      
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

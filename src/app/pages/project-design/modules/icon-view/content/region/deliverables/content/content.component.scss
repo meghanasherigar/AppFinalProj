@@ -1,0 +1,103 @@
+// .drop-above {
+//   border-top: 10px solid #dddddd;
+//   margin-top: -10px;
+// }
+
+// .drop-above {
+//   border-top: 28px solid #aeef9930;;
+//   margin-top: -20px;   
+//   width: 94%;
+//   outline: 1px dashed #000;
+//   outline-offset: -2px;
+//   // margin-top: 2px;
+//    height: 19px;
+// }
+.drop-below .mat-checkbox{
+  
+  position: relative;
+  height: 85px;
+  width: 100%;
+  display: block;
+
+}
+.drop-above .mat-checkbox{
+  
+  position: relative;
+  height: 85px;
+  width: 100%;
+  display: block;
+  padding-top: 35px;
+}
+.drop-above {
+  
+  position: relative;
+  height: 85px;
+  width: 100%;
+  display: block;
+  padding-top: 35px;
+
+}
+.editblcok .mat-checkbox{ width:100%;}
+.drop-above .mat-checkbox::after{ 
+  // border-bottom: 10px solid #dddddd;
+  // margin-bottom: -10px;
+  content: '';     
+  height: 28px;
+    width: 92%;
+    background: #aeef9930;
+    outline: 1px dashed #000;
+    /* position: absolute; */
+    /* bottom: 18px; */
+    /* left: 0; */
+    margin-top: -1px;
+    display: inline-block;
+    margin-left: 32px;
+    position: absolute;
+  top: 2px;
+  left: 0;
+}
+.drop-below .mat-checkbox::after{ 
+  // border-bottom: 10px solid #dddddd;
+  // margin-bottom: -10px;
+  content: '';     
+  height: 28px;
+    width: 93%;
+    background: #aeef9930;
+    outline: 1px dashed #000;
+    /* position: absolute; */
+    /* bottom: 18px; */
+    /* left: 0; */
+    margin-bottom: -24px;
+    display: inline-block;
+    margin-left: 32px;
+}
+// .drop-below:last-child::after{ 
+//   // border-bottom: 10px solid #dddddd;
+//   // margin-bottom: -10px;
+//   content: '';     
+//   height: 28px;
+//     width: 94%;
+//     background: #aeef9930;
+//     outline: 1px dashed #000;
+//     /* position: absolute; */
+//     /* bottom: 18px; */
+//     /* left: 0; */
+//     margin-bottom: -24px;
+//     display: inline-block;
+// }
+.drop-center {
+  background-color: #dddddd;
+ }
+.stackDisplay{
+  color: gray !important;
+}
+.indentation{
+  font-weight: bold;
+  padding-right:10px;
+}
+.no-drop_icon{
+  height: 12px;
+  width: 12px;
+  float: right;
+ margin-top: 7px;
+}

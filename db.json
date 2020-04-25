@@ -1,0 +1,1056 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "entities": [
+    {
+      "UniqueTransactionID": "transactionid",
+      "LegalEntityName": "entity name",
+      "CounterPartyLegalEntityName": "cl entityname",
+      "TransactionType": "license of ip",
+      "CPTransactionType": "license of ip",
+      "ProjectTransactionType": "sale of goods",
+      "CPProjectTransactionType": "sale of goods",
+      "TransactionInScope": "no",
+      "CPTransactionInScope": "no",
+      "EntityTransactionAmountCurrency": "no",
+      "CPTransactionAmountCurrency": "no"
+    },
+    {
+      "UniqueTransactionID": "transactionid",
+      "LegalEntityName": "entity name",
+      "CounterPartyLegalEntityName": "cl entityname",
+      "TransactionType": "license of ip",
+      "CPTransactionType": "license of ip",
+      "ProjectTransactionType": "sale of goods",
+      "CPProjectTransactionType": "sale of goods",
+      "TransactionInScope": "no",
+      "CPTransactionInScope": "no",
+      "EntityTransactionAmountCurrency": "no",
+      "CPTransactionAmountCurrency": "no"
+    },
+    {
+      "UniqueTransactionID": "transactionid",
+      "LegalEntityName": "entity name",
+      "CounterPartyLegalEntityName": "cl entityname",
+      "TransactionType": "license of ip",
+      "CPTransactionType": "license of ip",
+      "ProjectTransactionType": "sale of goods",
+      "CPProjectTransactionType": "sale of goods",
+      "TransactionInScope": "no",
+      "CPTransactionInScope": "no",
+      "EntityTransactionAmountCurrency": "no",
+      "CPTransactionAmountCurrency": "no"
+    }
+  ],
+  "entity": [
+    {
+      "entityDetails": "Entity 1",
+      "taxableYearEnd": "12/2/2019",
+      "reportTier": "Tier1",
+      "localAddress": "BAngalore",
+      "taxOfficeDetails": "Deloitte",
+      "employeeDetails": "Divya@deloitte.com",
+      "entityTaxID": "1234"
+    },
+    {
+      "entityDetails": "Entity 1",
+      "taxableYearEnd": "12/2/2019",
+      "reportTier": "Tier1",
+      "localAddress": "BAngalore",
+      "taxOfficeDetails": "Deloitte",
+      "employeeDetails": "Divya@deloitte.com",
+      "entityTaxID": "1234"
+    },
+    {
+      "entityDetails": "Entity 1",
+      "taxableYearEnd": "12/2/2019",
+      "reportTier": "Tier1",
+      "localAddress": "BAngalore",
+      "taxOfficeDetails": "Deloitte",
+      "employeeDetails": "Divya@deloitte.com",
+      "entityTaxID": "1234"
+    }
+  ],
+  "country": [
+    {
+      "Id": "1",
+      "Name": "India"
+    },
+    {
+      "Id": "2",
+      "Name": "Japan"
+    }
+  ],
+  "region": [
+    {
+      "Id": "1",
+      "Name": "Region 1"
+    },
+    {
+      "Id": "2",
+      "Name": "Region 2"
+    }
+  ],
+  "characters": [
+    {
+      "id": "1",
+      "name": "Peter Dinklage",
+      "age": "45"
+    },
+    {
+      "id": "2",
+      "name": "Lina Heady",
+      "age": "43"
+    },
+    {
+      "id": "3",
+      "name": "Emilia Clarke",
+      "age": "30"
+    },
+    {
+      "id": "4",
+      "name": "Kit Harrington",
+      "age": "30"
+    },
+    {
+      "id": "5",
+      "name": "Sean Bean",
+      "age": "50"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Ramachandra",
+      "lastName": "V",
+      "email": "ramachandrav@deloitte.com",
+      "picture": "assets/images/35059.jpg"
+    },
+    {
+      "id": 2,
+      "firstName": "Nick",
+      "lastName": "Jones",
+      "email": "nickjones@deloitte.com",
+      "picture": "assets/images/nick.png"
+    },
+    {
+      "id": 3,
+      "firstName": "Eva",
+      "lastName": "Moor",
+      "email": "EvaMoor@deloitte.com",
+      "picture": "assets/images/eva.png"
+    },
+    {
+      "id": 4,
+      "firstName": "Jack",
+      "lastName": "Williams",
+      "email": "JackWilliams@deloitte.com",
+      "picture": "assets/images/jack.png"
+    },
+    {
+      "id": 5,
+      "firstName": "Lee",
+      "lastName": "Wong",
+      "email": "LeeWong@deloitte.com",
+      "picture": "assets/images/lee.png"
+    },
+    {
+      "id": 6,
+      "firstName": "Alan",
+      "lastName": "Thompson",
+      "email": "AlanThompson@deloitte.com",
+      "picture": "assets/images/alan.png"
+    },
+    {
+      "id": 7,
+      "firstName": "Kate",
+      "lastName": "Martinez",
+      "email": "KateMartinez@deloitte.com",
+      "picture": "assets/images/kate.png"
+    }
+  ],
+  "upload": [
+    {
+      "FileUpload": "file_name1",
+      "UploadedBy": "avinash",
+      "Date": "today",
+      "Error": "sawaal nhi",
+      "Action": "kuchh bhi"
+    },
+    {
+      "FileUpload": "test1.xlsx",
+      "UploadedBy": "avinash",
+      "Date": "today",
+      "Error": "sawaal nhi",
+      "Action": "kuchh bhi"
+    },
+    {
+      "FileUpload": "abc.xlsx",
+      "UploadedBy": "avinash",
+      "Date": "today",
+      "Error": "sawaal nhi",
+      "Action": "kuchh bhi"
+    }
+  ],
+  "organizations": [
+    {
+      "Id": "1",
+      "Organization": "XYZ, India",
+      "GUPName": "XYZ Company",
+      "MemberFirm": "XYZ Pvt Ltd",
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "25/04/2019",
+      "Industry": {
+        "SubIndustryType": {
+          "Id": 1,
+          "SubIndustry": "Hello World"
+        },
+        "Id": 1,
+        "Industry": "Hello World"
+      }
+    },
+    {
+      "Id": "2",
+      "Organization": "XYZ, India 1",
+      "GUPName": "XYZ Company",
+      "MemberFirm": "XYZ1 Pvt Ltd",
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "27/04/2019",
+      "Industry": {
+        "SubIndustryType": {
+          "Id": 1,
+          "SubIndustry": "Hello World"
+        },
+        "Id": 1,
+        "Industry": "Hello World"
+      }
+    },
+    {
+      "Id": "3",
+      "Organization": "XYZ, India 2",
+      "GUPName": "XYZ Company",
+      "MemberFirm": "XYZ2 Pvt Ltd",
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019",
+      "Industry": {
+        "SubIndustryType": {
+          "Id": 1,
+          "SubIndustry": "Hello World"
+        },
+        "Id": 1,
+        "Industry": "Hello World"
+      }
+    },
+    {
+      "Id": "4",
+      "Organization": "XYZ, India 3",
+      "GUPName": "XYZ Company",
+      "MemberFirm": "XYZ2 Pvt Ltd",
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019",
+      "Industry": {
+        "SubIndustryType": {
+          "Id": 1,
+          "SubIndustry": "Hello World"
+        },
+        "Id": 1,
+        "Industry": "Hello World"
+      }
+    },
+    {
+      "Id": "5",
+      "Organization": "XYZ, India 4",
+      "GUPName": "XYZ Company",
+      "MemberFirm": "XYZ2 Pvt Ltd",
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019",
+      "Industry": {
+        "SubIndustryType": {
+          "Id": 1,
+          "SubIndustry": "Hello World"
+        },
+        "Id": 1,
+        "Industry": "Hello World"
+      }
+    },
+    {
+      "Id": "6",
+      "Organization": "XYZ, India 5",
+      "GUPName": "XYZ Company",
+      "MemberFirm": "XYZ2 Pvt Ltd",
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019",
+      "Industry": {
+        "SubIndustryType": {
+          "Id": 1,
+          "SubIndustry": "Hello World"
+        },
+        "Id": 1,
+        "Industry": "Hello World"
+      }
+    },
+    {
+      "Id": "7",
+      "Organization": "XYZ, India 6",
+      "GUPName": "XYZ Company",
+      "MemberFirm": "XYZ2 Pvt Ltd",
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019",
+      "Industry": {
+        "SubIndustryType": {
+          "Id": 1,
+          "SubIndustry": "Hello World"
+        },
+        "Id": 1,
+        "Industry": "Hello World"
+      }
+    }
+  ],
+  "Project": [
+    {
+      "ProjectId": 1,
+      "ProjectName": "TestProject-1",
+      "Description": "test description",
+      "fiscalyear": 2019,
+      "Industries": [
+        {
+          "id": "5cc83bff613d554d2f531128",
+          "industry": "Technology, Media & Entertainment",
+          "subIndustryType": [
+            {
+              "id": "5cc83bff613d554d2f53112e",
+              "subIndustry": "Telecom, Media & Entertainment"
+            },
+            {
+              "id": "5cc83bff613d554d2f53112f",
+              "subIndustry": "Technology"
+            }
+          ]
+        }
+      ],
+      "Country": "5cb56ae1b0d384d69ad0783c",
+      "GUPName": "Deloitte",
+      "OrganizationId": "5ccd48e5d639f86bec33e680",
+      "Leads": [
+        {
+          "LeadName": "shivesh jha",
+          "Email": "shijha@deloitte.com"
+        },
+        {
+          "LeadName": "test name",
+          "Email": "test@deloitte.com"
+        }
+      ],
+      "IsVisible": true,
+      "CreatedBy": "shijha-5",
+      "Overwrite": true,
+      "Delete": false,
+      "CreatedOn": "26/04/2019"
+    }
+  ],
+  "projects": [
+    {
+      "Id": "1",
+      "ProjectName": "Annual Report -1",
+      "Description": "Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company",
+      "OrganizationId": "1",
+      "IsVisible": true,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    },
+    {
+      "Id": "2",
+      "ProjectName": "Annual Report -1",
+      "Description": "Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company",
+      "OrganizationId": "1",
+      "IsVisible": true,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    },
+    {
+      "Id": "3",
+      "ProjectName": "Annual Report -1",
+      "Description": "Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company",
+      "OrganizationId": "1",
+      "IsVisible": true,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    },
+    {
+      "Id": "4",
+      "ProjectName": "Annual Report -1",
+      "Description": "Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company",
+      "OrganizationId": "1",
+      "IsVisible": true,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    },
+    {
+      "Id": "5",
+      "ProjectName": "Annual Report -1",
+      "Description": "Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company",
+      "OrganizationId": "1",
+      "IsVisible": true,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    },
+    {
+      "Id": "6",
+      "ProjectName": "Annual Report -6",
+      "Description": "Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company",
+      "OrganizationId": "1",
+      "IsVisible": true,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    },
+    {
+      "Id": "7",
+      "ProjectName": "Annual Report -1",
+      "Description": "Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company",
+      "OrganizationId": "1",
+      "IsVisible": true,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    },
+    {
+      "Id": "8",
+      "ProjectName": "Annual Report -1",
+      "Description": "Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company",
+      "OrganizationId": "1",
+      "IsVisible": true,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    },
+    {
+      "Id": "9",
+      "ProjectName": "Annual Report -1",
+      "Description": "Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company",
+      "OrganizationId": "1",
+      "IsVisible": true,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    },
+    {
+      "Id": "10",
+      "ProjectName": "Annual Report -1",
+      "Description": "Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company",
+      "OrganizationId": "1",
+      "IsVisible": true,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    },
+    {
+      "Id": "2",
+      "ProjectName": "Annual Report -2",
+      "Description": "Copy Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company 1",
+      "OrganizationId": "2",
+      "IsVisible": false,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    },
+    {
+      "Id": "3",
+      "ProjectName": "Annual Report -3",
+      "Description": "Copy of Its a long established fact that a reader will be distracted by the readable content of.",
+      "fiscalyear": 2019,
+      "Industry": "Transport",
+      "CountryId": "1",
+      "GUPName": "XYZ Company 2",
+      "OrganizationId": "3",
+      "IsVisible": true,
+      "CreatedBy": "Mohamed Hafizulla K, India",
+      "CreatedOn": "26/04/2019"
+    }
+  ],
+  "gup": [
+    {
+      "Id": "001",
+      "Name": "Gup 001"
+    },
+    {
+      "Id": "002",
+      "Name": "Gup 002"
+    },
+    {
+      "Id": "003",
+      "Name": "Gup 003"
+    }
+  ],
+  "useCase": [
+    {
+      "id": "001",
+      "name": "OutSource"
+    },
+    {
+      "id": "002",
+      "name": "InSource"
+    },
+    {
+      "id": "004",
+      "name": "CoSource"
+    }
+  ],
+  "usageReport": [
+    {
+      "Organization": "Org 1",
+      "Gup": "Gup 1",
+      "Project": "Project Name",
+      "Industry": "Industry 1",
+      "UseCase": "Insource",
+      "UseCaseInternalUsers": 20,
+      "UseCaseExternalUsers": 10,
+      "Entities": 120,
+      "CreatedByName": "Simple John",
+      "CreatedByCountry": "US",
+      "CreatedByEmail": "verysimple@sample.com",
+      "CreationDate": "2019-10-10T10:10:10"
+    },
+    {
+      "Organization": "Organixation 2",
+      "Gup": "Global Ultimate parent 2",
+      "Project": "Project Name",
+      "Industry": "Industry 1",
+      "UseCase": "Insource",
+      "UseCaseInternalUsers": 20,
+      "UseCaseExternalUsers": 10,
+      "Entities": 120,
+      "CreatedByName": "Simple John",
+      "CreatedByCountry": "US",
+      "CreatedByEmail": "verysimple@sample.com",
+      "CreationDate": "2019-10-10T10:10:10"
+    },
+    {
+      "Organization": "Org 1",
+      "Gup": "Gup 1",
+      "Project": "Project Name",
+      "Industry": "Industry 1",
+      "UseCase": "Insource",
+      "UseCaseInternalUsers": 20,
+      "UseCaseExternalUsers": 10,
+      "Entities": 120,
+      "CreatedByName": "Simple John",
+      "CreatedByCountry": "US",
+      "CreatedByEmail": "verysimple@sample.com",
+      "CreationDate": "2019-10-10T10:10:10"
+    },
+    {
+      "Organization": "Org 2",
+      "Gup": "Gup 2",
+      "Project": "Project Name",
+      "Industry": "Industry 2",
+      "UseCase": "Outsource",
+      "UseCaseInternalUsers": 20,
+      "UseCaseExternalUsers": 10,
+      "Entities": 120,
+      "CreatedByName": "Complex John",
+      "CreatedByCountry": "IN",
+      "CreatedByEmail": "veryComplex@complex.com",
+      "CreationDate": "2019-10-10T10:10:10"
+    }
+  ],
+  "industry": [
+    {
+      "id": "5ccbd9ae5500da38590862f4",
+      "industry": "Technology, Media & Entertainment",
+      "subIndustries": [
+        {
+          "id": "5ccbd9ae5500da38590862fa",
+          "subIndustry": "Telecom, Media & Entertainment"
+        },
+        {
+          "id": "5ccbd9ae5500da38590862fb",
+          "subIndustry": "Technology"
+        }
+      ]
+    },
+    {
+      "id": "5ccbd9ae5500da38590862f5",
+      "industry": "Consumer",
+      "subIndustries": [
+        {
+          "id": "5ccbd9ae5500da38590862fc",
+          "subIndustry": "Consumer Products and Retail, Wholesale & Distribution"
+        },
+        {
+          "id": "5ccbd9ae5500da38590862fd",
+          "subIndustry": "Automotive"
+        },
+        {
+          "id": "5ccbd9ae5500da38590862fe",
+          "subIndustry": "Transportation, Hospitality and Services"
+        }
+      ]
+    },
+    {
+      "id": "5ccbd9ae5500da38590862f6",
+      "industry": "Energy, Resources & Industrials",
+      "subIndustries": [
+        {
+          "id": "5ccbd9ae5500da38590862ff",
+          "subIndustry": "Power & Utilities"
+        },
+        {
+          "id": "5ccbd9ae5500da3859086300",
+          "subIndustry": "Mining & Metals"
+        },
+        {
+          "id": "5ccbd9ae5500da3859086301",
+          "subIndustry": "Oil, Gas & Chemicals"
+        },
+        {
+          "id": "5ccbd9ae5500da3859086302",
+          "subIndustry": "Industrial Products & Construction"
+        }
+      ]
+    },
+    {
+      "id": "5ccbd9ae5500da38590862f7",
+      "industry": "Financial Services",
+      "subIndustries": [
+        {
+          "id": "5ccbd9ae5500da3859086303",
+          "subIndustry": "Banking & Capital Markets"
+        },
+        {
+          "id": "5ccbd9ae5500da3859086304",
+          "subIndustry": "Insurance"
+        },
+        {
+          "id": "5ccbd9af5500da3859086305",
+          "subIndustry": "Investment Management"
+        },
+        {
+          "id": "5ccbd9af5500da3859086306",
+          "subIndustry": "Real Estate"
+        }
+      ]
+    },
+    {
+      "id": "5ccbd9ae5500da38590862f8",
+      "industry": "Life Sciences and Health Care",
+      "subIndustries": [
+        {
+          "id": "5ccbd9af5500da3859086307",
+          "subIndustry": "Health Care & Life Sciences"
+        }
+      ]
+    },
+    {
+      "id": "5ccbd9ae5500da38590862f9",
+      "industry": "Other",
+      "subIndustries": []
+    },
+    {
+      "id": "5ccbd9ae5500da38590862f7",
+      "industry": "Financial Services",
+      "subIndustries": [
+        {
+          "id": "5ccbd9ae5500da3859086303",
+          "industry": "Banking & Capital Markets"
+        },
+        {
+          "id": "5ccbd9ae5500da3859086304",
+          "industry": "Insurance"
+        },
+        {
+          "id": "5ccbd9af5500da3859086305",
+          "industry": "Investment Management"
+        },
+        {
+          "id": "5ccbd9af5500da3859086306",
+          "industry": "Real Estate"
+        }
+      ]
+    },
+    {
+      "id": "5ccbd9ae5500da38590862f8",
+      "industry": "Life Sciences and Health Care",
+      "subIndustries": [
+        {
+          "id": "5ccbd9af5500da3859086307",
+          "industry": "Health Care & Life Sciences"
+        }
+      ]
+    },
+    {
+      "id": "5ccbd9ae5500da38590862f9",
+      "industry": "Other",
+      "industries": []
+    }
+  ],
+  "layoutStyles": [
+    {
+      "id": "5e37f24a256c7a95501b4d3a",
+      "audittrail": {
+        "createdby": {
+          "firstname": "B T",
+          "lastname": "Venkatesha",
+          "email": "btvenkat@deloitte.com",
+          "isactive": true
+        },
+        "createdon": "2020-02-03T10:13:29.781Z",
+        "updatedby": {
+          "firstname": "Mohamed",
+          "lastname": "Hafizulla",
+          "email": "mhafizulla@deloitte.com",
+          "isactive": true
+        },
+        "updatedon": "2020-02-17T05:23:42.786Z"
+      },
+      "projectid": "5d848054693ec22a68ac44e1",
+      "layoutName": "Deloitte ",
+      "styles": [
+        {
+          "name": "Heading 1",
+          "styleOn": "Heading 1",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 20.0,
+            "bold": false,
+            "italic": true,
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "highlightcolor": {
+              "r": 255,
+              "g": 0,
+              "b": 0
+            },
+            "alignment": "Left",
+            "underline": "Single"
+          }
+        },
+        {
+          "name": "Heading 2",
+          "styleOn": "Heading 2",
+          "properties": {
+            "fontname": "Georgia",
+            "fontsize": 15.0,
+            "bold": true,
+            "italic": true,
+            "color": {
+              "r": 0,
+              "g": 255,
+              "b": 0
+            },
+            "highlightcolor": {
+              "r": 0,
+              "g": 0,
+              "b": 225
+            },
+            "alignment": "Left",
+            "underline": "None"
+          }
+        },
+        {
+          "name": "Heading 3",
+          "styleOn": "Heading 3",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 9.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "highlightcolor": null,
+            "alignment": "Left",
+            "underline": "None"
+          }
+        },
+        {
+          "name": "Heading 4",
+          "styleOn": "Heading 4",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 9.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 118,
+              "g": 113,
+              "b": 113
+            },
+            "highlightcolor": null,
+            "alignment": "Left",
+            "underline": "None"
+          }
+        },
+        {
+          "name": "Heading 5",
+          "styleOn": "Heading 5",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 9.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 118,
+              "g": 113,
+              "b": 113
+            },
+            "highlightcolor": null,
+            "alignment": "Left",
+            "underline": "None"
+          }
+        },
+        {
+          "name": "Body",
+          "styleOn": "Body",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 20.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 118,
+              "g": 113,
+              "b": 113
+            },
+            "highlightcolor": null,
+            "alignment": "Left",
+            "underline": "None"
+          }
+        },
+        {
+          "name": "Bullet",
+          "styleOn": "Bullet",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 20.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "highlightcolor": null,
+            "alignment": "Left",
+            "underline": "None"
+          }
+        }
+      ],
+      "isDefault": true,
+      "isActive": true,
+      "isselected": false, 
+      "isInternalUser": false
+    },
+    {
+      "id": "5e39351c6cb9be5224d5dc21",
+      "audittrail": {
+        "createdby": {
+          "firstname": "B T",
+          "lastname": "Venkatesha",
+          "email": "btvenkat@deloitte.com",
+          "isactive": true
+        },
+        "createdon": "2020-02-04T09:10:51.101Z",
+        "updatedby": {
+          "firstname": "B T",
+          "lastname": "Venkatesha",
+          "email": "btvenkat@deloitte.com",
+          "isactive": true
+        },
+        "updatedon": "2020-02-04T09:10:51.100Z"
+      },
+      "projectid": "5d848054693ec22a68ac44e1",
+      "layoutName": "Deloitte Second",
+      "styles": [
+        {
+          "name": "Heading 1",
+          "styleOn": "Heading 1",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 20.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "highlightcolor": null,
+            "alignment": "Center",
+            "underline": "DotDash"
+          }
+        },
+        {
+          "name": "Heading 2",
+          "styleOn": "Heading 2",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 11.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 98,
+              "g": 181,
+              "b": 229
+            },
+            "highlightcolor": null,
+            "alignment": "Right",
+            "underline": "Single"
+          }
+        },
+        {
+          "name": "Heading 3",
+          "styleOn": "Heading 3",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 9.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "highlightcolor": null,
+            "alignment": "Left",
+            "underline": "None"
+          }
+        },
+        {
+          "name": "Heading 4",
+          "styleOn": "Heading 4",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 9.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 118,
+              "g": 113,
+              "b": 113
+            },
+            "highlightcolor": null,
+            "alignment": "Left",
+            "underline": "None"
+          }
+        },
+        {
+          "name": "Heading 5",
+          "styleOn": "Heading 5",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 9.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 118,
+              "g": 113,
+              "b": 113
+            },
+            "highlightcolor": null,
+            "alignment": "Left",
+            "underline": "None"
+          }
+        },
+        {
+          "name": "Body",
+          "styleOn": "Body",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 20.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 118,
+              "g": 113,
+              "b": 113
+            },
+            "highlightcolor": null,
+            "alignment": "Left",
+            "underline": "None"
+          }
+        },
+        {
+          "name": "Bullet",
+          "styleOn": "Bullet",
+          "properties": {
+            "fontname": "Verdana, sans-serif",
+            "fontsize": 20.0,
+            "bold": false,
+            "italic": false,
+            "color": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "highlightcolor": null,
+            "alignment": "Left",
+            "underline": "None"
+          }
+        }
+      ],
+      "isDefault": false,
+      "isActive": true,
+      "isselected": false,
+      "isInternalUser": false
+    }
+  ]
+}

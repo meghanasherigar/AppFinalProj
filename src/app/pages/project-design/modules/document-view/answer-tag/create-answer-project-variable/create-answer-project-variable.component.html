@@ -1,0 +1,41 @@
+<nb-card class="bookMarkPopUp">
+    <nb-card-header class="createTopHeader">{{ 'screens.project-designer.document-view.info-gathering.ProjectVariable.Create' | translate }}
+        <button aria-label="Close" class="close" type="button" (click)="dismiss()"><span
+            aria-hidden="true">×</span></button>
+      </nb-card-header>
+    <nb-card-body>
+  <div class="row">
+      <div class="col-sm-12">
+          <div class="form-group">
+              <label class="custom-form-label">{{'screens.project-designer.document-view.info-gathering.ProjectVariable.Variable' | translate}}</label>
+              <span class="mandatoryField">*</span>
+              <input type="text" name="variable" [(ngModel)] = "variable" [placeholder]="'screens.project-designer.document-view.info-gathering.ProjectVariable.placeholderVariable' | translate" 
+              class="form-control custom-form-input" (keyup)="validationProjectVariable();">
+                <div *ngIf="IsValid" class="mandatoryField">{{'screens.project-designer.document-view.info-gathering.ValidationMessages.Variablenamesstartmsg' | translate}}
+                </div> 
+                <div *ngIf="IsSpace" class="mandatoryField">{{'screens.project-designer.document-view.info-gathering.ValidationMessages.VariableNoSpaceValidation' | translate}}
+                </div>
+        </div>
+        </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-12">
+          <div class="form-group">
+              <label class="custom-form-label">{{'screens.project-designer.document-view.info-gathering.ProjectVariable.Value' | translate}}</label>
+              <span class="mandatoryField">*</span>
+              <input type="text" name="value" [(ngModel)] = "value" [placeholder]="'screens.project-designer.document-view.info-gathering.ProjectVariable.Value' | translate" 
+              class="form-control custom-form-input" (keyup)="validationProjectVariable();">
+        </div>
+        </div>
+</div>
+    </nb-card-body>
+    <nb-card-footer class="footerCard">
+        <nb-card-footer class="footerRightButton">
+          <button nbButton type="button" class="menu-btn-cancel btnCancel" (click)="dismiss()"><label
+              class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <button [ngClass]="!userInvalid ? '' : 'disable-section disabledbutton'" type="submit" class="menu-btn-save btnSave" (click)="createProjectVariable()"
+            id="btnCreateOrganization">{{'screens.home.labels.Save' | translate}}</button>
+        </nb-card-footer>
+      </nb-card-footer>
+    </nb-card>

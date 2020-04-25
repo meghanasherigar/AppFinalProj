@@ -1,0 +1,33 @@
+<nb-card class="blockEdit">
+  <nb-card-header ngxUiLoaderBlurred>
+    <div class="col-sm-1"><img src="assets/images/error-img.png" width="34" height="34" ></div>
+      <div class="col-sm-11">
+        <h5>{{'screens.project-designer.iconview.suggestBlock.existingTag' | translate}}</h5>
+        <p>{{'screens.project-designer.iconview.suggestBlock.existingTagText' | translate}}</p>
+        
+
+      </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="requestQuestions-table">
+      <p>{{'screens.project-designer.iconview.suggestBlock.existingTagInfo' | translate}}</p>
+      <ng2-smart-table id="transSmartTable" class="home-table" [settings]="settings" [source]="source"
+        (custom)="onCustomAction($event)">
+      </ng2-smart-table>
+    </div>
+  </nb-card-body>
+
+  <nb-card-footer class="blockeditfooter">
+  <div class="row importFooter">
+    <div class="blockEditButton">
+      <button nbButton type="button" class="menu-btn-cancel importCancel"
+        (click)="dismiss()"><label class="menu-txt-cancel canclebuttonLebal">{{'screens.project-designer.iconview.suggestBlock.cancel' | translate}}</label></button>
+     
+      <button type="button"   (click)="save()" class="menu-btn-save importAddButtton">{{'screens.Project-Management.Tasks.Messages.Labels.Save' | translate}}</button>
+    </div>
+
+  </div>
+</nb-card-footer>
+</nb-card>
+
+  

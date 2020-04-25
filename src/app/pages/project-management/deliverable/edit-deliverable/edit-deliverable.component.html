@@ -1,0 +1,60 @@
+<div class="mgmtEditContainer">
+  <div class="filters-section">
+     <div class="filter-inputs-wrapper">
+        <div class="input-wrapper filter-input">
+           <!-- [minDate]="TargetMinDate" [maxDate]="TargetMaxDate" -->
+           <input type="text" class="form-control custom-form-input"
+           id="txtTargetDeliverableIssueDate"
+           [(ngModel)]="targetDeliverableIssueDate"
+           [placeholder]="'screens.Project-Management.Deliverable.Filter.TargetDeliverableIssueDate' | translate"  
+           bsDatepicker #dpTargetDeliverableIssueDate="bsDatepicker"
+           [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly>
+           <label>
+           <i>
+           <img (click)="dpTargetDeliverableIssueDate.show()"
+           [attr.aria-expanded]="dpTargetDeliverableIssueDate.isOpen" src="assets/images/calender.png"
+           class="calender-icon"></i>
+           </label>
+        </div>
+        <div class="input-wrapper filter-input">
+           <!-- [minDate]="TargetMinDate" [maxDate]="TargetMaxDate" -->
+           <input type="text" class="form-control custom-form-input"
+           id="txtStatutoryDueDate"
+           [(ngModel)]="statutoryDueDate"
+           [placeholder]="'screens.Project-Management.Deliverable.Filter.StatutoryDueDate' | translate"
+           bsDatepicker #dpstatutorydueDate="bsDatepicker"
+           [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly>
+           <label>
+           <i>
+           <img (click)="dpstatutorydueDate.show()"
+           [attr.aria-expanded]="dpstatutorydueDate.isOpen" src="assets/images/calender.png"
+           class="calender-icon"></i>
+           </label>
+        </div>
+        <div class="input-wrapper filter-input">
+           <!-- [minDate]="TargetMinDate" [maxDate]="TargetMaxDate" -->
+           <input type="text" class="form-control custom-form-input"
+           id="txtCbcNotificationDueDate"
+           [(ngModel)]="cbcNotificationDueDate"
+           [placeholder]="'screens.Project-Management.Deliverable.Filter.CBCNotificationDueEnd' | translate"
+           bsDatepicker #dpcbcnotificationduedate="bsDatepicker"
+           [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly>
+           <label>
+           <i>
+           <img (click)="dpcbcnotificationduedate.show()"
+           [attr.aria-expanded]="dpcbcnotificationduedate.isOpen" src="assets/images/calender.png"
+           class="calender-icon"></i>
+           </label>
+        </div>
+        <span
+           class="section-name">{{ 'screens.Project-Management.Deliverable.Header.Filters' | translate }}</span>
+     </div>
+     <div class="row">
+          <button id="btnCancel" (click)="onCancel()"class="menu-btn-cancel">
+              <label class="menu-txt-cancel">{{ 'screens.Project-Management.Deliverable.Deliverable-Edit.Cancel' | translate }}</label>
+          </button>
+          <br>
+          <button id="btnSave" class="menu-btn-save" (click)="onSave()">{{ 'screens.Project-Management.Deliverable.Deliverable-Edit.Save' | translate }}</button>
+    </div> 
+  </div>
+</div>

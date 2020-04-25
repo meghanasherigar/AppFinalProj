@@ -1,0 +1,64 @@
+<!-- <div *ngIf=(loader)>
+    <div class="centered"><img src="assets/images/loder.gif" alt="loder" height="100px" width="100px"></div>
+</div> -->
+<div class="container blockimpoter" [contextMenu]="basicMenu">
+    <div class="row topHeader">
+        <div class="col-sm-12">
+            <div class="row topimporterHeader">
+                <div class="col-sm-4 text-center">
+                    <h6 class="importHeading">{{'screens.user.AdminView.Library.Menus.ImportBlocks'|translate}}</h6>
+                </div>
+                <div class="col-sm-2" id="AddContentIcon">
+                    <div class="action-icon-wrapper">
+                    <img src=" assets/images/DocumentView/CreateBlock-active.svg" (click)="showSelectedText()"
+                        class="btnToolbar">
+                    <span class="icon-name">{{'screens.user.AdminView.Library.Menus.AddContent'|translate}}</span>
+                </div>
+                </div>
+                <div class="col-sm-3">
+                    <h6 class="addBlock">{{'screens.user.AdminView.Library.Menus.CreateBlockFromCollection'|translate}}</h6>
+                </div>
+                <div class="col-sm-3">
+                    <h6 class="attributeHeadeing">{{'screens.user.AdminView.Library.Menus.Attributes'|translate}}</h6>
+                  </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row col-sm-12">
+        <div class="topHeaderScrolling col-sm-5 importerForm" id="importedPDFContent" >
+        <!-- (mouseup)="showSelectedText()"> -->
+        </div>
+        <div class="topHeaderScrolling col-sm-4 importerForm" id="addPDFContent"></div>
+        <!-- <div class="topHeaderScrolling col-sm-3"> contents for attribute</div> -->
+        <div class="col-sm-3 importerForm topHeaderScrolling">
+         <!-- *ngIf="!hideAttributeIcon"> -->
+          <ngx-editor-block-attributes></ngx-editor-block-attributes>
+          </div>
+
+
+    </div>
+    <div class="row importFooter">
+            <div class="pull-right" id="CreateBlockIcon">
+                <button nbButton type="button" class="menu-btn-save importCancel"
+                    (click)="loadCreateBlock()"><label
+                        class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Create' | translate}}</label></button>
+
+                <!-- <img src=" assets/images/DocumentView/CreateBlock-active.svg" (click)="loadCreateBlock()"
+                    class="btnToolbar">
+                <span class="icon-name">{{'screens.user.AdminView.Library.Menus.CreateBlock' | translate}}</span> -->
+            
+                <button nbButton type="button" class="menu-btn-cancel importCancel" 
+                    (click)="cancelBlockImporter()"><label
+                        class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+            </div>
+        </div>
+    
+
+</div>
+<context-menu>
+    <ng-template contextMenuItem (execute)="loadCreateBlock()" [enabled]="disableCreate">
+        {{'screens.user.AdminView.Library.Menus.CreateBlock' | translate}}
+    </ng-template>
+</context-menu>

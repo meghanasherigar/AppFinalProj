@@ -1,0 +1,39 @@
+<nb-card>
+    <nb-card-body class="templateHeaderWrapper">
+      <div class="row left-style top-header1">
+          <div class="col-md-6">
+              <div class="selectLibrary">
+                  <select class="dd-style" id="ddlForLibrary" [(ngModel)]="selectedLibrary" (change)="libraryChange($event)">
+                        <option *ngFor="let library of libraryList" [ngValue]="library">
+                          {{library.name}}
+                        </option>
+                    </select>
+                    <span class="dropdown-down dropdown-Arrow"></span> 
+              </div>
+       
+            </div>
+      </div>
+  <div class="row top-header2">
+  
+      <div class="col-sm-12 headerTop">
+          <!-- <div class="libraryItems">
+              <img src="assets/images/projectdesigner/header/Filter.svg"  class="smallIcon icon icon-header">
+            <img src="assets/images/projectdesigner/header/Search.svg" class="smallIcon icon icon-header search-icons">
+            </div> -->
+       <div class="libraryItems">
+            <input type="text" id="searchbox" [placeholder]="'screens.project-designer.iconview.Type to Search...' | translate" [(ngModel)]="searchText" (keyup)="searchTextChanged.next($event)" *ngIf="isSearchBoxVisible"  debounce="1000"/>
+            <img src="assets/images/projectdesigner/header/Search.svg"  (click)="toggleSearchBox();" class="smallIcon icon icon-header search-icons" ngbTooltip="{{'iconviewtooltip.search' | translate}}">
+            <img src="assets/images/projectdesigner/header/Filter.svg"  (click)="filterPopUp();" class="smallIcon icon icon-header" ngbTooltip="{{'iconviewtooltip.filter' | translate}}">
+          </div>
+          <!-- (click)="manageDeliverablePopup()"  this function is user for filter & search inside global library-->
+        
+          
+    </div>
+   <div class="col-sm-12">
+     <ngx-content></ngx-content>
+   </div>
+    
+    </div>
+   
+  </nb-card-body>
+</nb-card>

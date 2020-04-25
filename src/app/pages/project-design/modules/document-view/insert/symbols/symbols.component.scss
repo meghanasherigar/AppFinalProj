@@ -1,0 +1,295 @@
+.select_form_control{
+    height: calc(2rem + 6px)!important;
+}
+.disabledTextInput{
+    background-color: #e9ecef;
+    opacity: 1;
+}
+.form-control-label
+{
+    font-size: 14px;
+    color: #000;
+    margin-left:10px;
+}
+
+.symbolButtons{
+    width: 25px;
+      height: 25px;
+      border-radius: 2px;
+      display: inline-block;
+      margin: 2px 0px 2px 3px;
+      border: 1px solid #ccc;
+      color:black
+  
+   }
+.symbolIconBox{ 
+    width: 100%;
+ padding: 5px;
+ 
+}
+.create-block-attribute-mandatory-icon{
+    color: red;
+} 
+.form-group .form-control::placeholder{
+    font-size: 13px;
+    color:#c1c6ce; 
+}
+
+ngx-dropdown-treeview{
+    button{
+      height: 31px !important;
+      border: 1px solid #D2D4CD !important;
+      background-color: #FFFFFF !important;
+      border-radius: 0 !important;
+      margin: -10px 0 0 0;
+      padding: 4px 37px 4px 12px!important;
+      width: 137px;
+    }
+  }
+.create-block-textarea{
+    height: 79px !important;
+}    
+
+.footerRightButton
+{
+    float: right!important;
+    position: relative;
+    // margin: 6px;
+}
+.HeaderScrolling{
+ overflow: auto;
+ max-height: auto;
+ height: auto;
+ max-height: 500px;
+}
+.formGroupLabal
+{
+    color: #d4d3d3;
+    font-size: 11px;
+}
+.blockHeading{
+    font-weight:bold;
+}
+.footerCard{
+    border-top: 1px solid #eee !important;
+    padding: 0.18px;
+}
+.savButton{
+    height: 35px;
+    width: 109px;
+    border: 1px solid #636561;
+    border-radius: 3px;
+    background-color: #666765;
+    color: #fff;
+}
+.canclebuttonLebal{
+    color:white !important;
+}
+.createBlockpopupHW{
+    width: 1027px;
+    margin-top: 60px;
+}
+.createTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+    font-weight: normal;
+
+}
+.close{
+    color: #fff;
+    border: none;
+    border: 0;
+    border: 0 none !important;
+    color: #fff;
+    display: inline-block;
+    font-size: 22px;
+    line-height: 1;
+    opacity: 1;
+    text-shadow: none;
+   -webkit-transition: background 0.2s ease-in-out;
+   transition: background 0.2s ease-in-out;
+   vertical-align: top;
+   width: 46px;
+   outline: none;
+}
+.close:hover{
+    border: none;
+    border: 0;
+}
+.createBlockSave{
+color: #fff  !important;
+font-weight: 700;
+font-size: 12px;
+background-color: #86BC25;
+border-radius: 4px;
+padding: 10px;
+line-height: 14px;
+    &:focus,&:active,&:hover{
+        background-color: #86BC25;
+    }
+label{
+    margin-bottom: 0;
+}
+}
+.createBlockpopupHW .custom-form-label{
+    font-size: 12px !important;
+    
+}
+.form-control.custom-form-input{
+    font-size: 12px !important;
+   
+}
+.createBlockpopupHW ::placeholder{
+    font-size: 12px !important;
+    
+}
+.footerRightButton.createCancel{
+    border-radius: 2px!important;
+}
+
+.rectangle {
+    height: 85.5px;
+    width: 229px;
+    border: 0.5px solid #D8D8D8;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 7px 0 rgba(224, 224, 224, 0.5);
+  }
+
+  .Clockwise {
+    transform: rotate(-45deg);
+    transform-origin: right, top;
+    -ms-transform: rotate(-45deg);
+    -ms-transform-origin:right, top;
+    -webkit-transform: rotate(-45deg);
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 17px;
+    padding-top: 10px;
+    position: absolute;
+}
+.AntiClockwise {
+    transform: rotate(45deg);
+    transform-origin: right, top;
+    -ms-transform: rotate(45deg);
+    -ms-transform-origin:right, top;
+    -webkit-transform: rotate(45deg);
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 17px;
+    padding: 22px 36px 0 22px;
+    position: absolute;
+}
+
+.TopRight {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 17px;
+    margin: 0;
+  }
+  
+  .TopLeft {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 17px;
+    margin: 0;
+  }
+  
+  .BottomRight {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: rgba(224, 224, 224, 0.5);
+    font-size: 17px;
+    margin: 0;
+  }
+  
+  .BottomLeft {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    color: rgba(224, 224, 224, 0.5);
+    margin: 0;
+}
+
+  .watermark{
+    height: 70px;	    width: 89px;display:inline-block;	border: 0.7px solid #E4E4E4;	border-radius: 2px;	background-color: #FEFEFE;    position: relative;
+    margin: 10px ;
+    h1{
+        font-weight: 600;
+        color: rgba(224, 224, 224, 0.8);
+        font-size: 14px;
+    
+    }
+    &:hover{
+        border: 1px solid #000;
+    }
+  }
+
+  .preview{
+      height: 300px;
+      width:238px;
+      margin: auto;
+      .clockwise{
+        top: 25%;
+        left: 8%;
+      }
+     h1{
+         font-size: 48px;
+         font-weight: bolder;
+     }
+     .anticlockwise
+     {
+        top: 26%;
+        left: 5%;
+     } 
+  }
+  .watermark-active{ border: 1px solid #000 !important;}
+  .errorMessage{
+    color: red;
+    font-size: 12px;
+    font-weight: lighter;
+    padding-left: 17px;
+    padding-bottom: 10px;
+ }
+  .blockGenerateHeader{
+      padding: 10px;
+      .generateIcon{
+        width:6%;
+        display:inline-block;
+        img{
+            width:32px;
+            height:32px;
+        }
+      }
+      .generateText{
+        width:94%; 
+        display:inline-block;
+    }
+  }
+  .blockGenerateContent{
+      display:flex;
+      .reportContent{
+        border-right:0.5px solid #D8D8D8;
+        padding: 15px ;
+      }
+      .waterMarkContent{
+        padding: 15px 0;
+        text-align: center;
+      }
+  }
+  .waterMarkSlider{
+      padding: 0 ;
+     
+      margin: auto;
+      border: 0.7px solid #E4E4E4;
+  }
+  .formatPdfOptions{
+      padding: 15px 0;
+  }
+  #inputWaterMark{
+    padding: 0 2px 1px 2px;
+  }
+  

@@ -1,0 +1,121 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+<nb-card>
+  <nb-card-header class="search-header" ngxUiLoaderBlurred>
+    <div >
+      <label for="lblTo" class="emailLabel" *ngIf="isInfoReqSendReminder">
+        &nbsp;&nbsp;{{'screens.project-user.Reminder' | translate}}
+      </label>
+      <div class="closeBtn"   (click)="dismiss()">
+        X
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <div [formGroup]="sendEmailUserForm" >
+      <div class="" id="sendEmailProjectUserDiv">
+        <div class="col-sm-12 padding0">
+          <div class="form-group toEMail">
+            <label for="lblTo" class="emailLabel">
+              {{'screens.project-user.To' | translate}}
+            </label>
+            <mat-form-field class="example-full-width form-control" floatLabel="never">
+              <mat-chip-list #chipList>
+                <mat-chip *ngFor="let item of emailsTo" [selectable]="selectable" [removable]="removable" (removed)="removeToEmailId(item)">
+                  {{ item }}
+                  <mat-icon matChipRemove *ngIf="removable && !isToDisabled">cancel</mat-icon>
+                </mat-chip>
+                <input type="text" aria-label="Number" id="txtToEmailAddress" formControlName="toEmailAddress"
+                  [matAutocomplete]="auto" [matChipInputFor]="chipList"  [readonly]="isToDisabled" #toReset>
+              </mat-chip-list>
+              <mat-autocomplete #auto="matAutocomplete"
+                (optionSelected)='getSelectedToEmailIds($event.option.value, toReset)'>
+                <mat-option class="dropdown-style mat-option ng-star-inserted" *ngFor="let item of searchUserToResult"
+                  [value]="item.email">
+                  {{ item.firstName + ' ' + item.lastName + ' ('+ item.email +')'}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+            <button class="bccBtn" id="btnBCCEnable" *ngIf="enableBCCBtn"
+              (click)="enableBCC()">{{'screens.project-user.BCCBtn' | translate}}
+            </button>
+          </div>
+        </div>
+        <div class="col-sm-12 padding0">
+          <div class="form-group">
+            <label for="lblCC" class="emailLabel">
+              {{'screens.project-user.CC' | translate}}
+            </label>
+            <mat-form-field class="example-full-width form-control" floatLabel="never">
+              <mat-chip-list #chipList>
+                <mat-chip *ngFor="let item of emailsCC" [selectable]="selectable" [removable]="removable"
+                  (removed)="removeCCEmailIds(item)">
+                  {{ item }}
+                  <mat-icon matChipRemove *ngIf="removable && !isCCDisable">cancel</mat-icon>
+                </mat-chip>
+                <input type="text" aria-label="Number" id="txtCCEmailAddress" formControlName="cCEmailAddress"
+                  [matAutocomplete]="auto" [matChipInputFor]="chipList" [readonly]="isCCDisabled" #ccReset>
+              </mat-chip-list>
+              <mat-autocomplete #auto="matAutocomplete"
+                (optionSelected)='getSelectedCCEmailIds($event.option.value, ccReset)'>
+                <mat-option class="dropdown-style mat-option ng-star-inserted" *ngFor="let item of searchUserCCResult"
+                  [value]="item.email">
+                  {{ item.firstName + ' ' + item.lastName + ' ('+ item.email +')'}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-sm-12 padding0" *ngIf="enableBCCControl">
+          <div class="form-group">
+            <label for="lblBCC" class="emailLabel">
+              {{'screens.project-user.BCC' | translate}}
+            </label>
+            <mat-form-field class="example-full-width form-control" floatLabel="never">
+              <mat-chip-list #bCCList>
+                <mat-chip *ngFor="let item of emailsBCC" [selectable]="selectable" [removable]="removable"
+                  (removed)="removeBCCEmailId(item)">
+                  {{ item }}
+                  <mat-icon matChipRemove *ngIf="removable && !isBCCDisable">cancel</mat-icon>
+                </mat-chip>
+                <input type="text" aria-label="Number" id="txtBCCEmailAddress" formControlName="bCCEmailAddress"
+                  [matAutocomplete]="auto" [matChipInputFor]="bCCList" [readonly]="isBCCDisabled" #bccReset>
+              </mat-chip-list>
+              <mat-autocomplete #auto="matAutocomplete"
+                (optionSelected)='getSelectedBCCEmailIds($event.option.value, bccReset)'>
+                <mat-option class="dropdown-style mat-option ng-star-inserted" *ngFor="let item of searchUserBCCResult"
+                  [value]="item.email">
+                  {{ item.firstName + ' ' + item.lastName + ' ('+ item.email +')'}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-sm-12 padding0">
+          <div class="form-group">
+            <label for="lblSubject" class="emailLabel">
+              {{'screens.project-user.Subject' | translate}}
+            </label>
+            <input type="text" formControlName="subject" maxlength="5000" class="form-control manage-admin-pointer-none"
+              id="txtSubject">
+          </div>
+        </div>
+        <div class="col-sm-12 padding0 editorSendMail">
+        
+          <div class="coverPage" id="editor-email"></div>
+          <div id="toolbar-menu-email" class="filters-section coverpage-editor"></div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton type="button" class="button-section rectangle sendBtn" id="btnCreateEntity" (click)="sendEmail()">
+      {{'screens.project-user.SendBtn' | translate}}
+    </button>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <button nbButton type="button" class="menu-btn-cancel sendCancelBtn" style="color:black;"  
+      (click)="dismiss()"><label class="menu-txt-cancel">{{'screens.home.labels.Cancel' | translate}}</label></button>
+  </nb-card-footer>
+</nb-card>

@@ -1,0 +1,134 @@
+<form [formGroup]="editBlockAttributeForm" (ngSubmit)="editBlockAttribute()">
+
+  <nb-card class="editBlockpopupHW editorBlockAttributes ">
+    <nb-card-header class="ediTopHeader">
+      <div  class="attributeIcon">
+        <img  src="assets/images/Attribute view_white.svg">
+    </div>
+    <div class="attributeText">
+      <span>{{'screens.create-block-component.labels.Attributes' | translate}}</span>
+   </div>
+            
+        <img class="closeBtn documentView-close" src="assets/images/Remove_without hover-White.svg" (click)="closeBlockAttribute()" >
+    </nb-card-header>
+    <nb-card-body>
+
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.create-block-component.labels.BlockTitle' | translate}}</label>
+          <input type="text" formControlName="BlockTitle" placeholder="eg:Busines Overview"
+            class="form-control custom-form-input">
+        </div>
+
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.create-block-component.labels.BlockDescriptor' | translate}}
+            <span class="edit-block-attribute-mandatory-icon">*</span></label>
+          <input type="text"placeholder="Block description" class="form-control  custom-form-input" id=""
+            [ngClass]="{ 'is-invalid': submitted && form.BlockDescription.errors }" formControlName="BlockDescription"
+            type="text">
+          <div *ngIf="submitted && form.BlockDescription.errors" class="invalid-feedback">
+            <div *ngIf="form.BlockDescription.errors.required">
+              {{ 'screens.user.AdminView.Library.CreatBlock.ErrorMEssages.Description' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+              <label class="custom-form-label">{{'screens.create-block-component.labels.BlockType' | translate}}
+                <span class="edit-block-attribute-mandatory-icon">*</span>
+              </label>
+              <div class="selectLibrary width100">
+          <select class="form-control custom-form-input ddlHeight" id="ddlBlockType" [attr.disabled]="selectDisable ? '' : null" formControlName="BlockType"
+            (change)="onBlockTypeChanged($event)" [ngClass]="{ 'is-invalid': submitted && form.BlockType.errors }">
+              <option [selected]="true" value="">{{ 'screens.user.AdminView.Library.SelectAll' | translate }}</option>
+            <option *ngFor="let blockType of blockTypes" [ngValue]="blockType.blockTypeId">
+              {{blockType.blockType}}
+            </option>
+          </select>
+          <span class="dropdown-down dropdown-Arrow"></span>
+          </div>
+          <div *ngIf="submitted && form.BlockType.errors" class="invalid-feedback">
+            <div *ngIf="form.BlockType.errors.required">
+              {{ 'screens.user.AdminView.Library.CreatBlock.ErrorMEssages.BlockType' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.create-block-component.labels.Industry' | translate}}
+            <span class="edit-block-attribute-mandatory-icon">*</span>
+          </label>
+          <input type="hidden" formControlName="BlockIndustries" class="form-control"
+             [ngClass]="{ 'is-invalid': submitted && form.BlockIndustries.errors }"   id="hdnBlockIndustry">
+          <ngx-dropdown-treeview class="home-industry org-industry" [config]="config"
+            (selectedChange)="onIndustrySelected($event)" [items]="blockIndustries">
+          </ngx-dropdown-treeview>
+          <div class="form-group others-section" *ngIf="showOtherIndustry">
+            <label></label>
+            <input type="text" id="blockIndustryOthers" class="form-control custom-form-input" placeholder="if others"
+              formControlName="BlockIndustryOthers">
+          </div>
+          <div *ngIf="submitted && form.BlockIndustries.errors" class="invalid-feedback">
+            <div *ngIf="form.BlockIndustries.errors.required">
+              {{ 'screens.user.AdminView.Library.CreatBlock.ErrorMEssages.IndustryType' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="custom-form-label">{{'screens.create-block-component.labels.Status' | translate}}<span
+              class="edit-block-attribute-mandatory-icon">*</span></label>
+              <div class="selectLibrary width100">
+          <select class="form-control custom-form-input ddlHeight" id="ddlBlockStatus" formControlName="BlockStatus"
+            (change)="onBlockStatusChanged()" [ngClass]="{ 'is-invalid': submitted && form.BlockStatus.errors }">
+              <option [selected]="true" value="">{{ 'screens.user.AdminView.Library.SelectAll' | translate }}</option>
+            <option *ngFor="let status of blockStatus" [ngValue]="status.blockStatusId">
+              {{status.blockStatus}}
+            </option>
+          </select>
+          <span class="dropdown-down dropdown-Arrow"></span>
+        </div>
+          <div *ngIf="submitted && form.BlockStatus.errors" class="invalid-feedback">
+            <div *ngIf="form.BlockStatus.errors.required">
+              {{ 'screens.user.AdminView.Library.CreatBlock.ErrorMEssages.BlockStatus' | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label
+            class="custom-form-label">{{'screens.create-block-component.labels.TransactionType' | translate}}
+            <span class="edit-block-attribute-mandatory-icon">*</span>
+          </label>
+            <div class="selectLibrary width100">
+                <input type="hidden" formControlName="TransactionType" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && form.TransactionType.errors }" id="hdnBlockStatus">
+                <ng-select class="form-control custom-form-input ddlHeight" bindValue="transactionType"
+                [items]="transactionList" bindLabel="transactionType" id="ddlTransactionType" [multiple]="false"
+                formControlName="TransactionType" [ngModelOptions]="{standalone: true}" [closeOnSelect]="true"  >
+                </ng-select>
+              <!-- <ng-select class="form-control custom-form-input ddlHeight" bindValue="transactionType"
+                [items]="transactionList" bindLabel="transactionType" id="ddlTransactionType"
+                formControlName="TransactionType">
+              </ng-select> -->
+              <span class="dropdown-down dropdown-Arrow"></span>
+            </div>
+            <div *ngIf="submitted && form.TransactionType.errors" class="invalid-feedback">
+              <div *ngIf="form.TransactionType.errors.required">
+                  {{ 'screens.user.AdminView.Library.CreatBlock.ErrorMEssages.TransactionType' | translate }}
+                </div>
+            </div>
+        </div>
+      </div>
+    </nb-card-body>
+    <nb-card-footer class="saveCancelBtnTopBorder">
+      <div class="footerRightButton text-center">
+        <button nbButton type="button" class="menu-btn-cancel" style="color:black;"
+          (click)="closeBlockAttribute()"><label
+            class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+        &nbsp;&nbsp;
+        <button type="submit" class="menu-btn-save btnSave" [disabled]="!editBlockAttributeForm.dirty || editBlockAttributeForm.invalid" [ngClass]="{'disableSaveButton':!editBlockAttributeForm.dirty || editBlockAttributeForm.invalid}"
+          id="btnCreateOrganization">{{'screens.home.labels.Save' | translate}}</button>
+
+
+      </div>
+      <!-- <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button> -->
+    </nb-card-footer>
+  </nb-card>
+</form>

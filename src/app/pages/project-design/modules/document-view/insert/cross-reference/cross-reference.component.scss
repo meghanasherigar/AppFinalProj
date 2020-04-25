@@ -1,0 +1,23 @@
+.search-header{
+    background-color:black;
+    padding: 6px 0;
+    .row{
+       align-items: center;
+    }
+}
+
+.header-text{
+    height: 19px;
+    // width: 183px;
+    color:white;
+    font-family: "Open Sans";
+    font-size: 14px;
+    line-height: 19px;
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+ }
+
+.btnCancel{
+    color:black;
+ }

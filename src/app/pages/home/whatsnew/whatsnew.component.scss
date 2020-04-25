@@ -1,0 +1,101 @@
+#rcorners1 {
+  background: #86BC25;
+  padding: 40px; 
+  color:white;
+  border-top-right-radius: 115px;
+  height: calc(100vh - 160px);
+}
+.landingRightImg{
+  height: calc(100vh - 165px);
+  display: inline-block;
+  vertical-align: bottom;
+  img{
+    height: 100%;
+  }
+}
+.skipbutton {
+  color: #ffffff;
+  position: absolute;
+  bottom: 25px;
+  // right: 6px;
+  left:40px;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  padding: 4px 25px;
+  cursor: pointer;
+
+}
+
+.center {
+margin: auto;
+width: 100%;
+max-width: 500px;
+margin-left: 130px;
+padding-left: 0px;
+max-height: 520px;
+}
+.landing-img img{     margin: 3% auto;
+  zoom: 90%;
+  display: inline-block;
+  vertical-align: middle;}
+
+
+span {
+font-weight:bold;
+font-size:18px;
+}
+
+h1{
+padding-left: 40px;
+font-family: Verdana;
+}
+.whatsnew .carousel-indicators{
+  bottom: 50px;
+    margin-left: 0px;
+    padding-left: 0;
+    left: 35px;
+    right: auto;
+    width: auto;
+} 
+.carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 7px;
+    text-indent: 0;
+    cursor: pointer;
+    border: 1.5px solid #fff;
+    border-radius: 100%;
+    background-color: transparent; 
+    opacity: 1;
+  }
+
+  .carousel-indicators .active {
+    width: 13px;
+    height: 13px;
+    margin: 7px;
+    background-color: #fff;
+    border:none;
+  }
+  
+  .whatsnew
+  {
+    opacity: 1;
+    max-width: 700px;
+    height: 550px;
+  }
+
+  .mainDiv
+  {
+    margin-left: 0px;
+    font-family: Verdana, sans-serif;
+  }
+
+  .sideMove
+  {
+    padding-left:0px;
+  }
+  .contentScroll{
+    overflow: auto;
+    height: calc(100vh - 350px);
+  }

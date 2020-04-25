@@ -1,0 +1,21 @@
+<div *ngIf="authService.isLoggedIn()">   
+    <h3>
+        Profile info:
+    </h3>
+    <button (click)="getProfile()">Get profile</button><span *ngIf="profileLoading" class="loader">{{loading}}</span>
+    
+    <div class="profile-info">
+        <div *ngFor="let prop of profile">
+            <label>{{prop.label}}:</label>
+            <span>{{prop.value}}</span>
+        </div>
+    </div>
+    <br/><button (click)="callAPI()">Call API</button><span *ngIf="apiLoading" class="loader">{{loading}}</span>
+    <h3>
+        API Response:
+    </h3>
+    <div class="api-response">
+            {{apiResponse | json}}
+    </div>
+
+</div>

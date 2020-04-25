@@ -1,0 +1,31 @@
+.editor-heading{ 
+    font-size: 14px;
+    color: #000;
+    // height: calc(100vh - 283px) !important;
+   
+    padding: 10px 14px;
+    border: none;
+    overflow: auto;
+}
+.imgResponsive{
+    // width: 65%;
+    margin: 0 auto;
+    // height: calc(100vh - 370px);
+    overflow-y: auto;
+}
+
+.content-container
+{
+  padding:0 15px;
+}
+.previewNotAvailble{
+    text-align:center;
+    border: 1px solid #DDDDDD;
+    padding: 10px 0;
+    div{
+        color:
+        #B5B5B5;
+        font-size: 12px;
+        margin-top:8px;
+    }
+}

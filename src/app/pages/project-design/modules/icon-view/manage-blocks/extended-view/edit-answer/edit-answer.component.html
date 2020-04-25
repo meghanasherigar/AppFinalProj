@@ -1,0 +1,87 @@
+<nb-card>
+  <nb-card-header>
+    <span>{{'screens.project-designer.document-view.editAnswer' | translate}}</span>
+  </nb-card-header>
+  <nb-card-body>
+    Q: {{questionTitle}}
+    <div [ngSwitch]="questionType" class="answerBloack">
+      <ng-container *ngSwitchCase="'Free Text'">
+        <span>A:</span>
+        <div class="editor">
+          <div id="freeTextAnswerEditor"></div>
+          <div id="freeTextAnswerToolbar-Menu"></div>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="'Number Type'">
+        <span>A:</span>
+        <input [(ngModel)]="answer" (keydown)="valueCheck($event)" class="numberType" type="number">
+      </ng-container>
+      <ng-container *ngSwitchCase="'Date Type'">
+        <div class="inputWithIcon">
+          <div class="datePicker">
+            <span>A:</span>
+            <div class="calendar">
+              <input type="text" name="DueDate"  id="txtDueDate" placeholder="DD MMM YYYY" bsDatepicker
+                [(ngModel)]="answer" #dpTaxableYearEnd="bsDatepicker"
+                [bsConfig]="{ isAnimated: true, dateInputFormat: 'DD MMM YYYY' }" readonly>
+              <label><img (click)="dpTaxableYearEnd.show()" [attr.aria-expanded]="dpTaxableYearEnd.isOpen"
+                  src="assets/images/calender.png" class="calender-icon"></label>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="'Yes/No Type'" class="yesNOSection">
+        <span>A: </span>
+        <div>
+          <label class="yesBlock">
+            <input type="radio" value="Yes" name="YesorNo" [checked]="answer == 'Yes'"
+              (change)="RadioButtonChange($event)">
+            Yes
+          </label>
+          <label>
+            <input type="radio" value="No" name="YesorNo" [checked]="answer == 'No'"
+              (change)="RadioButtonChange($event)">
+            No
+          </label>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="'Drop Down Type'">
+        <ng-container *ngIf="this.questionDetails.typeDetails.modeOfSelection == false">
+          <span>A:</span>
+          <div class="dropDownSelect">
+            <select class="dd-style" id="ddlOptions" [(ngModel)]="answer">
+              <option *ngFor="let option of this.questionDetails.typeDetails.options">
+                {{option}}
+              </option>
+            </select>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="this.questionDetails.typeDetails.modeOfSelection">
+          <div class="requestItem">
+            <span>A:</span>
+            <ng-multiselect-dropdown class="filter-input dropdownInput" [placeholder]="'Options'"
+              [(ngModel)]="selectedOptions" [data]="this.questionDetails.typeDetails.options"
+              [settings]="multiSelectDropdownSettings">
+            </ng-multiselect-dropdown>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="'isTable'">
+      <div>
+        <div class="myclass">
+          <div class="coverPage" id="tableTypeEditor" (keydown)="tableEditorChange($event)"></div>
+          <div id="tableType-toolbar-menu" class="filters-section"></div>
+        </div>
+      </div>
+    </ng-container>
+  </nb-card-body>
+  <nb-card-footer class="footerCard">
+
+    <button type="submit" class="menu-btn-save createBlockSave footerRightButton" id="btnCreateOrganization"
+      (click)="save()"> {{ 'screens.Project-Management.Deliverable.Deliverable-Edit.Save' | translate }}</button>
+    <button nbButton type="button" class="menu-btn-cancel footerRightButton" style="color:black;"
+      (click)="dismiss()"><label
+        class="menu-txt-cancel canclebuttonLebal">{{ 'screens.Project-Management.Deliverable.Deliverable-Edit.Cancel' | translate }}</label></button>
+  </nb-card-footer>
+</nb-card>

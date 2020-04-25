@@ -1,0 +1,6 @@
+<div
+     [nbPopover]="switcherListComponent"
+     nbPopoverPlacement="bottom" (click) = "getNotifications()"
+     [nbPopoverContext]="{popover: popover}">
+  <i ngbTooltip="Notifications" class="control-icon nb-notifications"><div *ngIf = "messageCount > 0" class="badge badgeNotification">{{messageCount}}</div></i>
+</div>

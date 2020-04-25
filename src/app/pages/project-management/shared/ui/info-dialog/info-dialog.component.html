@@ -1,0 +1,31 @@
+<nb-card>
+    <nb-card class="infoDescriptionTopHeader">
+      <nb-card-header class="infoTopHeader">
+        <div class="col-sm-11"> {{header}}</div>
+        <div class="col-sm-1">
+          <h5 class="closeIcon" (click)="dismiss()">X</h5>
+        </div>
+      </nb-card-header>
+    
+      <nb-card-body>
+    
+        <div class="row">
+          <div class="col-md-6">
+            <span class="title">
+              {{header}}
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="infoDescription">
+              {{data}}
+            </p>
+          </div>
+        </div>
+       
+    
+    
+      </nb-card-body>
+    
+    </nb-card>

@@ -1,0 +1,83 @@
+
+    .emptyBlock{
+        width: 150px;
+        }
+
+        .emptyBlock1{
+            width: 150px;
+            margin-left: 70px;
+            }   
+
+    .checkbox{
+        margin-right: 10px;
+    }
+  
+
+.checkbox{
+    margin-right: 10px;
+}
+  
+
+    .blockId{
+        font-size: 10px;
+    }
+
+    
+
+    .attributeDetails{
+        height: 40px;	
+        width: 1334.5px;
+        color: black;
+    }
+
+    .drop-above {
+        border-top: 28px solid #aeef9930;;
+        margin-top: -20px;   
+        width: 85%;
+        outline: 1px dashed #000;
+        outline-offset: -2px;
+        // margin-top: 2px;
+        height: 19px;
+    }
+    .drop-below {
+        // border-bottom: 30px solid #aeef9930;
+        // margin-bottom: -20px;
+        // width: 85%;
+        // outline: 1px dashed #000;
+        // outline-offset: -2px;
+        // height: 19px;
+        position: relative;
+        height: 85px;
+    }
+    .drop-center {
+        background-color: #dddddd;
+    }
+    .stackDisplay{
+        color: gray !important;
+    }
+
+    // .stackLevel{
+    //     margin-left: 30px;
+    // }
+
+    .custom-form-input {
+        font-size: 0.9rem !important;
+    }
+
+  .custom-form-input {
+    font-size: 0.9rem !important;
+}
+
+.leftMargin{
+    margin-left:150px !important;
+}
+.disable-section {
+    pointer-events: none;
+    opacity: 0.4;
+}
+.highlight {
+    border: 2px solid red!important;
+}
+.lowhighlight {
+    border: 2px solid #ff8e8e !important;
+}

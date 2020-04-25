@@ -1,0 +1,15 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+
+<ngx-header-summary [options]='summaryOptions'
+(filterTrigger)="onMilestoneSelection($event)"
+ngxUiLoaderBlurred>
+</ngx-header-summary >
+<div class="deliverableListTable">
+<ng2-smart-table id="deliverableList" class="home-table" [settings]="gridsettings" 
+    (custom)="onCustomAction($event)"
+    (userRowSelect)="onDeliverableRowSelect($event)"
+    [source]="dataSource">
+</ng2-smart-table>
+</div>

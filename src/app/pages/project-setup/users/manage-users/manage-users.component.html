@@ -1,0 +1,13 @@
+<ngx-ui-loader [loaderId]='loaderId'
+[bgsPosition]="loaderPosition"
+[bgsColor]="loaderColor"></ngx-ui-loader>
+
+<nb-card>
+  <nb-card-body ngxUiLoaderBlurred>
+      <ngx-upload-user *ngIf="loadUploadComponent" (manageTransaction) = "getAdminUserData()" (CancelTransaction) = "CancelTransactionComponent($event)"></ngx-upload-user>
+      <ngx-create-user *ngIf="loadAddComponent" (manageTransaction) = "getAdminUserData()" (CancelTransaction) = "CancelTransactionComponent($event)"></ngx-create-user>
+      <ngx-edit-user *ngIf="loadEditComponent" (manageTransaction) = "getAdminUserData()" (CancelTransaction) = "CancelTransactionComponent($event)"></ngx-edit-user>
+      <ng2-smart-table id="usersSmartTable" [settings]="settings" [source]="adminUserGridSource" (userRowSelect)="onAdminUserRowSelect($event);">
+      </ng2-smart-table>
+  </nb-card-body>
+</nb-card>

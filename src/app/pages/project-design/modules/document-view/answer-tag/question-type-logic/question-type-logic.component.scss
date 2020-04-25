@@ -1,0 +1,107 @@
+.editblockHeading{
+    font-weight:bold;
+}
+
+.icon-name {
+    margin-top: 4px;
+    color: black;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  .icon-sub-name {
+    margin-top: 4px;
+    color: black;
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+.smalliconspan {
+    padding-left: 5px !important;
+    font-size: 14px;
+  }
+
+.edidAttributeformGroupLabal
+{
+    color: #d4d3d3;
+    font-size: 11px;
+}
+.edit-block-attribute-mandatory-icon{
+    color:#f50505;
+}
+.saveCancelBtn{
+    float: right;
+}
+.saveCancelBtnTopBorder{
+    border-top: 1px solid #eee !important;
+    padding: 9.18px !important;
+    line-height: 5px !important;
+}
+.editAttributesavButton {
+    height: 35px;
+    width: 109px;
+    border: 1px solid #636561;
+    border-radius: 3px;
+    background-color: #666765;
+    color: #fff;
+}
+.canclebuttonLebal{
+    color:#aba9a9 !important;
+}
+.editBlockpopupHW{
+    width: 1027px;
+    margin-top: 60px;
+}
+.ediTopHeader{
+    border-bottom: 1px solid #eee;
+    background: #000;
+    color: #fff;
+
+}
+.close{
+    color: #fff;
+    border: none;
+    border: 0;
+    border: 0 none !important;
+    color: #fff;
+    display: inline-block;
+    font-size: 22px;
+    line-height: 1;
+    opacity: 1;
+    text-shadow: none;
+   -webkit-transition: background 0.2s ease-in-out;
+   transition: background 0.2s ease-in-out;
+   vertical-align: top;
+   width: 46px;
+   outline: none;
+}
+.close:hover{
+    border: none;
+    border: 0;
+}
+.createCancel{
+    border-radius: 5px!important;
+}
+.saveEditBtn{
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px !important;
+}
+.selectBlockAttrDropDown{
+    position: relative; 
+    select{
+        -webkit-appearance: none;
+      }
+}
+
+.disable-section{
+    opacity: 0.4;
+  }
+//   ngx-question-type-logic{
+//     .nb-card{
+//         width: 800px;
+//     }
+//   }
+  .questionSelect{
+    border:1px solid #ccc;width:200px;margin-left:6px;padding:5px;
+  }

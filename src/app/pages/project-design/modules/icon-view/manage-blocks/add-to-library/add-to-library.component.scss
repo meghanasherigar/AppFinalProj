@@ -1,0 +1,27 @@
+.search-header{
+    background-color:black;
+    padding: 14px 19px;
+
+    .row{
+       align-items: center;
+    }
+}
+
+.header-text{
+    height: 19px;
+    // width: 183px;
+    color:white;
+    font-family: "Open Sans";
+    font-size: 14px;
+    line-height: 19px;
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+ }
+ .footerCard{
+      padding: 10px !important;
+ }
+ .menu-btn-cancel{
+    margin-right: 24px;
+    margin-top: -2px;
+ }

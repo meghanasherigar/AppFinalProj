@@ -1,0 +1,57 @@
+<div>
+  <nb-card class="createBlockpopupHW associated-popup">
+     <nb-card-header class="createTopHeader">
+        <div class="row">
+            <div class="col-xs-8" >
+                <span class="header-text">{{'screens.project-designer.appendix.associateScreen.LinkTemplatewith' | translate}}</span>
+                <input type="text" (input)="onSearchChange($event.target.value)" [placeholder]="'screens.project-designer.appendix.associateScreen.SearchDeliverables' | translate" class="pull-right search-box">
+            </div>   
+            <div class="col-xs-4 text-left"> 
+                <span class="header-text">{{'screens.project-designer.appendix.associateScreen.Selected' | translate}}</span>
+            </div>
+          </div>
+      <!-- <button aria-label="Close" class="close" type="button" (click)="dismiss()"><span
+          aria-hidden="true">×</span></button> -->
+    </nb-card-header>
+    <nb-card-body>
+      <div class="row">
+        <div class="associate_deliverableScrolling">
+        <div class="col-sm-8" id="middle">
+          <div *ngFor="let deliverable of deliverablesList" class="row deliverables">
+              <input type="checkbox" name=""    
+                [checked]="selectedDeliverable.indexOf(deliverable)>-1"
+              (click)="toggleSelection(deliverable)">
+              <div class="col-md-6 text-left">{{deliverable.entityName}}</div>
+              <!-- <div class="col-md-6 text-right">{{deliverable.taxableYearEnd}}</div> -->
+              <div class="col-md-5 text-right">{{deliverable.taxableYearEnd}}</div>
+
+          </div> 
+        
+        </div>   
+        <div class="col-sm-4" id="right">
+          <div *ngFor="let select of selectedDeliverable" class=" selected-deliverable" >
+            <span class="selectDeviverable" [title]="select.entityName">
+
+              {{select.entityName}}
+            </span>
+          <i class="fas fa-times remove-deliverable"(click)="remove(select)"></i>
+          </div>  
+        </div>
+      </div>
+    </div>
+
+    </nb-card-body>
+    <nb-card-footer class="footerCard">
+      <nb-card-footer class="footerRightButton">
+        <button nbButton type="button" class="menu-btn-cancel createCancel" style="color:black;"
+          (click)="dismiss()"><label
+            class="menu-txt-cancel canclebuttonLebal">{{'screens.home.labels.Cancel' | translate}}</label></button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="menu-btn-save createBlockSave" id="btnCreateOrganization" (click) = "associateDeliverable()">{{'screens.project-designer.appendix.associateScreen.Associate' | translate}}</button>
+
+
+      </nb-card-footer>
+      <!-- <button nbButton hero status="primary" (click)="dismiss()">Dismiss Dialog</button> -->
+    </nb-card-footer>
+  </nb-card>
+</div>

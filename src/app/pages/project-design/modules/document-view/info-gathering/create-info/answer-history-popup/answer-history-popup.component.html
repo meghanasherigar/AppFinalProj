@@ -1,0 +1,46 @@
+<div class="" *ngIf="answerHistoryLoaded">
+    <nb-card class="editBlockpopupHW editorBlockAttributes">
+      <nb-card-header class="ediTopHeader">
+        <div class="attributeText">
+          <span>Answer History</span>
+        </div>
+        <button aria-label="Close" class="close" type="button" (click)="dismiss()" style="
+        opacity: 1;
+    ">  <img class="closeBtn documentView-close" src="assets/images/Remove_without hover-White.svg"
+          (click)="closeAnswerHistoryPopup()"></button>
+      </nb-card-header>
+
+      <nb-card-body>
+        <div>
+          <div class="historyQuesAns">
+            <div class="form-group">
+              Q: {{questionName}} <span class="AnsUpdatedDate"> {{createdOn}}</span>
+            </div>
+            
+            <div class="editor">
+              <span>A:</span>
+              <div class="answerContent"> 
+                <span class="userName">{{updatedUser}}</span>
+                   <span class="AnsUpdatedDate">{{updatedOn}}</span>
+                   <div [innerHTML]="latestAnswer" class="latestAnswer">
+                  </div>
+              </div>
+             
+             
+            </div>
+          </div>
+          <div class="PrevAnswers">
+            <h3> Previous Answers ({{answersCount}})</h3>
+            <div *ngFor="let answer of previousAnswerList; let i=index;" class="prevAnsDiv">
+              <div>
+                <span><b>A: </b>
+                  <b>{{answer.auditTrail.updatedBy.firstName  +  answer.auditTrail.updatedBy.lastName}}</b></span>
+                <span class="AnsUpdatedDate">{{answer.auditTrail.updatedOn | dateAgo}}</span>
+              </div>
+              <div [innerHTML]="answer.answer"></div>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+</div>

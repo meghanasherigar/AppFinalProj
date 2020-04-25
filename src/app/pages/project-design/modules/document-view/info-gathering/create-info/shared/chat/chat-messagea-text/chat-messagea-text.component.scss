@@ -1,0 +1,45 @@
+.msgTextClass{
+    h4.sender{
+        font-size: 12px;
+        font-weight: 600;
+        color: #000;
+        margin-left: 8px;;
+    }
+    p.text{
+        font-size: 12px;
+        color: #7C7171;
+        margin-left: 4px;
+        margin-bottom: 2px;
+    }
+}
+.editCommentSec{
+
+    input.text{
+        padding: 7px;
+        border: 1px solid #ccc;
+        margin-right: 10px;
+        width: 30%;
+    }
+    button{
+        color: #fff;
+    }
+} 
+.EditCommentBtn{
+    position: absolute;
+    top: 4px;
+    border-right: 2px dotted #000;
+    height: 9px;
+}
+.commentEditpopup{
+    background: #F2F2F2;
+    p{
+        margin-bottom: 0;
+        padding: 4px 10px;
+        color: #000;
+        font-weight: 600;
+        cursor: pointer;
+        &:hover{
+            background: #fff;;
+        }
+}
+    }

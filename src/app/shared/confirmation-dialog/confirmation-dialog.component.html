@@ -1,0 +1,136 @@
+<div class="dialog popup-delete delete-confirm" *ngIf="dialogTemp.Type==4">
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col-md-1"><img src="assets/images/Delete.png" class="btnDeleteIcon"></div>
+      <div class="col-md-7"><p class="dialogMessage"> {{dialogTemp.Message}}</p></div>
+      <div class="col-md-4">
+        <span class="btnDelete">
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="ok-button"><label class="lblDelete"> {{'screens.project-setup.transaction.transaction-toolbar.Delete' | translate}} </label></button>&nbsp;&nbsp;
+        <button mat-button (click)="onNoClick()" class="cancel-button"><label class="lblCancel">{{'screens.manage-admin.labels.CancelBtn' | translate}}</label></button>
+        </span>
+      </div>
+   </div>
+  </div>
+</div>
+<div class="dialog popup-delete" *ngIf="dialogTemp.Type==6">
+  <div mat-dialog-content>
+      <img src="assets/images/info-icon.png" height="30px;" width="30px;" class="btnDeleteIcon">&nbsp;
+     <span> {{dialogTemp.Message}}</span>
+
+    <span class="btnDelete pull-right">
+     <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="ok-button"><label class="lblDelete">{{'screens.manage-admin.labels.UpdateBtn' | translate}}</label></button>&nbsp;&nbsp;
+     <button mat-button (click)="onNoClick()" class="cancel-button"><label class="lblCancel">{{'screens.manage-admin.labels.CancelBtn' | translate}}</label></button>
+     </span>
+   </div>
+</div>
+<div class="dialog popup-add" *ngIf="dialogTemp.Type==7">
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="text-right">
+          <img src="assets/images/projectdesigner/Add to library.svg" style="margin-top: 10px;" class="btnDeleteIcon">&nbsp;
+      </div>
+      <div class="col">
+          <h5><b>{{'screens.project-designer.iconview.addToUserLibrary' | translate}}</b></h5> 
+          <span> {{dialogTemp.Message}}</span>
+      </div>
+      <div class="col text-right">
+        <span class="btnDelete">
+            <button mat-button (click)="onNoClick()" class="cancel-button"><label class="lblCancel">{{'screens.manage-admin.labels.CancelBtn' | translate}}</label></button>
+            <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="ok-button"><label class="lblDelete">{{'screens.project-setup.transaction.transaction-create.Add' | translate}}</label></button>&nbsp;&nbsp;
+            </span>
+    </div> 
+    </div>
+       
+   </div>
+</div>
+
+<div class="dialog popup-delete" *ngIf="dialogTemp.Type==5">
+  <div mat-dialog-content>
+      <img src="assets/images/info-icon.png" class="btnDeleteIcon img-height">&nbsp;
+     <span> {{dialogTemp.Message}}</span>
+
+    <span class="btnDelete text-center">
+     <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="ok-button"><label class="lblDelete"> {{'screens.project-setup.transaction.transaction-create.Yes' | translate}}</label></button>&nbsp;&nbsp;
+     <button mat-button  (click)="onNoClick()" class="cancel-button"><label class="lblCancel">{{'screens.project-setup.transaction.transaction-create.No' | translate}}</label></button>
+     </span>
+   </div>
+</div>
+<div class="dialog popup-delete" *ngIf="dialogTemp.Type==8">
+    <div mat-dialog-content class="pullbackPopUp">    
+      <div class="row">
+        <div class="col-md-1 padd-right0">
+            <img src="assets/images/information_Gathering/pullback.svg" class="btnDeleteIcon img-height">
+        </div>
+        <div class="col-md-7 padd-left0">
+            <span class="dialogMessage"> {{dialogTemp.Message}}</span>
+        </div>
+        <div class="col-md-4">
+            <span class="btnDelete">
+                <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="ok-button"><label class="lblDelete">{{'screens.project-setup.transaction.transaction-create.Yes' | translate}}</label></button>&nbsp;&nbsp;
+                <button mat-button  (click)="onNoClick()" class="cancel-button"><label class="lblCancel">{{'screens.project-setup.transaction.transaction-create.No' | translate}}</label></button>
+                </span>
+        </div>
+      </div>
+     </div>
+  </div>
+<div class="dialog popup-delete" *ngIf="dialogTemp.Type==9">
+    <div mat-dialog-content class="sendBackPopUp">       
+        <div class="row">
+           <div class="col-md-1 padd-right0">
+             <img src="assets/images/information_Gathering/send_back_for_review.svg" class="btnDeleteIcon img-height">
+            </div>
+            <div class="col-md-7 padd-left0">
+              <h5><b>{{'screens.project-designer.document-view.info-request.send-back-button' | translate}}</b></h5>
+            <span *ngFor="let message of dialogTemp.Message.split('SplitChar')">
+                {{message}}
+                <br/>
+            </span>
+            </div>
+            <div class="col-md-4">
+                <span class="btnDelete">
+                    
+                    <button mat-button  (click)="onNoClick()" class="cancel-button"><label class="lblCancel">{{'screens.project-setup.transaction.transaction-create.No' | translate}}</label></button>&nbsp;&nbsp;
+                    <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="ok-button"><label class="lblDelete">{{'screens.project-setup.transaction.transaction-create.Yes' | translate}}</label></button>
+                    </span>
+            </div>
+        </div>  
+      
+     </div>
+  </div>
+<div class="dialog popup-delete" *ngIf="dialogTemp.Type ==0">
+    <div mat-dialog-content>
+        <img src="assets/images/green-tick.png" style="width: 30px;">&nbsp;
+       <span> {{dialogTemp.Message}}</span>
+
+       <span class="btnDelete pull-right" style="margin-top: 0;">
+          <button mat-button (click)="onNoClick()" class="ok-button"><label class="lblDelete">{{'screens.project-setup.transaction.transaction-create.Ok' | translate}}</label></button>
+       </span>
+     </div>
+</div>
+<div class="dialog popup-delete delete-confirm" *ngIf="dialogTemp.Type==10">
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col-md-1"><img src="assets/images/Delete.png" class="btnDeleteIcon"></div>
+      <div class="col-md-7"><p class="dialogMessage"> {{dialogTemp.Message}}</p></div>
+      <div class="col-md-4">
+        <span class="btnDelete">
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="ok-button"><label class="lblDelete labelRemove"> {{'screens.project-designer.document-view.Remove' | translate}} </label></button>&nbsp;&nbsp;
+        <button mat-button (click)="onNoClick()" class="cancel-button"><label class="lblCancel">{{'screens.manage-admin.labels.CancelBtn' | translate}}</label></button>
+        </span>
+      </div>
+   </div>
+  </div>
+</div>
+
+<div class="dialog popup-delete" *ngIf="(dialogTemp.Type !=0 && dialogTemp.Type != 4 && dialogTemp.Type != 5  && dialogTemp.Type != 6 && dialogTemp.Type != 7 && dialogTemp.Type!=9 && dialogTemp.Type!=8  && dialogTemp.Type!=10)">
+    <div mat-dialog-content>
+        <img src="assets/images/error-img.png" style="width: 30px;">&nbsp;
+       <span> {{dialogTemp.Message}}</span>
+
+       <span class="btnDelete text-center">
+          <button mat-button (click)="onNoClick()" class="ok-button"><label class="lblDelete">{{'screens.project-setup.transaction.transaction-create.Ok' | translate}}</label></button>
+       </span>
+     </div>
+</div>
+
+  

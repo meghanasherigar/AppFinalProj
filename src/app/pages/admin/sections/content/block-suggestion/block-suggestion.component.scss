@@ -1,0 +1,239 @@
+.read {
+    height: 17px;
+    width: 29px;
+    color: #000000;
+    font-family: "Open Sans";
+    font-size: 12px;
+    line-height: 17px;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+  }
+  
+  .left-style{
+    padding-left:3%
+  }
+  .readIcon {
+    height: 18px;
+    width: 48px;
+  }
+  
+  .rectangle-copy {
+    height: 30.24px;
+    width: 84.5px;
+    border: 1px solid #F1F1F1;
+    background-color: #FFFFFF;
+    box-shadow: 0 0.5px 0 0 #D8D8D8;
+  }
+  
+  .blockIcon {
+    height: 30.24px;
+    width: 42.25px;
+    border: 1px solid #000000;
+    background-color: #000000;
+    box-shadow: 0 0.5px 0 0 #D8D8D8;
+  }
+  
+  .dd-style {
+    height: 30.24px;
+    width: 208px;
+    border: 1px solid #F1F1F1;
+    background-color: #FFFFFF;
+    box-shadow: 0 0.5px 0 0 #D8D8D8;
+    padding-left: 10px;
+  }
+  
+  .right-section
+  {
+      right: -17%;
+  }
+  
+  
+  
+  /////new
+  
+  /*******************************
+  * Does not work properly if "in" is added after "collapse".
+  * Get free snippets on bootpen.com
+  *******************************/
+  .panel-group .panel {
+  border-radius: 0;
+  box-shadow: none;
+  border-color: #EEEEEE;
+  }
+  
+  .panel-default > .panel-heading {
+  padding: 0;
+  border-radius: 0;
+  color: #212121;
+  background-color: #FAFAFA;
+  border-color: #EEEEEE;
+  }
+  
+  .panel-title {
+  font-size: 14px;
+  }
+  
+  .panel-title > a {
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  }
+  
+  .more-less {
+  float: right;
+  color: #212121;
+  }
+  
+  .panel-default > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #EEEEEE;
+  }
+  
+  /* ----- v CAN BE DELETED v ----- */
+  body {
+  background-color: #26a69a;
+  }
+  
+  .demo {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  }
+  
+  .filter-input {
+  width: calc(20% - 12.5px);
+  max-width: 160px;
+  background-color: #ffffff;
+  border-style: solid;
+  border: 1px solid #D2D4CD;
+  color: black;
+  margin: 0 6.25px;
+  margin-bottom: 8.2px;
+  height: 28px;
+  
+  position: relative;
+  font-size: 12px;
+  }
+  
+  .title {
+  display: none;
+  }
+  
+  .smallIcon {
+  height: auto;
+  max-width: 25px;
+  margin:5px;
+  }
+  .libraryItemsRight
+  {
+  margin-left:61px;
+  
+  }
+  .libraryItemsRight
+  {
+  margin-left:268px;
+  
+  }
+  .top-header1 {
+  
+  padding:10px;
+  margin:0;
+  }
+  .top-header2 {
+  
+  margin: 0;
+  border: 1px solid #eee;
+  }
+  .templateHeaderWrapper {
+  padding:0 !important;
+  overflow: hidden;
+  }
+  .icon-header:hover,
+  .icon-header:focus {
+  filter: invert(30%) grayscale(100%) brightness(70%) contrast(4);
+  }
+  .templateHeaderWrapper .rectangle-copy {
+  height: 30.24px;
+    width: 44.5px;
+    border: 1px solid #F1F1F1;
+    background-color: #FFFFFF;
+    -webkit-box-shadow: 0 0.5px 0 0 #D8D8D8;
+    box-shadow: 0 0.5px 0 0 #D8D8D8;
+  }
+  .iconGreenColor {
+  background: #86BC25!important;
+  }
+  
+  .listIcon {
+  height: 21px!important;
+  }
+  .rightHeader-icon-style {
+  margin-left: 115px;
+  }
+  .libraryItems {
+    float: right;
+  }
+  .headerTop {
+    padding-top: 20px;
+  }
+  .roundedCorner {
+    position: relative;
+  }
+  #searchbox {
+    width: 140px;
+    height: 19px;
+    background: #fff;
+    border: 1px solid #d6d4d4;
+    font-size: 8pt;
+    float: left;
+    color: #262626;
+    font-style: italic;
+    padding-left: 8px;
+    border-radius: 9px;
+    color: rgb(117, 114, 114);
+    -webkit-transition: width .55s ease;
+    transition: width .55s ease;
+    -webkit-transition: width .55s ease;
+    -moz-transition: width .55s ease;
+    -ms-transition: width .55s ease;
+    -o-transition: width .55s ease;
+    transition: width .55s ease;
+    position: relative;
+    left: 21px;
+    top: 3px
+      // z-index: 999;
+    }
+
+.createManageLibarary .stackClass .mat-checkbox-label{
+  border: none !important;
+  padding-left: 0 !important;
+}
+
+.createManageLibarary .stackClass .mat-checkbox::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  top: 16px;
+  right: 22px;
+  width: 74% !important;
+  left: 81px !important;
+  background: #F1F1F1;
+  display: block;
+  height: 20px;
+}
+
+.createManageLibarary .stackClass .stackDisplay {
+  max-width: 130px !important;
+}
+
+.createManageLibarary mat-tree-node[role="treeitem"] [aria-level="1"] .mat-icon-button{ 
+  display: none;
+}
+
+.createManageLibarary mat-tree-node[role="treeitem"] [aria-level="2"] .mat-icon-button{ 
+  display: none;
+}
+.showAttribute{
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0;
+}

@@ -1,0 +1,25 @@
+<div class="row">
+  <div id="privacyPolicy-Menu" class="col-sm-12 toolbar-component-container collapsed">
+      <div class="manage-section">
+        <div class="action-icon-wrapper">
+          <img src="assets/images/Save.svg" class="btnToolbar" (click)="savePrivacyPolicy('Save');">
+          <span class="icon-name">{{ 'screens.admin.labels.Save' | translate }}</span>
+        </div>
+        <div class="action-icon-wrapper" id="downloadIcon">
+            <img src="assets/images/Publish.svg" class="btnToolbar" (click)="publichPrivacyPolicy('Publish')">
+            <span class="icon-name">{{ 'screens.admin.labels.Publish' | translate }}</span>
+          </div>
+        <span class="section-name">{{ 'screens.admin.labels.action' | translate }}</span>
+      </div>
+
+      <div id="toolbar-menu" class="filters-section">
+        
+      </div>
+  
+    <div class="collapse-btn-wrapper" (click)="toggleCollapse()">
+        {{imageName}}
+        <img class="collapse-img" src="assets/images/Expand.png" alt="" *ngIf="!show">
+        <img class="collapse-img" src="assets/images/Collapse.png" alt="" *ngIf="show">
+    </div>
+  </div>
+</div>

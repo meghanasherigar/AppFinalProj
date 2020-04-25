@@ -1,0 +1,21 @@
+Steps to Build the UI Angular project
+1. Download the latest UI code from Source Control
+2. Open the DigitalBox folder in VisualStudio Code
+3. In the terminal window run command "npm install" (please wait it may take some time to download packages for the first time)
+4. once all the modules/packages get downloaded, run command "ng serve"
+
+
+// To build in Production mode
+ng build --configuration=prod
+
+// To build in QA mode
+ng build --configuration=qa
+
+
+JSON-SERVER:
+Titirial or Source: https://github.com/typicode/json-server
+To Start the JSON-Server: json-server --watch db.json
+
+
+Best Screen Resolution:
+1366 px	768 px
