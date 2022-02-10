@@ -92,7 +92,7 @@
     "ngx-toastr": "^10.1.0",
     "ngx-treeview": "6.0.2",
     "ngx-ui-loader": "^7.2.2",
-    "node-sass": "4.12.0",
+    "node-sass": "7.0.0",
     "normalize.css": "6.0.0",
     "oidc-client": "1.7.1",
     "pace-js": "1.0.2",
